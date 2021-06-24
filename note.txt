@@ -1,6 +1,6 @@
 Folder Controller để chức năng vào trong
 Folder model là để các thứ liên quan đến model và shema của databáse 
-folder public thì chú ý nhét thêm thư viện mình dùng 
+folder public thì chú ý nhét thêm thư viện mình dùng ( ọp lai )
 folder view để html 
 folder router để router 
 sever viết các thứ liên quan đến sever
