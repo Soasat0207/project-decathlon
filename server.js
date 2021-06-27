@@ -10,7 +10,7 @@ const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const bodyParser = require("body-parser");
-var multer=require('multer');
+
 
 
 app.use(
@@ -33,9 +33,6 @@ app.get('/admin-list-product', (req, res) => {
 })
 app.get('/admin-add-product', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-add-product.html'))
-})
-app.get('/admin-add-color', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-add-color.html'))
 })
 app.get('/admin-list-color', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-color.html'))

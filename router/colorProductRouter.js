@@ -13,7 +13,6 @@ router.get('/',(req,res) =>{
     })
 });
 router.post('/',(req,res) =>{
-    console.log(req.body);
     let colorCode = req.body.colorCode;
     let name = req.body.name;
     ModelMongo.colorProductModel.create({
@@ -31,4 +30,59 @@ router.post('/',(req,res) =>{
         res.status(500).json('loi sever')
     })
 });
+router.post('/find',(req,res) =>{
+    let id = req.body.id;
+    ModelMongo.colorProductModel.findOne({
+        _id:id,
+    })
+    .then((data)=>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json('loi sever')
+    })
+});
+router.put('/',(req,res) =>{
+    let id = req.body.id;
+    let colorCode = req.body.colorCode;
+    let name = req.body.name;
+    console.log(req.body)
+    ModelMongo.colorProductModel.findOneAndUpdate({
+        _id:id,
+    },{
+        colorCode:colorCode,
+        name:name
+    })
+    .then((data)=>{
+        console.log(data)
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json('loi sever')
+    })
+});
+router.delete('/',(req,res) =>{
+    let id = req.body.id;
+    ModelMongo.colorProductModel.findOneAndDelete({
+        _id:id,
+    })
+    .then((data)=>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((err)=>{
+        res.status(500).json('loi sever')
+    })
+})
 module.exports = router;
