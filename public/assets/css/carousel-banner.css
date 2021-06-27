@@ -1,0 +1,283 @@
+
+.carousel-banner_slider{
+    display: block;
+    width:100vw;
+    height: 56rem;
+    transition: all 0.2s ease-in;
+    transform: translateX(0);
+}
+.carousel-banner_slider .box{
+    height:100%;
+    width:100%;
+    display: none;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.carousel-banner_slider .box .bg{
+    background-color:rgba(0,0,0,0.2);
+    width: 55%;
+    height:100%;
+    padding:2rem;
+    transform: skewX(7deg);
+    position: absolute;
+    left:-10%;
+    padding-left:20rem;
+    transform-origin: 0 100%;
+}
+.carousel-banner_slider .box .bg::before{
+    content: "";
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0%;
+    top: 0;
+    background-color:inherit;
+    pointer-events: none;
+    transform:skewX(12deg)
+}
+.carousel-banner_slider .box .details{
+    padding:5rem;
+    padding-left: 10rem;
+    z-index: 1;
+    /* grid-column: 1/span 1;
+    grid-row: 1/-1; */
+}
+.carousel-banner_slider .box .details h1{
+    color:var(--white-color);
+    font-size:3.5rem;
+    font-weight:500;
+    margin-bottom:0.5rem;
+}
+.carousel-banner_slider .box .details p{
+    display:inline-block;
+    font-size: 1.6rem;
+    color:#B5B4B4;
+    margin-bottom:2rem;
+    margin-right: 11rem;
+}
+.carousel-banner_slider .box .details button{
+    padding:1rem 3rem;
+    color:var(--white-color);
+    border-radius: 2rem;
+    outline:none;
+    border:none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color:blue;
+    font-size: 1.4rem;
+}
+.carousel-banner_slider .box .illustration{
+    grid-column:2/-1;
+    grid-row:1/-1;
+    justify-content:center;
+    padding:10rem;
+}
+.carousel-banner_slider .box .illustration .inner{
+    height:36rem;
+    width:68rem;
+    border-radius:3rem;
+    background-color:#FF0077;
+    position: relative;
+    transform: skewX(-10deg);
+}
+.carousel-banner_slider .prev ,
+.carousel-banner_slider .next{
+    position:absolute;
+    width:4rem;
+    opacity: 0.2;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+.carousel-banner_slider .prev:hover ,
+.carousel-banner_slider .next:hover{
+    opacity: 1;
+}
+.carousel-banner_slider .prev{
+    top: 50%;
+    left:2%;
+    transform:translateY(-50%);
+}
+.carousel-banner_slider .next{
+    top: 50%;
+    right:2%;
+    transform:translateY(-50%);
+}
+.carousel-banner .trail{
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    position:absolute;
+    z-index: 1;
+}
+.carousel-banner .trail div {
+    padding: 2rem;
+    border-top: 3px solid var(--white-color);
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    background:transparent;
+    color: var(--white-color);
+}
+.carousel-banner .trail div:hover {
+    opacity: 0.6;
+}
+.active {
+    opacity: 1 !important;
+}
+@media only screen and (max-width: 800px) {
+    .carousel-banner_slider .box .bg {
+        width: 65%;
+    }
+    .carousel-banner_slider .box .illustration .inner{
+        height:40rem;
+        width:20rem;
+    }
+    .carousel-banner_slider .box .details p {
+        margin-right: 0;
+    }
+    .carousel-banner_slider .illustration div {
+        height: 20rem;
+        width: 15rem;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    .carousel-banner_slider .box .bg {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        height: 54%;
+        transform: skewX(0deg);
+    }
+    .carousel-banner_slider .box .illustration{
+        grid-column: 1/-1;
+        padding: 4rem 0 12rem 0;
+    }
+    .carousel-banner_slider .box .illustration .inner{
+        height: 14rem;
+        width: 24rem;
+    }
+    .carousel-banner_slider .box .bg::before {
+        width: 120%;
+        bottom: 0;
+        transform: skewX(0deg);
+    }
+    .carousel-banner_slider .box .details {
+        grid-row: 2/span 1;
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 2rem;
+        transform: translateY(-9rem);
+    }
+    .carousel-banner_slider .box .details p{
+        margin-top: 0;
+    }
+    .carousel-banner_slider .illustration {
+        grid-row: 1/span 1;
+        grid-column: 1/-1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .carousel-banner_slider .prev ,
+    .carousel-banner_slider .next {
+        display: none;
+    }
+    .carousel-banner div {
+        padding: 1rem;
+    }
+}
+.carousel-banner_slider .box1{
+    background-color:#500033;
+    background-image: url(https://contents.mediadecathlon.com/s864415/k$98e770752f6ee5bf13c096e6c840c861/slider%20desktop%20background%20image.jpg?format=auto);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+}
+.carousel-banner_slider .box1 .illustration .inner{
+    background-image: url(https://contents.mediadecathlon.com/s864416/k$eb1ddd543790c25ca57ad925adcee294/slider%20desktop%20content%20image.jpg?format=auto);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    
+}
+.carousel-banner_slider .box1 .details button{
+    background-color:#318154;
+}
+.carousel-banner_slider .box2{
+    background-color:#500033;
+    background-image: url(../image/slider2.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+}
+.carousel-banner_slider .box2 .illustration .inner{
+    background-image: url(../image/slider2_2.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    
+}
+.carousel-banner_slider .box2 .details button{
+    background-color:#318154;
+}
+.carousel-banner_slider .box3{
+    background-color:#500033;
+    background-image: url(../image/slider3.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+}
+.carousel-banner_slider .box3 .illustration .inner{
+    background-image: url(../image/slider3_3.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    
+}
+.carousel-banner_slider .box3 .details button{
+    background-color:#318154;
+}
+.carousel-banner_slider .box4{
+    background-color:#500033;
+    background-image: url(../image/slider4.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+}
+.carousel-banner_slider .box4 .illustration .inner{
+    background-image: url(../image/slider4_4.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    
+}
+.carousel-banner_slider .box4 .details button{
+    background-color:#318154;
+}
+.carousel-banner_slider .box5{
+    background-color:#500033;
+    background-image: url(../image/slider5.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+}
+.carousel-banner_slider .box5 .illustration .inner{
+    background-image: url(../image/slider5_5.webp);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    
+}
+.carousel-banner_slider .box5 .details button{
+    background-color:#318154;
+}

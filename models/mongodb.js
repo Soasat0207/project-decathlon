@@ -97,8 +97,8 @@ const ProductSchema = new Schema({
     categoryProductId:{
         type:String,
         ref:'categoryProduct',
-    }
-
+    },
+    status:String,
 },{
     collection:'product'
 })
@@ -183,25 +183,25 @@ const categoryProductModel = new mongoose.model('categoryProduct',categoryProduc
 // review and comment
 const reviewModel = new mongoose.model('review',reviewSchema);
 const commentModel = new mongoose.model('comment',commentSchema);
+module.exports = {accountModel,lastInfoLoginModel,colorProductModel,sizeProductModel,levelProductModel,productModel,trademarkModel,supplierModel,categoryProductModel,reviewModel,commentModel}
 // end review and comment
-reviewModel.findOneAndUpdate({
-    productId:'60d2ecdcc0f69f9f8cc7b74b',
-})
-.populate({
-    path:'reply',
-    populate:{path:'accountId'}
-})
-.populate({
-    path:'reply',
-    populate:{path:'reviewId'}
-})
-.then((data)=>{
-    console.log(data)
-})
-.catch((err)=>{
-    console.log(err)
-})
-
+// reviewModel.findOneAndUpdate({
+//     productId:'60d2ecdcc0f69f9f8cc7b74b',
+// })
+// .populate({
+//     path:'reply',
+//     populate:{path:'accountId'}
+// })
+// .populate({
+//     path:'reply',
+//     populate:{path:'reviewId'}
+// })
+// .then((data)=>{
+//     console.log(data)
+// })
+// .catch((err)=>{
+//     console.log(err)
+// })
 // productModel.create({
 //     name:String,
 //     img:[
@@ -236,7 +236,7 @@ reviewModel.findOneAndUpdate({
 //     categoryProductId:'60d2e94044427f9cdea17f94',
 // })
 // productModel.findOne({
-//     codeProduct:'8554558'
+    
 // })
 // .populate({
 //     path:'sizeId'
