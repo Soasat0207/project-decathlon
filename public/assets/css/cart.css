@@ -192,12 +192,19 @@ body{
     border: 0.1rem solid #a5adb8;
     cursor: text;
 }
-.cart-items-quantity-btn-disabled{
-    cursor: not-allowed;
+.cart-items-quantity-btn-decrease{
+    cursor: pointer;
     opacity: 0.4;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+.cart-items-quantity-btn-increase{
+    cursor: pointer;
+    opacity: 0.4;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .cart-items-delete button{
     min-width: 2rem;
     width: 2rem;

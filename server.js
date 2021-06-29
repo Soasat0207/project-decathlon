@@ -2,13 +2,18 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-
+const cartRouter = require('./router/cartRouter');
+var cookieParser = require('cookie-parser');
+ 
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
  
 // parse application/json
 app.use(express.json())
+
+// parse cookie
+app.use(cookieParser())
 
 // Send html file
 app.get('/', (req, res) => {
@@ -40,7 +45,7 @@ app.get('/cart', (req, res, next) => {
 app.use('/public',express.static(path.join(__dirname, './public')));
 
 // Use router
-
+app.use('/api/user/', cartRouter)
 
 // Port to listen
 app.listen(port, () => {

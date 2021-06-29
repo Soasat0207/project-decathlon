@@ -220,7 +220,10 @@ const shoppingCartSchema = new Schema(
   {
     product: [
       {
-        productID: String,
+        productId: {
+          type: String,
+          ref: 'product',
+        },
         quantity: Number,
       },
     ],
