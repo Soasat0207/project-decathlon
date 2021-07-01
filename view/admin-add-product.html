@@ -102,7 +102,7 @@
                             <div class="body_admin-right_page-content-card">
                                 <div class="page-content-card-warpper">
                                     <h5 class="page-content-card-warpper-title">Add New Product</h5>
-                                    <form action="" method="POST" class="form" id="formAddProduct">
+                                    <form action="" method="POST" class="form" id="formAddProduct" enctype="multipart/form-data">
                                         <div class="page-content-card-form">
                                             <div class="row ">
                                                 <div class="col col-lg-8">
@@ -112,43 +112,43 @@
                                                                 <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Code Product</label>
-                                                                        <input type="text" class="form-control page-content-form_code" placeholder="Enter code product">
+                                                                        <input name="CodeProduct" type="text" class="form-control page-content-form_code" placeholder="Enter code product">
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Product Name</label>
-                                                                        <input type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+                                                                        <input name="ProductName" type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Product Title</label>
-                                                                        <input type="text" class="form-control page-content-form_title" placeholder="Enter product title">
+                                                                        <input name="productTitle" type="text" class="form-control page-content-form_title" placeholder="Enter product title">
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Description Short</label>
-                                                                        <textarea class="form-control page-content-form_description-short" rows="3" placeholder="Enter Description Short"></textarea>
+                                                                        <textarea name="descriptionShort" class="form-control page-content-form_description-short" rows="3" placeholder="Enter Description Short"></textarea>
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Description Details</label>
-                                                                        <textarea class="form-control page-content-form_description-details" rows="6" placeholder="Enter Description Details"></textarea>
+                                                                        <textarea name="descriptionDetails" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Description Details"></textarea>
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col col-lg-12">
+                                                                <!-- <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Image</label>
                                                                         <form method="post" enctype="multipart/form-data">
-                                                                            <!-- file input -->
+                                                                           
                                                                             <input type="file" name="files">
                                                                         </form>
                                                                     </div>
@@ -157,18 +157,23 @@
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Image color</label>
                                                                         <form  method="post" enctype="multipart/form-data">
-                                                                            <!-- file input -->
+                                                                       
                                                                             <input type="file" name="files">
                                                                         </form>
+                                                                    </div>
+                                                                </div> -->
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image color</label>
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgColor" multiple>   
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-lg-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Image color</label>
-                                                                        <form  method="post" enctype="multipart/form-data">
                                                                             <!-- file input -->
-                                                                            <input type="file" >
-                                                                        </form>
+                                                                            <input type="file" name="imgProduct" multiple>   
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -185,21 +190,21 @@
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
                                                                         <label class="page-content-card-form-input-label" for="">Product Price</label>
-                                                                        <input type="text" class="form-control page-content-form_price" placeholder="Enter Product Price">
+                                                                        <input name="productPrice" type="text" class="form-control page-content-form_price" placeholder="Enter Product Price">
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Product Price Import</label>
-                                                                        <input type="text" class="form-control page-content-form_price-import" placeholder="Enter product Price Import">
+                                                                        <input name="priceImport" type="text" class="form-control page-content-form_price-import" placeholder="Enter product Price Import">
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
                                                                         <label class="page-content-card-form-input-label " for="">Unit</label>
-                                                                        <select class="form-select page-content-form_unit">
+                                                                        <select name="productUnit" class="form-select page-content-form_unit">
                                                                             <option value=""></option>
                                                                             <option value="cái">Cái</option>
                                                                             <option value="đôi">Đôi</option>
@@ -210,14 +215,14 @@
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Product Quantity</label>
-                                                                        <input type="text" class="form-control page-content-form_quantity" placeholder="Enter Quantity">
+                                                                        <input name="productQuantity" type="text" class="form-control page-content-form_quantity" placeholder="Enter Quantity">
                                                                         <span class="form-message"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
                                                                         <label class="page-content-card-form-input-label" for="">Rate</label>
-                                                                        <select class="form-select page-content-form_rate">
+                                                                        <select name="productRate" class="form-select page-content-form_rate">
                                                                             <option value=""></option>
                                                                             <option value="5">5</option>
                                                                             <option value="4">4</option>
@@ -230,7 +235,7 @@
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2 ">
                                                                         <label class="page-content-card-form-input-label" for="">Gender</label>
-                                                                        <select class="form-select page-content-form_gender">
+                                                                        <select name="productGender" class="form-select page-content-form_gender">
                                                                             <option value=""></option>
                                                                             <option value="male">male</option>
                                                                             <option value="female">female</option>
@@ -240,7 +245,7 @@
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
                                                                         <label class="page-content-card-form-input-label" for="">Size</label>
-                                                                        <select class="form-select page-content-form_size">
+                                                                        <select name="productSize" class="form-select page-content-form_size">
                                                                             <option value=""></option>
                                                                         </select>
                                                                     </div>
@@ -248,7 +253,7 @@
                                                                 <div class="col col-md-6">
                                                                     <div class="page-content-card-form-input  margin-bottom-2 ">
                                                                         <label class="page-content-card-form-input-label" for="">color</label>
-                                                                        <select class="form-select page-content-form_color">
+                                                                        <select name="productColor" class="form-select page-content-form_color">
                                                                             <option value=""></option>
                                                                         </select>
                                                                     </div>
@@ -256,7 +261,7 @@
                                                                 <div class="col col-md-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">level</label>
-                                                                        <select class="form-select page-content-form_level">
+                                                                        <select name="productLevel" class="form-select page-content-form_level">
                                                                             <option value=""></option>
                                                                         </select>
                                                                     </div>
@@ -264,7 +269,7 @@
                                                                 <div class="col col-md-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Trade Mark</label>
-                                                                        <select class="form-select page-content-form_trade-mark">
+                                                                        <select name="productTradeMark" class="form-select page-content-form_trade-mark">
                                                                             <option value=""></option>
                                                                         </select>
                                                                     </div>
@@ -272,7 +277,7 @@
                                                                 <div class="col col-md-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Supplier</label>
-                                                                        <select class="form-select page-content-form_supplier">
+                                                                        <select name="productSupplier" class="form-select page-content-form_supplier">
                                                                             <option value=""></option>
                                                                         </select>
                                                                     </div>
@@ -280,7 +285,7 @@
                                                                 <div class="col col-md-12">
                                                                     <div class="page-content-card-form-input  margin-bottom-2">
                                                                         <label class="page-content-card-form-input-label" for="">Product Category</label>
-                                                                        <select class="form-select page-content-form_category">
+                                                                        <select name="productCategory" class="form-select page-content-form_category">
                                                                             <option value=""></option>
                                                                         </select>
                                                                     </div>

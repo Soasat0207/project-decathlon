@@ -17,11 +17,14 @@ async function renderTableColor() {
               <button onclick="DeleteColor('${data._id}')">X</button>
               <button onclick="UpdateModalColor('${data._id}')">Sửa</button>
             </td> 
-
         </tr>
         `
         $('.admin-list-color').append(div);
+        $('tr').dblclick(()=>{
+          console.log(data._id);
+        })
       });
+      
       
     } catch (error) {
       console.log(error);
@@ -74,6 +77,7 @@ async function UpdateModalColor(id) {
   }
 }
 async function UpdateColor(id) {
+  console.log(id);
   let colorCode = $('.page-content-form_code').val();
   let name = $('.page-content-form_name').val();
   try {

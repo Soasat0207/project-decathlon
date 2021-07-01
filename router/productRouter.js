@@ -1,6 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const ModelMongo = require("../models/mongodb");
+var multer  = require('multer')
+const path = require('path');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,path.join(__dirname,'../public/uploads'))
+    },
+    filename: function (req, file, cb) {
+      let index = file.originalname.lastIndexOf('.');
+      let extention = file.originalname.slice(index,file.originalname.length);
+      cb(null, file.fieldname + '-' + Date.now() + extention);
+    }
+  })
+var upload = multer({ storage: storage })
 // hiển thị ra tất cả dữ liệu
 router.get('/',(req,res) =>{
     ModelMongo.productModel.find({
@@ -25,37 +39,39 @@ router.get('/',(req,res) =>{
         path:'categoryProductId'
     })
     .then((data) =>{
+        console.log(data)
         res.json(data)
     })
     .catch((error)=>{
+        console.log(error)
         res.status(500).json('loi sever')
     })
 })
 // tạo database mới 
-router.post('/',(req,res,next) =>{
+router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgProduct', maxCount: 12 }]),(req,res,next) =>{
+    const imgColorArray= req.files.map(element => {return '/public/uploads/'+element.filename})
     let img = req.body.img;
     let imgColor = req.body.imgColor;
-    let name = req.body.name;
-    let codeProduct = req.body.codeProduct;
+    let name = req.body.ProductName;
+    let codeProduct = req.body.CodeProduct;
     let priceImport = req.body.priceImport;
-    let price = req.body.price;
-    let unit = req.body.unit;
-    let quantity = req.body.quantity;
+    let price = req.body.productPrice;
+    let unit = req.body.productUnit;
+    let quantity = req.body.productQuantity;
     let descriptionShort = req.body.descriptionShort;
     let descriptionDetails = req.body.descriptionDetails;
-    let title = req.body.title;
-    let rate = req.body.rate;
-    let gender = req.body.gender;
-    let sizeId = req.body.sizeId;
-    let colorId = req.body.colorId;
-    let levelId = req.body.levelId;
-    let trademarkId = req.body.trademarkId;
-    let supplierId = req.body.supplierId;
-    let categoryProductId = req.body.categoryProductId;
-    console.log(req.body)
+    let title = req.body.productTitle;
+    let rate = req.body.productRate;
+    let gender = req.body.productGender;
+    let sizeId = req.body.productSize;
+    let colorId = req.body.productColor;
+    let levelId = req.body.productLevel;
+    let trademarkId = req.body.productTradeMark;
+    let supplierId = req.body.productSupplier;
+    let categoryProductId = req.body.productCategory;
     ModelMongo.productModel.create({
-        img:img,
-        imgColor:imgColor,
+        // img:img,
+        imgColor:imgColorArray,
         name:name,
         codeProduct:codeProduct,
         priceImport:priceImport,

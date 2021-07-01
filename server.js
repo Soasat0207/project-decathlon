@@ -10,9 +10,19 @@ const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const bodyParser = require("body-parser");
+var multer  = require('multer')
 
-
-
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,path.join(__dirname,'./public/uploads'))
+    },
+    filename: function (req, file, cb) {
+      let index = file.originalname.lastIndexOf('.');
+      let extention = file.originalname.slice(index,file.originalname.length);
+      cb(null, file.fieldname + '-' + Date.now() + extention);
+    }
+  })
+var upload = multer({ storage: storage })
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -37,6 +47,9 @@ app.get('/admin-add-product', (req, res) => {
 app.get('/admin-list-color', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-color.html'))
 })
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/cart.html'))
+})
 app.get('/test3', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/test3.html'))
 })
@@ -50,6 +63,12 @@ app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
 
+
+app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  console.log(req.file);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

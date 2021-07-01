@@ -28,8 +28,6 @@ function plusSlides_detailsColor(){
 }
 function prevSlides_detailsColor(){
     vale_detailColor += (100/(swiper_slide_img.length));
-    console.log(vale_detailColor);
-    console.log(value_maxColor);
     if(vale_detailColor > 0){
         vale_detailColor = value_maxColor;
     }

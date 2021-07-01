@@ -1,3 +1,4 @@
+
 async function render() {
   try {
     let data = await $.ajax({
@@ -5,11 +6,9 @@ async function render() {
       type: "GET",
     });
     
-    data.map((data) => {
+    data.map((data,index) => {
       let div = ``;
       let divImgColor = ``;
-      let imgColor; 
-      console.log(data);
         div = `
             <div class=" col-lg-3 col-md-6 col-sm-6">
                 <div class="product-items">
@@ -20,8 +19,8 @@ async function render() {
                         <div class="product_gallert-thumbnails">
                             <span onclick="prevSlides(-1)"><i class="fal fa-chevron-left"></i></span>
                             <div class="product_gallert-thumbnails-wrapper">
-                                <div class="product_gallert-thumbnails-list-img"> 
-                                <img src="${data.imgColor}" alt="" class="product_gallert-thumbnails-img">
+                                <div class="product_gallert-thumbnails-list-img poduct_gallert-thumbnails-list-img${index} "> 
+                                
                                 </div>
                             </div>
                             <span onclick="plusSlides()"><i class="fal fa-chevron-right"></i></span> 
@@ -56,10 +55,19 @@ async function render() {
             </div>
         `;
         $('.product-list').append(div);
+        data.imgColor.map((imgColor)=>{
+            // console.log(imgColor);
+            divImgColor =`
+                <img src="${imgColor}" alt="" class="product_gallert-thumbnails-img">
+            `;
+            $(`.poduct_gallert-thumbnails-list-img${index}`).append(divImgColor);
+        })
     });
+    product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img')
   } catch (error) {
     console.log(error);
   }
 }
+
 render();
 
