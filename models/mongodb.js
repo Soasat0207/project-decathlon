@@ -234,6 +234,8 @@ const shoppingCartSchema = new Schema(
   },
   { collection: "shoppingCart" }
 );
+
+
 // End shopping cart schema
 
 // Orders Schema
@@ -276,6 +278,37 @@ const SupplierModel = mongoose.model("supplier", supplierSchema);
 const CategoryProductModel = mongoose.model("categoryProduct", categoryProductSchema);
 const ShoppingCartModel = mongoose.model("shoppingCartModel", shoppingCartSchema);
 const OrderModel = mongoose.model("orderModel", ordersSchema);
+
+// ShoppingCartModel.findOne({_id:'60d442eeb679ae3a745c655b'})
+// .populate('product.productId')
+// .then(data=>{console.log(data.product);})
+// .catch(err=>{console.log(err);})
+
+// ProductModel.create({
+//   name: "Size 5 Football 2020 - Germany",
+//     img: [
+//       'https://contents.mediadecathlon.com/p1814563/671ed12bfe351b5cac761fe249e6af66/p1814563.jpg?f=650x650&format=auto',
+//     ],
+//     codeProduct: '8555660',
+//     price: '195.000',
+//     priceImport: '220.000',
+//     unit: 'VND',
+//     quantity: 10,
+//     descriptionShort: 'Fitting comfort',
+//     descriptionDetails: "The boot's machine-stitched lining is made from foam to make it more comfy.",
+//     title: 'OXELO',
+//     rate: '5',
+//     gender: 'male',
+//     imgColor: [''],
+//     sizeId: '',
+//     colorId: '',
+//     levelId: '',
+//     trademarkId: '',
+//     supplierId: '',
+//     categoryProductId: ''
+// })
+
+
 // End Product
 
 // Review and comment
@@ -301,6 +334,27 @@ module.exports = {
 };
 // End export model
 
+// ShoppingCartModel.create({
+//   product: [
+//     {
+//       productId: '60d48bce400b3f3a6081da7a',
+//       quantity: 2,
+//     },
+//     {
+//       productId: '60d48c62c545fd300c23e2cb',
+//       quantity: 1,
+//     },
+//     {
+//       productId: '60d48cb24864ab174ca806c7',
+//       quantity: 3,
+//     },
+//   ],
+//   userId: '60d441158e6b993304984a86',
+// }).then(data =>{
+//   console.log(data);
+// }).catch(err =>{
+//   console.log(err)
+// })
 
 // =================================================================Example=======================================================
 // reviewModel.findOneAndUpdate({

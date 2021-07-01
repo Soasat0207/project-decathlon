@@ -136,7 +136,8 @@ body{
     margin-right: 1rem;
 }
 .cart-items{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr 4fr 0.5fr;
     grid-template-rows: auto;
     border-top: 0.1rem solid #eff1f3;
@@ -152,6 +153,12 @@ body{
 }
 .cart-items-img img{
     width:100%;
+}
+.cart-items-info{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.3) !important;
+    margin: 10px 0px;
 }
 .cart-items-info-product{
     display: grid;
@@ -207,8 +214,8 @@ body{
 
 .cart-items-delete button{
     min-width: 2rem;
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
     margin-left: 1.6rem;
     margin-right: 1.6rem;
     border: 0.1rem solid #d0d5da;
@@ -306,4 +313,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.totalPriceOfProducts, .totalPrices{
+    font-weight: bold;
 }
