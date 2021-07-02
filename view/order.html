@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Check out</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -21,7 +23,7 @@
     <link rel="stylesheet" href="/public/assets/css/list-product.css">
     <link rel="stylesheet" href="/public/assets/css/tab_ui.css">
     <link rel="stylesheet" href="/public/assets/css/product_details.css">
-    <link rel="stylesheet" href="/public/assets/css/cart.css">
+    <link rel="stylesheet" href="/public/assets/css/order.css">
     <link rel="stylesheet" href="/public/assets/css/responsive.css">
 </head>
 
@@ -36,7 +38,7 @@
                     </ul>
                 </label>
             </div>
-            
+
             <!-- navbar on pc -->
             <div class="col col-lg-5 hide-on-mobile-tablet">
                 <ul class="navbar-list">
@@ -228,6 +230,7 @@
     <!-- Content -->
     <section class="body" id="">
         <div class="container">
+            <!-- checkout header-->
             <div class="checkout-header">
                 <ul class="checkout-header-nav">
                     <li class="checkout-header-item">
@@ -239,101 +242,165 @@
                     <li class="checkout-header-item">
                         <span>Thanh Toán</span>
                     </li>
-
                 </ul>
-            </div>
+            </div> <!-- \ end checkout header-->
 
-            <div class="row">
-                <div class="col col-lg-8">
-                    <div class="cart-header-text">
-                        <div class="cart-header-product-text cart-header-items-text"><span>SẢN PHẨM</span></div>
-                        <div class="cart-header-unit-price-text cart-header-items-text"><span>ĐƠN GIÁ</span></div>
-                        <div class="cart-header-quantity-text cart-header-items-text"><span>SỐ LƯỢNG</span></div>
-                        <div class="cart-header-total-price-text cart-header-items-text"><span>TỔNG GIÁ</span></div>
-                        <div class="cart-header-empty-text cart-header-items-text"><span></span></div>
-                    </div>
-                    
-                    <div class="cart ">
-                        <!-- thêm class cart-empty khi không có sản phẩm  -->
-                        <img class="cart-empty-img"
-                            src="https://cdncontent.decathlon.vn/_next/static/images/cart-empty-f5957296fcc29441a35bd50dda22ee00.svg"
-                            alt="">
-                        <h2 class="cart-empty-title">Không có sản phẩm trong giỏ hàng?</h2>
-                        <a href="" class="product-review-overview-counts-btn cart-empty-btn"><span>Thêm vào giỏ hàng
-                            </span></a>
-                        <ul class="card-eligibility">
-                            <li><span><i style="color:var(--green)" class="fal fa-check-circle"></i> <strong>Ưu
-                                        đãi</strong></span></li>
-                            <li>
-                                <span class="freeShipCondition">
-                                    <i class="fal fa-truck"></i>
-                                </span>
-                            </li>
-                        </ul>
-                        <!-- cart items -->
-                        <div class="cart-items"></div>
-                        <!-- end cart items -->
-                    </div>
-                    <div class="cart-footer">
-                        <p class="mt-3">© 2020 - Decathlon Sports Việt Nam</p>
-                    </div>
-                
-                </div>
-                <!-- Right Cart-->
-                <div class="cart-right col col-lg-4">
-                    <div class="orderInfomation">
-                       <div class="orderSummary"> <b>Tóm tắt đơn hàng</b> </div>
-                       <div class="totalProduct">
-                           Tạm tính
-                           <span class ="priceProducts">
-                               <span class = "totalPriceOfProducts"></span>
-                                
-                            </span>
+            <!-- Check out content-->
+            <div class="checkout">
+                <!-- Check out left -->
+                <div class="checkout-left">
+                    <div class="checkout-left-address"><b>Địa chỉ</b></div>
+                    <div class="checkout-left-text">Vui lòng nhập địa chỉ giao hàng và hóa đơn GTGT</div>
+                    <div class="checkout-left-input-address">
+                        <div class="checkout-left-address-list"></div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Thêm địa chỉ mới</button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ mới</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-body-form">
+                                            <div class="address-form1">
+                                                <div class="address-form-input1 col-md-6">
+                                                    <input type="text" placeholder="Home address" name="" id="">
+                                                </div>
+                                                <div class="address-form-input2 col-md-6">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Choose your province</option>
+                                                        <option value="HN">Ha Noi</option>
+                                                        <option value="HCM">Ho Chi Minh</option>
+                                                        <option value="DN">Da Nang</option>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <div class="address-form2">
+                                                <div class="col-md-6">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Choose your district</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                      </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Choose your ward</option>
+                                                        <option value="11">One</option>
+                                                        <option value="22">Two</option>
+                                                        <option value="33">Three</option>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <div class="address-form3">
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" placeholder="First name*">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" placeholder="Last name*">
+                                                </div>
+                                            </div>
+                                            <div class="address-form4">
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" placeholder="Phone*">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" placeholder="Delivery address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group1">
+                                                <input placeholder="Personal Address" type="text" class="form-control1" id="recipient-name1">
+                                            </div>
+                                            <div class="form-group2">
+                                                <input placeholder="Company Address" type="text" class="form-control2" id="recipient-name2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary save-address-btn" data-dismiss="modal">Save address</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                       <div class="shipping">Phí giao hàng <span class = "cashShipping"></span></div>
-                       <div class="totals"><b>Tổng cộng</b> 
-                            <span class ="totalPrices">
-                                
-                            </span> 
+                    </div>
+
+                    <div class="checkout-left-delivery-option">
+                        <button class="float-right checkout-right-delivery-button">Chọn hình thức giao hàng</button>
+                    </div>
+                </div> <!-- \ end check out left-->
+                <!-- Check out right-->
+                <div class="checkout-right">
+                    <!-- Cart item list-->
+                    <div class="cart-item-list">
+                        <div class="cart-item-list-product">
+                            <div class="cart-item-list-image">
+                                <img src="https://contents.mediadecathlon.com/p1030211/536aa7aaab21e2a33dd054d4189c24db/p1030211.jpg?f=150x150" alt="">
+                            </div>
+                            <div class="cart-item-list-infomation">
+                                <div class="cart-item-list-name">
+                                    <h4>Thanh chống đẩy đa năng</h4>
+                                </div>
+                                <div class="cart-item-list-price">
+                                    <span>Số lượng: </span><span>Giá: </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="button-continue">
-                       <div><i class="fas fa-shopping-cart"></i> Tiếp Tục</div>
+                    <div class="cart-details">
+                        <div class="total-price">
+                            Tạm tính<span class = "float-right total-price-calc">111</span>
+                        </div>
+                        <div class="shipping-cash">
+                            Phí vận chuyển <span class = "float-right shipping-cash-calc">222</span>
+                        </div>
+                        <div class="total-all-prices">
+                            Tổng cộng <span class = "float-right all-price-calc">33</span>
+                        </div>
                     </div>
-                    <!-- Cart Promise -->
+
+                    <!-- \End cart item list-->
+
+                    <!--Cart promise-->
                     <div class="cart-promise">
-                         <div class="cart-promise-div1">
-                             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6I2U3ZjNmOTt9LmJ7ZmlsbDojZjhmOWY5O30uY3tmaWxsOiMzNzNkNDA7fTwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zNDQuMDk2IC0xMjguNzMpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDQuMDk2IDEyOC43MykiPjxyZWN0IGNsYXNzPSJhIiB3aWR0aD0iMjguNjg1IiBoZWlnaHQ9IjUxLjMzIiByeD0iOCIgdHJhbnNmb3JtPSJtYXRyaXgoMC45ODUsIC0wLjE3NCwgMC4xNzQsIDAuOTg1LCAwLCA0Ljk4MSkiLz48cmVjdCBjbGFzcz0iYiIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTQuMTQ2IDEzOC40OCkiPjxwYXRoIGNsYXNzPSJjIiBkPSJNMy43NjgsMTAuMjU2Yy44NzYtLjEyNiwxMy41ODktMi41NjgsMTcuNzc2LTMuMzc3djYuMzlhLjY2LjY2LDAsMCwwLC42NjQuNjY0LjcuNywwLDAsMCwuMzg1LS4xMjZsMTEuODUtOC40NjZhLjY2NC42NjQsMCwwLDAtLjE2Ni0xLjE2OEwyMi40MjYuMDMxYS42NjQuNjY0LDAsMCwwLS44ODIuNjN2NC44N2gtLjA3M2MtOC4yLDEuNTc5LTE3LjIwNSwzLjMxOC0xNy45MTUsMy40QTMuOTgxLDMuOTgxLDAsMCwwLDAsMTIuOTgzVjMwLjM5NEgxLjMyNlYxMi45ODNhMi42OTQsMi42OTQsMCwwLDEsMi40NDItMi43MjdabTE5LjEtOC42MjZMMzIuNjMxLDVsLTkuNzYsNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMiAwLjAwNikiLz48cGF0aCBjbGFzcz0iYyIgZD0iTTM1LjY2NSwxMi4xOVYyOS42YTIuNzA3LDIuNzA3LDAsMCwxLTIuNDQyLDIuNzI3Yy0xLjEyOC4xNTktMTMuNzYxLDIuNTk0LTE3Ljc3NiwzLjM3MVYyOS4zMTVhLjY2NC42NjQsMCwwLDAtMS4wNDgtLjUzN2wtMTEuODUsOC41YS42NjUuNjY1LDAsMCwwLC4xNjYsMS4xNjhsMTEuODUsNC4xYS42NjMuNjYzLDAsMCwwLC4yMTkuMDQuNjI0LjYyNCwwLDAsMCwuMzg1LS4xMjYuNjY0LjY2NCwwLDAsMCwuMjc5LS41Mzd2LTQuODdIMTUuNmMzLjktLjc1NiwxNi43MDctMy4yMjUsMTcuODA5LTMuMzg0YTMuOTgxLDMuOTgxLDAsMCwwLDMuNTgzLTQuMDQxVjEyLjE5Wm0tMjEuNTQ0LDI4LjgtOS43Ni0zLjQxLDkuNzYtNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC43NjMgLTQuMDk4KSIvPjwvZz48L2c+PC9zdmc+" alt="Returns">
-                        <p>30 ngày trả hàng</p>
-                        </div>
-                        <div class="cart-promise-div2">
-                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Ni44IDU2LjEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2LjggNTYuMTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNFN0YzRjk7fQoJLnN0MXtmaWxsOiNGOEY5Rjk7fQoJLnN0MntmaWxsOiMzNzNENDA7fQo8L3N0eWxlPgo8ZyBpZD0iR3JvdXBfOTM4OSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE5NS41MjkgLTEyNy41MTIpIj4KCTxnIGlkPSJHcm91cF85MzIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOTUuNTI5IDEyNy41MTIpIj4KCQk8cGF0aCBpZD0iUmVjdGFuZ2xlXzQ5ODciIGNsYXNzPSJzdDAiIGQ9Ik03LjksMy42bDEyLjUtMi4yYzQuNC0wLjgsOC41LDIuMSw5LjMsNi41bDYuMSwzNC44YzAuOCw0LjQtMi4xLDguNS02LjUsOS4zbC0xMi41LDIuMgoJCQljLTQuNCwwLjgtOC41LTIuMS05LjMtNi41TDEuNCwxMi45QzAuNiw4LjUsMy41LDQuNCw3LjksMy42eiIvPgoJCTxwYXRoIGlkPSJQYXRoXzE5NjMwIiBjbGFzcz0ic3QxIiBkPSJNMzMuMywxLjRMNTIsNC43YzIuNiwwLjUsNC40LDMsNCw1LjZsMCwwbC03LjIsNDFjLTAuNSwyLjYtMyw0LjQtNS42LDRMMjQuNCw1MgoJCQljLTIuNi0wLjUtNC40LTMtNC01LjZsNy4yLTQxQzI4LjIsMi43LDMwLjcsMSwzMy4zLDEuNEMzMy4zLDEuNCwzMy4zLDEuNCwzMy4zLDEuNHoiLz4KCTwvZz4KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0yNDUuOCwxNTguNUMyNDUuOCwxNTguNSwyNDUuOCwxNTguNSwyNDUuOCwxNTguNWwwLTkuMWMwLTAuMy0wLjEtMC41LTAuNC0wLjdsLTkuNy01LjUKCQljLTAuMS0wLjEtMC4zLTAuMS0wLjUtMC4xbC01LjMsMC44di01LjdjMC0wLjItMC4xLTAuNC0wLjMtMC42Yy0wLjItMC4xLTAuNC0wLjItMC42LTAuMmwtMjUuNiw0LjRjLTAuNCwwLjEtMC42LDAuNC0wLjYsMC43djIyLjkKCQljMCwwLjIsMC4xLDAuNCwwLjMsMC42YzAuMSwwLjIsMC40LDAuMywwLjYsMC4zYzAsMCwwLjEsMCwwLjEsMGw0LjYtMC44YzAuNywxLjksMi42LDMuMyw0LjgsMy4zYzIuOCwwLDUuMS0yLjMsNS4yLTUuMWwxMy45LTIuNQoJCWMwLjgsMS44LDIuNiwzLjEsNC43LDMuMWMyLjgsMCw1LTIuMiw1LjEtNC45bDIuOS0wLjVjMCwwLDAsMCwwLjEsMGMwLjEsMCwwLjEsMCwwLjItMC4xYzAsMCwwLjEsMCwwLjEtMC4xYzAsMCwwLjEtMC4xLDAuMS0wLjEKCQljMCwwLDAtMC4xLDAuMS0wLjFjMCwwLDAtMC4xLDAuMS0wLjFDMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjV6IE0yMjguNCwxMzkuMXY1Ljd2Ni40bC0yNC4xLDQuMnYtMTIuMkwyMjguNCwxMzkuMXoKCQkgTTIwNC40LDE2NC44VjE1N2wyNC4xLTQuMnY3LjhsLTEwLjIsMS44Yy0wLjYtMi4xLTIuNi0zLjctNC45LTMuN2MtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4xLDAsMC4yLDAsMC4zTDIwNC40LDE2NC44egoJCSBNMjEzLjMsMTY3LjVjLTIsMC0zLjctMS42LTMuNy0zLjdzMS42LTMuNywzLjctMy43czMuNywxLjYsMy43LDMuN1MyMTUuMywxNjcuNSwyMTMuMywxNjcuNXogTTIyOS45LDE2MC4zdi0xNC45bDUuMy0wLjhsOS4xLDUuMgoJCXY3LjlsLTIuMiwwLjRjLTAuNi0yLjMtMi42LTMuOS01LTMuOWMtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4yLDAsMC40LDAuMSwwLjZMMjI5LjksMTYwLjN6IE0yMzcuMSwxNjMuMWMtMiwwLTMuNy0xLjYtMy43LTMuNwoJCXMxLjYtMy43LDMuNy0zLjdzMy43LDEuNiwzLjcsMy43UzIzOS4xLDE2My4xLDIzNy4xLDE2My4xeiIvPgo8L2c+Cjwvc3ZnPgo=" alt="Returns">
-                            <p>Miễn phí Vận chuyển Toàn quốc cho Đơn hàng trên 899k</p>
-                        </div>
-                        <div class="cart-promise-div3">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+CiAgPGcgaWQ9Ikdyb3VwXzkzODgiIGRhdGEtbmFtZT0iR3JvdXAgOTM4OCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUwLjYxNiAtMTI3LjUxMikiPgogICAgPGcgaWQ9Ikdyb3VwXzkzMjIiIGRhdGEtbmFtZT0iR3JvdXAgOTMyMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAuNjE2IDEyNy41MTIpIj4KICAgICAgPHBhdGggaWQ9IlJlY3RhbmdsZV80OTg3IiBkYXRhLW5hbWU9IlJlY3RhbmdsZSA0OTg3IiBkPSJNOCwwSDIwLjY4NWE4LDgsMCwwLDEsOCw4VjUxLjMzYTAsMCwwLDAsMSwwLDBIOGE4LDgsMCwwLDEtOC04VjhBOCw4LDAsMCwxLDgsMFoiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAtMC4xNzQsIDAuMTc0LCAwLjk4NSwgMCwgNC45ODEpIiBmaWxsPSIjZTdmM2Y5Ii8+CiAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGVfNDk4OCIgZGF0YS1uYW1lPSJSZWN0YW5nbGUgNDk4OCIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIgZmlsbD0iI2Y4ZjlmOSIvPgogICAgPC9nPgogICAgPGcgaWQ9IkFzc2V0XzExY2MiIGRhdGEtbmFtZT0iQXNzZXQgMTFjYyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMuNDM4IDEzNi44NjYpIj4KICAgICAgPGcgaWQ9IkNhbHF1ZV8yIiBkYXRhLW5hbWU9IkNhbHF1ZSAyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIj4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM3IiBkYXRhLW5hbWU9IlBhdGggMjEzNyIgZD0iTTE2LjA2NiwzNy44MTVDMTQuNDMsMzcuODE1LDAsMzEuMjQ4LDAsNy42NzFhLjY1Mi42NTIsMCwwLDEsLjUtLjY1MkMuNjEzLDcuMDEyLDExLjczNyw0LjMyNiwxNS42LjE5MmEuNjUyLjY1MiwwLDAsMSwuOTQ1LDBjMy44OCw0LjE0LDE1LDYuODIsMTUuMDk1LDYuODQ2YS42NTIuNjUyLDAsMCwxLC41LjY1MkMzMi4xMzksMzEuMjQ4LDE3LjcwOSwzNy44MTUsMTYuMDY2LDM3LjgxNVpNMS4zLDguMTc5Yy4yLDIxLjkwOSwxMy4yNzYsMjguMjkyLDE0Ljc2OSwyOC4zMzFTMzAuNjQ2LDMwLjA4OCwzMC44MzUsOC4xNzljLTIuMi0uNTYxLTEwLjgtMi45NjctMTQuNzY5LTYuNjI1QzEyLjEwOCw1LjIxMiwzLjUsNy42MTgsMS4zLDguMTc5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwLjAxMSkiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM4IiBkYXRhLW5hbWU9IlBhdGggMjEzOCIgZD0iTTIwLjA2NSwyOS45ODNoMGEuNjUyLjY1MiwwLDAsMS0uNDU2LS4ybC00LjQ2LTQuNDZhLjY1Mi42NTIsMCwxLDEsLjkxOS0uOTE5bDQsNCw4LjQtOC40YS42NTIuNjUyLDAsMSwxLC45MjYuOTE5bC04Ljg2OCw4Ljg2MUEuNjUyLjY1MiwwLDAsMSwyMC4wNjUsMjkuOTgzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUuMTkxIC02Ljg4NykiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==" alt="warranty">
-                            <p>Bảo hành 2 năm</p>
-                        </div>
-                    </div>
-                    <!-- End cart promise -->
-                    <!-- Cart Voucher -->
-                    <div class="voucher_btn">
-                        <div class="voucher-image">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0Ny45MjkiIGhlaWdodD0iNDcuMzcxIiB2aWV3Qm94PSIwIDAgNDcuOTI5IDQ3LjM3MSI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6I2U3ZjNmOTt9LmJ7ZmlsbDojZjhmOWY5O30uY3tmaWxsOiMzNzNkNDA7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJhIiBkPSJNOCwwaDguMjA5YTgsOCwwLDAsMSw4LDhWNDMuMzIyYTAsMCwwLDAsMSwwLDBIOGE4LDgsMCwwLDEtOC04VjhBOCw4LDAsMCwxLDgsMFoiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAtMC4xNzQsIDAuMTc0LCAwLjk4NSwgMCwgNC4yMDQpIi8+PHJlY3QgY2xhc3M9ImIiIHdpZHRoPSIyNC4yMDkiIGhlaWdodD0iNDMuMzIyIiByeD0iOCIgdHJhbnNmb3JtPSJtYXRyaXgoMC45ODUsIDAuMTc0LCAtMC4xNzQsIDAuOTg1LCAyNC4wODcsIDAuNTA0KSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExLjQxNCA4LjEzMikiPjxwYXRoIGNsYXNzPSJjIiBkPSJNNS4zODMsMzIuMTExSDUuMjU0YS41MTcuNTE3LDAsMCwxLS40LS40MzFMMCwzLjk1MWEuNTE3LjUxNywwLDAsMSwuNDMxLS42MTRMMTkuMjkxLDBhLjUzOC41MzgsMCwwLDEsLjYyNC40MzFMMjMuOTg0LDIzLjVhLjU0OS41NDksMCwwLDEtLjEyOS40NjNsLTUuNjczLDYuMjY1YS41NDkuNTQ5LDAsMCwxLS42MTQuMTRsLTguMDItMy40NTVMNS44NTcsMzEuODY0QS41ODEuNTgxLDAsMCwxLDUuMzgzLDMyLjExMVptLTQuMjItMjcuOEw1LjczOCwzMC4yNDlsMy4yMjktNC4zMDZhLjU0OS41NDksMCwwLDEsLjYxNC0uMTA4bDguMDYzLDMuNDU1TDIyLjg3NSwyMy41LDE4Ljk0NiwxLjE2M1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDEgMC4wMDgpIi8+PHBhdGggY2xhc3M9ImMiIGQ9Ik02LjY2MiwxMC43MzdhMy44MjEsMy44MjEsMCwwLDEsLjcxLTIuMjkzQTIuOCwyLjgsMCwwLDEsOS4xODEsNy4zYTEuODMsMS44MywwLDAsMSwxLjc2NS41NkEyLjY5MSwyLjY5MSwwLDAsMSwxMS42LDkuODU0di43NjRhMy45NTEsMy45NTEsMCwwLDEtLjcxLDIuMjcxLDIuOCwyLjgsMCwwLDEtMS44NDEsMS4xNDFBMS44NzMsMS44NzMsMCwwLDEsNy4zLDEzLjQzOWEyLjY3LDIuNjcsMCwwLDEtLjY1Ny0xLjk4MVpNOCwxMS4yODZhMi4yODIsMi4yODIsMCwwLDAsLjI1OCwxLjIzOC43NzUuNzc1LDAsMCwwLC44NS4zNDQsMS4yLDEuMiwwLDAsMCwuODI5LS42NjcsMi45MzksMi45MzksMCwwLDAsLjMyMy0xLjM0NnYtLjc2NGEyLjQsMi40LDAsMCwwLS4yNjktMS4yMzhBLjc1NC43NTQsMCwwLDAsOS4xODEsOC41YTEuMjE2LDEuMjE2LDAsMCwwLS44MjkuNjM1LDIuODc0LDIuODc0LDAsMCwwLS4zNDQsMS4zMTNabTEuMzM1LDkuNTI3LS45OC0uNDUyLDUuNzU5LTEyLjMuOTU4LjQ1MlpNMTIuMTYzLDE3LjlhMy45MjksMy45MjksMCwwLDEsLjcxLTIuMywyLjc1NiwyLjc1NiwwLDAsMSwxLjg1MS0xLjE0MUExLjgwOCwxLjgwOCwwLDAsMSwxNi40OSwxNWEyLjY5MSwyLjY5MSwwLDAsMSwuNjU3LDEuOTkxdi43NTRhMy45OTQsMy45OTQsMCwwLDEtLjcsMi4yOTMsMi44LDIuOCwwLDAsMS0xLjg4NCwxLjE0MSwxLjg2MiwxLjg2MiwwLDAsMS0xLjc4Ny0uNTQ5LDIuNjQ4LDIuNjQ4LDAsMCwxLS42NTctMS45OTFabTEuMzQ2LjUzOGEyLjA1NiwyLjA1NiwwLDAsMCwuMjgsMS4yMjcuNzY0Ljc2NCwwLDAsMCwuODQuMzU1LDEuMTczLDEuMTczLDAsMCwwLC44MjktLjY2NywyLjg2MywyLjg2MywwLDAsMCwuMzM0LTEuMzI0VjE3LjI2YTIuMjI4LDIuMjI4LDAsMCwwLS4yNjktMS4yMzguNzc1Ljc3NSwwLDAsMC0uODUtLjM1NSwxLjIyNywxLjIyNywwLDAsMC0uODI5LjY3OCwyLjg0MiwyLjg0MiwwLDAsMC0uMzU1LDEuMjgxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC41MTcgMC41NjMpIi8+PC9nPjwvc3ZnPg==">
-                        </div>
-                        <div class = "voucherContent">Áp dụng mã giảm giá</div>
-                        <div class="nextArrow">
-                            <i class="fas fa-greater-than"></i>
-                        </div>
-                    </div>
-                    <!-- End cart voucher -->
-                </div>  
-                <!-- End right cart -->
-            </div>
-
+                        <div class="cart-promise-div1">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6I2U3ZjNmOTt9LmJ7ZmlsbDojZjhmOWY5O30uY3tmaWxsOiMzNzNkNDA7fTwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zNDQuMDk2IC0xMjguNzMpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDQuMDk2IDEyOC43MykiPjxyZWN0IGNsYXNzPSJhIiB3aWR0aD0iMjguNjg1IiBoZWlnaHQ9IjUxLjMzIiByeD0iOCIgdHJhbnNmb3JtPSJtYXRyaXgoMC45ODUsIC0wLjE3NCwgMC4xNzQsIDAuOTg1LCAwLCA0Ljk4MSkiLz48cmVjdCBjbGFzcz0iYiIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTQuMTQ2IDEzOC40OCkiPjxwYXRoIGNsYXNzPSJjIiBkPSJNMy43NjgsMTAuMjU2Yy44NzYtLjEyNiwxMy41ODktMi41NjgsMTcuNzc2LTMuMzc3djYuMzlhLjY2LjY2LDAsMCwwLC42NjQuNjY0LjcuNywwLDAsMCwuMzg1LS4xMjZsMTEuODUtOC40NjZhLjY2NC42NjQsMCwwLDAtLjE2Ni0xLjE2OEwyMi40MjYuMDMxYS42NjQuNjY0LDAsMCwwLS44ODIuNjN2NC44N2gtLjA3M2MtOC4yLDEuNTc5LTE3LjIwNSwzLjMxOC0xNy45MTUsMy40QTMuOTgxLDMuOTgxLDAsMCwwLDAsMTIuOTgzVjMwLjM5NEgxLjMyNlYxMi45ODNhMi42OTQsMi42OTQsMCwwLDEsMi40NDItMi43MjdabTE5LjEtOC42MjZMMzIuNjMxLDVsLTkuNzYsNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMiAwLjAwNikiLz48cGF0aCBjbGFzcz0iYyIgZD0iTTM1LjY2NSwxMi4xOVYyOS42YTIuNzA3LDIuNzA3LDAsMCwxLTIuNDQyLDIuNzI3Yy0xLjEyOC4xNTktMTMuNzYxLDIuNTk0LTE3Ljc3NiwzLjM3MVYyOS4zMTVhLjY2NC42NjQsMCwwLDAtMS4wNDgtLjUzN2wtMTEuODUsOC41YS42NjUuNjY1LDAsMCwwLC4xNjYsMS4xNjhsMTEuODUsNC4xYS42NjMuNjYzLDAsMCwwLC4yMTkuMDQuNjI0LjYyNCwwLDAsMCwuMzg1LS4xMjYuNjY0LjY2NCwwLDAsMCwuMjc5LS41Mzd2LTQuODdIMTUuNmMzLjktLjc1NiwxNi43MDctMy4yMjUsMTcuODA5LTMuMzg0YTMuOTgxLDMuOTgxLDAsMCwwLDMuNTgzLTQuMDQxVjEyLjE5Wm0tMjEuNTQ0LDI4LjgtOS43Ni0zLjQxLDkuNzYtNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC43NjMgLTQuMDk4KSIvPjwvZz48L2c+PC9zdmc+" alt="Returns">
+                       <p>30 ngày trả hàng</p>
+                       </div>
+                       <div class="cart-promise-div2">
+                           <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Ni44IDU2LjEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2LjggNTYuMTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNFN0YzRjk7fQoJLnN0MXtmaWxsOiNGOEY5Rjk7fQoJLnN0MntmaWxsOiMzNzNENDA7fQo8L3N0eWxlPgo8ZyBpZD0iR3JvdXBfOTM4OSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE5NS41MjkgLTEyNy41MTIpIj4KCTxnIGlkPSJHcm91cF85MzIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOTUuNTI5IDEyNy41MTIpIj4KCQk8cGF0aCBpZD0iUmVjdGFuZ2xlXzQ5ODciIGNsYXNzPSJzdDAiIGQ9Ik03LjksMy42bDEyLjUtMi4yYzQuNC0wLjgsOC41LDIuMSw5LjMsNi41bDYuMSwzNC44YzAuOCw0LjQtMi4xLDguNS02LjUsOS4zbC0xMi41LDIuMgoJCQljLTQuNCwwLjgtOC41LTIuMS05LjMtNi41TDEuNCwxMi45QzAuNiw4LjUsMy41LDQuNCw3LjksMy42eiIvPgoJCTxwYXRoIGlkPSJQYXRoXzE5NjMwIiBjbGFzcz0ic3QxIiBkPSJNMzMuMywxLjRMNTIsNC43YzIuNiwwLjUsNC40LDMsNCw1LjZsMCwwbC03LjIsNDFjLTAuNSwyLjYtMyw0LjQtNS42LDRMMjQuNCw1MgoJCQljLTIuNi0wLjUtNC40LTMtNC01LjZsNy4yLTQxQzI4LjIsMi43LDMwLjcsMSwzMy4zLDEuNEMzMy4zLDEuNCwzMy4zLDEuNCwzMy4zLDEuNHoiLz4KCTwvZz4KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0yNDUuOCwxNTguNUMyNDUuOCwxNTguNSwyNDUuOCwxNTguNSwyNDUuOCwxNTguNWwwLTkuMWMwLTAuMy0wLjEtMC41LTAuNC0wLjdsLTkuNy01LjUKCQljLTAuMS0wLjEtMC4zLTAuMS0wLjUtMC4xbC01LjMsMC44di01LjdjMC0wLjItMC4xLTAuNC0wLjMtMC42Yy0wLjItMC4xLTAuNC0wLjItMC42LTAuMmwtMjUuNiw0LjRjLTAuNCwwLjEtMC42LDAuNC0wLjYsMC43djIyLjkKCQljMCwwLjIsMC4xLDAuNCwwLjMsMC42YzAuMSwwLjIsMC40LDAuMywwLjYsMC4zYzAsMCwwLjEsMCwwLjEsMGw0LjYtMC44YzAuNywxLjksMi42LDMuMyw0LjgsMy4zYzIuOCwwLDUuMS0yLjMsNS4yLTUuMWwxMy45LTIuNQoJCWMwLjgsMS44LDIuNiwzLjEsNC43LDMuMWMyLjgsMCw1LTIuMiw1LjEtNC45bDIuOS0wLjVjMCwwLDAsMCwwLjEsMGMwLjEsMCwwLjEsMCwwLjItMC4xYzAsMCwwLjEsMCwwLjEtMC4xYzAsMCwwLjEtMC4xLDAuMS0wLjEKCQljMCwwLDAtMC4xLDAuMS0wLjFjMCwwLDAtMC4xLDAuMS0wLjFDMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjV6IE0yMjguNCwxMzkuMXY1Ljd2Ni40bC0yNC4xLDQuMnYtMTIuMkwyMjguNCwxMzkuMXoKCQkgTTIwNC40LDE2NC44VjE1N2wyNC4xLTQuMnY3LjhsLTEwLjIsMS44Yy0wLjYtMi4xLTIuNi0zLjctNC45LTMuN2MtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4xLDAsMC4yLDAsMC4zTDIwNC40LDE2NC44egoJCSBNMjEzLjMsMTY3LjVjLTIsMC0zLjctMS42LTMuNy0zLjdzMS42LTMuNywzLjctMy43czMuNywxLjYsMy43LDMuN1MyMTUuMywxNjcuNSwyMTMuMywxNjcuNXogTTIyOS45LDE2MC4zdi0xNC45bDUuMy0wLjhsOS4xLDUuMgoJCXY3LjlsLTIuMiwwLjRjLTAuNi0yLjMtMi42LTMuOS01LTMuOWMtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4yLDAsMC40LDAuMSwwLjZMMjI5LjksMTYwLjN6IE0yMzcuMSwxNjMuMWMtMiwwLTMuNy0xLjYtMy43LTMuNwoJCXMxLjYtMy43LDMuNy0zLjdzMy43LDEuNiwzLjcsMy43UzIzOS4xLDE2My4xLDIzNy4xLDE2My4xeiIvPgo8L2c+Cjwvc3ZnPgo=" alt="Returns">
+                           <p>Miễn phí Vận chuyển Toàn quốc cho Đơn hàng trên 899k</p>
+                       </div>
+                       <div class="cart-promise-div3">
+                           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+CiAgPGcgaWQ9Ikdyb3VwXzkzODgiIGRhdGEtbmFtZT0iR3JvdXAgOTM4OCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUwLjYxNiAtMTI3LjUxMikiPgogICAgPGcgaWQ9Ikdyb3VwXzkzMjIiIGRhdGEtbmFtZT0iR3JvdXAgOTMyMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAuNjE2IDEyNy41MTIpIj4KICAgICAgPHBhdGggaWQ9IlJlY3RhbmdsZV80OTg3IiBkYXRhLW5hbWU9IlJlY3RhbmdsZSA0OTg3IiBkPSJNOCwwSDIwLjY4NWE4LDgsMCwwLDEsOCw4VjUxLjMzYTAsMCwwLDAsMSwwLDBIOGE4LDgsMCwwLDEtOC04VjhBOCw4LDAsMCwxLDgsMFoiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAtMC4xNzQsIDAuMTc0LCAwLjk4NSwgMCwgNC45ODEpIiBmaWxsPSIjZTdmM2Y5Ii8+CiAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGVfNDk4OCIgZGF0YS1uYW1lPSJSZWN0YW5nbGUgNDk4OCIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIgZmlsbD0iI2Y4ZjlmOSIvPgogICAgPC9nPgogICAgPGcgaWQ9IkFzc2V0XzExY2MiIGRhdGEtbmFtZT0iQXNzZXQgMTFjYyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMuNDM4IDEzNi44NjYpIj4KICAgICAgPGcgaWQ9IkNhbHF1ZV8yIiBkYXRhLW5hbWU9IkNhbHF1ZSAyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIj4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM3IiBkYXRhLW5hbWU9IlBhdGggMjEzNyIgZD0iTTE2LjA2NiwzNy44MTVDMTQuNDMsMzcuODE1LDAsMzEuMjQ4LDAsNy42NzFhLjY1Mi42NTIsMCwwLDEsLjUtLjY1MkMuNjEzLDcuMDEyLDExLjczNyw0LjMyNiwxNS42LjE5MmEuNjUyLjY1MiwwLDAsMSwuOTQ1LDBjMy44OCw0LjE0LDE1LDYuODIsMTUuMDk1LDYuODQ2YS42NTIuNjUyLDAsMCwxLC41LjY1MkMzMi4xMzksMzEuMjQ4LDE3LjcwOSwzNy44MTUsMTYuMDY2LDM3LjgxNVpNMS4zLDguMTc5Yy4yLDIxLjkwOSwxMy4yNzYsMjguMjkyLDE0Ljc2OSwyOC4zMzFTMzAuNjQ2LDMwLjA4OCwzMC44MzUsOC4xNzljLTIuMi0uNTYxLTEwLjgtMi45NjctMTQuNzY5LTYuNjI1QzEyLjEwOCw1LjIxMiwzLjUsNy42MTgsMS4zLDguMTc5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwLjAxMSkiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM4IiBkYXRhLW5hbWU9IlBhdGggMjEzOCIgZD0iTTIwLjA2NSwyOS45ODNoMGEuNjUyLjY1MiwwLDAsMS0uNDU2LS4ybC00LjQ2LTQuNDZhLjY1Mi42NTIsMCwxLDEsLjkxOS0uOTE5bDQsNCw4LjQtOC40YS42NTIuNjUyLDAsMSwxLC45MjYuOTE5bC04Ljg2OCw4Ljg2MUEuNjUyLjY1MiwwLDAsMSwyMC4wNjUsMjkuOTgzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUuMTkxIC02Ljg4NykiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==" alt="warranty">
+                           <p>Bảo hành 2 năm</p>
+                       </div>
+                   </div>
+                    <!-- \End Cart promise-->
+                </div> <!-- \ end check out right-->
+            </div> <!-- \ end checkout content-->
         </div>
     </section>
+
+
+    <!-- \ End Content -->
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 <script src="/public/assets/js/jquery-3.6.0.min.js"></script>
 <script src="/public/assets/js/order.js"></script>
+
 </html>

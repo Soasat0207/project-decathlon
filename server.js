@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const cartRouter = require('./router/cartRouter');
+const orderRouter = require('./router/orderRouter');
 var cookieParser = require('cookie-parser');
  
 
@@ -40,12 +41,16 @@ app.get('/test3', (req, res) => {
 app.get('/cart', (req, res, next) => {
   res.sendFile(path.join(__dirname, './view/cart.html'))
 })
+app.get('/order', (req, res, next) => {
+  res.sendFile(path.join(__dirname, './view/order.html'))
+})
 
 // make static link
 app.use('/public',express.static(path.join(__dirname, './public')));
 
 // Use router
-app.use('/api/user/', cartRouter)
+app.use('/api/user/', cartRouter);
+app.use('/api/user/', orderRouter);
 
 // Port to listen
 app.listen(port, () => {
