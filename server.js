@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-<<<<<<< HEAD
 const productRouter = require('./router/productRouter');
 const categoryRouter = require('./router/categoryRouter');
 const colorRouter = require('./router/colorProductRouter');
@@ -24,13 +23,6 @@ var storage = multer.diskStorage({
     }
   })
 var upload = multer({ storage: storage })
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
-app.use(bodyParser.json()); 
-=======
 const cartRouter = require('./router/cartRouter');
 const orderRouter = require('./router/orderRouter');
 var cookieParser = require('cookie-parser');
@@ -46,7 +38,6 @@ app.use(express.json())
 app.use(cookieParser())
 
 // Send html file
->>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/index.html'))
 })
@@ -65,31 +56,6 @@ app.get('/admin-add-product', (req, res) => {
 app.get('/admin-list-color', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-color.html'))
 })
-<<<<<<< HEAD
-app.get('/cart', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/cart.html'))
-})
-app.get('/test3', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/test3.html'))
-})
-// tạo đường dẫn tĩnh 
-app.use('/public',express.static(path.join(__dirname, './public')));
-app.use('/api/product',productRouter);
-app.use('/api/category',categoryRouter);
-app.use('/api/color',colorRouter);
-app.use('/api/level',levelRouter);
-app.use('/api/size',sizeRouter);
-app.use('/api/supplier',supplierRouter);
-app.use('/api/trademark',trademarkRouter);
-
-
-app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-  console.log(req.file);
-})
-
-=======
 app.get('/test3', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/test3.html'))
 })
@@ -108,7 +74,6 @@ app.use('/api/user/', cartRouter);
 app.use('/api/user/', orderRouter);
 
 // Port to listen
->>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 })
