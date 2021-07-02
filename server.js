@@ -10,7 +10,9 @@ const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const bodyParser = require("body-parser");
-
+const routerUser = require("./router/userNguoiDung");
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 
 app.use(
@@ -40,6 +42,15 @@ app.get('/admin-list-color', (req, res) => {
 app.get('/test3', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/test3.html'))
 })
+app.get('/dangky', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/dangkyUser.html'))
+})
+app.get('/nguoidung', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/trangUser.html'))
+})
+app.get('/dangnhap', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
+})
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
 app.use('/api/product',productRouter);
@@ -49,6 +60,7 @@ app.use('/api/level',levelRouter);
 app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
+app.use('/api/nguoidung', routerUser);
 
 
 app.listen(port, () => {

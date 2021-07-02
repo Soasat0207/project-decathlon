@@ -17,6 +17,7 @@ const accountSchema = new Schema({
     email:String,
     birthday:Date,
     mainAddress:String,
+    deliveryNote:String,
     subAddress:String,
     city:String,
     avatar:String,

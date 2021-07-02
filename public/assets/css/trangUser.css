@@ -1,0 +1,303 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.tongUser{
+    display: flex;
+    flex-direction: row;
+    background-color: #f8f9f9;
+    padding: 40px 190px;
+
+}
+
+.tabL{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+
+}
+
+.tabL button{
+    margin-bottom: 10px;
+    padding: 20px 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.tabL button i{
+    margin-right: 20px;
+    font-size: 20px;
+
+}
+
+.tabL button:hover{
+    cursor: pointer;
+    background-color: #dadada;
+}
+
+.tabR{
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+
+}
+
+.dangxuat{
+    margin-bottom: none;
+}
+
+.donhang{
+    display: flex;
+    flex-direction: column;
+}
+
+.donhang1{
+    border: 1px solid black;
+    padding: 30px 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.donhang2{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+
+}
+
+.donhang2 i{
+    font-size: 80px;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 30px;
+    background: #dadada;
+    color: white;
+    border: dotted;
+}
+
+.donhang2 span{
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.thongtin{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.thongtin div{
+    padding: 10px 0;
+}
+
+.hang1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hang1 div input{
+    padding: 15px;
+    border-radius: 4px;
+    border: none;
+    background-color: #f4f4f4;
+    width: 100%;
+    /* font-style: italic; */
+    margin-top: 10px;
+}
+
+.hang1 div{
+    width: 45%;
+}
+
+.hang2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hang2 div input{
+    padding: 15px;
+    border-radius: 4px;
+    border: none;
+    background-color: #f4f4f4;
+    width: 100%;
+    /* font-style: italic; */
+    margin-top: 10px;
+}
+
+.hang2 div{
+    width: 45%;
+}
+
+.gioitinh1{
+    display: flex;
+    flex-direction: row;
+}
+
+.gioitinh1 div{
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.gioitinh1 div p{
+    margin-left: 5px;
+}
+
+
+.hang5 div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.hang5 div p{
+    padding-left: 5px;
+
+}
+
+.hang5 div{
+    width: 60%;
+}
+
+.hang5{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hang5 button{
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.diachi{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.diachi button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px;
+    border: 1px solid black;
+    margin: 20px 150px;
+    border-radius: 4px;
+    background-color:white;
+    border: dotted;
+}
+
+.diachi button i{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.diachi button p{
+    font-weight: bold;
+}
+
+.diachi button:hover{
+    background-color: #f8f9f9;
+    cursor: pointer;
+}
+
+.anNen{
+    /* display: none; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(141, 141, 141, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.themdiachi{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.hangdiachi1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.hangdiachi1 button{
+    background-color: none;
+    border:none;
+    cursor: pointer;
+}
+
+.hangdiachi1 button i{
+    font-size: 30px;
+}
+
+.diachinhanhang{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.a{
+    margin-bottom: 20px;
+    padding: 15px;
+    height: 80px;
+}
+
+.b{
+    margin-bottom: 20px;
+    padding: 15px;
+    height: 150px;
+}
+
+.diachinhanhang button{
+    padding: 15px;
+    width: 35%;
+    background-color: lightslategray;
+    color: white;
+    border: none;
+}
+
+.diachinhanhang button:hover{
+    cursor: pointer;
+    background-color: mediumslateblue;
+}
+
+
+
