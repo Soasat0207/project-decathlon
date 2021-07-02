@@ -1,0 +1,171 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.checkout-header{
+    background-color: #fff;
+    padding: 12px 30px;
+    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 2%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.checkout-header-nav{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+.checkout-header-item{
+    display: flex;
+    align-items: center;
+}
+.checkout-header-item span{
+    position: relative;
+    padding: 10px 35px 10px 10px;
+    display: block;
+    color: #9a9e9f;
+    transition: color 0.3s ease;
+    margin: 0 20px;
+    cursor: default;
+    font-size: 1.6rem;
+}
+.checkout-header-item span:hover{
+    color:var(--green);
+}
+.checkout-header-item span:hover::before{
+    border-color: var(--green);
+}
+.checkout-header-item span::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 7px;
+    bottom: 0;
+    margin: auto;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #9a9e9f;
+    border-radius: 10px;
+    transition: border 0.3s ease;
+}
+
+/* .checkout div{
+    border: 1px solid black;
+} */
+.checkout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.checkout-left{
+    width: 65%;
+    height: 500px;
+    font-size: 16px;
+    padding: 10px 0px ;
+}
+.checkout-right{
+    width: 35%;
+    height: 500px;
+    padding: 0px 10px;
+}
+
+.address-form1, .address-form2, .address-form3, .address-form4{
+    display: flex;
+    flex-direction: row;
+}
+.modal-content{
+    width: 100% !important; 
+    height: 300px !important;
+
+}
+.modal-body-form~div{
+    display: flex ;
+    flex-direction: column;
+    padding: 5px 0px !important;
+}
+
+/* .address-form1, .address-form2, .address-form3, .address-form4 div{
+    padding: 0 5px;
+    width: 100%;
+} */
+
+.form-group1 input,.form-group2 input{
+    width: 100%;
+}
+
+div.col-md-6 input, div.col-md-6 select{
+    width: 100%;
+}
+.save-address-btn{
+    padding: 10px;
+    font-size: 16px;
+}
+.checkout-left-delivery-option button{
+    padding: 15px;
+    text-transform: uppercase;
+    background-color: yellow;
+    font-weight: bold;
+    border-radius: 5px;
+
+}
+
+
+/* Cart promise css */
+.cart-promise{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    justify-content: space-around;
+}
+.cart-promise-div2{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+}
+.cart-promise-div2 img{
+    width: 60%;
+    height: 80%;
+}
+/* \End cart promise css */
+
+.checkout-left-input-address button{
+    padding: 10px 50px;
+    font-size: 16px;
+}
+
+.cart-item-list{
+    display: flex;
+    flex-direction: column;
+}
+.cart-item-list-product{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cart-item-list-name{
+    font-weight: bold;
+}
+
+.cart-item-list-infomation{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.cart-item-list-image img{
+    width: 70px;
+    height: 70px;
+}
