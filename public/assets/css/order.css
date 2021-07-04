@@ -3,9 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-color: #F8F9F9 !important;
+    height: auto !important;
+}
 
 .checkout-header{
-    background-color: #fff;
     padding: 12px 30px;
     box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 2%);
     display: flex;
@@ -29,7 +32,6 @@
     align-items: center;
 }
 .checkout-header-item span{
-    position: relative;
     padding: 10px 35px 10px 10px;
     display: block;
     color: #9a9e9f;
@@ -44,35 +46,39 @@
 .checkout-header-item span:hover::before{
     border-color: var(--green);
 }
-.checkout-header-item span::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 7px;
-    bottom: 0;
-    margin: auto;
-    width: 15px;
-    height: 15px;
-    border: 1px solid #9a9e9f;
-    border-radius: 10px;
-    transition: border 0.3s ease;
+
+/* Checkbox rounded */
+.checkbox-round{
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
 }
 
-/* .checkout div{
-    border: 1px solid black;
-} */
+.checkbox-round:checked{
+    background-color: rgb(79, 209, 79,0.8);
+}
+  
+  
 .checkout{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 16px !important;
 }
 
 .checkout-left{
     width: 65%;
     height: 500px;
     font-size: 16px;
-    padding: 10px 0px ;
+}
+.checkout-left > div{
+    padding: 15px 0px ;
 }
 .checkout-right{
     width: 35%;
@@ -115,9 +121,8 @@ div.col-md-6 input, div.col-md-6 select{
     padding: 15px;
     text-transform: uppercase;
     background-color: yellow;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 5px;
-
 }
 
 
@@ -168,4 +173,93 @@ div.col-md-6 input, div.col-md-6 select{
 .cart-item-list-image img{
     width: 70px;
     height: 70px;
+}
+
+.selected-address{
+    padding: 5px 0px !important;
+}
+.checkout-left-address-list{
+    display: flex;
+    flex-direction: column;
+    background-color: #E7F3F9;
+    overflow: scroll;
+    height: 30rem;
+}
+.checkout-left-address-list>div{
+    margin: 0 10px;
+    border-bottom: 1px solid rgb(0,0,0,0.2);
+}
+.selected-homeAddress{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;;
+}
+
+.deliveried-address{
+    display: flex;
+    justify-content: space-between;
+}
+
+.deliveried-address > div{
+    padding: 10px 0px;
+}
+.deliveried-address-change-btn{
+    padding: 10px;
+    border-radius: 10px;
+}
+.deliveried-address-change-btn:hover{
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.deliveried-options{
+    display: flex;
+    flex-direction: column;
+}
+.deliveried-options-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.deliveried-options-left-content{
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 10px !important;
+}
+.deliveried-options-right-content{
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+}
+.deliveried-options-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.deliveried-options-list-text{
+    font-weight: bold;;
+}
+.deliveried-options-list-date{
+    width: 60%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+}
+.deliveried-options-list-cash{
+    width: 40%;
+    display: flex;
+    justify-content: center
+}
+
+.deliveried-options-terms-checkbox{
+    margin-top: 20px;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: row;
+    
 }

@@ -42,7 +42,7 @@ app.get('/cart', (req, res, next) => {
   res.sendFile(path.join(__dirname, './view/cart.html'))
 })
 app.get('/order', (req, res, next) => {
-  res.sendFile(path.join(__dirname, './view/order.html'))
+  res.sendFile(path.join(__dirname, './view/order2.html'))
 })
 
 // make static link
