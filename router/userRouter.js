@@ -7,6 +7,7 @@ const checkCookies1 = require('../checkCookies')
 // Đăng ký
 userRouter.post('/dangky', async (req, res) =>{
     try{
+        console.log(req.body);
         let data = await AccountModel.create({
             username: req.body.username,
             password: req.body.password,
@@ -79,6 +80,7 @@ userRouter.put('/diachi', checkCookies1.checkCookies, async (req, res) => {
         res.json(error)
     }
 })
+
 
 // Check cookies
 userRouter.post('/checkcookies', checkCookies1.checkCookies,  (req, res) =>{

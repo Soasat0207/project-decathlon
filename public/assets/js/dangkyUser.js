@@ -24,6 +24,15 @@ $(".lang").on("click", (event) => {
 // Nhập thông tin đăng ký
 async function nutDangky(){
     try{
+        let gender
+        if($('.nam2').prop("checked") == false && $('.nu2').prop("checked") == false){
+            console.log('chuwa chon gioi tinh');
+        }else if($('.nam2').prop("checked")){
+            gender = 'nam'
+        }else{
+            gender = 'nu'
+        }
+
         let data = await $.ajax({
             url: '/api/nguoidung/dangky',
             type: 'post',
@@ -33,8 +42,7 @@ async function nutDangky(){
                 firstname: $('.ten2').val(),
                 lastname: $('.ho2').val(),
                 phone: $('.sdt2').val(),
-                gender: $('.nam2').val(),
-                gender: $('.nu2').val(),
+                gender: gender,
                 email: $('.email2').val(), 
             }
         })

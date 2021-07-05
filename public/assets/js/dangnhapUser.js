@@ -48,6 +48,22 @@ async function nutdangnhap(){
     }
 }
 
+// Đăng nhập bằng enter
+$('.taikhoan').on("keyup", (event)=>{
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        nutdangnhap()
+       }
+})
+
+$('.matkhau').on("keyup", (event)=>{
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        nutdangnhap()
+       }
+})
+
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));

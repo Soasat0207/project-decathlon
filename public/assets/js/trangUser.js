@@ -33,8 +33,8 @@ function nutThongtin() {
     <div class="hang3">
         <p>Giới tính</p>
         <div class="gioitinh1">
-            <div><input type="radio" name="giotinh" id=""></input><p>Nam</p></div>
-            <div><input type="radio" name="giotinh" id=""></input><p>Nữ</p></div>
+            <div><input type="radio" name="giotinh" id="" class='nam3'></input><p>Nam</p></div>
+            <div><input type="radio" name="giotinh" id="" class = 'nu3'></input><p>Nữ</p></div>
         </div>
     </div>
 
@@ -54,17 +54,25 @@ function nutThongtin() {
         type: 'get',
     })
     .then((data) => {
+        console.log(data);
         let ten;
         let ho;
         let email;
         let sdt;
+        let gender
         if(data){
             ten = data.firstname;
             ho = data.lastname;
             email = data.email;
             sdt = data.phone;
+            gender = data.gender
         }
-        $(".ten3").append(ten);
+        $(".ten3").val(ten);
+        if(gender == 'nu'){
+            $('.nu3').prop("checked", true)
+        }else{
+            $('.nam3').prop("checked", true)
+        }
     })
     .catch((err) => {
         console.log(err);
@@ -183,6 +191,7 @@ function nutLuuthongtin(){
 }
 
 // Hiển thị email ở ô giao diện người dùng
+
 $.ajax({
     url: '/api/nguoidung/thongtin',
     type: 'get',
@@ -219,7 +228,7 @@ function luudiachi(){
 // Sửa địa chỉ
 function suadiachi(){
     $.ajax({
-        url: "/api/nguoidung/diachi",
+        url: "/api/nguoidung/diachi/",
         type: 'put', 
         data: {
             mainAddress: $(".diachinhanhang").val(),
