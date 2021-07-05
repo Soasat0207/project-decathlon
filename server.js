@@ -47,11 +47,23 @@ app.get('/admin-add-product', (req, res) => {
 app.get('/admin-list-color', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-color.html'))
 })
+app.get('/admin-list-tradeMark', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-tradeMark.html'))
+})
+app.get('/admin-list-supplier', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-supplier.html'))
+})
+app.get('/admin-list-size', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-sizeProduct.html'))
+})
+app.get('/admin-list-level', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-level.html'))
+})
+app.get('/admin-list-category', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-category.html'))
+})
 app.get('/cart', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/cart.html'))
-})
-app.get('/test3', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/test3.html'))
 })
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
