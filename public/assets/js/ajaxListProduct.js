@@ -11,7 +11,8 @@ async function render() {
       let divImgColor = ``;
         div = `
             <div class=" col-lg-3 col-md-6 col-sm-6">
-                <div class="product-items">
+                <a href="/product-details/${data._id}">
+                    <div class="product-items">
                     <div class="product_gallert">
                         <div class="product_gallert-slider">
                             <img src="${data.img[0]}" alt="" class="product_gallert-slider-img">
@@ -52,6 +53,8 @@ async function render() {
                         <div class="product-info-price"><span class="product_info-price-description">${data.price} $</span></div>
                     </div>
                 </div>
+                </a>
+                
             </div>
         `;
         $('.product-list').append(div);

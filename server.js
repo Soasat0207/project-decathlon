@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 app.get('/list-product', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/list-product.html'))
 })
-app.get('/product-details', (req, res) => {
+app.get('/product-details/:id', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/product_details.html'))
 })
 app.get('/admin-list-product', (req, res) => {
