@@ -5,6 +5,7 @@ const path = require('path');
 const cartRouter = require('./router/cartRouter');
 const orderRouter = require('./router/orderRouter');
 var cookieParser = require('cookie-parser');
+const userRouter = require('./router/userRouter');
  
 
 // parse application/x-www-form-urlencoded
@@ -44,6 +45,15 @@ app.get('/cart', (req, res, next) => {
 app.get('/order', (req, res, next) => {
   res.sendFile(path.join(__dirname, './view/order.html'))
 })
+app.get('/dangky', (req, res) =>{
+  res.sendFile(path.join(__dirname, './view/dangkyUser.html'))
+})
+app.get('/dangnhap', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
+})
+app.get('/nguoidung', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/trangUser.html'))
+})
 
 // make static link
 app.use('/public',express.static(path.join(__dirname, './public')));
@@ -51,6 +61,7 @@ app.use('/public',express.static(path.join(__dirname, './public')));
 // Use router
 app.use('/api/user/', cartRouter);
 app.use('/api/user/', orderRouter);
+app.use('/api/nguoidung', userRouter);
 
 // Port to listen
 app.listen(port, () => {
