@@ -55,6 +55,7 @@ app.get('/nguoidung', (req, res) => {
   res.sendFile(path.join(__dirname, './view/trangUser.html'))
 })
 
+
 // make static link
 app.use('/public',express.static(path.join(__dirname, './public')));
 
