@@ -7,6 +7,7 @@ async function render() {
     });
     
     data.map((data,index) => {
+        console.log(data)
       let div = ``;
       let divImgColor = ``;
         div = `

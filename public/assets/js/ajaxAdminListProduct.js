@@ -4,7 +4,6 @@ async function renderTableProduct() {
         url: "/api/product",
         type: "GET",
       });
-      
       data.map((data) => {
         let div = ``;
         div=`

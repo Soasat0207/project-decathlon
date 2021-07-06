@@ -1,10 +1,11 @@
 let link = window.location.href;
-console.log(link)
+let linkId = link.slice(link.lastIndexOf('/'),link.length);
+console.log()
 async function renderProductDetails() {
 
     try {
         let data = await $.ajax({
-          url: "/api/product/details/60d2ecdcc0f69f9f8cc7b74b",
+          url: "/api/product/details"+linkId,
           type: "POST",
         });
         data.map((data) => {
@@ -19,7 +20,7 @@ async function renderProductDetails() {
           $('.product_details-medium-score').append(`<span>${data.rate}/5</span>`);
           $('.product_details-medium-score').append(`<span>${data.rate}/5</span>`);
 
-          data.img.map((data)=>{
+          data.imgColor.map((data)=>{
               let div =`
               <div class="product-thumbs-slider-img-image">
                 <img src="${data}" alt="" class="product-thumbs-slider-img product-thumbs-slider-img-active">
@@ -43,7 +44,7 @@ async function renderProductDetails() {
 }
 renderProductDetails();
 
-function test   (){
+function test(){
     let product_thumbs_slider_img = document.querySelectorAll('.product-thumbs-slider-img');
     let swiper_slide_img = document.querySelectorAll('.swiper-slide-img');
     let product_details_swiper_list = document.querySelector('.product_details-swiper-list');
