@@ -123,8 +123,82 @@ router.post('/findname',(req,res) =>{
         res.status(500).json('loi sever')
     })
 })
+router.post('/findCode',(req,res) =>{
+    let codeProduct = req.body.codeProduct;
+    ModelMongo.productModel.find({
+        $or: [
+            {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
+        ]
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findSize',(req,res) =>{
+    let codeProduct = req.body.codeProduct;
+    let colorId = req.body.colorId;
+    ModelMongo.productModel.find({
+        $and: [
+            {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
+            {colorId:{ $regex: new RegExp(colorId, "i")}},
+        ]
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+
 router.post('/details/:id',(req,res) =>{
-    console.log(req.params.id)
     let id = req.params.id;
     ModelMongo.productModel.find({
         _id:id,

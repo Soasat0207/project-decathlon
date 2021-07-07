@@ -1,15 +1,13 @@
 let link = window.location.href;
 let linkId = link.slice(link.lastIndexOf('/'),link.length);
-console.log()
 async function renderProductDetails() {
-
     try {
         let data = await $.ajax({
           url: "/api/product/details"+linkId,
           type: "POST",
         });
+        console.log(data)
         data.map((data) => {
-            console.log(data)
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
@@ -28,14 +26,8 @@ async function renderProductDetails() {
               `
               $('.product-thumbs-slider').append(div);
           })
-          data.imgColor.map((data)=>{
-            let div =`
-                <div class="swiper-slide swiper-slide-active">
-                    <img class="swiper-slide-img" src="${data}" alt="">
-                </div>
-            `
-            $('.product_details-swiper-list').append(div);
-        })
+        renderColorImg(data.codeProduct)
+        renderSize(data.codeProduct,data.colorId._id)
         });
         test();
       } catch (error) {
@@ -43,7 +35,88 @@ async function renderProductDetails() {
       }
 }
 renderProductDetails();
+async function renderColorImg(codeProduct) {
+    try {
+        let data = await $.ajax({
+          url: "/api/product/findcode",
+          type: "POST",
+          data:{
+            codeProduct:codeProduct, 
+          }
+        });
+        if(data.status == 200){
+            let newArr = [];
+            data.data.map((data)=>{
+                if (newArr.indexOf(data) === -1) {
+                   newArr.push(data.colorId._id);
+                }
+            })
+            let dataColor = newArr.filter((item,index)=>{
+                return newArr.indexOf(item) === index 
+            })
+            dataColor.map((dataColor)=>{
+                for(let i = 0; i < data.data.length; i++){
+                    if(data.data[i].colorId._id == dataColor){
+                        let div =`
+                        <div class="swiper-slide swiper-slide-active">
+                            <a href="/product-details/${data.data[i]._id}">
+                                <img class="swiper-slide-img" src="${data.data[i].imgColor[0]}" alt="">
+                            </a>    
+                        </div>
+                    `
+                    $('.product_details-swiper-list').append(div);
+                        break;
+                    }
+                }
+            })
+        }
 
+    } catch (error) {
+        console.log(error);
+    }
+}
+async function renderSize(codeProduct,colorId) {
+    console.log(codeProduct,colorId)
+    try {
+        let data = await $.ajax({
+          url: "/api/product/findSize",
+          type: "POST",
+          data:{
+            codeProduct:codeProduct, 
+            colorId:colorId,
+          }
+        });
+        console.log(data)
+        
+        if(data.status == 200) {
+            let sizeArr = [];
+            data.data.map((data)=>{
+                if (sizeArr.indexOf(data) === -1) {
+                   sizeArr.push(data.sizeId._id);
+                }
+            })
+            let dataSize = sizeArr.filter((item,index)=>{
+                return sizeArr.indexOf(item) === index 
+            })
+            
+            dataSize.map((dataSize)=>{
+                
+                for(let i = 0; i < data.data.length; i++){
+                    if(data.data[i].sizeId._id == dataSize){
+                        let div =`
+                        <option class="product_details-size-items-option" value="${data.data[i].sizeId.size}">${data.data[i].sizeId.size}</option>
+                    `
+                    $('.product_details-size-list-option').append(div);
+                    break;
+                    }
+                }
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 function test(){
     let product_thumbs_slider_img = document.querySelectorAll('.product-thumbs-slider-img');
     let swiper_slide_img = document.querySelectorAll('.swiper-slide-img');
