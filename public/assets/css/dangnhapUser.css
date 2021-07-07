@@ -336,9 +336,34 @@
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 768px) {
 .chuQuayLai{
     display: none;
+}
+
+.tiengviet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tiengviet div{
+    margin: 8px 0;
+}
+
+.bangngonngu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bangngonngu div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
     
 }

@@ -1,24 +1,30 @@
 const express = require('express');
 const dataMongo = require('../models/mongodb');
 const AccountModel = dataMongo.AccountModel;
+const AccountBListModel = dataMongo.AcountBListModel;
 const userRouter = express.Router();
 const checkCookies1 = require('../checkCookies')
+const jwt = require('jsonwebtoken');
 
 // Đăng ký
 userRouter.post('/dangky', async (req, res) =>{
     try{
-        console.log(req.body);
-        let data = await AccountModel.create({
-            username: req.body.username,
-            password: req.body.password,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            phone: req.body.phone,
-            gender: req.body.gender,
-            email: req.body.email,    
-        })
-        if(data){
-            res.json(data)
+        let data2 = await AccountModel.findOne({username: req.body.username})
+        if(data2){
+            res.json('Tài khoản đã tồn tại')
+        }else{
+            let data = await AccountModel.create({
+                username: req.body.username,
+                password: req.body.password,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                phone: req.body.phone,
+                gender: req.body.gender,
+                email: req.body.email,    
+            })
+            if(data){
+                res.json(data)
+            } 
         }
     }
     catch(error){
@@ -34,9 +40,19 @@ userRouter.post('/dangnhap', async (req, res) => {
             password: req.body.password,
         })
         if(data){
-            res.json({id: data._id})
+            let token = jwt.sign({id: data._id}, 'duc')
+            res.json({
+                status: 200,
+                err: false,
+                mes: 'Thất bại',
+                data: token
+            })
         }else{
-            res.json('Thất bại')
+            res.json({
+                status: 400,
+                err: false,
+                mes: 'Thất bại'
+            })
         }
     }
     catch(error){
@@ -83,7 +99,7 @@ userRouter.put('/diachi', checkCookies1.checkCookies, async (req, res) => {
 
 
 // Check cookies
-userRouter.post('/checkcookies', checkCookies1.checkCookies,  (req, res) =>{
+userRouter.post('/checkcookies', checkCookies1.checkToken ,checkCookies1.checkCookies,  (req, res) =>{
     res.json('Đăng nhập thành công')
 })
 
@@ -94,6 +110,21 @@ userRouter.get('/thongtin', checkCookies1.checkCookies, async(req, res) => {
         let data = await AccountModel.findOne({_id: id})
         if(data){
             res.json(data)
+        }
+    }
+    catch(error){
+        res.json(error)
+    }
+})
+
+userRouter.post('/blacklist', checkCookies1.checkCookies, async (req, res)=>{
+    let token = req.cookies.user;
+    try{
+        let data =  await AccountBListModel.create({token: token})
+        if(data){
+            res.json(data)
+        }else{
+            res.json("khong co token")
         }
     }
     catch(error){

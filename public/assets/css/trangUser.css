@@ -332,4 +332,29 @@
     width: 10% !important;
 }
 
+@media only screen and (max-width: 768px){
+/* .tabR{
+    /* display: none; */
+/* } */
+.tabR{
+    display: none;
+}
+
+.tongUser {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9f9;
+    padding: 40px 50px;
+}
+
+.tabL{
+    display: block;
+    width: 100%;
+}
+.tabL button{
+    width: 100%;
+}
+
+}
+
 

@@ -33,6 +33,14 @@ const accountSchema = new Schema(
   }
 );
 
+const accountBListSchema = new Schema(
+  {
+    token: String,
+  },
+  {collection: "blacklist"}
+);
+
+
 const lastInfoLoginSchema = new Schema(
   {
     dateLastLogin: [
@@ -267,6 +275,7 @@ const ordersSchema = new Schema(
 
 // Model account
 const AccountModel = mongoose.model("account", accountSchema);
+const AcountBListModel = mongoose.model("blacklist" ,accountBListSchema);
 const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
 // End model account
 
@@ -321,6 +330,7 @@ const CommentModel = mongoose.model("comment", commentSchema);
 // Export Model 
 module.exports = {
   AccountModel,
+  AcountBListModel,
   LastInfoLoginModel,
   ColorProductModel,
   SizeProductModel,

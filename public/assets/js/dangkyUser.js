@@ -24,6 +24,7 @@ $(".lang").on("click", (event) => {
 // Nhập thông tin đăng ký
 async function nutDangky(){
     try{
+        $('.ndtk3').css('display', 'block')
         let gender
         if($('.nam2').prop("checked") == false && $('.nu2').prop("checked") == false){
             console.log('chuwa chon gioi tinh');
@@ -33,22 +34,39 @@ async function nutDangky(){
             gender = 'nu'
         }
 
-        let data = await $.ajax({
-            url: '/api/nguoidung/dangky',
-            type: 'post',
-            data: {
-                username: $('.taikhoan2').val(),
-                password: $('.matkhau2').val(),
-                firstname: $('.ten2').val(),
-                lastname: $('.ho2').val(),
-                phone: $('.sdt2').val(),
-                gender: gender,
-                email: $('.email2').val(), 
+        //-------------------------------------------
+        if($('.taikhoan2').val().length < 8){
+            $('.ndtk3').html('Tài khoản nhập tối thiểu 8 ký tự!')
+            $('.ndtk2').html('Tài khoản nhập tối thiểu 8 ký tự!')
+        }else{
+            if($('.taikhoan2').val() == "" || $('.matkhau2').val() == "" || $('.ten2').val() == '' ||  $('.ho2').val() =="" || $('.sdt2').val() =="" || $('.email2').val() ==""){
+                console.log("Không được để rỗng ô nhập");
+                $('.ndtk2').html('Không được để rỗng ô nhập')
+            }else{
+                let data = await $.ajax({
+                    url: '/api/nguoidung/dangky',
+                    type: 'post',
+                    data: {
+                        username: $('.taikhoan2').val(),
+                        password: $('.matkhau2').val(),
+                        firstname: $('.ten2').val(),
+                        lastname: $('.ho2').val(),
+                        phone: $('.sdt2').val(),
+                        gender: gender,
+                        email: $('.email2').val(), 
+                    }
+                })
+                //---------------------------------------
+                if(data){
+                    console.log(43, data);
+                    if(data == 'Tài khoản đã tồn tại'){
+                        $('.ndtk2').html('Tài khoản đã tồn tại')
+                    }
+                }
             }
-        })
-        if(data){
-            console.log(data);
         }
+
+
     }
     catch(error){
         console.log(error);

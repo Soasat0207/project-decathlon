@@ -1,7 +1,40 @@
+
+
+function resize (){
+    console.log(screen.width );
+    if(screen.width < 768){
+        $(".tabR").css("display", "none");
+        $(".tabL").css("display", "block")
+    }
+    if(screen.width >= 768){
+        $(".tabR").css("display", "block");
+        $(".tabL").css("display", "block");
+        $(".nutthoat").css("display", "none")
+    }
+
+}
+
+$(".tabR").html("");
+let bien = `
+    <div class="donhang">
+        <button class="nutthoat" onclick="thoat()">X</button>
+        <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
+        <div class="donhang2">
+            <i class="fas fa-cart-plus"></i>
+            <span>Chưa có đơn hàng!</span>
+        </div>
+    </div>
+</div>
+    </div>
+`
+$(".tabR").append(bien);
+
+
 function trahang() {
     $(".tabR").html("");
     let bien = `
         <div class="donhang">
+            <button onclick="thoat()">X</button>
             <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
             <div class="donhang2">
                 <i class="fas fa-cart-plus"></i>
@@ -12,7 +45,21 @@ function trahang() {
         </div>
     `
    $(".tabR").append(bien);
+
+   if(screen.width < 768){
+       $(".tabR").css("display", "block");
+       $(".tabL").css("display", "none")
+
+   }
+
 }
+
+function thoat(){
+    $(".tabR").css("display", "none")
+    $(".tabL").css("display", "block")
+    
+}
+
 
 
 function nutThongtin() {
@@ -68,6 +115,9 @@ function nutThongtin() {
             gender = data.gender
         }
         $(".ten3").val(ten);
+        $(".ho3").val(ho);
+        $(".email3").val(email);
+        $(".sdt3").val(sdt);
         if(gender == 'nu'){
             $('.nu3').prop("checked", true)
         }else{
@@ -228,7 +278,7 @@ function luudiachi(){
 // Sửa địa chỉ
 function suadiachi(){
     $.ajax({
-        url: "/api/nguoidung/diachi/",
+        url: "/api/nguoidung/diachi",
         type: 'put', 
         data: {
             mainAddress: $(".diachinhanhang").val(),
@@ -242,3 +292,25 @@ function suadiachi(){
         console.log(err);
     })
 }
+
+// Đăng xuất
+function signout(){
+    $.ajax({
+        url: "/api/nguoidung/blacklist",
+        type: "post"
+    })
+    .then((data) =>{
+        if(data){
+            delete_cookie('user')
+            window.location.href = '/dangnhap'
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
+
+// Xóa Cookies khi đăng xuất
+function delete_cookie(name) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }

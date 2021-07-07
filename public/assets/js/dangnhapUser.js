@@ -38,8 +38,8 @@ async function nutdangnhap(){
                 password: $('.matkhau').val(),
             }
         })
-        if(data.id){
-            setCookie('user', data.id, 30);
+        if(data.status == 200){
+            setCookie('user', data.data, 30);
             window.location.href = '/nguoidung';
         }
     }
