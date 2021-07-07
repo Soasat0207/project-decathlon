@@ -15,6 +15,19 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 
+var multer  = require('multer')
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,path.join(__dirname,'./public/uploads'))
+    },
+    filename: function (req, file, cb) {
+      let index = file.originalname.lastIndexOf('.');
+      let extention = file.originalname.slice(index,file.originalname.length);
+      cb(null, file.fieldname + '-' + Date.now() + extention);
+    }
+  })
+var upload = multer({ storage: storage })
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -27,7 +40,7 @@ app.get('/', (req, res) => {
 app.get('/list-product', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/list-product.html'))
 })
-app.get('/product-details', (req, res) => {
+app.get('/product-details/:id', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/product_details.html'))
 })
 app.get('/admin-list-product', (req, res) => {
@@ -39,8 +52,23 @@ app.get('/admin-add-product', (req, res) => {
 app.get('/admin-list-color', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-color.html'))
 })
-app.get('/test3', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/test3.html'))
+app.get('/admin-list-tradeMark', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-tradeMark.html'))
+})
+app.get('/admin-list-supplier', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-supplier.html'))
+})
+app.get('/admin-list-size', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-sizeProduct.html'))
+})
+app.get('/admin-list-level', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-level.html'))
+})
+app.get('/admin-list-category', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-list-category.html'))
+})
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/cart.html'))
 })
 app.get('/dangky', (req, res) => {
   res.sendFile(path.join(__dirname, './view/dangkyUser.html'))
@@ -62,6 +90,12 @@ app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
 app.use('/api/nguoidung', routerUser);
 
+
+app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+  console.log(req.file);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

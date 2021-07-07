@@ -25,48 +25,18 @@ Validator({
     }
 })
 async function createProduct() {
-    //let img = req.body.img;
-    // let imgColor = req.body.imgColor;
-    let name = $('.page-content-form_name').val();
-    let codeProduct = $('.page-content-form_code').val();
-    let priceImport = $('.page-content-form_price-import').val();
-    let price = $('.page-content-form_price').val();
-    let unit = $('.page-content-form_unit').val();
-    let quantity = $('.page-content-form_quantity').val();
-    let descriptionShort = $('.page-content-form_description-short').val();
-    let descriptionDetails = $('.page-content-form_description-details').val();
-    let title = $('.page-content-form_title').val();
-    let rate = $('.page-content-form_rate').val();
-    let gender = $('.page-content-form_gender').val();
-    let sizeId = $('.page-content-form_size').val();
-    let colorId = $('.page-content-form_color').val();
-    let levelId = $('.page-content-form_level').val();
-    let trademarkId = $('.page-content-form_trade-mark').val();
-    let supplierId = $('.page-content-form_supplier').val();
-    let categoryProductId = $('.page-content-form_category').val();
+    let myForm = document.getElementById('formAddProduct');
+    let formData = new FormData(myForm);   
+    for(var pair of formData.entries()) {
+        console.log(pair[0] , pair[1]);
+     }  
     try {
       let data = await $.ajax({
         url: "/api/product",
         type: "POST",
-        data: {
-            name : name,
-            codeProduct : codeProduct,
-            priceImport : priceImport,
-            price : price,
-            unit : unit,
-            quantity : quantity,
-            descriptionShort : descriptionShort,
-            descriptionDetails : descriptionDetails,
-            title : title,
-            rate : rate,
-            gender : gender,
-            sizeId : sizeId,
-            colorId : colorId,
-            levelId : levelId,
-            trademarkId : trademarkId,
-            supplierId : supplierId,
-            categoryProductId : categoryProductId,
-        }
+        data: formData,
+        processData: false,
+        contentType: false,
       });
       if(data.status == 200){
         alert(data.message);

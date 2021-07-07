@@ -23,7 +23,7 @@ Array.prototype.map.call(product_thumbnail_img,(product_thumbnail_img)=>{
 })
 let value = 0;
 function plusSlides(n){
-    console.log(product_thumbnail_img.length);
+    console.log(product_thumbnail_img);
     value -= (100/(product_thumbnail_img.length));
     console.log(value);
     let value_max =-(100 -(100/(product_thumbnail_img.length)*3));

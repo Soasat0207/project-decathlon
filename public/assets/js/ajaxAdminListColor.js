@@ -6,10 +6,10 @@ async function renderTableColor() {
         type: "GET",
       });
       
-      data.map((data) => {
+      data.map((data,index) => {
         let div = ``;
         div=`
-        <tr>
+        <tr class="${index}">
             <td><p style="padding:10px;background:${data.colorCode}"></p></td>
             <td>${data.colorCode}</td>
             <td>${data.name}</td> 
@@ -17,11 +17,15 @@ async function renderTableColor() {
               <button onclick="DeleteColor('${data._id}')">X</button>
               <button onclick="UpdateModalColor('${data._id}')">Sửa</button>
             </td> 
-
         </tr>
         `
         $('.admin-list-color').append(div);
+        $(`.${index}`).dblclick(()=>{
+          
+          UpdateModalColor(data._id)
+        })
       });
+      
       
     } catch (error) {
       console.log(error);
@@ -74,6 +78,7 @@ async function UpdateModalColor(id) {
   }
 }
 async function UpdateColor(id) {
+  console.log(id);
   let colorCode = $('.page-content-form_code').val();
   let name = $('.page-content-form_name').val();
   try {

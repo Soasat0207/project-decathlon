@@ -50,7 +50,6 @@ router.put('/',(req,res) =>{
     let id = req.body.id;
     let colorCode = req.body.colorCode;
     let name = req.body.name;
-    console.log(req.body)
     ModelMongo.colorProductModel.findOneAndUpdate({
         _id:id,
     },{
