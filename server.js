@@ -45,7 +45,6 @@ app.get('/order', (req, res, next) => {
   res.sendFile(path.join(__dirname, './view/order.html'))
 })
 
-
 // make static link
 app.use('/public',express.static(path.join(__dirname, './public')));
 

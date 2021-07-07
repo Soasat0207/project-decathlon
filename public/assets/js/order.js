@@ -3,7 +3,7 @@ render();
 
 // function to render
 function render() {
-  $(".cart-item-list").html('');
+  $(".cart-item-list").html("");
   $.ajax({
     url: "/api/user/cartPage",
     type: "POST",
@@ -53,15 +53,15 @@ function render() {
 }
 
 // function update Address to html
-function updateAddress(){
-  $('.checkout-left-address-list').html('');
+function updateAddress() {
+  $(".checkout-left-address-list").html("");
   $.ajax({
     url: "/api/user/findUserAddress",
     type: "POST",
   })
     .then((data) => {
-     console.log(63, data);
-    for (const item of data) {
+      console.log(63, data);
+      for (const item of data) {
         // console.log(63 , item);
         let content = `
     <div id ="${item._id}" class="selected-address">
@@ -78,16 +78,15 @@ function updateAddress(){
     </div>
     `;
 
-      $('.checkout-left-address-list').append(content);
-  // edit button event
-      $(`.editAddress${item._id}`).on('click', ()=>{
-        editAddress(item._id);
-      })
-  // delete button event
-     $(`.deleteAddress${item._id}`).on('click', ()=>{
-      deleteAddress(item._id)
-     })
-  
+        $(".checkout-left-address-list").append(content);
+        // edit button event
+        $(`.editAddress${item._id}`).on("click", () => {
+          editAddress(item._id);
+        });
+        // delete button event
+        $(`.deleteAddress${item._id}`).on("click", () => {
+          deleteAddress(item._id);
+        });
       } // end for loop
     })
     .catch((err) => {
@@ -95,57 +94,59 @@ function updateAddress(){
     });
 }
 
-
 // Add event to Edit address button
-function editAddress(idAddress){
+function editAddress(idAddress) {
   // console.log(idAddress);
   $.ajax({
-    url: '/api/user/findbyIdAddress',
-    type: 'POST',
+    url: "/api/user/findbyIdAddress",
+    type: "POST",
     data: {
-      idAddress : idAddress
-    }
-  }).then(data=>{
-   if(data){
-     $("#homeAddressEdited").val(data.homeAddress);
-     $("#provinceSelectedEdited").val(data.province);
-     $("#districtSelectedEdited").val(data.district);
-     $("#wardSelectedEdited").val(data.ward);
-     $("#firstNameEdited").val(data.firstName);
-     $("#lastNameEdited").val(data.lastName);
-     $("#phoneNumberEdited").val(data.phone);
-     $("#deliveryAddressEdited").val(data.deliveryAddress);
-     $("#personalAddressEdited").val(data.personalAddress);
-     $("#companyAddressEdited").val(data.companyAddress);
-  //send id address to confirm edit btn
-    $('.edit-confirm-btn').attr('id', `idAdress${idAddress}`)
-   }
-  }).catch(err =>{
-    console.log(err);
+      idAddress: idAddress,
+    },
   })
-  
+    .then((data) => {
+      if (data) {
+        $("#homeAddressEdited").val(data.homeAddress);
+        $("#provinceSelectedEdited").val(data.province);
+        $("#districtSelectedEdited").val(data.district);
+        $("#wardSelectedEdited").val(data.ward);
+        $("#firstNameEdited").val(data.firstName);
+        $("#lastNameEdited").val(data.lastName);
+        $("#phoneNumberEdited").val(data.phone);
+        $("#deliveryAddressEdited").val(data.deliveryAddress);
+        $("#personalAddressEdited").val(data.personalAddress);
+        $("#companyAddressEdited").val(data.companyAddress);
+        //send id address to confirm edit btn
+        $(".edit-confirm-btn").attr("id", `idAdress${idAddress}`);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 // add event to delete address button
-function deleteAddress(idAddress){
+function deleteAddress(idAddress) {
   $.ajax({
-    url: '/api/user/deleteUserAddress',
-    type: 'DELETE',
+    url: "/api/user/deleteUserAddress",
+    type: "DELETE",
     data: {
-      idAddress: idAddress
-    }
-  }).then(data =>{
-    if(data.deletedCount !== 0){
-      updateAddress()
-    }
-  }).catch(err =>{
-    console.log(' Server error');
+      idAddress: idAddress,
+    },
   })
+    .then((data) => {
+      if (data.deletedCount !== 0) {
+        updateAddress();
+      }
+    })
+    .catch((err) => {
+      console.log(" Server error");
+    });
 }
 
 // Add event when user click Confirm edit button
 $(".edit-confirm-btn").on("click", function () {
-  let idAddress = $(this).attr('id').slice(8,100)
+  let idAddress = $(this).attr("id").slice(8, 100);
 
   $.ajax({
     url: "/api/user/updateUserAddress",
@@ -166,8 +167,8 @@ $(".edit-confirm-btn").on("click", function () {
   })
     .then((data) => {
       console.log(data);
-      if(data.nModified !== 0){
-        updateAddress()
+      if (data.nModified !== 0) {
+        updateAddress();
       }
     })
     .catch((err) => {
@@ -194,17 +195,17 @@ $(".save-address-btn").on("click", function () {
     },
   })
     .then((data) => {
-      if(data){
-        $("#homeAddress").val('');
-        $("#provinceSelected").val('');
-        $("#districtSelected").val('');
-        $("#wardSelected").val('');
-        $("#firstName").val('');
-        $("#lastName").val('');
-        $("#phoneNumber").val('');
-        $("#deliveryAddress").val('');
-        $("#personalAddress").val('');
-        $("#companyAddress").val('');
+      if (data) {
+        $("#homeAddress").val("");
+        $("#provinceSelected").val("");
+        $("#districtSelected").val("");
+        $("#wardSelected").val("");
+        $("#firstName").val("");
+        $("#lastName").val("");
+        $("#phoneNumber").val("");
+        $("#deliveryAddress").val("");
+        $("#personalAddress").val("");
+        $("#companyAddress").val("");
         updateAddress();
       }
     })
@@ -214,19 +215,19 @@ $(".save-address-btn").on("click", function () {
 });
 
 // Add event to Choose form delivery
-$('.checkout-right-delivery-button').on('click', ()=>{
-  renderOrderPage()
-})
+$(".checkout-right-delivery-button").on("click", () => {
+  renderOrderPage();
+});
 
 // render to order page
-function renderOrderPage(){
-  $('.checkout-left').html('');
+function renderOrderPage() {
+  $(".checkout-left").html("");
   $.ajax({
-    url: '/api/user/findUserAddress',
-    type: 'POST'
-  }).then( async (data) =>{
-
-    let content = `
+    url: "/api/user/findUserAddress",
+    type: "POST",
+  })
+    .then(async (data) => {
+      let content = `
     <div class="bg-border">
           <div class="deliveried-address">
           </div>
@@ -256,58 +257,80 @@ function renderOrderPage(){
               </div>
           </div>
         </div>
-    `
-    $('.checkout-left').prepend(content);
-    for await (item of data){
-      console.log(item);
-      let addressContent = `
+    `;
+      $(".checkout-left").prepend(content);
+      for await (item of data) {
+        // console.log(item);
+        let addressContent = `
       <div class="deliveried-address-content">
-        <div id ="address${item._id}"><input type="checkbox" class="radio" name="" id="input${item._id}"></div>
+        <input type="checkbox" class="ratio" name="" id="input${item._id}">
         <div class="deliveried-address-district"> Giao hàng đến ${item.district} ${item.province}</div>
         <div class="deliveried-address-btn address-btn-${item._id}">
-                  <button onclick="reloadOderPage()" class ="deliveried-address-change-btn">Thay đổi</button>
-              </div>
+          <button onclick="reloadOderPage()" class ="deliveried-address-change-btn">Thay đổi</button>
+        </div>
       </div>
-      `
-      $('.deliveried-address').prepend(addressContent);
+      `;
+        $(".deliveried-address").prepend(addressContent);
 
-    } // end for loop
-    
-    // Add event for div click
-    $('.deliveried-options-item').on('click', ()=>{
-      let content =`
-        <div class="location-card">
-            <h5>
-                <img style="width: 20px; height: 15px"  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NC41NSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDU0LjU1IDQwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDojNDI0NDUzO308L3N0eWxlPjwvZGVmcz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTQ4My40MjUgLTk1NC43NzIpIj48cGF0aCBjbGFzcz0iYSIgZD0iTTU0LjU1LDI2LjY5MXYtMTEuNWEuOTQxLjk0MSwwLDAsMC0uNDctLjgxOEw0MS43NDksNy4zMjZhLjk0Ljk0LDAsMCwwLS42LS4xMTNsLTYuNzcyLjk0MVYuOTRhLjk0MS45NDEsMCwwLDAtLjMyOS0uNzE1QS45NDEuOTQxLDAsMCwwLDMzLjI3NSwwTC43ODEsNS42NDJBLjk0MS45NDEsMCwwLDAsMCw2LjU4M1YzNS43MzlhLjk0MS45NDEsMCwwLDAsLjM2Ny43MjQuOTQxLjk0MSwwLDAsMCwuNzM0LjM3NmguMTZsNS44ODgtMS4xQTYuNTM3LDYuNTM3LDAsMCwwLDE5LjgwNywzMy41MUwzNy41LDMwLjM3OGE2LjU4NCw2LjU4NCwwLDAsMCwxMi41NTYtMi4xNjNsMy43NjItLjY1OEg1My45YS43ODEuNzgxLDAsMCwwLC4yMDctLjA3NWwuMDY2LS4yMDdhLjUzNi41MzYsMCwwLDAsLjE1LS4xNDEuNDguNDgsMCwwLDAsLjA4NS0uMTIyLjgyOC44MjgsMCwwLDAsLjA4NS0uMTg4Ljk0MS45NDEsMCwwLDAsLjA1Ni0uMTMyWk0zMi40OTUsMi4wNTl2MTUuNGwtMzAuNjE0LDUuNFY3LjMzNUwxNS4xNCw1LjA1Wk0xLjg4MSwzNC44VjI0Ljc2M2wzMC42MTQtNS40djkuOTg4TDE5LjU1MywzMS42MjlBNi41ODQsNi41ODQsMCwwLDAsNi43MjUsMzMuNDM0YzAsLjE2LDAsLjMsMCwuNDUxWm0xMS4zOSwzLjM0OGE0LjY3OSw0LjY3OSwwLDEsMCwwLS4wNDdabTIxLjEwNS05LjA4NVYxMC4wODJMNDEuMSw5LjE0MWwxMS41NjgsNi41ODRWMjUuNzg4bC0yLjgyMi41NDVhNi41ODQsNi41ODQsMCwwLDAtMTIuODY2LDEuNWMwLC4yMzUsMCwuNDgsMCwuNzE1Wm05LjE1MSwzLjQ4YTQuNjMyLDQuNjMyLDAsMSwwLDAtLjA0N1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE0ODMuNDI1IDk1NC43ODQpIi8+PC9nPjwvc3ZnPg==" alt="">
-                <span style="padding-left: 16px;">GIAO HÀNG TẠI NHÀ</span>
-            </h5>
-            <div class="location-card-infomation">
-                <h3>TỪ <span style="color:#00B3B4">THỨ TƯ, 07/07</span></h3>
-                <p>Giao hàng đến Đắk lak</p>
-            </div>
-        </div>
-        <div class="card-button">
-            <button class="card-button-confirm">Thanh toán</button>
-        </div>
-   
-      `
-      $('.card-container').html('');
-      $('.card-container').append(content);
+        // function only checked input
+        $(".ratio").on("change", function () {
+          $(".ratio").not(this).prop("checked", false);
+        });
+      } // end 'for' loop
 
+      // Add event when user click div
+      $(".deliveried-options-item").on("click", () => {
+        // get id address from checked checkbox
+        let checkedIdValue = $('.ratio:checked').attr('id').slice(5,100);
+        // ajax to get address from db
+        $.ajax({
+          url: '/api/user/findbyIdAddress',
+          type: 'POST',
+          data: {
+            idAddress: checkedIdValue
+          }
+        }).then(data=>{
+        console.log(data);
+          let content = `
+          <div class="location-card">
+              <h5>
+                  <img style="width: 20px; height: 15px"  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NC41NSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDU0LjU1IDQwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDojNDI0NDUzO308L3N0eWxlPjwvZGVmcz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTQ4My40MjUgLTk1NC43NzIpIj48cGF0aCBjbGFzcz0iYSIgZD0iTTU0LjU1LDI2LjY5MXYtMTEuNWEuOTQxLjk0MSwwLDAsMC0uNDctLjgxOEw0MS43NDksNy4zMjZhLjk0Ljk0LDAsMCwwLS42LS4xMTNsLTYuNzcyLjk0MVYuOTRhLjk0MS45NDEsMCwwLDAtLjMyOS0uNzE1QS45NDEuOTQxLDAsMCwwLDMzLjI3NSwwTC43ODEsNS42NDJBLjk0MS45NDEsMCwwLDAsMCw2LjU4M1YzNS43MzlhLjk0MS45NDEsMCwwLDAsLjM2Ny43MjQuOTQxLjk0MSwwLDAsMCwuNzM0LjM3NmguMTZsNS44ODgtMS4xQTYuNTM3LDYuNTM3LDAsMCwwLDE5LjgwNywzMy41MUwzNy41LDMwLjM3OGE2LjU4NCw2LjU4NCwwLDAsMCwxMi41NTYtMi4xNjNsMy43NjItLjY1OEg1My45YS43ODEuNzgxLDAsMCwwLC4yMDctLjA3NWwuMDY2LS4yMDdhLjUzNi41MzYsMCwwLDAsLjE1LS4xNDEuNDguNDgsMCwwLDAsLjA4NS0uMTIyLjgyOC44MjgsMCwwLDAsLjA4NS0uMTg4Ljk0MS45NDEsMCwwLDAsLjA1Ni0uMTMyWk0zMi40OTUsMi4wNTl2MTUuNGwtMzAuNjE0LDUuNFY3LjMzNUwxNS4xNCw1LjA1Wk0xLjg4MSwzNC44VjI0Ljc2M2wzMC42MTQtNS40djkuOTg4TDE5LjU1MywzMS42MjlBNi41ODQsNi41ODQsMCwwLDAsNi43MjUsMzMuNDM0YzAsLjE2LDAsLjMsMCwuNDUxWm0xMS4zOSwzLjM0OGE0LjY3OSw0LjY3OSwwLDEsMCwwLS4wNDdabTIxLjEwNS05LjA4NVYxMC4wODJMNDEuMSw5LjE0MWwxMS41NjgsNi41ODRWMjUuNzg4bC0yLjgyMi41NDVhNi41ODQsNi41ODQsMCwwLDAtMTIuODY2LDEuNWMwLC4yMzUsMCwuNDgsMCwuNzE1Wm05LjE1MSwzLjQ4YTQuNjMyLDQuNjMyLDAsMSwwLDAtLjA0N1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE0ODMuNDI1IDk1NC43ODQpIi8+PC9nPjwvc3ZnPg==" alt="">
+                  <span style="padding-left: 16px;">GIAO HÀNG TẠI NHÀ</span>
+              </h5>
+              <div class="location-card-infomation">
+                  <h3>TỪ <span style="color:#00B3B4">THỨ TƯ, 07/07</span></h3>
+                  <p>Giao hàng đến ${data.district} ${data.province} </p>
+              </div>
+          </div>
+          <div class="card-button">
+              <button onlick="checkout('${data._id}')" class="card-button-confirm">Thanh toán</button>
+          </div>
+        `;
+        // add content to html 
+        $(".card-container").html("");
+        $(".card-container").append(content);
 
+        // checkout onclick
+          function checkout(id){
+
+          }
+        }).catch(err=>{
+          console.log(err);
+        })
+        
+      }); 
+      // end of event for div click
     })
-
-  }).catch(err=>{
-    console.log(err);
-  })
-
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 // function reload order page
 
-function reloadOderPage(){
+function reloadOderPage() {
   location.reload();
-  return false
+  return false;
 }
 
 // function convert number to VND format
@@ -324,10 +347,3 @@ function currencyToNumber(item) {
   var number = Number(item.replace(/[^0-9.-]+/g, ""));
   return number;
 }
-
-// function checked input
-
-$('.radio').on('change', function() {
-  $('.radio').not(this).prop('checked', false);
-});
-

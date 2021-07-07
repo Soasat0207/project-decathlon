@@ -10,7 +10,6 @@ function CartRender(){
     .then((data) => {
       if (data) {
         var totalPrices = 0;
-        // console.log(data);
         for (const obj of data.product) {
           let item = obj.productId;
 
@@ -155,7 +154,10 @@ function priceOfOneProduct(inputID) {
   $(`#price${inputID}`).append(totalUnitPrice);
 }
 
-
+// add event for continue button
+$('.button-continue').on('click', ()=>{
+  window.location.href = '/order'
+})
 
 // function convert number to VND format
 function numberToCurrency(number){

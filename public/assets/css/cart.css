@@ -277,6 +277,7 @@ body{
     justify-content: center;
     align-items: center;
     border-radius: 8px 8px 8px 0;
+    cursor: pointer;
 }
 
 .button-continue div{
