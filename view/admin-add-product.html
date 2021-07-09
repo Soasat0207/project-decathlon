@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/public/assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css">
+    <link rel="stylesheet" href="public/assets/css/rest.css">
+    <link rel="stylesheet" href="public/assets/css/grid.css">
+    <link rel="stylesheet" href="public/assets/css/base.css">
+    <link rel="stylesheet" href="public/assets/css/jquery.fileuploader.min.css">
+    <link rel="stylesheet" href="public/assets/font/font-fileuploader.css">
+    <link rel="stylesheet" href="public/assets/css/admin.css">
+    <style>
+        .form-message {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            padding: 4px 0 0;
+            color: #f33a58;
+        }       
+    </style>
+</head>
+<body class='theme-dank'>
+    <div class="body-warpper">
+        <div class="row no-gutters">
+            <div class="col col-lg-2">
+                <div class="body_admin-left">
+                    <div class="body_admin-left-header">
+                        <div class="body_admin-left-header-logo">
+                        </div>
+                        <div><span><i class="fal fa-chevron-right"></i></span></div>
+                    </div>
+                    <div class="body_admin-left-body">
+                        <div class="body_admin-left-menu-warpper">
+                            <div class="body_admin-left-menu body_admin-left-menu-active">
+                                <div class="body_admin-left-menu-title">
+                                    <h2> <span><i class="fal fa-shopping-cart"></i></span> Ecommerce</h2>
+                                    <span><i class="fal fa-chevron-right"></i> </span>
+                                </div>
+                            </div>
+                            <ul class="body_admin-left-menu-list">
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link body_admin-left-menu-link-active"><i class="fal fa-long-arrow-right"></i><span>Products</span></a></li>
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link"><i class="fal fa-long-arrow-right"></i><span>Product Detail</span></a></li>
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link"><i class="fal fa-long-arrow-right"></i><span>Add Products</span></a></li>
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link"><i class="fal fa-long-arrow-right"></i><span>Order</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="body_admin-left-menu-warpper">
+                            <div class="body_admin-left-menu">
+                                <div class="body_admin-left-menu-title">
+                                    <h2> <span><i class="fal fa-shopping-cart"></i></span> Ecommerce</h2>
+                                    <span><i class="fal fa-chevron-right"></i> </span>
+                                </div>
+                            </div>
+                            <ul class="body_admin-left-menu-list">
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link body_admin-left-menu-link-active"><i class="fal fa-long-arrow-right"></i><span>Products</span></a></li>
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link"><i class="fal fa-long-arrow-right"></i><span>Products</span></a></li>
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link"><i class="fal fa-long-arrow-right"></i><span>Products</span></a></li>
+                                <li class="body_admin-left-menu-list-items"><a class="body_admin-left-menu-link"><i class="fal fa-long-arrow-right"></i><span>Products</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-10">
+                <div class="body_admin-right">
+                    <div class="body_admin-right-header">
+                        <nav class="body_admin-right-header-navbar">
+                            <div class="body_admin-right-header-navbar-search">
+                                <input class="body_admin-right-header-navbar-search-input" type="text" placeholder="Type to search">
+                                <span><i class="fal fa-search"></i></span>
+                            </div>
+                            <div class="body_admin-right-header-navbar-menu">
+                                <ul class="body_admin-right-header-navbar-menu-list">
+                                    <li class="body_admin-right-header-navbar-menu-items">
+                                        <a href="" class="body_admin-right-header-navbar-menu-link"><i class="fal fa-th"></i></a>
+                                    </li>
+                                    <li class="body_admin-right-header-navbar-menu-items">
+                                        <a href="" class="body_admin-right-header-navbar-menu-link"><i class="fal fa-bell"></i></a>
+                                    </li>
+                                    <li class="body_admin-right-header-navbar-menu-items">
+                                        <a href="" class="body_admin-right-header-navbar-menu-link"><i class="fal fa-sticky-note"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body_admin-right-header-navbar-user-box">
+                                <a class="body_admin-right-header-navbar-user-box-link">
+                                    <img class="body_admin-right-header-navbar-user-box-avatar" src="https://scontent-hkt1-2.xx.fbcdn.net/v/t1.6435-9/150609262_924202854786569_3111661637071497757_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=45Jgjkw1NZgAX9c-WSs&_nc_ht=scontent-hkt1-2.xx&oh=f5899303f82a85ffe411028273323d90&oe=60DAE8B6" alt="">
+                                    <div class="body_admin-right-header-navbar-user-info">
+                                        <p class="body_admin-right-header-navbar-user-name">Lê Huy Hiệp</p>
+                                        <p class="body_admin-right-header-navbar-user-name">Admin</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="body_admin-right-body">
+                        <div class="body_admin-right_page-content">
+                            <div class="body_admin-right_page-content-card">
+                                <div class="page-content-card-warpper">
+                                    <h5 class="page-content-card-warpper-title">Add New Product</h5>
+<<<<<<< HEAD
+                                    <form action="" method="POST" class="form" id="formAddProduct" enctype="multipart/form-data">
+=======
+                                    <form action="" method="POST" class="form" id="formAddProduct">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                        <div class="page-content-card-form">
+                                            <div class="row ">
+                                                <div class="col col-lg-8">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Code Product</label>
+<<<<<<< HEAD
+                                                                        <input name="CodeProduct" type="text" class="form-control page-content-form_code" placeholder="Enter code product">
+=======
+                                                                        <input type="text" class="form-control page-content-form_code" placeholder="Enter code product">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Name</label>
+<<<<<<< HEAD
+                                                                        <input name="ProductName" type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+=======
+                                                                        <input type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Title</label>
+<<<<<<< HEAD
+                                                                        <input name="productTitle" type="text" class="form-control page-content-form_title" placeholder="Enter product title">
+=======
+                                                                        <input type="text" class="form-control page-content-form_title" placeholder="Enter product title">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Description Short</label>
+<<<<<<< HEAD
+                                                                        <textarea name="descriptionShort" class="form-control page-content-form_description-short" rows="3" placeholder="Enter Description Short"></textarea>
+=======
+                                                                        <textarea class="form-control page-content-form_description-short" rows="3" placeholder="Enter Description Short"></textarea>
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Description Details</label>
+<<<<<<< HEAD
+                                                                        <textarea name="descriptionDetails" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Description Details"></textarea>
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image</label>
+                                                                        <form method="post" enctype="multipart/form-data">
+                                                                           
+=======
+                                                                        <textarea class="form-control page-content-form_description-details" rows="6" placeholder="Enter Description Details"></textarea>
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image</label>
+                                                                        <form method="post" enctype="multipart/form-data">
+                                                                            <!-- file input -->
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <input type="file" name="files">
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image color</label>
+                                                                        <form  method="post" enctype="multipart/form-data">
+<<<<<<< HEAD
+                                                                       
+                                                                            <input type="file" name="files">
+                                                                        </form>
+                                                                    </div>
+                                                                </div> -->
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image color</label>
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgColor" multiple>   
+                                                                    </div>
+=======
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="files">
+                                                                        </form>
+                                                                    </div>
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image color</label>
+<<<<<<< HEAD
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgProduct" multiple>   
+=======
+                                                                        <form  method="post" enctype="multipart/form-data">
+                                                                            <!-- file input -->
+                                                                            <input type="file" >
+                                                                        </form>
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-lg-4">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Price</label>
+<<<<<<< HEAD
+                                                                        <input name="productPrice" type="text" class="form-control page-content-form_price" placeholder="Enter Product Price">
+=======
+                                                                        <input type="text" class="form-control page-content-form_price" placeholder="Enter Product Price">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Price Import</label>
+<<<<<<< HEAD
+                                                                        <input name="priceImport" type="text" class="form-control page-content-form_price-import" placeholder="Enter product Price Import">
+=======
+                                                                        <input type="text" class="form-control page-content-form_price-import" placeholder="Enter product Price Import">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label " for="">Unit</label>
+<<<<<<< HEAD
+                                                                        <select name="productUnit" class="form-select page-content-form_unit">
+=======
+                                                                        <select class="form-select page-content-form_unit">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                            <option value="cái">Cái</option>
+                                                                            <option value="đôi">Đôi</option>
+                                                                            <option value="chiếc">Chiếc</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Quantity</label>
+<<<<<<< HEAD
+                                                                        <input name="productQuantity" type="text" class="form-control page-content-form_quantity" placeholder="Enter Quantity">
+=======
+                                                                        <input type="text" class="form-control page-content-form_quantity" placeholder="Enter Quantity">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Rate</label>
+<<<<<<< HEAD
+                                                                        <select name="productRate" class="form-select page-content-form_rate">
+=======
+                                                                        <select class="form-select page-content-form_rate">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="1">1</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">Gender</label>
+<<<<<<< HEAD
+                                                                        <select name="productGender" class="form-select page-content-form_gender">
+=======
+                                                                        <select class="form-select page-content-form_gender">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                            <option value="male">male</option>
+                                                                            <option value="female">female</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Size</label>
+<<<<<<< HEAD
+                                                                        <select name="productSize" class="form-select page-content-form_size">
+=======
+                                                                        <select class="form-select page-content-form_size">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">color</label>
+<<<<<<< HEAD
+                                                                        <select name="productColor" class="form-select page-content-form_color">
+=======
+                                                                        <select class="form-select page-content-form_color">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">level</label>
+<<<<<<< HEAD
+                                                                        <select name="productLevel" class="form-select page-content-form_level">
+=======
+                                                                        <select class="form-select page-content-form_level">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Trade Mark</label>
+<<<<<<< HEAD
+                                                                        <select name="productTradeMark" class="form-select page-content-form_trade-mark">
+=======
+                                                                        <select class="form-select page-content-form_trade-mark">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Supplier</label>
+<<<<<<< HEAD
+                                                                        <select name="productSupplier" class="form-select page-content-form_supplier">
+=======
+                                                                        <select class="form-select page-content-form_supplier">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Category</label>
+<<<<<<< HEAD
+                                                                        <select name="productCategory" class="form-select page-content-form_category">
+=======
+                                                                        <select class="form-select page-content-form_category">
+>>>>>>> ab3ded0f308c78d41a9cfdb43ef9912e788df04d
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <button  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="public/assets/js/admin.js"></script>
+<script src="public/assets/js/jquery.fileuploader.min.js"></script>
+<script src="public/assets/js/validator.js"></script>
+<script src="public/assets/js/ajaxAddProduct.js"></script>
+<script>
+    $(document).ready(function() {
+	
+	// enable fileuploader plugin
+	$('input[name="files"]').fileuploader({
+        addMore: true
+    });
+	
+});
+</script>
+
+</html>
