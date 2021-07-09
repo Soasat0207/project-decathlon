@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>list-category</title>
+    <title>admin</title>
     <%- include('../partials/admin-head'); -%>
 </head>
 <body class='theme-dank'>
@@ -64,13 +64,13 @@
                                                                                         </div>
                                                                                         <div class="col col-lg-12">
                                                                                             <div class="page-content-card-form-input  margin-bottom-2">
-                                                                                                <label class="page-content-card-form-input-label" for="">name</label>
-                                                                                                <input type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+                                                                                                <label class="page-content-card-form-input-label" for="">Size</label>
+                                                                                                <input type="text" class="form-control page-content-form_size" placeholder="Enter product Name">
                                                                                                 <span class="form-message"></span>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="btn-form-add-color col col-md-12">
-                                                                                            <button onclick="AddCategory()" type="button" class="form-submit page-content-card-form-btn">SAVE PRODUCT(add)</button>    
+                                                                                            <button onclick="AddSize()" type="button" class="form-submit page-content-card-form-btn">SAVE PRODUCT(add)</button>    
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -93,8 +93,9 @@
                 
             </div>
         </div>
-    </div>  
+    </div>
+    
 </body>
 <%- include('../partials/admin-script'); -%>
-<script src="public/assets/js/ajaxAdminListCategory.js"></script>
+<script src="public/assets/js/ajaxAdminListSize.js"></script>
 </html>

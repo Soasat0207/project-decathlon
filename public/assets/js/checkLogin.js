@@ -13,6 +13,9 @@ function getCookie(cname) {
   }
   return "";
 }
+var delete_cookie = function(name) {
+  document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
 async function checklogin(){
     let token = getCookie('token')
     try {
@@ -26,13 +29,9 @@ async function checklogin(){
       
       if(data.status == 200){
         let link = window.location.href;
-        if(link.slice(link.lastIndexOf('/'),link.length) == "/admin-list-product"){
-          console.log('ok')
-        }
-        else{
+        if(link.slice(link.lastIndexOf('/'),link.length) == "/admin-login"){
           location.href="/admin-list-product";
         }
-       
       }
     } catch (error) {
       let link = window.location.href;
@@ -46,3 +45,7 @@ async function checklogin(){
     }
 }
 checklogin();
+function logout(){
+  delete_cookie('token');
+  location.reload();
+}

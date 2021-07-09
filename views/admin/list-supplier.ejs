@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>list-category</title>
+    <title>admin</title>
     <%- include('../partials/admin-head'); -%>
 </head>
 <body class='theme-dank'>
@@ -19,7 +19,7 @@
                             <div class="body_admin-right_page-content-card">
                                 <div class="page-content-card-warpper">
                                     <h5 class="page-content-card-warpper-title">Recent Orders</h5>
-                                    <button class="openModal" id="openModal">Open Modal</button>
+                                    <button id="openModal">Open Modal</button>
                                     <div class="page-content-card-form">
                                         <div class="row ">
                                             <div class="col col-lg-12">
@@ -32,6 +32,9 @@
                                                                         <tr>
                                                                             <th>Name</th>
                                                                             <th>Description</th>
+                                                                            <th>Email</th>
+                                                                            <th>Phone</th>
+                                                                            <th>Status</th>
                                                                             <th></th>
                                                                         </tr>
                                                                     </thead>
@@ -57,20 +60,41 @@
                                                                                     <div class="row no-gutters">
                                                                                         <div class="col col-lg-12">
                                                                                             <div class="page-content-card-form-input  margin-bottom-2">
-                                                                                                <label class="page-content-card-form-input-label" for="">Description</label>
-                                                                                                <textarea type="text" class="form-control page-content-form_description" placeholder="Enter code product"></textarea>>
+                                                                                                <label class="page-content-card-form-input-label" for="">Name</label>
+                                                                                                <input type="text" class="form-control page-content-form_name" placeholder="Enter code product">
                                                                                                 <span class="form-message"></span>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col col-lg-12">
                                                                                             <div class="page-content-card-form-input  margin-bottom-2">
-                                                                                                <label class="page-content-card-form-input-label" for="">name</label>
-                                                                                                <input type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+                                                                                                <label class="page-content-card-form-input-label" for="">Description</label>
+                                                                                                <textarea type="text" class="form-control page-content-form_description" placeholder="Enter product Name"></textarea>>
+                                                                                                <span class="form-message"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col col-lg-12">
+                                                                                            <div class="page-content-card-form-input  margin-bottom-2">
+                                                                                                <label class="page-content-card-form-input-label" for="">Email</label>
+                                                                                                <input type="text" class="form-control page-content-form_email" placeholder="Enter product Name">
+                                                                                                <span class="form-message"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col col-lg-12">
+                                                                                            <div class="page-content-card-form-input  margin-bottom-2">
+                                                                                                <label class="page-content-card-form-input-label" for="">Phone</label>
+                                                                                                <input type="text" class="form-control page-content-form_phone" placeholder="Enter product Name">
+                                                                                                <span class="form-message"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col col-lg-12">
+                                                                                            <div class="page-content-card-form-input  margin-bottom-2">
+                                                                                                <label class="page-content-card-form-input-label" for="">Status</label>
+                                                                                                <input type="text" class="form-control page-content-form_status" placeholder="Enter product Name">
                                                                                                 <span class="form-message"></span>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="btn-form-add-color col col-md-12">
-                                                                                            <button onclick="AddCategory()" type="button" class="form-submit page-content-card-form-btn">SAVE PRODUCT(add)</button>    
+                                                                                            <button onclick="AddSupplier()" type="button" class="form-submit page-content-card-form-btn">SAVE PRODUCT(add)</button>  
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -86,6 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -93,8 +118,9 @@
                 
             </div>
         </div>
-    </div>  
+    </div>
+    
 </body>
 <%- include('../partials/admin-script'); -%>
-<script src="public/assets/js/ajaxAdminListCategory.js"></script>
+<script src="public/assets/js/ajaxAdminListSupplier.js"></script>
 </html>

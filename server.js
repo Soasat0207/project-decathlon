@@ -47,65 +47,65 @@ app.use(
 app.use(bodyParser.json()); 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
+//user
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/index.html'))
+  res.render('user/index');
 })
 app.get('/list-product', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/list-product.html'))
+  res.render('user/list-product');
 })
 app.get('/product-details/:id', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/product_details.html'))
-})
-app.get('/admin-list-product', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-product.html'))
-})
-app.get('/admin-add-product', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-add-product.html'))
-})
-app.get('/admin-list-color', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-color.html'))
-})
-app.get('/test3', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/test3.html'))
+  res.render('user/product_details');
 })
 app.get('/cart', (req, res, next) => {
-  res.sendFile(path.join(__dirname, './view/cart.html'))
+  res.render('user/cart');
 })
 app.get('/order', (req, res, next) => {
-  res.sendFile(path.join(__dirname, './view/order.html'))
+  res.render('user/order');
 })
-app.get('/admin-list-tradeMark', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-tradeMark.html'))
-})
-app.get('/admin-list-supplier', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-supplier.html'))
-})
-app.get('/admin-list-size', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-sizeProduct.html'))
+//end user
+// admin
+app.get('/admin-list-category', (req, res) => {
+  res.render('admin/list-category');
 })
 app.get('/admin-list-level', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-level.html'))
+  res.render('admin/list-level');
 })
-
-app.get('/admin-login', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-login.html'))
+app.get('/admin-list-size', (req, res) => {
+  res.render('admin/list-sizeProduct');
 })
-app.get('/admin-add-account', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-add-account.html'))
+app.get('/admin-list-color', (req, res) => {
+  res.render('admin/list-color');
+})
+app.get('/admin-list-supplier', (req, res) => {
+  res.render('admin/list-supplier');
+})
+app.get('/admin-list-tradeMark', (req, res) => {
+  res.render('admin/list-tradeMark');
+})
+app.get('/admin-add-product', (req, res) => {
+  res.render('admin/add-product');
+})
+app.get('/admin-list-product', (req, res) => {
+  res.render('admin/list-product');
 })
 app.get('/admin-account-details', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-account-details.html'))
+  res.render('admin/account-details');
 })
-app.get('/cart', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/cart.html'))
+app.get('/admin-add-account', (req, res) => {
+  res.render('admin/add-account');
 })
+app.get('/admin-login', (req, res) => {
+  res.render('admin/login');
+})
+// end admin
+// tạo đường dẫn tĩnh 
+app.use('/public',express.static(path.join(__dirname, './public')));
 // Use router
 app.use('/api/user/', cartRouter);
 app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', orderRouter);
 app.use('/api/user/', SelectedProductRouter);
-// tạo đường dẫn tĩnh 
-app.use('/public',express.static(path.join(__dirname, './public')));
 app.use('/api/product',productRouter);
 app.use('/api/category',categoryRouter);
 app.use('/api/color',colorRouter);
@@ -114,17 +114,8 @@ app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
 app.use('/api/account',accountRouter);
-app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-  console.log(req.file);
-})
-app.get('/admin-list-category', (req, res) => {
-  res.render('admin/list-category');
-})
-app.get('/test', function(req, res) {
-  res.render('pages/index');
-});
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
