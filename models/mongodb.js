@@ -243,21 +243,24 @@ const shoppingCartSchema = new Schema(
 const ordersSchema = new Schema(
   {
     product: [
-      {
-        id: {
-          type: String,
-          ref: "product",
-        },
-        quantity: Number,
-      },
+      {type: String, 
+      ref: 'selectedProduct'
+      }
     ],
+    address: {
+      type: String,
+      ref: 'useraddress'
+    },
     userId: {
       type: String,
       ref: "account",
     },
-    status: String,
+    status: {
+      type: String,
+      default: 'Dang van chuyen'
+    },
     orderDate: Date,
-    cash: String,
+    payment: String,
     totalPrice: Number,
   },
   { collection: "orders" }

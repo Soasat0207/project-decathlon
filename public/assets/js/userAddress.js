@@ -326,8 +326,12 @@ function renderOrderPage() {
     });
 }
 
-// function reload order page
+// function 
 
+
+
+
+// function reload order page
 function reloadOderPage() {
   location.reload();
   return false;

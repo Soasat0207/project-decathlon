@@ -3,7 +3,9 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const cartRouter = require('./router/cartRouter');
+const userAddressRouter = require('./router/userAddressRouter');
 const orderRouter = require('./router/orderRouter');
+const SelectedProductRouter = require('./router/selectedProductRouter')
 var cookieParser = require('cookie-parser');
  
 
@@ -50,7 +52,9 @@ app.use('/public',express.static(path.join(__dirname, './public')));
 
 // Use router
 app.use('/api/user/', cartRouter);
+app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', orderRouter);
+app.use('/api/user/', SelectedProductRouter);
 
 // Port to listen
 app.listen(port, () => {

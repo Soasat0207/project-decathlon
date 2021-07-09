@@ -24,7 +24,7 @@ let UserAddressSchema = new Schema({
     collection: 'useraddress'
 })
 
-let UserAddressModel = mongoose.model('useraddressmodel', UserAddressSchema);
+let UserAddressModel = mongoose.model('useraddress', UserAddressSchema);
 
 
 
