@@ -19,6 +19,7 @@ var multer  = require('multer')
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
+      console.log(req.body);
       cb(null,path.join(__dirname,'./public/uploads'))
     },
     filename: function (req, file, cb) {
@@ -79,6 +80,9 @@ app.get('/nguoidung', (req, res) => {
 app.get('/dangnhap', (req, res) => {
   res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
 })
+app.get('/advantages', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/admin-add-advantages.html'))
+}) 
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
 app.use('/api/product',productRouter);
@@ -95,6 +99,20 @@ app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
   console.log(req.file);
+})
+
+
+
+var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }])
+app.post('/profile2', cpUpload, function (req, res, next) {
+  console.log(req.file);
+  // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files
+  //
+  // e.g.
+  //  req.files['avatar'][0] -> File
+  //  req.files['gallery'] -> Array
+  //
+  // req.body will contain the text fields, if there were any
 })
 
 app.listen(port, () => {
