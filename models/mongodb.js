@@ -19,11 +19,11 @@ const accountSchema = new Schema({
     mainAddress:String,
     subAddress:String,
     city:String,
-    avatar:String,
+    avatar:{ type: String, default: 'https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg' },
     createdAt:Date,
-    role:String,
+    role:{ type: String, default: 'user' },
     status:String,
-
+    description:String,
 },{
     collection:'account'
 });

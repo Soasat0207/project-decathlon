@@ -9,6 +9,7 @@ const levelRouter = require('./router/levelProductRouter');
 const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
+const accountRouter = require('./router/accountRouter');
 const bodyParser = require("body-parser");
 var multer  = require('multer')
 
@@ -62,6 +63,12 @@ app.get('/admin-list-level', (req, res) => {
 app.get('/admin-list-category', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-category.html'))
 })
+app.get('/admin-login', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-login.html'))
+})
+app.get('/admin-add-account', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-add-account.html'))
+})
 app.get('/cart', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/cart.html'))
 })
@@ -74,8 +81,7 @@ app.use('/api/level',levelRouter);
 app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
-
-
+app.use('/api/account',accountRouter);
 app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
