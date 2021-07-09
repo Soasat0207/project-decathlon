@@ -45,6 +45,8 @@ app.use(
   })
 );
 app.use(bodyParser.json()); 
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/index.html'))
 })
@@ -84,9 +86,7 @@ app.get('/admin-list-size', (req, res) => {
 app.get('/admin-list-level', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-level.html'))
 })
-app.get('/admin-list-category', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-category.html'))
-})
+
 app.get('/admin-login', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-login.html'))
 })
@@ -119,7 +119,12 @@ app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
   // req.body will hold the text fields, if there were any
   console.log(req.file);
 })
-
+app.get('/admin-list-category', (req, res) => {
+  res.render('admin/list-category');
+})
+app.get('/test', function(req, res) {
+  res.render('pages/index');
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
