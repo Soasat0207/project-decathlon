@@ -12,7 +12,7 @@ const trademarkRouter = require('./router/trademarkRouter');
 const accountRouter = require('./router/accountRouter');
 const bodyParser = require("body-parser");
 var multer  = require('multer')
-
+var cookieParser = require('cookie-parser');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null,path.join(__dirname,'./public/uploads'))
@@ -24,6 +24,7 @@ var storage = multer.diskStorage({
     }
   })
 var upload = multer({ storage: storage })
+app.use(cookieParser())
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -68,6 +69,9 @@ app.get('/admin-login', (req, res) => {
 })
 app.get('/admin-add-account', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-add-account.html'))
+})
+app.get('/admin-account-details', (req, res) => {
+  res.sendFile(path.join(__dirname,'./view/admin-account-details.html'))
 })
 app.get('/cart', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/cart.html'))

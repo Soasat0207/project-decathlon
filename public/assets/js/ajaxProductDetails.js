@@ -11,7 +11,7 @@ async function renderProductDetails() {
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
-            <h1 class="product_details-heading-desc">${data.descriptionShort} - ${data.colorId.name}</h1>
+            <h1 class="product_details-heading-desc">${data.title} - ${data.colorId.name}</h1>
             <p class="product_details-heading-id">Mã sản phẩm:${data.codeProduct}</p> 
           `);
           $('.product_details-price').append(`<span class="product_details-price-text">${data.price} $</span>`);
