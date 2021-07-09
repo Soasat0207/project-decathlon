@@ -1,0 +1,56 @@
+.account-details{
+    background-color: #fff;
+    color: var(--text-color)
+}
+.account-details-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0);
+    border-radius: 0.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 2rem 0 rgb(136 152 170 / 40%);
+}
+.account-details-card-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.account-details-card-avatar{
+    width:110px;
+    height: 110px;
+    background-color: #8833ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:2rem
+}
+.account-details-card-img{
+    width:95%;
+    border-radius: 50%;
+}
+.account-details-card-description-text h4{
+    margin-bottom: 0; 
+    font-size: 1.6rem;
+}
+.account-details-card-description-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.3rem;
+}
+.account-details-card-desc{
+    padding: 0rem 5rem;
+    margin-top: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
