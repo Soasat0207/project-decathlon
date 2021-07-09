@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-mongoose.connect("mongodb://localhost:27017/decathlon", {
+mongoose.connect("mongodb+srv://lehuyhiep449:123@cluster0.h6ust.mongodb.net/decathlon?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -219,10 +218,7 @@ const shoppingCartSchema = new Schema(
   },
   { collection: "shoppingCart" }
 );
-
-
 // End shopping cart schema
-
 // Orders Schema
 const ordersSchema = new Schema(
   {
@@ -255,7 +251,6 @@ const ordersSchema = new Schema(
 const AccountModel = mongoose.model("account", accountSchema);
 const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
 // End model account
-
 // Product model
 const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
 const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
@@ -272,12 +267,6 @@ const OrderModel = mongoose.model("orderModel", ordersSchema);
 const ReviewModel = mongoose.model("review", reviewSchema);
 const CommentModel = mongoose.model("comment", commentSchema);
 // End review and comment
-
-
-
-
-// =================================================================Example=======================================================
-
 // model account
 const accountModel = new mongoose.model('account',accountSchema);
 const lastInfoLoginModel = new mongoose.model('lastInfoLogin',lastInfoLoginSchema);

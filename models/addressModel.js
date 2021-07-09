@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-mongoose.connect("mongodb://localhost:27017/decathlon", {
+mongoose.connect("mongodb+srv://lehuyhiep449:123@cluster0.h6ust.mongodb.net/decathlon?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

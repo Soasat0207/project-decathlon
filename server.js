@@ -6,9 +6,18 @@ const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
 const orderRouter = require('./router/orderRouter');
 const SelectedProductRouter = require('./router/selectedProductRouter')
+const productRouter = require('./router/productRouter');
+const categoryRouter = require('./router/categoryRouter');
+const colorRouter = require('./router/colorProductRouter');
+const levelRouter = require('./router/levelProductRouter');
+const sizeRouter = require('./router/sizeProductRouter');
+const supplierRouter = require('./router/supplierRouter');
+const trademarkRouter = require('./router/trademarkRouter');
+const accountRouter = require('./router/accountRouter');
 var cookieParser = require('cookie-parser');
- 
-
+const bodyParser = require("body-parser");
+var multer  = require('multer')
+var cookieParser = require('cookie-parser');
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
  
@@ -19,17 +28,6 @@ app.use(express.json())
 app.use(cookieParser())
 
 // Send html file
-const productRouter = require('./router/productRouter');
-const categoryRouter = require('./router/categoryRouter');
-const colorRouter = require('./router/colorProductRouter');
-const levelRouter = require('./router/levelProductRouter');
-const sizeRouter = require('./router/sizeProductRouter');
-const supplierRouter = require('./router/supplierRouter');
-const trademarkRouter = require('./router/trademarkRouter');
-const accountRouter = require('./router/accountRouter');
-const bodyParser = require("body-parser");
-var multer  = require('multer')
-var cookieParser = require('cookie-parser');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null,path.join(__dirname,'./public/uploads'))
@@ -41,7 +39,6 @@ var storage = multer.diskStorage({
     }
   })
 var upload = multer({ storage: storage })
-app.use(cookieParser())
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -54,7 +51,6 @@ app.get('/', (req, res) => {
 app.get('/list-product', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/list-product.html'))
 })
-app.get('/product-details', (req, res) => {
 app.get('/product-details/:id', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/product_details.html'))
 })
@@ -76,17 +72,6 @@ app.get('/cart', (req, res, next) => {
 app.get('/order', (req, res, next) => {
   res.sendFile(path.join(__dirname, './view/order.html'))
 })
-
-// make static link
-app.use('/public',express.static(path.join(__dirname, './public')));
-
-// Use router
-app.use('/api/user/', cartRouter);
-app.use('/api/user/', userAddressRouter);
-app.use('/api/user/', orderRouter);
-app.use('/api/user/', SelectedProductRouter);
-
-// Port to listen
 app.get('/admin-list-tradeMark', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/admin-list-tradeMark.html'))
 })
@@ -114,6 +99,11 @@ app.get('/admin-account-details', (req, res) => {
 app.get('/cart', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/cart.html'))
 })
+// Use router
+app.use('/api/user/', cartRouter);
+app.use('/api/user/', userAddressRouter);
+app.use('/api/user/', orderRouter);
+app.use('/api/user/', SelectedProductRouter);
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
 app.use('/api/product',productRouter);
