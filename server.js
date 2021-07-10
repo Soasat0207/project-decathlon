@@ -4,10 +4,10 @@ const port = 3000;
 const path = require('path');
 const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
+const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const orderRouter = require('./router/orderRouter');
-const SelectedProductRouter = require('./router/selectedProductRouter')
-var cookieParser = require('cookie-parser');
- 
+const SelectedProductRouter = require('./router/selectedProductRouter');
+
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
@@ -15,8 +15,6 @@ app.use(express.urlencoded({ extended: false }))
 // parse application/json
 app.use(express.json())
 
-// parse cookie
-app.use(cookieParser())
 
 // Send html file
 const productRouter = require('./router/productRouter');
@@ -30,11 +28,11 @@ const accountRouter = require('./router/accountRouter');
 const bodyParser = require("body-parser");
 const routerUser = require("./router/userNguoiDung");
 const cookieParser = require('cookie-parser');
-app.use(cookieParser());
+// parse cookie
+app.use(cookieParser())
 
 
 var multer  = require('multer')
-var cookieParser = require('cookie-parser');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       console.log(req.body);
@@ -47,7 +45,6 @@ var storage = multer.diskStorage({
     }
   })
 var upload = multer({ storage: storage })
-app.use(cookieParser())
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -60,7 +57,7 @@ app.get('/', (req, res) => {
 app.get('/list-product', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/list-product.html'))
 })
-app.get('/product-details', (req, res) => {
+
 app.get('/product-details/:id', (req, res) => {
   res.sendFile(path.join(__dirname,'./view/product_details.html'))
 })
@@ -91,6 +88,7 @@ app.use('/api/user/', cartRouter);
 app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', orderRouter);
 app.use('/api/user/', SelectedProductRouter);
+app.use('/api/user/', ProductAdvantagesRouter);
 
 // Port to listen
 app.get('/admin-list-tradeMark', (req, res) => {
@@ -126,6 +124,7 @@ app.get('/dangky', (req, res) => {
 app.get('/nguoidung', (req, res) => {
   res.sendFile(path.join(__dirname, './view/trangUser.html'))
 })
+
 app.get('/dangnhap', (req, res) => {
   res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
 })
@@ -141,13 +140,10 @@ app.use('/api/level',levelRouter);
 app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
-<<<<<<< HEAD
 app.use('/api/nguoidung', routerUser);
 
 
-=======
 app.use('/api/account',accountRouter);
->>>>>>> 1de00f1b0ef418a6c616a73c8eb4c2efa8d91ae1
 app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
@@ -158,7 +154,8 @@ app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
 
 var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }])
 app.post('/profile2', cpUpload, function (req, res, next) {
-  console.log(req.file);
+  console.log(req.files);
+  res.json(req.files)
   // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files
   //
   // e.g.
