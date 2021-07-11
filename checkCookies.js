@@ -1,16 +1,37 @@
-const mongodbAccount = require("./models/mongodb");
-const userAcount = mongodbAccount.accountModel;
+const express = require('express');
+const dataMongo = require('./models/mongodb');
+const AccountModel = dataMongo.AccountModel;
+const AccountBListModel = dataMongo.AcountBListModel;
+const jwt = require('jsonwebtoken');
 
 
-async function checkcookies1 (req, res, next){
+async function checkCookies (req, res, next){
+    let cookies = req.cookies.user;
+    let id = jwt.verify(cookies, 'duc').id;
+try{
+    let data = await AccountModel.findOne({_id: id})
+    if(data){
+        req.id = data._id;
+        next()
+    }else(
+        res.json('Chưa đăng nhập')
+    )
+}
+catch(error){
+    res.json(error)
+}
+}
+
+//------------------------------------
+
+async function checkToken (req, res, next){
+    let token = req.cookies.user;
     try{
-        let cookies = req.cookies.user;  
-        let data = await userAcount.findOne({_id: cookies});
+        let data = await AccountBListModel.findOne({token: token})
         if(data){
-            req.data = data
-            next()
+            res.json("Đã có token")
         }else{
-            res.json('chưa đăng nhập')
+            next()
         }
     }
     catch(error){
@@ -18,4 +39,5 @@ async function checkcookies1 (req, res, next){
     }
 }
 
-module.exports = {checkcookies1}
+
+module.exports = {checkCookies, checkToken};

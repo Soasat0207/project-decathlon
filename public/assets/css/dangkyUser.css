@@ -330,39 +330,104 @@
 
 .chudangnhap{
     color:#007dbc;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
-.tendem{
+.gioitinh{
+    display: flex;
+    flex-direction: row;
+}
+
+.gioitinh div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.gioitinh div p{
+    margin-left: 8px !important;
+    margin-bottom: 0;
+}
+
+.hoten{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-content: center;
+    margin: 16px 0;
 }
 
-.tendem div{
-    width: 48%;
+.hoten div {
+    margin: 0 !important;
+    /* padding: 0 !important; */
 }
 
-.gt{
+.lienhe div {
+    margin: 0 !important;
+}
+
+
+.lienhe{
     display: flex;
     flex-direction: row;
-    align-content: center;
+    justify-content: space-between;
+    margin: 0;
 }
 
-.gt div{
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    margin: 16px;
+.donggioitinh{
+    padding: 0 12px;
+}
+.tai12{
+    margin: 0;
 }
 
-.gt div p{
-    margin-left: 8px;
+.ndtk2{
+    color: red;
+    font-style: italic;
+    margin: 0 0 16px 0 !important;
+    text-align: center;
 }
 
-@media only screen and (max-width: 728px) {
+.ndtk3{
+    color: red;
+    font-style: italic;
+    margin: 0 0 16px 0 !important;
+    display: none;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
 .chuQuayLai{
     display: none;
+}
+
+.tiengviet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 24px 16px;
+}
+
+.tiengviet div{
+    margin: 8px 0;
+}
+
+.bangngonngu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bangngonngu div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
     
 }

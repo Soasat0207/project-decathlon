@@ -134,7 +134,7 @@
     font-size: 15px;
 }
 
-.dangNhap{
+.nutTiep{
     height: 48px;
     width: 100%;
     background-color: #007dbc;
@@ -144,7 +144,7 @@
     color: #fff;
 }
 
-.dangNhap:hover {
+.nutTiep:hover {
     cursor: pointer;
     background-color: #00689d;
 }
@@ -328,11 +328,42 @@
     display: block;
 }
 
+.nutdk{
+    color:#007dbc;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
 
-
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 768px) {
 .chuQuayLai{
     display: none;
+}
+
+.tiengviet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tiengviet div{
+    margin: 8px 0;
+}
+
+.bangngonngu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bangngonngu div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
     
 }

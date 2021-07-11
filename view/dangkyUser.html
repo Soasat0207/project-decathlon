@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/assets/css/dangkyUser.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/assets/css/dangkyUser.css">
+
+    <body>
     <div class="tong">
         <div class="phan1">
             <div class="quaylai">
@@ -27,28 +28,31 @@
 
         <div class="phan2">
             <div class="phan2chinh1">
-                <h1>Đăng Ký</h1>
+                <h1>Đăng ký</h1>
                 <p class="sizechu1 noidung1">Tạo tài khoản một lần và đăng nhập tất cả các trang web và đối tác của Decathlon chỉ bằng một cú nhấp chuột!</p>
-                <div class="sizechu1">Tài khoản <input type="text" placeholder="Nhập tài khoản tại đây!" class="sizechu1 input1 taikhoandangky"></div>
-                <div class="sizechu1">Mật khẩu <input type="password" placeholder="Nhập mật khẩu tại đây!" class="sizechu1 input1 matkhaudangky"></div>
-                <div class="tendem">
-                    <div class="sizechu1">Tên & tên đệm <input type="text" placeholder="Nhập thông tin tại đây!" class="sizechu1 input1 tendemdangky"></div>
-                    <div class="sizechu1">Họ <input type="text" placeholder="Nhập thông tin tại đây!" class="sizechu1 input1 hodangky"></div>
+                <div class="tai12 row">
+                    <div class="sizechu1">Tài khoản <input type="text" placeholder="Nhập tài khoản tại đây!" class="sizechu1 input1 taikhoan2" ><div class="sizechu1 ndtk3"></div></div>
+                    <div class="sizechu1">Mật khẩu <input type="password" placeholder="Nhập mật khẩu tại đây!" class="sizechu1 input1 matkhau2" ></div>
                 </div>
-                <div class="sizechu1">Số điện thoại <input type="text" placeholder="Nhập thông tin tại đây!" class="sizechu1 input1 sdtdangky"></div>
-                <div class="sizechu1">Hộp thư Email <input type="text" placeholder="Nhập thông tin tại đây!" class="sizechu1 input1 emaildangky"></div>
-                <div>
+                <div class="hoten row">
+                    <div class="sizechu1 col-xs-12 col-md-6">Tên<input type="text" placeholder="Nhập tên tại đây!" class="sizechu1 input1 ten2" ></div>
+                    <div class="sizechu1 col-xs-12 col-md-6">Họ<input type="text" placeholder="Nhập họ tại đây!" class="sizechu1 input1 ho2" ></div>
+                </div>
+                <div class="lienhe row">
+                    <div class="sizechu1 col-xs-12 col-md-6">Số điện thoại<input type="number" placeholder="Nhập tại đây!" class="sizechu1 input1 sdt2" ></div>
+                    <div class="sizechu1 col-xs-12 col-md-6">Email<input type="text" placeholder="Nhập email tại đây!" class="sizechu1 input1 email2" ></div>
+                </div>
+                <div class="donggioitinh sizechu1">
                     <p>Giới tính</p>
-                    <div class="gt">
-                        <div><input value="nam" type="radio" name="giotinh" class="gender"></input><p>Nam</p></div>
-                        <div><input value="nu" type="radio" name="giotinh" class="gender"></input><p>Nữ</p></div>
+                    <div class="gioitinh">
+                        <div><input value="Nam" type="radio" name="chon" id="" class="nam2"><p>Nam</p></div>
+                        <div><input value="Nữ" type="radio" name="chon" id="" class="nu2"><p>Nữ</p></div>
                     </div>
                 </div>
-                
-                <button class="sizechu1 nutTiep">Đăng Ký</button>
+                <div class="sizechu1 ndtk2"></div>
+                <button onclick="nutDangky()" class="sizechu1 nutTiep">Đăng Ký</button>
                 <div class="hoac sizechu1"><p class="test">HOẶC</p></div>
-                <p class="sizechu1 chu2">Bạn đã có tài khoản? <a href="" class="sizechu1 chu2 chudangnhap">Đăng nhập</a></p>
-                <p class="thongBao"></p>
+                <p class="sizechu1 chu2">Bạn đã có tài khoản? <button onclick="nutchuyenDN()" class="sizechu1 chu2 chudangnhap">Đăng nhập</button></p>
             </div>
 
         </div>
@@ -81,6 +85,6 @@
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="../public/assets/js/dangkyUser.js"></script>
-<script src="/public/assets/js/ajaxUser/ajaxDangnhap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="/public/assets/js/dangkyUser.js"></script>
 </html>

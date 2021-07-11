@@ -9,36 +9,52 @@ mongoose.connect("mongodb://localhost:27017/decathlon", {
 });
 
 // schema account
-const accountSchema = new Schema({
-    username:String,
-    password:String,
-    firstname:String,
-    lastname:String,
-    phone:String,
-    gender:String,
-    email:String,
-    birthday:Date,
-    mainAddress:String,
-    deliveryNote:String,
-    subAddress:String,
-    city:String,
-    avatar:{ type: String, default: 'https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg' },
-    createdAt:Date,
-    role:{ type: String, default: 'user' },
-    status:String,
-    description:String,
-},{
-    collection:'account'
-});
-const lastInfoLoginSchema = new Schema({
-    dateLastLogin:[{
-        type:String
-    }],
-    deviceLastLogin:String,
-    ipLastLogin:String,
-},{
-    collection:'lastInfoLogin'
-})
+const accountSchema = new Schema(
+  {
+    username: String,
+    password: String,
+    firstname: String,
+    lastname: String,
+    phone: String,
+    gender: String,
+    email: String,
+    birthday: Date,
+    mainAddress: String,
+    noteAddress: String,
+    subAddress: String,
+    city: String,
+    avatar: String,
+    createdAt: Date,
+    role: String,
+    status: String,
+  },
+  {
+    collection: "account",
+  }
+);
+
+const accountBListSchema = new Schema(
+  {
+    token: String,
+  },
+  {collection: "blacklist"}
+);
+
+
+const lastInfoLoginSchema = new Schema(
+  {
+    dateLastLogin: [
+      {
+        type: String,
+      },
+    ],
+    deviceLastLogin: String,
+    ipLastLogin: String,
+  },
+  {
+    collection: "lastInfoLogin",
+  }
+);
 // end schema account
 
 // schema product
@@ -254,6 +270,7 @@ const ordersSchema = new Schema(
 
 // Model account
 const AccountModel = mongoose.model("account", accountSchema);
+const AcountBListModel = mongoose.model("blacklist" ,accountBListSchema);
 const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
 // End model account
 
@@ -274,6 +291,24 @@ const ReviewModel = mongoose.model("review", reviewSchema);
 const CommentModel = mongoose.model("comment", commentSchema);
 // End review and comment
 
+// Export Model 
+module.exports = {
+  AccountModel,
+  AcountBListModel,
+  LastInfoLoginModel,
+  ColorProductModel,
+  SizeProductModel,
+  LevelProductModel,
+  ProductModel,
+  TrademarkModel,
+  SupplierModel,
+  CategoryProductModel,
+  ShoppingCartModel,
+  OrderModel,
+  ReviewModel,
+  CommentModel,
+};
+// End export model
 
 
 

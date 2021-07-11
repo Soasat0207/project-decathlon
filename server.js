@@ -8,6 +8,9 @@ const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const orderRouter = require('./router/orderRouter');
 const SelectedProductRouter = require('./router/selectedProductRouter');
 
+var cookieParser = require('cookie-parser');
+const userRouter = require('./router/userRouter');
+ 
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
@@ -79,6 +82,15 @@ app.get('/cart', (req, res, next) => {
 app.get('/order', (req, res, next) => {
   res.sendFile(path.join(__dirname, './view/order.html'))
 })
+app.get('/dangky', (req, res) =>{
+  res.sendFile(path.join(__dirname, './view/dangkyUser.html'))
+})
+app.get('/dangnhap', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
+})
+app.get('/nguoidung', (req, res) => {
+  res.sendFile(path.join(__dirname, './view/trangUser.html'))
+})
 
 // make static link
 app.use('/public',express.static(path.join(__dirname, './public')));
@@ -89,6 +101,7 @@ app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', orderRouter);
 app.use('/api/user/', SelectedProductRouter);
 app.use('/api/user/', ProductAdvantagesRouter);
+app.use('/api/nguoidung', userRouter);
 
 // Port to listen
 app.get('/admin-list-tradeMark', (req, res) => {
