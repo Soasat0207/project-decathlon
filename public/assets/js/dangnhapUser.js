@@ -9,11 +9,6 @@ function nutthoat(){
     $(".annen").css("display","none")
 }
 
-<<<<<<< HEAD
-console.log($(".lang"));
-=======
-
->>>>>>> f2ead79bd279029adb77bb91b3446b85804b176d
 $(".lang").on("click", (event) => {
     // let i = $(event.target).children()
     let list = $($(event.target).parent()[0]).children()
@@ -24,9 +19,6 @@ $(".lang").on("click", (event) => {
     }
     let i = $(event.target).children()[0]
     $(i).attr("id", "active")
-<<<<<<< HEAD
-})
-=======
 })
 
 // Nút chuyển sang trang đăng ký
@@ -77,4 +69,3 @@ function setCookie(cname, cvalue, exdays) {
     let expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
->>>>>>> f2ead79bd279029adb77bb91b3446b85804b176d

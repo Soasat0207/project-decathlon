@@ -7,8 +7,6 @@ const userAddressRouter = require('./router/userAddressRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const orderRouter = require('./router/orderRouter');
 const SelectedProductRouter = require('./router/selectedProductRouter');
-
-var cookieParser = require('cookie-parser');
 const userRouter = require('./router/userRouter');
  
 
@@ -29,10 +27,10 @@ const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const accountRouter = require('./router/accountRouter');
 const bodyParser = require("body-parser");
-const routerUser = require("./router/userNguoiDung");
 const cookieParser = require('cookie-parser');
 // parse cookie
 app.use(cookieParser())
+
 
 
 var multer  = require('multer')
@@ -153,7 +151,6 @@ app.use('/api/level',levelRouter);
 app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
-app.use('/api/nguoidung', routerUser);
 
 
 app.use('/api/account',accountRouter);
