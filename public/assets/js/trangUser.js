@@ -7,17 +7,17 @@ function trahang() {
                 <i class="fas fa-cart-plus"></i>
                 <span>Chưa có đơn hàng!</span>
             </div>
-        </div>
-    </div>
-        </div>
-    `
-   $(".tabR").append(bien);
-}
-
-let id 
-
-function nutThongtin() {
-    
+            </div>
+            </div>
+                </div>
+            `
+           $(".tabR").append(bien);
+        }
+        
+        let id 
+        
+    function nutThongtin() {
+        
     $(".tabR").html("");
     let bien = `
     <div class="thongtin">
