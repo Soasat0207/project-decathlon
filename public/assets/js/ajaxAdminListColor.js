@@ -6,10 +6,10 @@ async function renderTableColor() {
         type: "GET",
       });
       
-      data.map((data) => {
+      data.map((data,index) => {
         let div = ``;
         div=`
-        <tr>
+        <tr class="${index}">
             <td><p style="padding:10px;background:${data.colorCode}"></p></td>
             <td>${data.colorCode}</td>
             <td>${data.name}</td> 
@@ -20,8 +20,9 @@ async function renderTableColor() {
         </tr>
         `
         $('.admin-list-color').append(div);
-        $('tr').dblclick(()=>{
-          console.log(data._id);
+        $(`.${index}`).dblclick(()=>{
+          
+          UpdateModalColor(data._id)
         })
       });
       

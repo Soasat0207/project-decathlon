@@ -3,6 +3,7 @@ const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 var multer  = require('multer')
 const path = require('path');
+const { copyFileSync } = require('fs');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -39,7 +40,6 @@ router.get('/',(req,res) =>{
         path:'categoryProductId'
     })
     .then((data) =>{
-        console.log(data)
         res.json(data)
     })
     .catch((error)=>{
@@ -49,7 +49,8 @@ router.get('/',(req,res) =>{
 })
 // tạo database mới 
 router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgProduct', maxCount: 12 }]),(req,res,next) =>{
-    const imgColorArray= req.files.map(element => {return '/public/uploads/'+element.filename})
+    const imgColorArray= req.files.imgColor.map(element => {return '/public/uploads/'+element.filename})
+    const imgProductArray= req.files.imgProduct.map(element => {return '/public/uploads/'+element.filename})
     let img = req.body.img;
     let imgColor = req.body.imgColor;
     let name = req.body.ProductName;
@@ -70,7 +71,7 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
     let supplierId = req.body.productSupplier;
     let categoryProductId = req.body.productCategory;
     ModelMongo.productModel.create({
-        // img:img,
+        img:imgProductArray,
         imgColor:imgColorArray,
         name:name,
         codeProduct:codeProduct,
@@ -119,6 +120,127 @@ router.post('/findname',(req,res) =>{
         })
     })
     .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findCode',(req,res) =>{
+    let codeProduct = req.body.codeProduct;
+    ModelMongo.productModel.find({
+        $or: [
+            {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
+        ]
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findSize',(req,res) =>{
+    let codeProduct = req.body.codeProduct;
+    let colorId = req.body.colorId;
+    ModelMongo.productModel.find({
+        $and: [
+            {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
+            {colorId:{ $regex: new RegExp(colorId, "i")}},
+        ]
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+
+router.post('/details/:id',(req,res) =>{
+    let id = req.params.id;
+    ModelMongo.productModel.find({
+        _id:id,
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        res.json(data);
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.delete('/',(req,res) =>{
+    let id = req.body.id;
+    ModelMongo.productModel.findOneAndDelete({
+        _id:id,
+    })
+    .then((data)=>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((err)=>{
         res.status(500).json('loi sever')
     })
 })

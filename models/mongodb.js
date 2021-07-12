@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 mongoose.connect("mongodb://localhost:27017/decathlon", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -19,6 +20,7 @@ const accountSchema = new Schema(
     email: String,
     birthday: Date,
     mainAddress: String,
+    noteAddress: String,
     subAddress: String,
     city: String,
     avatar: String,
@@ -29,6 +31,13 @@ const accountSchema = new Schema(
   {
     collection: "account",
   }
+);
+
+const accountBListSchema = new Schema(
+  {
+    token: String,
+  },
+  { collection: "blacklist" }
 );
 
 const lastInfoLoginSchema = new Schema(
@@ -122,6 +131,11 @@ const ProductSchema = new Schema(
       type: String,
       ref: "categoryProduct",
     },
+    categoryProductId: {
+      type: String,
+      ref: "categoryProduct",
+    },
+    status: String,
   },
   {
     collection: "product",
@@ -158,8 +172,7 @@ const categoryProductSchema = new Schema(
     collection: "categoryProduct",
   }
 );
-// End schema product
-
+// end schema product
 // review and comment  schema
 const reviewSchema = new Schema(
   {
@@ -240,22 +253,21 @@ const shoppingCartSchema = new Schema(
 // Orders Schema
 const ordersSchema = new Schema(
   {
-    product: [
-      {
-        id: {
-          type: String,
-          ref: "product",
-        },
-        quantity: Number,
-      },
-    ],
+    product: [{ type: String, ref: "selectedProduct" }],
+    address: {
+      type: String,
+      ref: "useraddress",
+    },
     userId: {
       type: String,
       ref: "account",
     },
-    status: String,
+    status: {
+      type: String,
+      default: "Dang van chuyen",
+    },
     orderDate: Date,
-    cash: String,
+    payment: String,
     totalPrice: Number,
   },
   { collection: "orders" }
@@ -264,6 +276,7 @@ const ordersSchema = new Schema(
 
 // Model account
 const AccountModel = mongoose.model("account", accountSchema);
+const AcountBListModel = mongoose.model("blacklist", accountBListSchema);
 const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
 // End model account
 
@@ -283,35 +296,33 @@ const ShoppingCartModel = mongoose.model(
   shoppingCartSchema
 );
 const OrderModel = mongoose.model("orderModel", ordersSchema);
+// End Product
 
-// ShoppingCartModel.findOne({_id:'60d442eeb679ae3a745c655b'})
-// .populate('product.productId')
-// .then(data=>{console.log(data.product);})
-// .catch(err=>{console.log(err);})
+// Review and comment
+const ReviewModel = mongoose.model("review", reviewSchema);
+const CommentModel = mongoose.model("comment", commentSchema);
+// End review and comment
 
-// ProductModel.create({
-//   name: "Size 5 Football 2020 - Germany",
-//     img: [
-//       'https://contents.mediadecathlon.com/p1814563/671ed12bfe351b5cac761fe249e6af66/p1814563.jpg?f=650x650&format=auto',
-//     ],
-//     codeProduct: '8555660',
-//     price: '195.000',
-//     priceImport: '220.000',
-//     unit: 'VND',
-//     quantity: 10,
-//     descriptionShort: 'Fitting comfort',
-//     descriptionDetails: "The boot's machine-stitched lining is made from foam to make it more comfy.",
-//     title: 'OXELO',
-//     rate: '5',
-//     gender: 'male',
-//     imgColor: [''],
-//     sizeId: '',
-//     colorId: '',
-//     levelId: '',
-//     trademarkId: '',
-//     supplierId: '',
-//     categoryProductId: ''
-// })
+// Export Model
+// module.exports = {
+//   AccountModel,
+//   AcountBListModel,
+//   LastInfoLoginModel,
+//   ColorProductModel,
+//   SizeProductModel,
+//   LevelProductModel,
+//   ProductModel,
+//   TrademarkModel,
+//   SupplierModel,
+//   CategoryProductModel,
+//   ShoppingCartModel,
+//   OrderModel,
+//   ReviewModel,
+//   CommentModel,
+// };
+// End export model
+
+// =================================================================Example=======================================================
 
 // End Product
 

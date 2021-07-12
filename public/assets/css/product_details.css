@@ -751,6 +751,10 @@
 .product-items:hover .recommended-Products-btn{
     display:block;
 }
+.swiper-slide-img{
+    width:58px;
+    height: 58px;
+}
 @media (max-width :1023px){
     .product-price-ratting{
         margin: 0;

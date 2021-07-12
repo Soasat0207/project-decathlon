@@ -234,13 +234,19 @@
             <div class="checkout-header">
                 <ul class="checkout-header-nav">
                     <li class="checkout-header-item">
-                        <span>Giỏ hàng</span>
+                        <span>Giỏ hàng
+                            <input type="checkbox" checked class="checkbox-round" />
+                        </span>
                     </li>
                     <li class="checkout-header-item">
-                        <span>Địa chỉ & Giao hàng </span>
+                        <span>Địa chỉ & Giao hàng
+                            <input type="checkbox"  class="checkbox-round" />
+                        </span>
                     </li>
                     <li class="checkout-header-item">
-                        <span>Thanh Toán</span>
+                        <span>Thanh Toán
+                            <input type="checkbox"  class="checkbox-round" />
+                        </span>
                     </li>
                 </ul>
             </div> <!-- \ end checkout header-->
@@ -252,13 +258,14 @@
                     <div class="checkout-left-address"><b>Địa chỉ</b></div>
                     <div class="checkout-left-text">Vui lòng nhập địa chỉ giao hàng và hóa đơn GTGT</div>
                     <div class="checkout-left-input-address">
-                        <div class="checkout-left-address-list"></div>
+                        <div class="checkout-left-address-list">
+                        </div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                             Thêm địa chỉ mới</button>
-
+                        <!-- modal-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ mới</h5>
@@ -270,61 +277,155 @@
                                         <div class="modal-body-form">
                                             <div class="address-form1">
                                                 <div class="address-form-input1 col-md-6">
-                                                    <input type="text" placeholder="Home address" name="" id="">
+                                                    <input type="text" placeholder="Home address" name=""
+                                                        id="homeAddress">
                                                 </div>
                                                 <div class="address-form-input2 col-md-6">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected>Choose your province</option>
+                                                    <select class="form-select" id="provinceSelected"
+                                                        aria-label="Default select example">
+                                                        <option value="" selected>Choose your province</option>
                                                         <option value="HN">Ha Noi</option>
                                                         <option value="HCM">Ho Chi Minh</option>
                                                         <option value="DN">Da Nang</option>
-                                                      </select>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="address-form2">
                                                 <div class="col-md-6">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected>Choose your district</option>
+                                                    <select class="form-select" id="districtSelected"
+                                                        aria-label="Default select example">
+                                                        <option value="" selected>Choose your district</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
-                                                      </select>
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected>Choose your ward</option>
-                                                        <option value="11">One</option>
-                                                        <option value="22">Two</option>
-                                                        <option value="33">Three</option>
-                                                      </select>
+                                                    <select class="form-select" id="wardSelected"
+                                                        aria-label="Default select example">
+                                                        <option value="" selected>Choose your ward</option>
+                                                        <option value="a">AAA</option>
+                                                        <option value="b">BBB</option>
+                                                        <option value="c">CCC</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="address-form3">
                                                 <div class="col-md-6">
-                                                    <input type="text" value="" placeholder="First name*">
+                                                    <input type="text" value="" id="firstName"
+                                                        placeholder="First name*">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="text" value="" placeholder="Last name*">
+                                                    <input type="text" value="" id="lastName" placeholder="Last name*">
                                                 </div>
                                             </div>
                                             <div class="address-form4">
                                                 <div class="col-md-6">
-                                                    <input type="text" value="" placeholder="Phone*">
+                                                    <input type="text" value="" id="phoneNumber" placeholder="Phone*">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="text" value="" placeholder="Delivery address">
+                                                    <input type="text" value="" id="deliveryAddress"
+                                                        placeholder="Delivery address">
                                                 </div>
                                             </div>
                                             <div class="form-group1">
-                                                <input placeholder="Personal Address" type="text" class="form-control1" id="recipient-name1">
+                                                <input placeholder="Personal Address" type="text" class="form-control1"
+                                                    id="personalAddress">
                                             </div>
                                             <div class="form-group2">
-                                                <input placeholder="Company Address" type="text" class="form-control2" id="recipient-name2">
+                                                <input placeholder="Company Address" type="text" class="form-control2"
+                                                    id="companyAddress">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary save-address-btn" data-dismiss="modal">Save address</button>
+                                        <button type="button" class="btn btn-secondary save-address-btn"
+                                            data-dismiss="modal">Save address</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal edit address-->
+                        <div class="modal fade" id="updateUserAddress" tabindex="-1" role="dialog"
+                            aria-labelledby="updateAddress" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateAddress1">Thêm địa chỉ mới</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-body-form">
+                                            <div class="address-form1">
+                                                <div class="address-form-input1 col-md-6">
+                                                    <input type="text" placeholder="Home address" name=""
+                                                        id="homeAddressEdited">
+                                                </div>
+                                                <div class="address-form-input2 col-md-6">
+                                                    <select class="form-select" id="provinceSelectedEdited"
+                                                        aria-label="Default select example">
+                                                        <option value="" selected>Choose your province</option>
+                                                        <option value="HN">Ha Noi</option>
+                                                        <option value="HCM">Ho Chi Minh</option>
+                                                        <option value="DN">Da Nang</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="address-form2">
+                                                <div class="col-md-6">
+                                                    <select class="form-select" id="districtSelectedEdited"
+                                                        aria-label="Default select example">
+                                                        <option value="" selected>Choose your district</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-select" id="wardSelectedEdited"
+                                                        aria-label="Default select example">
+                                                        <option value="" selected>Choose your ward</option>
+                                                        <option value="a">AAA</option>
+                                                        <option value="b">BBB</option>
+                                                        <option value="c">CCC</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="address-form3">
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" id="firstNameEdited"
+                                                        placeholder="First name*">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" id="lastNameEdited"
+                                                        placeholder="Last name*">
+                                                </div>
+                                            </div>
+                                            <div class="address-form4">
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" id="phoneNumberEdited"
+                                                        placeholder="Phone*">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" value="" id="deliveryAddressEdited"
+                                                        placeholder="Delivery address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group1">
+                                                <input placeholder="Personal Address" type="text" class="form-control1"
+                                                    id="personalAddressEdited">
+                                            </div>
+                                            <div class="form-group2">
+                                                <input placeholder="Company Address" type="text" class="form-control2"
+                                                    id="companyAddressEdited">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary edit-confirm-btn"
+                                            data-dismiss="modal">Confirm Edit</button>
                                     </div>
                                 </div>
                             </div>
@@ -334,12 +435,13 @@
                     <div class="checkout-left-delivery-option">
                         <button class="float-right checkout-right-delivery-button">Chọn hình thức giao hàng</button>
                     </div>
-                </div> <!-- \ end check out left-->
+                </div>
+                <!-- \ end check out left-->
                 <!-- Check out right-->
                 <div class="checkout-right">
                     <!-- Cart item list-->
                     <div class="cart-item-list">
-                        <div class="cart-item-list-product">
+                        <!-- <div class="cart-item-list-product">
                             <div class="cart-item-list-image">
                                 <img src="https://contents.mediadecathlon.com/p1030211/536aa7aaab21e2a33dd054d4189c24db/p1030211.jpg?f=150x150" alt="">
                             </div>
@@ -351,17 +453,17 @@
                                     <span>Số lượng: </span><span>Giá: </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="cart-details">
                         <div class="total-price">
-                            Tạm tính<span class = "float-right total-price-calc">111</span>
+                            Tạm tính<span class="float-right total-price-calc"></span>
                         </div>
                         <div class="shipping-cash">
-                            Phí vận chuyển <span class = "float-right shipping-cash-calc">222</span>
+                            Phí vận chuyển <span class="float-right shipping-cash-calc"></span>
                         </div>
                         <div class="total-all-prices">
-                            Tổng cộng <span class = "float-right all-price-calc">33</span>
+                            Tổng cộng <span class="float-right all-price-calc"></span>
                         </div>
                     </div>
 
@@ -370,18 +472,21 @@
                     <!--Cart promise-->
                     <div class="cart-promise">
                         <div class="cart-promise-div1">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6I2U3ZjNmOTt9LmJ7ZmlsbDojZjhmOWY5O30uY3tmaWxsOiMzNzNkNDA7fTwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zNDQuMDk2IC0xMjguNzMpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDQuMDk2IDEyOC43MykiPjxyZWN0IGNsYXNzPSJhIiB3aWR0aD0iMjguNjg1IiBoZWlnaHQ9IjUxLjMzIiByeD0iOCIgdHJhbnNmb3JtPSJtYXRyaXgoMC45ODUsIC0wLjE3NCwgMC4xNzQsIDAuOTg1LCAwLCA0Ljk4MSkiLz48cmVjdCBjbGFzcz0iYiIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTQuMTQ2IDEzOC40OCkiPjxwYXRoIGNsYXNzPSJjIiBkPSJNMy43NjgsMTAuMjU2Yy44NzYtLjEyNiwxMy41ODktMi41NjgsMTcuNzc2LTMuMzc3djYuMzlhLjY2LjY2LDAsMCwwLC42NjQuNjY0LjcuNywwLDAsMCwuMzg1LS4xMjZsMTEuODUtOC40NjZhLjY2NC42NjQsMCwwLDAtLjE2Ni0xLjE2OEwyMi40MjYuMDMxYS42NjQuNjY0LDAsMCwwLS44ODIuNjN2NC44N2gtLjA3M2MtOC4yLDEuNTc5LTE3LjIwNSwzLjMxOC0xNy45MTUsMy40QTMuOTgxLDMuOTgxLDAsMCwwLDAsMTIuOTgzVjMwLjM5NEgxLjMyNlYxMi45ODNhMi42OTQsMi42OTQsMCwwLDEsMi40NDItMi43MjdabTE5LjEtOC42MjZMMzIuNjMxLDVsLTkuNzYsNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMiAwLjAwNikiLz48cGF0aCBjbGFzcz0iYyIgZD0iTTM1LjY2NSwxMi4xOVYyOS42YTIuNzA3LDIuNzA3LDAsMCwxLTIuNDQyLDIuNzI3Yy0xLjEyOC4xNTktMTMuNzYxLDIuNTk0LTE3Ljc3NiwzLjM3MVYyOS4zMTVhLjY2NC42NjQsMCwwLDAtMS4wNDgtLjUzN2wtMTEuODUsOC41YS42NjUuNjY1LDAsMCwwLC4xNjYsMS4xNjhsMTEuODUsNC4xYS42NjMuNjYzLDAsMCwwLC4yMTkuMDQuNjI0LjYyNCwwLDAsMCwuMzg1LS4xMjYuNjY0LjY2NCwwLDAsMCwuMjc5LS41Mzd2LTQuODdIMTUuNmMzLjktLjc1NiwxNi43MDctMy4yMjUsMTcuODA5LTMuMzg0YTMuOTgxLDMuOTgxLDAsMCwwLDMuNTgzLTQuMDQxVjEyLjE5Wm0tMjEuNTQ0LDI4LjgtOS43Ni0zLjQxLDkuNzYtNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC43NjMgLTQuMDk4KSIvPjwvZz48L2c+PC9zdmc+" alt="Returns">
-                       <p>30 ngày trả hàng</p>
-                       </div>
-                       <div class="cart-promise-div2">
-                           <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Ni44IDU2LjEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2LjggNTYuMTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNFN0YzRjk7fQoJLnN0MXtmaWxsOiNGOEY5Rjk7fQoJLnN0MntmaWxsOiMzNzNENDA7fQo8L3N0eWxlPgo8ZyBpZD0iR3JvdXBfOTM4OSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE5NS41MjkgLTEyNy41MTIpIj4KCTxnIGlkPSJHcm91cF85MzIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOTUuNTI5IDEyNy41MTIpIj4KCQk8cGF0aCBpZD0iUmVjdGFuZ2xlXzQ5ODciIGNsYXNzPSJzdDAiIGQ9Ik03LjksMy42bDEyLjUtMi4yYzQuNC0wLjgsOC41LDIuMSw5LjMsNi41bDYuMSwzNC44YzAuOCw0LjQtMi4xLDguNS02LjUsOS4zbC0xMi41LDIuMgoJCQljLTQuNCwwLjgtOC41LTIuMS05LjMtNi41TDEuNCwxMi45QzAuNiw4LjUsMy41LDQuNCw3LjksMy42eiIvPgoJCTxwYXRoIGlkPSJQYXRoXzE5NjMwIiBjbGFzcz0ic3QxIiBkPSJNMzMuMywxLjRMNTIsNC43YzIuNiwwLjUsNC40LDMsNCw1LjZsMCwwbC03LjIsNDFjLTAuNSwyLjYtMyw0LjQtNS42LDRMMjQuNCw1MgoJCQljLTIuNi0wLjUtNC40LTMtNC01LjZsNy4yLTQxQzI4LjIsMi43LDMwLjcsMSwzMy4zLDEuNEMzMy4zLDEuNCwzMy4zLDEuNCwzMy4zLDEuNHoiLz4KCTwvZz4KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0yNDUuOCwxNTguNUMyNDUuOCwxNTguNSwyNDUuOCwxNTguNSwyNDUuOCwxNTguNWwwLTkuMWMwLTAuMy0wLjEtMC41LTAuNC0wLjdsLTkuNy01LjUKCQljLTAuMS0wLjEtMC4zLTAuMS0wLjUtMC4xbC01LjMsMC44di01LjdjMC0wLjItMC4xLTAuNC0wLjMtMC42Yy0wLjItMC4xLTAuNC0wLjItMC42LTAuMmwtMjUuNiw0LjRjLTAuNCwwLjEtMC42LDAuNC0wLjYsMC43djIyLjkKCQljMCwwLjIsMC4xLDAuNCwwLjMsMC42YzAuMSwwLjIsMC40LDAuMywwLjYsMC4zYzAsMCwwLjEsMCwwLjEsMGw0LjYtMC44YzAuNywxLjksMi42LDMuMyw0LjgsMy4zYzIuOCwwLDUuMS0yLjMsNS4yLTUuMWwxMy45LTIuNQoJCWMwLjgsMS44LDIuNiwzLjEsNC43LDMuMWMyLjgsMCw1LTIuMiw1LjEtNC45bDIuOS0wLjVjMCwwLDAsMCwwLjEsMGMwLjEsMCwwLjEsMCwwLjItMC4xYzAsMCwwLjEsMCwwLjEtMC4xYzAsMCwwLjEtMC4xLDAuMS0wLjEKCQljMCwwLDAtMC4xLDAuMS0wLjFjMCwwLDAtMC4xLDAuMS0wLjFDMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjV6IE0yMjguNCwxMzkuMXY1Ljd2Ni40bC0yNC4xLDQuMnYtMTIuMkwyMjguNCwxMzkuMXoKCQkgTTIwNC40LDE2NC44VjE1N2wyNC4xLTQuMnY3LjhsLTEwLjIsMS44Yy0wLjYtMi4xLTIuNi0zLjctNC45LTMuN2MtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4xLDAsMC4yLDAsMC4zTDIwNC40LDE2NC44egoJCSBNMjEzLjMsMTY3LjVjLTIsMC0zLjctMS42LTMuNy0zLjdzMS42LTMuNywzLjctMy43czMuNywxLjYsMy43LDMuN1MyMTUuMywxNjcuNSwyMTMuMywxNjcuNXogTTIyOS45LDE2MC4zdi0xNC45bDUuMy0wLjhsOS4xLDUuMgoJCXY3LjlsLTIuMiwwLjRjLTAuNi0yLjMtMi42LTMuOS01LTMuOWMtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4yLDAsMC40LDAuMSwwLjZMMjI5LjksMTYwLjN6IE0yMzcuMSwxNjMuMWMtMiwwLTMuNy0xLjYtMy43LTMuNwoJCXMxLjYtMy43LDMuNy0zLjdzMy43LDEuNiwzLjcsMy43UzIzOS4xLDE2My4xLDIzNy4xLDE2My4xeiIvPgo8L2c+Cjwvc3ZnPgo=" alt="Returns">
-                           <p>Miễn phí Vận chuyển Toàn quốc cho Đơn hàng trên 899k</p>
-                       </div>
-                       <div class="cart-promise-div3">
-                           <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+CiAgPGcgaWQ9Ikdyb3VwXzkzODgiIGRhdGEtbmFtZT0iR3JvdXAgOTM4OCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUwLjYxNiAtMTI3LjUxMikiPgogICAgPGcgaWQ9Ikdyb3VwXzkzMjIiIGRhdGEtbmFtZT0iR3JvdXAgOTMyMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAuNjE2IDEyNy41MTIpIj4KICAgICAgPHBhdGggaWQ9IlJlY3RhbmdsZV80OTg3IiBkYXRhLW5hbWU9IlJlY3RhbmdsZSA0OTg3IiBkPSJNOCwwSDIwLjY4NWE4LDgsMCwwLDEsOCw4VjUxLjMzYTAsMCwwLDAsMSwwLDBIOGE4LDgsMCwwLDEtOC04VjhBOCw4LDAsMCwxLDgsMFoiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAtMC4xNzQsIDAuMTc0LCAwLjk4NSwgMCwgNC45ODEpIiBmaWxsPSIjZTdmM2Y5Ii8+CiAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGVfNDk4OCIgZGF0YS1uYW1lPSJSZWN0YW5nbGUgNDk4OCIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIgZmlsbD0iI2Y4ZjlmOSIvPgogICAgPC9nPgogICAgPGcgaWQ9IkFzc2V0XzExY2MiIGRhdGEtbmFtZT0iQXNzZXQgMTFjYyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMuNDM4IDEzNi44NjYpIj4KICAgICAgPGcgaWQ9IkNhbHF1ZV8yIiBkYXRhLW5hbWU9IkNhbHF1ZSAyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIj4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM3IiBkYXRhLW5hbWU9IlBhdGggMjEzNyIgZD0iTTE2LjA2NiwzNy44MTVDMTQuNDMsMzcuODE1LDAsMzEuMjQ4LDAsNy42NzFhLjY1Mi42NTIsMCwwLDEsLjUtLjY1MkMuNjEzLDcuMDEyLDExLjczNyw0LjMyNiwxNS42LjE5MmEuNjUyLjY1MiwwLDAsMSwuOTQ1LDBjMy44OCw0LjE0LDE1LDYuODIsMTUuMDk1LDYuODQ2YS42NTIuNjUyLDAsMCwxLC41LjY1MkMzMi4xMzksMzEuMjQ4LDE3LjcwOSwzNy44MTUsMTYuMDY2LDM3LjgxNVpNMS4zLDguMTc5Yy4yLDIxLjkwOSwxMy4yNzYsMjguMjkyLDE0Ljc2OSwyOC4zMzFTMzAuNjQ2LDMwLjA4OCwzMC44MzUsOC4xNzljLTIuMi0uNTYxLTEwLjgtMi45NjctMTQuNzY5LTYuNjI1QzEyLjEwOCw1LjIxMiwzLjUsNy42MTgsMS4zLDguMTc5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwLjAxMSkiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM4IiBkYXRhLW5hbWU9IlBhdGggMjEzOCIgZD0iTTIwLjA2NSwyOS45ODNoMGEuNjUyLjY1MiwwLDAsMS0uNDU2LS4ybC00LjQ2LTQuNDZhLjY1Mi42NTIsMCwxLDEsLjkxOS0uOTE5bDQsNCw4LjQtOC40YS42NTIuNjUyLDAsMSwxLC45MjYuOTE5bC04Ljg2OCw4Ljg2MUEuNjUyLjY1MiwwLDAsMSwyMC4wNjUsMjkuOTgzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUuMTkxIC02Ljg4NykiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==" alt="warranty">
-                           <p>Bảo hành 2 năm</p>
-                       </div>
-                   </div>
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6I2U3ZjNmOTt9LmJ7ZmlsbDojZjhmOWY5O30uY3tmaWxsOiMzNzNkNDA7fTwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zNDQuMDk2IC0xMjguNzMpIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDQuMDk2IDEyOC43MykiPjxyZWN0IGNsYXNzPSJhIiB3aWR0aD0iMjguNjg1IiBoZWlnaHQ9IjUxLjMzIiByeD0iOCIgdHJhbnNmb3JtPSJtYXRyaXgoMC45ODUsIC0wLjE3NCwgMC4xNzQsIDAuOTg1LCAwLCA0Ljk4MSkiLz48cmVjdCBjbGFzcz0iYiIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTQuMTQ2IDEzOC40OCkiPjxwYXRoIGNsYXNzPSJjIiBkPSJNMy43NjgsMTAuMjU2Yy44NzYtLjEyNiwxMy41ODktMi41NjgsMTcuNzc2LTMuMzc3djYuMzlhLjY2LjY2LDAsMCwwLC42NjQuNjY0LjcuNywwLDAsMCwuMzg1LS4xMjZsMTEuODUtOC40NjZhLjY2NC42NjQsMCwwLDAtLjE2Ni0xLjE2OEwyMi40MjYuMDMxYS42NjQuNjY0LDAsMCwwLS44ODIuNjN2NC44N2gtLjA3M2MtOC4yLDEuNTc5LTE3LjIwNSwzLjMxOC0xNy45MTUsMy40QTMuOTgxLDMuOTgxLDAsMCwwLDAsMTIuOTgzVjMwLjM5NEgxLjMyNlYxMi45ODNhMi42OTQsMi42OTQsMCwwLDEsMi40NDItMi43MjdabTE5LjEtOC42MjZMMzIuNjMxLDVsLTkuNzYsNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMiAwLjAwNikiLz48cGF0aCBjbGFzcz0iYyIgZD0iTTM1LjY2NSwxMi4xOVYyOS42YTIuNzA3LDIuNzA3LDAsMCwxLTIuNDQyLDIuNzI3Yy0xLjEyOC4xNTktMTMuNzYxLDIuNTk0LTE3Ljc3NiwzLjM3MVYyOS4zMTVhLjY2NC42NjQsMCwwLDAtMS4wNDgtLjUzN2wtMTEuODUsOC41YS42NjUuNjY1LDAsMCwwLC4xNjYsMS4xNjhsMTEuODUsNC4xYS42NjMuNjYzLDAsMCwwLC4yMTkuMDQuNjI0LjYyNCwwLDAsMCwuMzg1LS4xMjYuNjY0LjY2NCwwLDAsMCwuMjc5LS41Mzd2LTQuODdIMTUuNmMzLjktLjc1NiwxNi43MDctMy4yMjUsMTcuODA5LTMuMzg0YTMuOTgxLDMuOTgxLDAsMCwwLDMuNTgzLTQuMDQxVjEyLjE5Wm0tMjEuNTQ0LDI4LjgtOS43Ni0zLjQxLDkuNzYtNi45NzRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC43NjMgLTQuMDk4KSIvPjwvZz48L2c+PC9zdmc+"
+                                alt="Returns">
+                            <p>30 ngày trả hàng</p>
+                        </div>
+                        <div class="cart-promise-div2">
+                            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1Ni44IDU2LjEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2LjggNTYuMTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNFN0YzRjk7fQoJLnN0MXtmaWxsOiNGOEY5Rjk7fQoJLnN0MntmaWxsOiMzNzNENDA7fQo8L3N0eWxlPgo8ZyBpZD0iR3JvdXBfOTM4OSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE5NS41MjkgLTEyNy41MTIpIj4KCTxnIGlkPSJHcm91cF85MzIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOTUuNTI5IDEyNy41MTIpIj4KCQk8cGF0aCBpZD0iUmVjdGFuZ2xlXzQ5ODciIGNsYXNzPSJzdDAiIGQ9Ik03LjksMy42bDEyLjUtMi4yYzQuNC0wLjgsOC41LDIuMSw5LjMsNi41bDYuMSwzNC44YzAuOCw0LjQtMi4xLDguNS02LjUsOS4zbC0xMi41LDIuMgoJCQljLTQuNCwwLjgtOC41LTIuMS05LjMtNi41TDEuNCwxMi45QzAuNiw4LjUsMy41LDQuNCw3LjksMy42eiIvPgoJCTxwYXRoIGlkPSJQYXRoXzE5NjMwIiBjbGFzcz0ic3QxIiBkPSJNMzMuMywxLjRMNTIsNC43YzIuNiwwLjUsNC40LDMsNCw1LjZsMCwwbC03LjIsNDFjLTAuNSwyLjYtMyw0LjQtNS42LDRMMjQuNCw1MgoJCQljLTIuNi0wLjUtNC40LTMtNC01LjZsNy4yLTQxQzI4LjIsMi43LDMwLjcsMSwzMy4zLDEuNEMzMy4zLDEuNCwzMy4zLDEuNCwzMy4zLDEuNHoiLz4KCTwvZz4KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0yNDUuOCwxNTguNUMyNDUuOCwxNTguNSwyNDUuOCwxNTguNSwyNDUuOCwxNTguNWwwLTkuMWMwLTAuMy0wLjEtMC41LTAuNC0wLjdsLTkuNy01LjUKCQljLTAuMS0wLjEtMC4zLTAuMS0wLjUtMC4xbC01LjMsMC44di01LjdjMC0wLjItMC4xLTAuNC0wLjMtMC42Yy0wLjItMC4xLTAuNC0wLjItMC42LTAuMmwtMjUuNiw0LjRjLTAuNCwwLjEtMC42LDAuNC0wLjYsMC43djIyLjkKCQljMCwwLjIsMC4xLDAuNCwwLjMsMC42YzAuMSwwLjIsMC40LDAuMywwLjYsMC4zYzAsMCwwLjEsMCwwLjEsMGw0LjYtMC44YzAuNywxLjksMi42LDMuMyw0LjgsMy4zYzIuOCwwLDUuMS0yLjMsNS4yLTUuMWwxMy45LTIuNQoJCWMwLjgsMS44LDIuNiwzLjEsNC43LDMuMWMyLjgsMCw1LTIuMiw1LjEtNC45bDIuOS0wLjVjMCwwLDAsMCwwLjEsMGMwLjEsMCwwLjEsMCwwLjItMC4xYzAsMCwwLjEsMCwwLjEtMC4xYzAsMCwwLjEtMC4xLDAuMS0wLjEKCQljMCwwLDAtMC4xLDAuMS0wLjFjMCwwLDAtMC4xLDAuMS0wLjFDMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjYsMjQ1LjgsMTU4LjV6IE0yMjguNCwxMzkuMXY1Ljd2Ni40bC0yNC4xLDQuMnYtMTIuMkwyMjguNCwxMzkuMXoKCQkgTTIwNC40LDE2NC44VjE1N2wyNC4xLTQuMnY3LjhsLTEwLjIsMS44Yy0wLjYtMi4xLTIuNi0zLjctNC45LTMuN2MtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4xLDAsMC4yLDAsMC4zTDIwNC40LDE2NC44egoJCSBNMjEzLjMsMTY3LjVjLTIsMC0zLjctMS42LTMuNy0zLjdzMS42LTMuNywzLjctMy43czMuNywxLjYsMy43LDMuN1MyMTUuMywxNjcuNSwyMTMuMywxNjcuNXogTTIyOS45LDE2MC4zdi0xNC45bDUuMy0wLjhsOS4xLDUuMgoJCXY3LjlsLTIuMiwwLjRjLTAuNi0yLjMtMi42LTMuOS01LTMuOWMtMi44LDAtNS4yLDIuMy01LjIsNS4yYzAsMC4yLDAsMC40LDAuMSwwLjZMMjI5LjksMTYwLjN6IE0yMzcuMSwxNjMuMWMtMiwwLTMuNy0xLjYtMy43LTMuNwoJCXMxLjYtMy43LDMuNy0zLjdzMy43LDEuNiwzLjcsMy43UzIzOS4xLDE2My4xLDIzNy4xLDE2My4xeiIvPgo8L2c+Cjwvc3ZnPgo="
+                                alt="Returns">
+                            <p>Miễn phí Vận chuyển Toàn quốc cho Đơn hàng trên 899k</p>
+                        </div>
+                        <div class="cart-promise-div3">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1Ni43ODkiIGhlaWdodD0iNTYuMTI4IiB2aWV3Qm94PSIwIDAgNTYuNzg5IDU2LjEyOCI+CiAgPGcgaWQ9Ikdyb3VwXzkzODgiIGRhdGEtbmFtZT0iR3JvdXAgOTM4OCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUwLjYxNiAtMTI3LjUxMikiPgogICAgPGcgaWQ9Ikdyb3VwXzkzMjIiIGRhdGEtbmFtZT0iR3JvdXAgOTMyMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAuNjE2IDEyNy41MTIpIj4KICAgICAgPHBhdGggaWQ9IlJlY3RhbmdsZV80OTg3IiBkYXRhLW5hbWU9IlJlY3RhbmdsZSA0OTg3IiBkPSJNOCwwSDIwLjY4NWE4LDgsMCwwLDEsOCw4VjUxLjMzYTAsMCwwLDAsMSwwLDBIOGE4LDgsMCwwLDEtOC04VjhBOCw4LDAsMCwxLDgsMFoiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAtMC4xNzQsIDAuMTc0LCAwLjk4NSwgMCwgNC45ODEpIiBmaWxsPSIjZTdmM2Y5Ii8+CiAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGVfNDk4OCIgZGF0YS1uYW1lPSJSZWN0YW5nbGUgNDk4OCIgd2lkdGg9IjI4LjY4NSIgaGVpZ2h0PSI1MS4zMyIgcng9IjgiIHRyYW5zZm9ybT0ibWF0cml4KDAuOTg1LCAwLjE3NCwgLTAuMTc0LCAwLjk4NSwgMjguNTQsIDAuNTk3KSIgZmlsbD0iI2Y4ZjlmOSIvPgogICAgPC9nPgogICAgPGcgaWQ9IkFzc2V0XzExY2MiIGRhdGEtbmFtZT0iQXNzZXQgMTFjYyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMuNDM4IDEzNi44NjYpIj4KICAgICAgPGcgaWQ9IkNhbHF1ZV8yIiBkYXRhLW5hbWU9IkNhbHF1ZSAyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIj4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM3IiBkYXRhLW5hbWU9IlBhdGggMjEzNyIgZD0iTTE2LjA2NiwzNy44MTVDMTQuNDMsMzcuODE1LDAsMzEuMjQ4LDAsNy42NzFhLjY1Mi42NTIsMCwwLDEsLjUtLjY1MkMuNjEzLDcuMDEyLDExLjczNyw0LjMyNiwxNS42LjE5MmEuNjUyLjY1MiwwLDAsMSwuOTQ1LDBjMy44OCw0LjE0LDE1LDYuODIsMTUuMDk1LDYuODQ2YS42NTIuNjUyLDAsMCwxLC41LjY1MkMzMi4xMzksMzEuMjQ4LDE3LjcwOSwzNy44MTUsMTYuMDY2LDM3LjgxNVpNMS4zLDguMTc5Yy4yLDIxLjkwOSwxMy4yNzYsMjguMjkyLDE0Ljc2OSwyOC4zMzFTMzAuNjQ2LDMwLjA4OCwzMC44MzUsOC4xNzljLTIuMi0uNTYxLTEwLjgtMi45NjctMTQuNzY5LTYuNjI1QzEyLjEwOCw1LjIxMiwzLjUsNy42MTgsMS4zLDguMTc5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwLjAxMSkiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgICA8cGF0aCBpZD0iUGF0aF8yMTM4IiBkYXRhLW5hbWU9IlBhdGggMjEzOCIgZD0iTTIwLjA2NSwyOS45ODNoMGEuNjUyLjY1MiwwLDAsMS0uNDU2LS4ybC00LjQ2LTQuNDZhLjY1Mi42NTIsMCwxLDEsLjkxOS0uOTE5bDQsNCw4LjQtOC40YS42NTIuNjUyLDAsMSwxLC45MjYuOTE5bC04Ljg2OCw4Ljg2MUEuNjUyLjY1MiwwLDAsMSwyMC4wNjUsMjkuOTgzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUuMTkxIC02Ljg4NykiIGZpbGw9IiMzNzNkNDAiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg=="
+                                alt="warranty">
+                            <p>Bảo hành 2 năm</p>
+                        </div>
+                    </div>
                     <!-- \End Cart promise-->
                 </div> <!-- \ end check out right-->
             </div> <!-- \ end checkout content-->
@@ -401,6 +506,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 <script src="/public/assets/js/jquery-3.6.0.min.js"></script>
-<script src="/public/assets/js/order.js"></script>
+<script src="/public/assets/js/userAddress.js"></script>
+<script src="/public/assets/js/orderPage.js"></script>
 
 </html>
