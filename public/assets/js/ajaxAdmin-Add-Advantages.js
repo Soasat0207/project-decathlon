@@ -10,6 +10,7 @@ try{
         contentType: false,
     })
     console.log(av1);
+    $('.upload1').attr('src', av1.photo1)
 }
 catch(error){
     console.log(error);

@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.upload1{
+    width: 10%;
+    padding: 5px;
+
+}

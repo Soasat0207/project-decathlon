@@ -39,6 +39,7 @@ userRouter.post('/dangnhap', async (req, res) => {
             username: req.body.username,
             password: req.body.password,
         })
+        console.log(data);
         if(data){
             let token = jwt.sign({id: data._id}, 'duc')
             res.json({
@@ -56,6 +57,7 @@ userRouter.post('/dangnhap', async (req, res) => {
         }
     }
     catch(error){
+        console.log(error);
         res.json(error)
     }
 })

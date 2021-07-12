@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="public/assets/css/jquery.fileuploader.min.css">
     <link rel="stylesheet" href="public/assets/font/font-fileuploader.css">
     <link rel="stylesheet" href="public/assets/css/admin.css">
+    <link rel="stylesheet" href="public/assets/css/admin-add-advantages.css">
 </head>
 <body>
+<form action="" enctype="multipart/form-data">
     <div class="col col-lg-8">
         <div class="border">
             <div class="page-content-card-warpper">
@@ -43,15 +45,15 @@
                     </div>
                     <div class="col col-lg-12">
                         <div class="page-content-card-form-input  margin-bottom-2">
-                            <form action="" enctype="multipart/form-data">
                                 <div class="page-content-card-form-input  margin-bottom-2">
                                     <label class="page-content-card-form-input-label" for="">Description Details</label>
-                                    <textarea name="descriptionDetails" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Advantages 1"></textarea>
+                                    <textarea name="advantagecontent1" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Advantages 1"></textarea>
                                     <span class="form-message"></span>
                                     <input type="file" name="advantagesPhoto1" multiple>
                                 </div>
-                            </form>
-                            <button onclick="uploadAdvantagesPhoto()">Upload</button>
+                            <img class="upload1" src="" alt=""> <br>
+                            <button onclick="uploadAdvantagesPhoto()" type="button">Upload</button>
+                            
                         </div>
                     </div>
                     <div class="col col-lg-12">
@@ -59,6 +61,7 @@
                             <label class="page-content-card-form-input-label" for="">Description Details</label>
                             <textarea name="descriptionDetails" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Advantages 2"></textarea>
                             <span class="form-message"></span>
+                            <input type="file" name="advantagesPhoto2" multiple>
                         </div>
                     </div>
 
@@ -66,6 +69,7 @@
             </div>
         </div>
     </div>
+</form>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="public/assets/js/admin.js"></script>

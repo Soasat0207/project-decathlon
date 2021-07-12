@@ -37,6 +37,7 @@ async function nutdangnhap(){
                 password: $('.matkhau').val(),
             }
         })
+        console.log(data);
         if(data.status == 200){
             setCookie('user', data.data, 30);
             window.location.href = '/nguoidung';

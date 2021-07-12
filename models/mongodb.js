@@ -292,22 +292,22 @@ const CommentModel = mongoose.model("comment", commentSchema);
 // End review and comment
 
 // Export Model 
-module.exports = {
-  AccountModel,
-  AcountBListModel,
-  LastInfoLoginModel,
-  ColorProductModel,
-  SizeProductModel,
-  LevelProductModel,
-  ProductModel,
-  TrademarkModel,
-  SupplierModel,
-  CategoryProductModel,
-  ShoppingCartModel,
-  OrderModel,
-  ReviewModel,
-  CommentModel,
-};
+// module.exports = {
+//   AccountModel,
+//   AcountBListModel,
+//   LastInfoLoginModel,
+//   ColorProductModel,
+//   SizeProductModel,
+//   LevelProductModel,
+//   ProductModel,
+//   TrademarkModel,
+//   SupplierModel,
+//   CategoryProductModel,
+//   ShoppingCartModel,
+//   OrderModel,
+//   ReviewModel,
+//   CommentModel,
+// };
 // End export model
 
 
@@ -315,7 +315,7 @@ module.exports = {
 // =================================================================Example=======================================================
 
 // model account
-const accountModel = new mongoose.model('account',accountSchema);
+// const accountModel = new mongoose.model('account',accountSchema);
 const lastInfoLoginModel = new mongoose.model('lastInfoLogin',lastInfoLoginSchema);
 // end model account
 // product model
@@ -330,6 +330,6 @@ const categoryProductModel = new mongoose.model('categoryProduct',categoryProduc
 // review and comment
 const reviewModel = new mongoose.model('review',reviewSchema);
 const commentModel = new mongoose.model('comment',commentSchema);
-module.exports = {OrderModel,ShoppingCartModel, accountModel,lastInfoLoginModel,colorProductModel,sizeProductModel,levelProductModel,productModel,trademarkModel,supplierModel,categoryProductModel,reviewModel,commentModel}
+module.exports = {OrderModel,ShoppingCartModel, AccountModel,AcountBListModel,lastInfoLoginModel,colorProductModel,sizeProductModel,levelProductModel,productModel,trademarkModel,supplierModel,categoryProductModel,reviewModel,commentModel}
 // end review and comment
 

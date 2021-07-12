@@ -7,8 +7,7 @@ const userAddressRouter = require('./router/userAddressRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const orderRouter = require('./router/orderRouter');
 const SelectedProductRouter = require('./router/selectedProductRouter');
-const userRouter = require('./router/userRouter');
- 
+
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
@@ -26,6 +25,8 @@ const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const accountRouter = require('./router/accountRouter');
+const userRouter = require('./router/userRouter');
+const AdvantagesModel = require('./models/ProductAdvantagesModel')
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 // parse cookie
@@ -163,16 +164,24 @@ app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
 
 
 var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }])
-app.post('/profile2', cpUpload, function (req, res, next) {
-  console.log(req.files);
-  res.json(req.files)
-  // req.files is an object (String -> Array) where fieldname is the key, and the value is array of files
-  //
-  // e.g.
-  //  req.files['avatar'][0] -> File
-  //  req.files['gallery'] -> Array
-  //
-  // req.body will contain the text fields, if there were any
+app.post('/profile2', cpUpload, async function (req, res, next) {
+  try{
+    console.log(req.files)
+    let index1 = req.files.advantagesPhoto1[0].path.indexOf('public');
+    let link1 = req.files.advantagesPhoto1[0].path.slice(index1, req.files.advantagesPhoto1[0].path.length)
+    let index2 = req.files.advantagesPhoto2;
+    console.log(index2);
+    // let data = await AdvantagesModel.create({
+    //   advantagecontent1: req.body.advantagecontent1,
+    //   photo1: link1,
+    // })
+    // if(data){
+    //   res.json(data)
+    // }
+  }
+  catch(error){
+    res.json(error)
+  }
 })
 
 app.listen(port, () => {
