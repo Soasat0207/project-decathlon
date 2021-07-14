@@ -1,38 +1,51 @@
-const mongoose = require('../connectDB');
+const mongoose = require("../connectDB");
 const Schema = mongoose.Schema;
-// schema account
-const accountSchema = new Schema({
-    username:String,
-    password:String,
-    firstname:String,
-    lastname:String,
-    phone:String,
-    gender:String,
-    email:String,
-    birthday:Date,
-    mainAddress:String,
-    subAddress:String,
-    city:String,
-    avatar:{ type: String, default: 'https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg' },
-    createdAt:Date,
-    role:{ type: String, default: 'user' },
-    status:String,
-    description:String,
-},{
-    collection:'account'
-});
-const lastInfoLoginSchema = new Schema({
-    dateLastLogin:[{
-        type:String
-    }],
-    deviceLastLogin:String,
-    ipLastLogin:String,
-},{
-    collection:'lastInfoLogin'
-})
-// end schema account
 
-// schema product
+// Accout Schema
+const accountSchema = new Schema(
+  {
+    username: String,
+    password: String,
+    firstname: String,
+    lastname: String,
+    phone: String,
+    gender: String,
+    email: String,
+    birthday: Date,
+    mainAddress: String,
+    subAddress: String,
+    city: String,
+    avatar: {
+      type: String,
+      default:
+        "https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
+    },
+    createdAt: Date,
+    role: { type: String, default: "user" },
+    status: String,
+    description: String,
+  },
+  {
+    collection: "account",
+  }
+);
+const lastInfoLoginSchema = new Schema(
+  {
+    dateLastLogin: [
+      {
+        type: String,
+      },
+    ],
+    deviceLastLogin: String,
+    ipLastLogin: String,
+  },
+  {
+    collection: "lastInfoLogin",
+  }
+);
+// end account schema
+
+// Create product schema
 const colorProductSchema = new Schema(
   {
     colorCode: String,
@@ -42,6 +55,7 @@ const colorProductSchema = new Schema(
     collection: "colorProduct",
   }
 );
+
 const sizeProductSchema = new Schema(
   {
     size: String,
@@ -60,7 +74,8 @@ const levelProductSchema = new Schema(
     collection: "levelProduct",
   }
 );
-const ProductSchema = new Schema(
+
+const productSchema = new Schema(
   {
     name: String,
     img: [
@@ -107,42 +122,56 @@ const ProductSchema = new Schema(
       type: String,
       ref: "categoryProduct",
     },
-    categoryProductId:{
-        type:String,
-        ref:'categoryProduct',
+    categoryProductId: {
+      type: String,
+      ref: "categoryProduct",
     },
-    status:String,
-},{
-    collection:'product'
-})
-const tradeMarkSchema = new Schema({
-    name:String,
-    description:String,
-},{
-    collection:'trademark'
-})
-const supplierSchema = new Schema({
-    name:String,
-    description:String,
-    email:String,
-    address:String,
-    phone:String,
-    status:String,
-},{
-    collection:'supplier'
-})
-const categoryProductSchema = new Schema({
-    name:String,
-    description:String,
-},{
-    collection:'categoryProduct'
-})
+    status: String,
+  },
+  {
+    collection: "product",
+  }
+);
+
+const tradeMarkSchema = new Schema(
+  {
+    name: String,
+    description: String,
+  },
+  {
+    collection: "trademark",
+  }
+);
+const supplierSchema = new Schema(
+  {
+    name: String,
+    description: String,
+    email: String,
+    address: String,
+    phone: String,
+    status: String,
+  },
+  {
+    collection: "supplier",
+  }
+);
+const categoryProductSchema = new Schema(
+  {
+    name: String,
+    description: String,
+  },
+  {
+    collection: "categoryProduct",
+  }
+);
 // end schema product
-// review and comment  schema 
-const reviewSchema = new Schema({
-    productId:{
-        type:String,
-        ref:'product',
+
+// review and comment  schema
+const reviewSchema = new Schema(
+  {
+    productId: {
+      type: String,
+      ref: "product",
     },
     rate: String,
     comment: String,
@@ -199,7 +228,7 @@ const shoppingCartSchema = new Schema(
       {
         productId: {
           type: String,
-          ref: 'product',
+          ref: "product",
         },
         quantity: Number,
       },
@@ -215,14 +244,10 @@ const shoppingCartSchema = new Schema(
 // Orders Schema
 const ordersSchema = new Schema(
   {
-    product: [
-      {type: String, 
-      ref: 'selectedProduct'
-      }
-    ],
+    product: [{ type: String, ref: "selectedProduct" }],
     address: {
       type: String,
-      ref: 'useraddress'
+      ref: "useraddress",
     },
     userId: {
       type: String,
@@ -230,7 +255,7 @@ const ordersSchema = new Schema(
     },
     status: {
       type: String,
-      default: 'Dang van chuyen'
+      default: "Dang van chuyen",
     },
     orderDate: Date,
     payment: String,
@@ -240,42 +265,36 @@ const ordersSchema = new Schema(
 );
 // End orders Schema
 
-// Model account
-const AccountModel = mongoose.model("account", accountSchema);
-const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
-// End model account
-// Product model
-const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
-const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
-const LevelProductModel = mongoose.model("levelProduct", levelProductSchema);
-const ProductModel = mongoose.model("product", ProductSchema);
-const TrademarkModel = mongoose.model("trademark", tradeMarkSchema);
-const SupplierModel = mongoose.model("supplier", supplierSchema);
-const CategoryProductModel = mongoose.model("categoryProduct", categoryProductSchema);
-const ShoppingCartModel = mongoose.model("shoppingCartModel", shoppingCartSchema);
-const OrderModel = mongoose.model("orderModel", ordersSchema);
-// End Product
+// Create Model
+  const AccountModel = mongoose.model("account", accountSchema);
+  const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
+  const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
+  const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
+  const LevelProductModel = mongoose.model("levelProduct", levelProductSchema);
+  const ProductModel = mongoose.model("product", productSchema);
+  const TrademarkModel = mongoose.model("trademark", tradeMarkSchema);
+  const SupplierModel = mongoose.model("supplier", supplierSchema);
+  const CategoryProductModel = mongoose.model("categoryProduct",categoryProductSchema);
+  const ShoppingCartModel = mongoose.model( "shoppingCartModel",shoppingCartSchema );
+  const OrderModel = mongoose.model("orderModel", ordersSchema);
+  const ReviewModel = mongoose.model("review", reviewSchema);
+  const CommentModel = mongoose.model("comment", commentSchema);
+// end of Create Model
 
-// Review and comment
-const ReviewModel = mongoose.model("review", reviewSchema);
-const CommentModel = mongoose.model("comment", commentSchema);
-// End review and comment
-// model account
-const accountModel = new mongoose.model('account',accountSchema);
-const lastInfoLoginModel = new mongoose.model('lastInfoLogin',lastInfoLoginSchema);
-// end model account
-// product model
-const colorProductModel = new mongoose.model('colorProduct',colorProductSchema);
-const sizeProductModel = new mongoose.model('sizeProduct',sizeProductSchema);
-const levelProductModel = new mongoose.model('levelProduct',levelProductSchema);
-const productModel = new mongoose.model('product',ProductSchema);
-const trademarkModel = new mongoose.model('trademark',tradeMarkSchema);
-const supplierModel = new mongoose.model('supplier',supplierSchema);
-const categoryProductModel = new mongoose.model('categoryProduct',categoryProductSchema);
-// end Product
-// review and comment
-const reviewModel = new mongoose.model('review',reviewSchema);
-const commentModel = new mongoose.model('comment',commentSchema);
-module.exports = {OrderModel,ShoppingCartModel, accountModel,lastInfoLoginModel,colorProductModel,sizeProductModel,levelProductModel,productModel,trademarkModel,supplierModel,categoryProductModel,reviewModel,commentModel}
-// end review and comment
-
+// exports Model
+module.exports = {
+  OrderModel,
+  ShoppingCartModel,
+  AccountModel,
+  LastInfoLoginModel,
+  ColorProductModel,
+  SizeProductModel,
+  LevelProductModel,
+  ProductModel,
+  TrademarkModel,
+  SupplierModel,
+  CategoryProductModel,
+  ReviewModel,
+  CommentModel,
+};
+// end of exports model

@@ -1,4 +1,5 @@
 async function renderTableProduct() {
+  $('.admin-list-product').html('');
     try {
       let data = await $.ajax({
         url: "/api/product",

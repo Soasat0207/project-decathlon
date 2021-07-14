@@ -7,20 +7,18 @@ const { copyFileSync } = require('fs');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null,path.join(__dirname,'../public/uploads'))
+      cb(null, path.join(__dirname, '../public/uploads'))
     },
     filename: function (req, file, cb) {
       let index = file.originalname.lastIndexOf('.');
-      let extention = file.originalname.slice(index,file.originalname.length);
-      cb(null, file.fieldname + '-' + Date.now() + extention);
+      let extention = file.originalname.slice(index, file.originalname.length);
+     cb(null, file.fieldname + '-' + Date.now() + extention);
     }
   })
 var upload = multer({ storage: storage })
 // hiển thị ra tất cả dữ liệu
 router.get('/',(req,res) =>{
-    ModelMongo.productModel.find({
-
-    })
+    ModelMongo.productModel.find({})
     .populate({
         path:'sizeId'
     })

@@ -7,27 +7,28 @@ async function renderProductDetails() {
           type: "POST",
         });
         console.log(data)
-        data.map((data) => {
-          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
+        data.map((item) => {
+            console.log(11, item);
+          $('.product-main-image').append(`<img class="product-main-image-img" src="${item.img[0]}" alt="">`);
           $('.product_details-heading').append(`
-            <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
-            <h1 class="product_details-heading-desc">${data.title} - ${data.colorId.name}</h1>
-            <p class="product_details-heading-id">Mã sản phẩm:${data.codeProduct}</p> 
+            <h2 class="product_details-heading-name">${item.trademarkId.name}</h2>
+            <h1 class="product_details-heading-desc">${item.title} - ${item.colorId.name}</h1>
+            <p class="product_details-heading-id">Mã sản phẩm:${item.codeProduct}</p> 
           `);
-          $('.product_details-price').append(`<span class="product_details-price-text">${data.price} $</span>`);
-          $('.product_details-medium-score').append(`<span>${data.rate}/5</span>`);
-          $('.product_details-medium-score').append(`<span>${data.rate}/5</span>`);
+          $('.product_details-price').append(`<span class="product_details-price-text">${item.price} $</span>`);
+          $('.product_details-medium-score').append(`<span>${item.rate}/5</span>`);
+          $('.product_details-medium-score').append(`<span>${item.rate}/5</span>`);
 
-          data.imgColor.map((data)=>{
+          item.imgColor.map((subItem)=>{
               let div =`
               <div class="product-thumbs-slider-img-image">
-                <img src="${data}" alt="" class="product-thumbs-slider-img product-thumbs-slider-img-active">
+                <img src="${subItem}" alt="" class="product-thumbs-slider-img product-thumbs-slider-img-active">
                 </div>
               `
               $('.product-thumbs-slider').append(div);
           })
-        renderColorImg(data.codeProduct)
-        renderSize(data.codeProduct,data.colorId._id)
+        renderColorImg(item.codeProduct)
+        renderSize(item.codeProduct,item.colorId._id)
         });
         test();
       } catch (error) {
