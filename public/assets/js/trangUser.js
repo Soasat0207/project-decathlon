@@ -1,15 +1,15 @@
 
 
 function resize (){
-    console.log(screen.width );
-    if(screen.width < 768){
+    if($('body').width() < 768){
         $(".tabR").css("display", "none");
         $(".tabL").css("display", "block")
     }
-    if(screen.width >= 768){
+    if($('body').width() >= 768){
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "block");
         $(".nutthoat").css("display", "none")
+        $('.thoat123').css("display", "none")
     }
 
 }
@@ -17,15 +17,13 @@ function resize (){
 $(".tabR").html("");
 let bien = `
     <div class="donhang">
-        <button class="nutthoat" onclick="thoat()">X</button>
         <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
         <div class="donhang2">
             <i class="fas fa-cart-plus"></i>
             <span>Chưa có đơn hàng!</span>
         </div>
     </div>
-</div>
-    </div>
+  
 `
 $(".tabR").append(bien);
 
@@ -33,24 +31,31 @@ $(".tabR").append(bien);
 function trahang() {
     $(".tabR").html("");
     let bien = `
-        <div class="donhang">
-            <button onclick="thoat()">X</button>
-            <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
-            <div class="donhang2">
-                <i class="fas fa-cart-plus"></i>
-                <span>Chưa có đơn hàng!</span>
-            </div>
+    <div class="donhang">
+        <button class="thoat123" onclick="thoat()" ><i class="fas fa-undo"></i></button>
+        <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
+        <div class="donhang2">
+            <i class="fas fa-cart-plus"></i>
+            <span>Chưa có đơn hàng!</span>
         </div>
+    </div>
     </div>
         </div>
     `
    $(".tabR").append(bien);
 
-   if(screen.width < 768){
+   if($('body').width() < 768){
+       console.log('ok');
        $(".tabR").css("display", "block");
        $(".tabL").css("display", "none")
 
-   }
+   }    if($('body').width() >= 768){
+    $(".tabR").css("display", "block");
+    $(".tabL").css("display", "block");
+    $(".nutthoat").css("display", "none")
+    $('.thoat123').css("display", "none")
+}
+
 
 }
 
@@ -66,15 +71,16 @@ function nutThongtin() {
     $(".tabR").html("");
     let bien = `
     <div class="thongtin">
+    <button class="thoat123" onclick="thoat()" ><i class="fas fa-undo"></i></button>
     <h3>Thông tin cá nhân</h3>
-    <div class="hang1">
-        <div>Tên <input type="text" placeholder="Tên" class="ten3"></div>
-        <div>Họ <input type="text" placeholder="Họ" class="ho3"></div>
+    <div class="hang1 row">
+        <div class="col-xs-12 col-md-6">Tên <input type="text" placeholder="Tên" class="ten3"></div>
+        <div class="col-xs-12 col-md-6">Họ <input type="text" placeholder="Họ" class="ho3"></div>
     </div>
 
-    <div class="hang2">
-        <div>Số điện thoại <input type="number" placeholder="Số điện thoại" class="sdt3"></div>
-        <div>Hòm thư Email <input type="text" placeholder="Hòm thư Email" class="email3"></div>
+    <div class="hang2 row">
+        <div class="col-xs-12 col-md-6">Số điện thoại <input type="number" placeholder="Số điện thoại" class="sdt3"></div>
+        <div class="col-xs-12 col-md-6">Hòm thư Email <input type="text" placeholder="Hòm thư Email" class="email3"></div>
     </div>
 
     <div class="hang3">
@@ -128,13 +134,26 @@ function nutThongtin() {
         console.log(err);
     })
 
+    if($('body').width() < 768){
+        console.log('ok');
+        $(".tabR").css("display", "block");
+        $(".tabL").css("display", "none")
+ 
+    }    if($('body').width() >= 768){
+        $(".tabR").css("display", "block");
+        $(".tabL").css("display", "block");
+        $(".nutthoat").css("display", "none")
+        $('.thoat123').css("display", "none")
+    }
 
+ 
 }
 
 function nutDiachi() {
     $(".tabR").html("");
     let bien = `
     <div class="diachi">
+    <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
         <h3>Địa chỉ</h3>
         <button onclick="nutThemdiachi()">
             <i class="fas fa-plus"></i>
@@ -158,6 +177,7 @@ function nutDiachi() {
             $(".tabR").html("");
             bien2 =`
             <div class="diachi">
+            <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
                 <h3>Địa chỉ</h3>
                 <div>
                     <div class="hangDiachi"><p>Địa chỉ nhận hàng:</p><textarea name="" id="" cols="30" rows="10" class="diachinhanhang"></textarea></div>
@@ -176,11 +196,24 @@ function nutDiachi() {
         console.log(err);
     })
 
-}
+    if($('body').width() < 768){
+        console.log('ok');
+        $(".tabR").css("display", "block");
+        $(".tabL").css("display", "none")
+ 
+    }    if($('body').width() >= 768){
+        $(".tabR").css("display", "block");
+        $(".tabL").css("display", "block");
+        $(".nutthoat").css("display", "none")
+        $('.thoat123').css("display", "none")
+    }
+
+ }
 
 function nutThemdiachi() {
     let bien =`
     <div class="anNen">
+    <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
         <div class="themdiachi">
             <div class="hangdiachi1">
                 <h3>Thêm địa chỉ mới</h3>

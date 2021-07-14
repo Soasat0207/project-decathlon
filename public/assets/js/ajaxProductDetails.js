@@ -76,7 +76,6 @@ async function renderColorImg(codeProduct) {
     }
 }
 async function renderSize(codeProduct,colorId) {
-    console.log(codeProduct,colorId)
     try {
         let data = await $.ajax({
           url: "/api/product/findSize",
@@ -85,9 +84,7 @@ async function renderSize(codeProduct,colorId) {
             codeProduct:codeProduct, 
             colorId:colorId,
           }
-        });
-        console.log(data)
-        
+        });        
         if(data.status == 200) {
             let sizeArr = [];
             data.data.map((data)=>{
@@ -168,3 +165,20 @@ function test(){
         })
     })
 }
+
+// Hiển thị thông tin Advantages
+$.ajax({
+    url: '/api/user/viewadvantages/sp10010',
+    type: 'get',
+})
+.then((data) => {
+    console.log(15 ,data);
+})
+.catch((err) => {
+    console.log(182,err);
+})
+    
+
+
+
+

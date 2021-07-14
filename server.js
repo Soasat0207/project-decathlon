@@ -167,17 +167,28 @@ var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name:
 app.post('/profile2', cpUpload, async function (req, res, next) {
   try{
     console.log(req.files)
-    let index1 = req.files.advantagesPhoto1[0].path.indexOf('public');
-    let link1 = req.files.advantagesPhoto1[0].path.slice(index1, req.files.advantagesPhoto1[0].path.length)
-    let index2 = req.files.advantagesPhoto2;
-    console.log(index2);
-    // let data = await AdvantagesModel.create({
-    //   advantagecontent1: req.body.advantagecontent1,
-    //   photo1: link1,
-    // })
-    // if(data){
-    //   res.json(data)
-    // }
+    let bien = [];
+  for (const key in req.files) {
+    let data1 = req.files[key] 
+    let linkout  =[];
+        for(var i = 0; i < data1.length; i++){
+        let index = data1[i].path.indexOf('public');
+        let link =  data1[i].path.slice(index, data1[i].path.length)
+        linkout.push(link)
+}
+        bien.push(linkout)
+}
+    let data = await AdvantagesModel.create({
+      codeproduct: req.body.codeproduct,
+      productname: req.body.productname,
+      advantagecontent1: req.body.advantagecontent1,
+      photo1: bien[0],
+      advantagecontent2: req.body.advantagecontent2,
+      photo2: bien[1],
+    })
+    if(data){
+      res.json(data)
+    }
   }
   catch(error){
     res.json(error)

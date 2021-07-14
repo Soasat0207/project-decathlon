@@ -19,6 +19,14 @@
 
 }
 
+ul li button{
+    width: 100%;
+    
+}
+ul{    
+    list-style: none;
+    margin: 0;
+}
 .tabL button{
     margin-bottom: 10px;
     padding: 20px 10px;
@@ -104,7 +112,7 @@
 }
 
 .thongtin div{
-    padding: 10px 0;
+    padding: 10px 10px;
 }
 
 .hang1{
@@ -123,9 +131,9 @@
     margin-top: 10px;
 }
 
-.hang1 div{
+/* .hang1 div{
     width: 45%;
-}
+} */
 
 .hang2{
     display: flex;
@@ -143,9 +151,9 @@
     margin-top: 10px;
 }
 
-.hang2 div{
+/* .hang2 div{
     width: 45%;
-}
+} */
 
 .gioitinh1{
     display: flex;
@@ -355,6 +363,35 @@
     width: 100%;
 }
 
+.thoat123{
+    border: none;
+    background-color: #f8f9f9;
+    text-align: left;
+    padding: 20px;
+    font-size: larger;
+}
+
+.thongtin .thoat123 {
+    border: none;
+    background-color: #ffffff;
+    text-align: left;
+    padding: 20px;
+    font-size: larger;
+}
+
+.diachi .thoat123 {
+    border: none;
+    background-color: #ffffff;
+    text-align: left;
+    padding: 20px;
+    font-size: larger;
+    margin: 0;
+    width: 10%;
+}
+
+.diachi button i{
+    font-size: 20px;
+}
 }
 
 
