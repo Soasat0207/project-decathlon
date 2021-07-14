@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 router.get('/',(req,res) =>{
-    ModelMongo.categoryProductModel.find({
+    ModelMongo.CategoryProductModel.find({
 
     })
     .then((data)=>{
@@ -15,7 +15,7 @@ router.get('/',(req,res) =>{
 router.post('/',(req,res) =>{
     let description = req.body.description;
     let name = req.body.name;
-    ModelMongo.categoryProductModel.create({
+    ModelMongo.CategoryProductModel.create({
         description:description,
         name:name
     })
@@ -32,7 +32,7 @@ router.post('/',(req,res) =>{
 });
 router.post('/find',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.categoryProductModel.findOne({
+    ModelMongo.CategoryProductModel.findOne({
         _id:id,
     })
     .then((data)=>{
@@ -50,7 +50,7 @@ router.put('/',(req,res) =>{
     let id = req.body.id;
     let description = req.body.description;
     let name = req.body.name;
-    ModelMongo.categoryProductModel.findOneAndUpdate({
+    ModelMongo.CategoryProductModel.findOneAndUpdate({
         _id:id,
     },{
         description:description,
@@ -69,7 +69,7 @@ router.put('/',(req,res) =>{
 });
 router.delete('/',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.categoryProductModel.findOneAndDelete({
+    ModelMongo.CategoryProductModel.findOneAndDelete({
         _id:id,
     })
     .then((data)=>{

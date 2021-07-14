@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 // hiển thị ra tất cả dữ liệu
 router.get('/',(req,res) =>{
-    ModelMongo.productModel.find({})
+    ModelMongo.ProductModel.find({})
     .populate({
         path:'sizeId'
     })
@@ -68,7 +68,7 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
     let trademarkId = req.body.productTradeMark;
     let supplierId = req.body.productSupplier;
     let categoryProductId = req.body.productCategory;
-    ModelMongo.productModel.create({
+    ModelMongo.ProductModel.create({
         img:imgProductArray,
         imgColor:imgColorArray,
         name:name,
@@ -104,7 +104,7 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
 router.post('/findname',(req,res) =>{
     let name = req.body.name;
     let codeProduct = req.body.codeProduct;
-    ModelMongo.productModel.find({
+    ModelMongo.ProductModel.find({
         $or: [
             {name:{ $regex: new RegExp(name, "i")}},
             {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
@@ -123,7 +123,7 @@ router.post('/findname',(req,res) =>{
 })
 router.post('/findCode',(req,res) =>{
     let codeProduct = req.body.codeProduct;
-    ModelMongo.productModel.find({
+    ModelMongo.ProductModel.find({
         $or: [
             {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
         ]
@@ -160,7 +160,7 @@ router.post('/findCode',(req,res) =>{
 router.post('/findSize',(req,res) =>{
     let codeProduct = req.body.codeProduct;
     let colorId = req.body.colorId;
-    ModelMongo.productModel.find({
+    ModelMongo.ProductModel.find({
         $and: [
             {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
             {colorId:{ $regex: new RegExp(colorId, "i")}},
@@ -198,7 +198,7 @@ router.post('/findSize',(req,res) =>{
 
 router.post('/details/:id',(req,res) =>{
     let id = req.params.id;
-    ModelMongo.productModel.find({
+    ModelMongo.ProductModel.find({
         _id:id,
     })
     .populate({
@@ -228,7 +228,7 @@ router.post('/details/:id',(req,res) =>{
 })
 router.delete('/',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.productModel.findOneAndDelete({
+    ModelMongo.ProductModel.findOneAndDelete({
         _id:id,
     })
     .then((data)=>{

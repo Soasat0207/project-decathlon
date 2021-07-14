@@ -22,9 +22,7 @@ var storage = multer.diskStorage({
   })
 var upload = multer({ storage: storage })
 router.get('/',(req,res) =>{
-    ModelMongo.accountModel.find({
-
-    })
+    ModelMongo.AccountModel.find({})
     .then((data)=>{
         res.json(data)
     })
@@ -34,7 +32,7 @@ router.get('/',(req,res) =>{
 });
 router.post('/',upload.fields([{ name: 'imgAvatar', maxCount: 12 }]),(req,res,next)=>{
     let username = req.body.userName;
-    ModelMongo.accountModel.find({
+    ModelMongo.AccountModel.find({
         username:username
     })
     .then((data)=>{
@@ -71,7 +69,7 @@ router.post('/',upload.fields([{ name: 'imgAvatar', maxCount: 12 }]),(req,res,ne
     // console.log(avatar)
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash) {
-            ModelMongo.accountModel.create({
+            ModelMongo.AccountModel.create({
                 username: username,
                 password:hash,
                 firstname:firstname,
@@ -107,7 +105,7 @@ router.post('/',upload.fields([{ name: 'imgAvatar', maxCount: 12 }]),(req,res,ne
 router.post('/login',(req,res) =>{
     let username = req.body.username;
     let password = req.body.password;
-    ModelMongo.accountModel.findOne({
+    ModelMongo.AccountModel.findOne({
         username: username ,
     })
     .then((data)=>{
