@@ -18,6 +18,16 @@
      modal.style.display = "none";
    }
  }
+function disableModal() {
+  modal.style.display = "none";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}
+function enableModal() {
+  modal.style.display = "block";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}
  async function renderLevel() {
  $('.admin-list-color').html('')
    try {
@@ -62,6 +72,8 @@ async function AddLevel() {
      }
    });
    if(data.status == 200){
+    alert(data.message);
+    disableModal();
     renderLevel();
    }
    
@@ -70,7 +82,7 @@ async function AddLevel() {
  }
 }
 async function UpdateModalLevel(id) {
-    modal.style.display = "block";
+    enableModal();
     try {
       let data = await $.ajax({
         url: "/api/level/find",
@@ -83,9 +95,16 @@ async function UpdateModalLevel(id) {
         $('.page-content-form_description').val(data.data.description);
         $('.page-content-form_level').val(data.data.level);
         let div=`
-        <button onclick="UpdateLevel('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+        <button type="button" onclick="UpdateLevel('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
         `;
-        $('.btn-form-add-color').append(div);
+        if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 2){
+          $('.btn-form-add-color').children(`.page-content-card-form-btn`).eq(1).remove();
+          $('.btn-form-add-color').append(div);
+        }
+        if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 1){
+          $('.btn-form-add-color').append(div);
+        }
+        
       }
     } catch (error) {
       console.log(error);
@@ -106,7 +125,8 @@ async function UpdateModalLevel(id) {
       });
       if(data.status == 200){
         alert(data.message);
-        renderTrademark();
+        disableModal();
+        renderLevel();
       }
     } catch (error) {
       console.log(error);

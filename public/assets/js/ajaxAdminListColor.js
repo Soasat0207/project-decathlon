@@ -1,3 +1,13 @@
+function disableModal() {
+  modal.style.display = "none";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}
+function enableModal() {
+  modal.style.display = "block";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}
 async function renderTableColor() {
   $('.admin-list-color').html('')
     try {
@@ -21,7 +31,6 @@ async function renderTableColor() {
         `
         $('.admin-list-color').append(div);
         $(`.${index}`).dblclick(()=>{
-          
           UpdateModalColor(data._id)
         })
       });
@@ -46,6 +55,7 @@ async function AddColor() {
       });
       if(data.status == 200){
         alert(data.message);
+        disableModal();
         renderTableColor();
       }
       
@@ -54,7 +64,7 @@ async function AddColor() {
     }
 }
 async function UpdateModalColor(id) {
-  modal.style.display = "block";
+  enableModal();
   let colorCode = $('.page-content-form_code').val();
   let name = $('.page-content-form_name').val();
   try {
@@ -69,16 +79,21 @@ async function UpdateModalColor(id) {
       $('.page-content-form_code').val(data.data.colorCode);
       $('.page-content-form_name').val(data.data.name);
       let div=`
-      <button onclick="UpdateColor('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+      <button type="button" onclick="UpdateColor('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
       `;
-      $('.btn-form-add-color').append(div);
+      if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 2){
+        $('.btn-form-add-color').children(`.page-content-card-form-btn`).eq(1).remove();
+        $('.btn-form-add-color').append(div);
+      }
+      if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 1){
+        $('.btn-form-add-color').append(div);
+      }
     }
   } catch (error) {
     console.log(error);
   }
 }
 async function UpdateColor(id) {
-  console.log(id);
   let colorCode = $('.page-content-form_code').val();
   let name = $('.page-content-form_name').val();
   try {
@@ -93,6 +108,7 @@ async function UpdateColor(id) {
     });
     if(data.status == 200){
       alert(data.message);
+      disableModal();
       renderTableColor();
     }
   } catch (error) {

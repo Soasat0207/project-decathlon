@@ -1,3 +1,9 @@
+
+// $(".navbar-search-input").keyup(function(){
+//     setTimeout(function(){
+//         console.log($(`.navbar-search-input`).val())
+//     }, 1000);
+// });
 async function tableProduct(data,index){
     let div = ``;
     div = `
@@ -21,7 +27,7 @@ async function tableProduct(data,index){
                     <div class="product_info-wrapper">
                         <a href="" class="product_info-link">
                             <span class="product_info-brand">${data.trademarkId.name}</span>
-                            <span class="product_info-description">${data.descriptionShort} - ${data.gender}</span>
+                            <span class="product_info-description">${data.title} - ${data.gender}</span>
                         </a>
                         <div class="produc_info-rate">
                             <div class="topic_sell-product-rate">
@@ -185,7 +191,6 @@ async function renderLevel(){
           type: "GET",
         });
         data.map(async(data,index) => {
-            console.log(data)
             let div = ``;
             div = `
             <li class="menu-search-filter-items">
@@ -195,7 +200,7 @@ async function renderLevel(){
                 </a>
             </li>
             `
-            $('.menu-search-filter-list').append(div);     
+            $('.menu-search-filter-list-level'  ).append(div);     
         })
         data.map(async(item,index) => {
             try {
@@ -206,7 +211,6 @@ async function renderLevel(){
                     levelId:item._id
                   }
                 });
-                console.log(data);
                 let div = ``;
                 div = `(${data.data.length})`
                 $(`.menu-search-filter-level-quantity${index}`).append(div);
@@ -240,9 +244,162 @@ async function renderTableFindLevel(levelId) {
       console.log(error);
     }
 }
+async function renderSize(){
+    try {
+        let data = await $.ajax({
+          url: "/api/size",
+          type: "GET",
+        });
+        data.map(async(data,index) => {
+            let div = ``;
+            div = `
+            <li class="menu-search-filter-items">
+                <a class="menu-search-filter-link">
+                    <input class="menu-search-filter-checkbox" type="checkbox" name="size" id="${data.size}">
+                    <label onclick="renderTableFindSize('${data._id}')" for="${data.size}" class="menu-search-filter-description">${data.size}<span class="menu-search-filter-size-quantity${index}"></span></label>
+                </a>
+            </li>
+            `
+            $('.menu-search-filter-list-size').append(div);     
+        })
+        data.map(async(item,index) => {
+            try {
+                let data = await $.ajax({
+                  url: "/api/product/findBySize",
+                  type: "POST",
+                  data:{
+                    sizeId:item._id
+                  }
+                });
+                let div = ``;
+                div = `(${data.data.length})`
+                $(`.menu-search-filter-size-quantity${index}`).append(div);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+async function renderTableFindSize(sizeId) {
+    try {
+      let data = await $.ajax({
+        url: "/api/product/findBySize",
+        type: "POST",
+        data:{
+            sizeId:sizeId
+        }
+      });
+    if(data.status == 200){
+        $('.product-list').html('')
+        data.data.map(async(data,index) => {
+            await tableProduct(data,index);
+        });
+      product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    }
+    } catch (error) {
+      console.log(error);
+    }
+}
+async function renderTrademark(){
+    try {
+        let data = await $.ajax({
+          url: "/api/trademark",
+          type: "GET",
+        });
+        data.map(async(data,index) => {
+            let div = ``;
+            div = `
+            <li class="menu-search-filter-items">
+                <a class="menu-search-filter-link">
+                    <input class="menu-search-filter-checkbox" type="checkbox" name="trademark" id="${data.name}">
+                    <label onclick="renderTableFindTrademark('${data._id}')" for="${data.name}" class="menu-search-filter-description">${data.name}<span class="menu-search-filter-Trademark-quantity${index}"></span></label>
+                </a>
+            </li>
+            `
+            $('.menu-search-filter-list-Trademark').append(div);     
+        })
+        data.map(async(item,index) => {
+            try {
+                let data = await $.ajax({
+                  url: "/api/product/findByTrademark",
+                  type: "POST",
+                  data:{
+                    trademarkId:item._id
+                  }
+                });
+                let div = ``;
+                div = `(${data.data.length})`
+                $(`.menu-search-filter-Trademark-quantity${index}`).append(div);
+            }
+            catch(error) {
+                console.log(error);
+            }
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+async function renderTableFindTrademark(trademarkId) {
+    try {
+      let data = await $.ajax({
+        url: "/api/product/findByTrademark",
+        type: "POST",
+        data:{
+            trademarkId:trademarkId
+        }
+      });
+    if(data.status == 200){
+        $('.product-list').html('')
+        data.data.map(async(data,index) => {
+            await tableProduct(data,index);
+        });
+      product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    }
+    } catch (error) {
+      console.log(error);
+    }
+}
+let globalTimeout = null;  
+$('.navbar-search-input').keyup(function() {
+  if (globalTimeout != null) {
+    clearTimeout(globalTimeout);
+  }
+  globalTimeout = setTimeout(async function() {
+    let name = $('.navbar-search-input').val();
+    console.log($('.navbar-search-input').val());
+    try {
+        let data = await $.ajax({
+          url: "/api/product/findname",
+          type: "POST",
+          data:{
+            name:name
+          }
+        });
+      if(data.status == 200){
+          console.log(data)
+          $('.product-list').html('')
+          data.data.map(async(data,index) => {
+              await tableProduct(data,index);
+          });
+        product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+      }
+    }
+    catch (error) {
+        console.log(error);
+    }
+  }, 1000);  
+})
+renderSize();
 renderCategory();
 renderColor();
 renderLevel();
+renderTrademark();
 render();
+
 
 
