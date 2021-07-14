@@ -123,6 +123,110 @@ router.post('/findname',(req,res) =>{
         res.status(500).json('loi sever')
     })
 })
+router.post('/findByCategory',(req,res) =>{
+    let categoryProductId = req.body.categoryProductId;
+    ModelMongo.productModel.find({
+        categoryProductId:categoryProductId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findByColor',(req,res) =>{
+    let colorId = req.body.colorId;
+    ModelMongo.productModel.find({
+        colorId:colorId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findByLevel',(req,res) =>{
+    let levelId = req.body.levelId;
+    ModelMongo.productModel.find({
+        levelId:levelId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
 router.post('/findCode',(req,res) =>{
     let codeProduct = req.body.codeProduct;
     ModelMongo.productModel.find({

@@ -1,16 +1,6 @@
-
-async function render() {
-  try {
-    let data = await $.ajax({
-      url: "/api/product",
-      type: "GET",
-    });
-    
-    data.map((data,index) => {
-        console.log(data)
-      let div = ``;
-      let divImgColor = ``;
-        div = `
+async function tableProduct(data,index){
+    let div = ``;
+    div = `
             <div class=" col-lg-3 col-md-6 col-sm-6">
                 <a href="/product-details/${data._id}">
                     <div class="product-items">
@@ -58,20 +48,201 @@ async function render() {
                 
             </div>
         `;
-        $('.product-list').append(div);
-        data.imgColor.map((imgColor)=>{
-            // console.log(imgColor);
-            divImgColor =`
-                <img src="${imgColor}" alt="" class="product_gallert-thumbnails-img">
-            `;
-            $(`.poduct_gallert-thumbnails-list-img${index}`).append(divImgColor);
-        })
+    $('.product-list').append(div); 
+    data.imgColor.map((imgColor)=>{
+        let divImgColor =`
+            <img src="${imgColor}" alt="" class="product_gallert-thumbnails-img">
+        `;
+        $(`.poduct_gallert-thumbnails-list-img${index}`).append(divImgColor);
+    })   
+}
+
+async function render() {
+  try {
+    let data = await $.ajax({
+      url: "/api/product",
+      type: "GET",
     });
-    product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img')
+    
+    data.map(async(data,index) => {
+        await tableProduct(data,index);
+    });
+    product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    
   } catch (error) {
     console.log(error);
   }
 }
+async function renderCategory(){
+    try {
+        let data = await $.ajax({
+          url: "/api/category",
+          type: "GET",
+        });
+        
+        data.map(async(data,index) => {
+            let div = ``;
+            div = `
+            <li class="menu-search-category-items">
+                <a onclick="renderTableFindCategory('${data._id}')" class="menu-search-category-link">
+                    <img src="https://contents.mediadecathlon.com/p1581230/k$bd3f8d54a01b2985d5d02d99bf337f13/sq/DEBARDEUR+YOGA+DYNAMIQUE+FEMME+SANS+COUTURES+NOIR.jpg?f=100x100" class="menu-search-category-img"></img>
+                    <p class="menu-search-category-description">${data.name}<span class="menu-search-quantity-product${index}"></span></p>
+                    <span class="menu-search-category-icon"><i class="fal fa-chevron-right"></i></span>
+                </a>
+            </li>    
+            `
+            $('.menu-search-category-list').append(div);
+            
+        })
+        data.map(async(item,index) => {
+            try {
+                let data = await $.ajax({
+                  url: "/api/product/findByCategory",
+                  type: "POST",
+                  data:{
+                    categoryProductId:item._id
+                  }
+                });
+                let div = ``;
+                div = `(${data.data.length})`
+                $(`.menu-search-quantity-product${index}`).append(div);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        })
 
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+async function renderColor(){
+    try {
+        let data = await $.ajax({
+          url: "/api/color",
+          type: "GET",
+        });
+        data.map(async(data,index) => {
+            let div = ``;
+            div = `
+            <a onclick="renderTableFindColor('${data._id}')" class="menu-search-filter-link menu-search-filter-color-link">
+                <span class="menu-search-filter-color" style="background-color:${data.colorCode}"></span>
+            </a>
+            `
+            $('.menu-search-filter-items-color').append(div);
+            
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+async function renderTableFindColor(colorId) {
+    try {
+      let data = await $.ajax({
+        url: "/api/product/findByColor",
+        type: "POST",
+        data:{
+            colorId:colorId
+        }
+      });
+    if(data.status == 200){
+        $('.product-list').html('')
+        data.data.map(async(data,index) => {
+            await tableProduct(data,index);
+        });
+      product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    }
+    } catch (error) {
+      console.log(error);
+    }
+}
+async function renderTableFindCategory(categoryProductId) {
+    try {
+      let data = await $.ajax({
+        url: "/api/product/findByCategory",
+        type: "POST",
+        data:{
+            categoryProductId:categoryProductId
+        }
+      });
+    if(data.status == 200){
+        $('.product-list').html('')
+        data.data.map(async(data,index) => {
+            await tableProduct(data,index);
+        });
+      product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    }
+    } catch (error) {
+      console.log(error);
+    }
+}
+async function renderLevel(){
+    try {
+        let data = await $.ajax({
+          url: "/api/level",
+          type: "GET",
+        });
+        data.map(async(data,index) => {
+            console.log(data)
+            let div = ``;
+            div = `
+            <li class="menu-search-filter-items">
+                <a class="menu-search-filter-link">
+                    <input class="menu-search-filter-checkbox" type="checkbox" name="level" id="${data.level}">
+                    <label onclick="renderTableFindLevel('${data._id}')" for="${data.level}" class="menu-search-filter-description">${data.level}<span class="menu-search-filter-level-quantity${index}"></span></label>
+                </a>
+            </li>
+            `
+            $('.menu-search-filter-list').append(div);     
+        })
+        data.map(async(item,index) => {
+            try {
+                let data = await $.ajax({
+                  url: "/api/product/findByLevel",
+                  type: "POST",
+                  data:{
+                    levelId:item._id
+                  }
+                });
+                console.log(data);
+                let div = ``;
+                div = `(${data.data.length})`
+                $(`.menu-search-filter-level-quantity${index}`).append(div);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+async function renderTableFindLevel(levelId) {
+    try {
+      let data = await $.ajax({
+        url: "/api/product/findByLevel",
+        type: "POST",
+        data:{
+            levelId:levelId
+        }
+      });
+    if(data.status == 200){
+        $('.product-list').html('')
+        data.data.map(async(data,index) => {
+            await tableProduct(data,index);
+        });
+      product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    }
+    } catch (error) {
+      console.log(error);
+    }
+}
+renderCategory();
+renderColor();
+renderLevel();
 render();
+
 

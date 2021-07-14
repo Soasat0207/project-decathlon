@@ -102,3 +102,6 @@ hr:not([size]){
     color: #6c757d;
     text-decoration: none;
 }
+.account-details-card-input .page-content-card-form-input-label{
+    color: var(--text-color)
+}
