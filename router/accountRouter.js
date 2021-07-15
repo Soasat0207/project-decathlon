@@ -106,7 +106,7 @@ router.post('/login',(req,res) =>{
     let username = req.body.username;
     let password = req.body.password;
     ModelMongo.AccountModel.findOne({
-        username: username ,
+        username: username,
     })
     .then((data)=>{
         bcrypt.compare(password,data.password, function(err, result) {

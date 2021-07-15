@@ -4,8 +4,18 @@ const port = 3000;
 const path = require('path');
 const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
+const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const orderRouter = require('./router/orderRouter');
-const SelectedProductRouter = require('./router/selectedProductRouter')
+const SelectedProductRouter = require('./router/selectedProductRouter');
+const reviewRouter = require('./router/reviewRouter');
+const commentRouter = require('./router/commentRouter');
+const cookieParser = require('cookie-parser');
+const bodyParser = require("body-parser");
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }))
+// parse application/json
+app.use(express.json())
+// Send html file
 const productRouter = require('./router/productRouter');
 const categoryRouter = require('./router/categoryRouter');
 const colorRouter = require('./router/colorProductRouter');
@@ -14,20 +24,14 @@ const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const accountRouter = require('./router/accountRouter');
-var cookieParser = require('cookie-parser');
-const bodyParser = require("body-parser");
-var multer  = require('multer')
-var cookieParser = require('cookie-parser');
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(express.json())
+const userRouter = require('./router/userRouter');
+const AdvantagesModel = require('./models/ProductAdvantagesModel')
+
 
 // parse cookie
 app.use(cookieParser())
-
-// Send html file
+app.use(bodyParser.json());
+var multer  = require('multer')
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null,path.join(__dirname,'./public/uploads'))
@@ -44,7 +48,7 @@ app.use(
     extended: false,
   })
 );
-app.use(bodyParser.json()); 
+ 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 //user
@@ -54,6 +58,7 @@ app.get('/', (req, res) => {
 app.get('/list-product', (req, res) => {
   res.render('user/list-product');
 })
+
 app.get('/product-details/:id', (req, res) => {
   res.render('user/product_details');
 })
@@ -98,9 +103,25 @@ app.get('/admin-add-account', (req, res) => {
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
+app.get('/dangky', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
+})
+app.get('/nguoidung', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/admin/trangUser.html'))
+})
+
+app.get('/dangnhap', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/admin/dangnhapUser.html'))
+})
+app.get('/advantages', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
+}) 
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
+// Use router
+app.use('/api/user/', ProductAdvantagesRouter);
+app.use('/api/nguoidung', userRouter);
 // Use router
 app.use('/api/user/', cartRouter);
 app.use('/api/user/', userAddressRouter);
@@ -114,7 +135,48 @@ app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
 app.use('/api/account',accountRouter);
+app.use('/api/review',reviewRouter);
+app.use('/api/comment',commentRouter);
 
+
+
+
+var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }, { name: 'advantagesPhoto', maxCount: 3 } ])
+app.post('/profile2', cpUpload, async function (req, res, next) {
+  try{
+    console.log(req.files)
+    console.log(req.body);
+    let bien = [];
+  for (const key in req.files) {
+    let data1 = req.files[key] 
+    let linkout  =[];
+        for(var i = 0; i < data1.length; i++){
+        let index = data1[i].path.indexOf('public');
+        let link =  data1[i].path.slice(index, data1[i].path.length)
+        linkout.push(link)
+}
+        bien.push(linkout)
+}
+
+    let data = await AdvantagesModel.create({
+      codeproduct: req.body.codeproduct,
+      productname: req.body.productname,
+      // advantage: bien
+      title1: req.body.title1,
+      advantagecontent1: req.body.advantagecontent1,
+      advantagesPhoto1: bien[0],
+      title2: req.body.title2,
+      advantagecontent2: req.body.advantagecontent2,
+      advantagesPhoto2: bien[1],
+    })
+    if(data){
+      res.json(data)
+    }
+  }
+  catch(error){
+    res.json(error)
+  }
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

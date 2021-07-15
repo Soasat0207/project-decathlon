@@ -107,8 +107,26 @@ router.post('/findname',(req,res) =>{
     ModelMongo.ProductModel.find({
         $or: [
             {name:{ $regex: new RegExp(name, "i")}},
-            {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
+            // {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
         ]
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
     })
     .then((data) =>{
         return res.json({
@@ -117,6 +135,180 @@ router.post('/findname',(req,res) =>{
             data:data,
         })
     })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findByCategory',(req,res) =>{
+    let categoryProductId = req.body.categoryProductId;
+    ModelMongo.ProductModel.find({
+        categoryProductId:categoryProductId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findByColor',(req,res) =>{
+    let colorId = req.body.colorId;
+    ModelMongo.ProductModel.find({
+        colorId:colorId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findByLevel',(req,res) =>{
+    let levelId = req.body.levelId;
+    ModelMongo.ProductModel.find({
+        levelId:levelId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findBySize',(req,res) =>{
+    let sizeId = req.body.sizeId;
+    ModelMongo.ProductModel.find({
+        sizeId:sizeId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findByTrademark',(req,res) =>{
+    let trademarkId = req.body.trademarkId;
+    ModelMongo.ProductModel.find({
+        trademarkId:trademarkId
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+
     .catch((error)=>{
         res.status(500).json('loi sever')
     })

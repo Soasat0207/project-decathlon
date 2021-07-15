@@ -175,6 +175,7 @@ const reviewSchema = new Schema(
     },
     rate: String,
     comment: String,
+    title: String,
     accountId: {
       type: String,
       ref: "account",

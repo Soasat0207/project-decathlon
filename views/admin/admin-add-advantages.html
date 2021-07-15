@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- <link rel="stylesheet" href="/public/assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css"> -->
+    <link rel="stylesheet" href="public/assets/css/rest.css">
+    <link rel="stylesheet" href="public/assets/css/grid.css">
+    <link rel="stylesheet" href="public/assets/css/base.css">
+    <link rel="stylesheet" href="public/assets/css/jquery.fileuploader.min.css">
+    <link rel="stylesheet" href="public/assets/font/font-fileuploader.css">
+    <link rel="stylesheet" href="public/assets/css/admin.css">
+    <link rel="stylesheet" href="public/assets/css/admin-add-advantages.css">
+</head>
+<body>
+<form action="" enctype="multipart/form-data">
+    <div class="col col-lg-8">
+        <div class="border">
+            <div class="page-content-card-warpper">
+                <div class="row no-gutters">
+                    <div class="col col-lg-12">
+                        <div class="page-content-card-form-input  margin-bottom-2">
+                            <label class="page-content-card-form-input-label" for="">Code Product</label>
+                            <input name="codeproduct" type="text" class="form-control page-content-form_code" placeholder="Enter code product">
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="col col-lg-12">
+                        <div class="page-content-card-form-input  margin-bottom-2">
+                            <label class="page-content-card-form-input-label" for="">Product Name</label>
+                            <input name="productname" type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="col col-lg-12">
+                        <div class="page-content-card-form-input  margin-bottom-2">
+                                <div class="page-content-card-form-input  margin-bottom-2">
+                                    <textarea name="title1" id="" cols="30" rows="10" placeholder="Title 1"></textarea>
+                                    <textarea name="advantagecontent1" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Advantages 1"></textarea>
+                                    <span class="form-message"></span>
+                                    <input type="file" name="advantagesPhoto1" multiple>
+                                </div>
+                            <img class="upload1 uploadStyle" src="" alt="">
+                            <img class="upload2 uploadStyle" src="" alt="">
+                            <img class="upload3 uploadStyle" src="" alt="">
+                        </div>
+                    </div>
+                    <div class="col col-lg-12">
+                        <div class="page-content-card-form-input  margin-bottom-2">
+                            <textarea name="title2" id="" cols="30" rows="10" placeholder="Title 2"></textarea>
+                            <textarea name="advantagecontent2" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Advantages 2"></textarea>
+                            <span class="form-message"></span>
+                            <input type="file" name="advantagesPhoto2" multiple>
+                        </div>
+                        <img class="upload4 uploadStyle" src="" alt=""> 
+                        <img class="upload5 uploadStyle" src="" alt="">
+                        <img class="upload6 uploadStyle" src="" alt="">
+                    <!-- </div>
+                    <div class="col col-lg-12 addAdvantages00"> -->
+
+                    </div>
+                    <!-- <button onclick="addAdvantages()" type="button">Add Advantages</button> <br> -->
+                    <button onclick="uploadAdvantagesPhoto()" type="button">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="public/assets/js/admin.js"></script>
+<script src="public/assets/js/jquery.fileuploader.min.js"></script>
+<script src="public/assets/js/validator.js"></script>
+<script src="public/assets/js/ajaxAddProduct.js"></script>
+<script src="public/assets/js/ajaxAdmin-Add-Advantages.js"></script>
+<script>
+    $(document).ready(function() {
+	
+	// enable fileuploader plugin
+	$('input[name="files"]').fileuploader({
+        addMore: true
+    });
+	
+});
+</script>
+</html>
