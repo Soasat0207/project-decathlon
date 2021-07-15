@@ -9,10 +9,6 @@ function nutthoat(){
     $(".annen").css("display","none")
 }
 
-<<<<<<< HEAD
-console.log($(".lang"));
-=======
->>>>>>> f2ead79bd279029adb77bb91b3446b85804b176d
 $(".lang").on("click", (event) => {
     // let i = $(event.target).children()
     let list = $($(event.target).parent()[0]).children()
@@ -23,11 +19,7 @@ $(".lang").on("click", (event) => {
     }
     let i = $(event.target).children()[0]
     $(i).attr("id", "active")
-<<<<<<< HEAD
 })
-=======
-})
-
 // Nhập thông tin đăng ký
 async function nutDangky(){
     try{
@@ -83,4 +75,3 @@ async function nutDangky(){
 function nutchuyenDN(){
     window.location.href = '/dangnhap'
 }
->>>>>>> f2ead79bd279029adb77bb91b3446b85804b176d

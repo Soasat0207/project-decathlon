@@ -107,8 +107,8 @@ router.post('/',upload.fields([{ name: 'imgAvatar', maxCount: 12 }]),(req,res,ne
 router.post('/login',(req,res) =>{
     let username = req.body.username;
     let password = req.body.password;
-    ModelMongo.accountModel.findOne({
-        username: username ,
+    ModelMongo.AccountModel.findOne({
+        username: username,
     })
     .then((data)=>{
         bcrypt.compare(password,data.password, function(err, result) {

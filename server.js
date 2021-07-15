@@ -7,15 +7,14 @@ const userAddressRouter = require('./router/userAddressRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const orderRouter = require('./router/orderRouter');
 const SelectedProductRouter = require('./router/selectedProductRouter');
-
-
+const reviewRouter = require('./router/reviewRouter');
+const commentRouter = require('./router/commentRouter');
+const cookieParser = require('cookie-parser');
+const bodyParser = require("body-parser");
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
- 
 // parse application/json
 app.use(express.json())
-
-
 // Send html file
 const productRouter = require('./router/productRouter');
 const categoryRouter = require('./router/categoryRouter');
@@ -27,16 +26,11 @@ const trademarkRouter = require('./router/trademarkRouter');
 const accountRouter = require('./router/accountRouter');
 const userRouter = require('./router/userRouter');
 const AdvantagesModel = require('./models/ProductAdvantagesModel')
-const reviewRouter = require('./router/reviewRouter');
-const commentRouter = require('./router/commentRouter');
-var cookieParser = require('cookie-parser');
-const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+
+
 // parse cookie
 app.use(cookieParser())
-
-
-
+app.use(bodyParser.json());
 var multer  = require('multer')
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -54,7 +48,7 @@ app.use(
     extended: false,
   })
 );
-app.use(bodyParser.json()); 
+ 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 //user
@@ -74,30 +68,6 @@ app.get('/cart', (req, res, next) => {
 app.get('/order', (req, res, next) => {
   res.render('user/order');
 })
-app.get('/dangky', (req, res) =>{
-  res.sendFile(path.join(__dirname, './view/dangkyUser.html'))
-})
-app.get('/dangnhap', (req, res) => {
-  res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
-})
-app.get('/nguoidung', (req, res) => {
-  res.sendFile(path.join(__dirname, './view/trangUser.html'))
-})
-
-// make static link
-app.use('/public',express.static(path.join(__dirname, './public')));
-
-// Use router
-app.use('/api/user/', cartRouter);
-app.use('/api/user/', userAddressRouter);
-app.use('/api/user/', orderRouter);
-app.use('/api/user/', SelectedProductRouter);
-app.use('/api/user/', ProductAdvantagesRouter);
-app.use('/api/nguoidung', userRouter);
-
-// Port to listen
-app.get('/admin-list-tradeMark', (req, res) => {
-  res.sendFile(path.join(__dirname,'./view/admin-list-tradeMark.html'))
 //end user
 // admin
 app.get('/admin-list-category', (req, res) => {
@@ -134,21 +104,24 @@ app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
 app.get('/dangky', (req, res) => {
-  res.sendFile(path.join(__dirname, './view/dangkyUser.html'))
+  res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
 })
 app.get('/nguoidung', (req, res) => {
-  res.sendFile(path.join(__dirname, './view/trangUser.html'))
+  res.sendFile(path.join(__dirname, './views/admin/trangUser.html'))
 })
 
 app.get('/dangnhap', (req, res) => {
-  res.sendFile(path.join(__dirname, './view/dangnhapUser.html'))
+  res.sendFile(path.join(__dirname, './views/admin/dangnhapUser.html'))
 })
 app.get('/advantages', (req, res) => {
-  res.sendFile(path.join(__dirname, './view/admin-add-advantages.html'))
+  res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
 }) 
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
+// Use router
+app.use('/api/user/', ProductAdvantagesRouter);
+app.use('/api/nguoidung', userRouter);
 // Use router
 app.use('/api/user/', cartRouter);
 app.use('/api/user/', userAddressRouter);
@@ -161,8 +134,6 @@ app.use('/api/level',levelRouter);
 app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
-
-
 app.use('/api/account',accountRouter);
 app.use('/api/review',reviewRouter);
 app.use('/api/comment',commentRouter);

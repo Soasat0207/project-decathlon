@@ -280,29 +280,6 @@ const ReviewModel = mongoose.model("review", reviewSchema);
 const CommentModel = mongoose.model("comment", commentSchema);
 // End review and comment
 
-// Export Model 
-// module.exports = {
-//   AccountModel,
-//   AcountBListModel,
-//   LastInfoLoginModel,
-//   ColorProductModel,
-//   SizeProductModel,
-//   LevelProductModel,
-//   ProductModel,
-//   TrademarkModel,
-//   SupplierModel,
-//   CategoryProductModel,
-//   ShoppingCartModel,
-//   OrderModel,
-//   ReviewModel,
-//   CommentModel,
-// };
-// End export model
-
-
-
-// =================================================================Example=======================================================
-
 // model account
 // const accountModel = new mongoose.model('account',accountSchema);
 const lastInfoLoginModel = new mongoose.model('lastInfoLogin',lastInfoLoginSchema);

@@ -1,13 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('../connectDB');
 const Schema = mongoose.Schema;
 
 
-mongoose.connect('mongodb://localhost:27017/decathlon', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
+// mongoose.connect('mongodb://localhost:27017/decathlon', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+//   useCreateIndex: true,
+// });
 
 const AdvantagesSchema = new Schema ({
     codeproduct: String,
