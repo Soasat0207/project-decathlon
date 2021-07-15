@@ -168,11 +168,19 @@ function test(){
 
 // Hiển thị thông tin Advantages
 $.ajax({
-    url: '/api/user/viewadvantages/sp10010',
+    url: '/api/user/viewadvantages/sp100011',
     type: 'get',
 })
 .then((data) => {
     console.log(15 ,data);
+    console.log(17, data.title1);
+    if(data){
+        $('.photoAdvantages1').attr("src",data.advantagesPhoto1[0])
+        $('.avdantagesTitle1').append(data.title1)
+        $('.advantageContent01').append(data.advantagecontent1)
+        $('.avdantagesTitle2').append(data.title2)
+        $('.advantageContent02').append(data.advantagecontent2)
+    }
 })
 .catch((err) => {
     console.log(182,err);

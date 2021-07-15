@@ -34,6 +34,32 @@ catch(error){
 }
 }
 
-// Hiển thị ảnh trên giao diện admin
+// Add Advantages
+// let i  = 0
+// function addAdvantages(){
+//     i++
+//     let add = `
+//     <div class="col col-lg-12 aa${i}">
+//     <div class="page-content-card-form-input  margin-bottom-2">
+//         <label class="page-content-card-form-input-label" for="">Description Details</label>
+//         <textarea name="content" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Advantages 2"></textarea>
+//         <span class="form-message"></span>
+//         <input type="file" name="advantagesPhoto" multiple>
+//         <button onclick="deleteAdvantagesPhoto('aa${i}')" type="button">Xóa</button>
+//     </div>
+//     <img class="upload4 uploadStyle" src="" alt=""> 
+//     <img class="upload5 uploadStyle" src="" alt="">
+//     <img class="upload6 uploadStyle" src="" alt="">
+//     </div>
+//     `
+//     $('.addAdvantages00').append(add)
+// }
+
+
+// // Delete Advantages
+// function deleteAdvantagesPhoto(aa){
+//     console.log(aa);
+//  $(`.${aa}`).html('')
+// }
 
 

@@ -37,7 +37,6 @@ app.use(cookieParser())
 var multer  = require('multer')
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      console.log(req.body);
       cb(null,path.join(__dirname,'./public/uploads'))
     },
     filename: function (req, file, cb) {
@@ -163,10 +162,11 @@ app.post('/profile',upload.array('avatar', 12), function (req, res, next) {
 
 
 
-var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }])
+var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }, { name: 'advantagesPhoto', maxCount: 3 } ])
 app.post('/profile2', cpUpload, async function (req, res, next) {
   try{
     console.log(req.files)
+    console.log(req.body);
     let bien = [];
   for (const key in req.files) {
     let data1 = req.files[key] 
@@ -178,13 +178,17 @@ app.post('/profile2', cpUpload, async function (req, res, next) {
 }
         bien.push(linkout)
 }
+
     let data = await AdvantagesModel.create({
       codeproduct: req.body.codeproduct,
       productname: req.body.productname,
+      // advantage: bien
+      title1: req.body.title1,
       advantagecontent1: req.body.advantagecontent1,
-      photo1: bien[0],
+      advantagesPhoto1: bien[0],
+      title2: req.body.title2,
       advantagecontent2: req.body.advantagecontent2,
-      photo2: bien[1],
+      advantagesPhoto2: bien[1],
     })
     if(data){
       res.json(data)

@@ -12,18 +12,20 @@ mongoose.connect('mongodb://localhost:27017/decathlon', {
 const AdvantagesSchema = new Schema ({
     codeproduct: String,
     productname: String,
-    advantage:[{
-      content:String,
-      photo:[
-       { type:String}
-      ]
-    }],
+    // advantage:[{
+    //   content:String,
+    //   photo:[
+    //    { type:String}
+    //   ]
+    // }],
+    title1: String,
     advantagecontent1: String,
-    photo1: [
+    advantagesPhoto1: [
       {type:String}
     ],
+    title2: String,
     advantagecontent2: String,
-    photo2: [
+    advantagesPhoto2: [
       {type:String}
     ],
 
