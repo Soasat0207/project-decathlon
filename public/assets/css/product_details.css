@@ -706,7 +706,8 @@
 .review-items-desc{
     margin-top: 0.8rem;
     font-size:1.4rem;
-    width: 80%;
+    width: 100%;
+    display:flex;
 }
 .review-reaction{
     font-size: 1.4rem;
@@ -754,6 +755,16 @@
 .swiper-slide-img{
     width:58px;
     height: 58px;
+}
+.review-items-avatar-user{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    margin-right: 1rem;
+}
+.review-items-desc-feedback{
+    margin: 1rem 0 3rem 3rem;
+    width:calc(100% - 3rem);
 }
 @media (max-width :1023px){
     .product-price-ratting{

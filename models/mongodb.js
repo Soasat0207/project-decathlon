@@ -146,6 +146,7 @@ const reviewSchema = new Schema({
     },
     rate: String,
     comment: String,
+    title: String,
     accountId: {
       type: String,
       ref: "account",
@@ -256,10 +257,6 @@ const ShoppingCartModel = mongoose.model("shoppingCartModel", shoppingCartSchema
 const OrderModel = mongoose.model("orderModel", ordersSchema);
 // End Product
 
-// Review and comment
-const ReviewModel = mongoose.model("review", reviewSchema);
-const CommentModel = mongoose.model("comment", commentSchema);
-// End review and comment
 // model account
 const accountModel = new mongoose.model('account',accountSchema);
 const lastInfoLoginModel = new mongoose.model('lastInfoLogin',lastInfoLoginSchema);

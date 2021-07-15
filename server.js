@@ -14,6 +14,8 @@ const sizeRouter = require('./router/sizeProductRouter');
 const supplierRouter = require('./router/supplierRouter');
 const trademarkRouter = require('./router/trademarkRouter');
 const accountRouter = require('./router/accountRouter');
+const reviewRouter = require('./router/reviewRouter');
+const commentRouter = require('./router/commentRouter');
 var cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 var multer  = require('multer')
@@ -114,6 +116,8 @@ app.use('/api/size',sizeRouter);
 app.use('/api/supplier',supplierRouter);
 app.use('/api/trademark',trademarkRouter);
 app.use('/api/account',accountRouter);
+app.use('/api/review',reviewRouter);
+app.use('/api/comment',commentRouter);
 
 
 app.listen(port, () => {
