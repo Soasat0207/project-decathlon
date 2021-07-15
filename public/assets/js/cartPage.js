@@ -9,10 +9,11 @@ function CartRender(){
   })
     .then((data) => {
       if (data) {
+        console.log(12 ,data);
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
-
+          console.log(item._id);
           let content = `
               <div id = "content${item._id}" class = "cart-items-info">
                   <div class="cart-items-img"><img src="${item.img}" alt=""></div>
@@ -79,7 +80,7 @@ function CartRender(){
     });
 } // \end function CartRender
 
-// delete a product that user was choose
+// delete a product that user was selected
 function deleteProduct(productId){
   $.ajax({
     url: '/api/user/deleteProduct/',
@@ -125,9 +126,9 @@ function increQuantity(inputID) {
   });
 }
 
-// function to send request update quantity
+// function to update quantity
 function userUpdateQuantity(inputID){
-  // console.log($(`#${inputID}`).val());
+  // console.log(131, $(`#${inputID}`).val());
   $.ajax({
     url: '/api/user/updateQuantity',
     type: 'PUT',
@@ -161,7 +162,6 @@ $('.button-continue').on('click', ()=>{
 
 // function convert number to VND format
 function numberToCurrency(number){
-    
    let formatedNumber = (number).toLocaleString('en-US', {
       style: 'currency',
       currency: 'VND',

@@ -13,8 +13,4 @@ SelectedProductRouter.post('/findSelectedProduct', (req, res, next) =>{
 })
 
 
-
-
-
-
 module.exports = SelectedProductRouter;

@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/public/assets/css/list-product.css">
     <link rel="stylesheet" href="/public/assets/css/tab_ui.css">
     <link rel="stylesheet" href="/public/assets/css/product_details.css">
-    <link rel="stylesheet" href="/public/assets/css/order.css">
+    <link rel="stylesheet" href="/public/assets/css/checkout.css">
     <link rel="stylesheet" href="/public/assets/css/responsive.css">
 </head>
 
@@ -240,7 +240,7 @@
                     </li>
                     <li class="checkout-header-item">
                         <span>Địa chỉ & Giao hàng
-                            <input type="checkbox"  class="checkbox-round" />
+                            <input type="checkbox" checked class="checkbox-round" />
                         </span>
                     </li>
                     <li class="checkout-header-item">
@@ -255,50 +255,37 @@
             <div class="checkout">
                 <!-- Check out left -->
                     <div class="checkout-left bg-border">
-                        <div class="deliveried-address">
-                            <div class="deliveried-address-content">
-                                Giao hàng đến địa chỉ
+                        <div class="deliveried-address perfect-center-row">
+                            <!-- <div class="text-deliveried-address ">
+                                Giao hàng đến <span style="font-weight: 700;" class="end-address"> Đăk lằk</span>
                             </div>
-                            <div class="deliveried-address-btn">
-                                <button class ="deliveried-address-change-btn">Thay đổi</button>
-                            </div>
+                            <button class="change-deliveried-address">Thay đổi</button> -->
                         </div>
-                        <div class="deliveried-options">
-                            <h3>Hình thức giao hàng phù hợp</h3>
-                            <p>Vui lòng chọn hình thức giao hàng</p>
-                            <div class="deliveried-options-list">
-                                <div class="deliveried-options-item">
-                                    <div class="deliveried-options-left-content">
-                                        <div class="deliveried-options-checkbox-input"><input type="checkbox" name="" id=""></div>
-                                        <div class="deliveried-options-list-text">Giao hàng tiêu chuẩn</div>
-                                    </div>
-                                    <div class="deliveried-options-right-content">
-                                        <div class="deliveried-options-list-date">
-                                            Từ thứ 5, ngày 08/07
-                                        </div>
-                                        <div class="deliveried-options-list-cash">
-                                            36.000 VND
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-container">
-                                    <div class="location-card">
-                                        <h5>
-                                            <img style="width: 20px; height: 15px"  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NC41NSIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDU0LjU1IDQwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDojNDI0NDUzO308L3N0eWxlPjwvZGVmcz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTQ4My40MjUgLTk1NC43NzIpIj48cGF0aCBjbGFzcz0iYSIgZD0iTTU0LjU1LDI2LjY5MXYtMTEuNWEuOTQxLjk0MSwwLDAsMC0uNDctLjgxOEw0MS43NDksNy4zMjZhLjk0Ljk0LDAsMCwwLS42LS4xMTNsLTYuNzcyLjk0MVYuOTRhLjk0MS45NDEsMCwwLDAtLjMyOS0uNzE1QS45NDEuOTQxLDAsMCwwLDMzLjI3NSwwTC43ODEsNS42NDJBLjk0MS45NDEsMCwwLDAsMCw2LjU4M1YzNS43MzlhLjk0MS45NDEsMCwwLDAsLjM2Ny43MjQuOTQxLjk0MSwwLDAsMCwuNzM0LjM3NmguMTZsNS44ODgtMS4xQTYuNTM3LDYuNTM3LDAsMCwwLDE5LjgwNywzMy41MUwzNy41LDMwLjM3OGE2LjU4NCw2LjU4NCwwLDAsMCwxMi41NTYtMi4xNjNsMy43NjItLjY1OEg1My45YS43ODEuNzgxLDAsMCwwLC4yMDctLjA3NWwuMDY2LS4yMDdhLjUzNi41MzYsMCwwLDAsLjE1LS4xNDEuNDguNDgsMCwwLDAsLjA4NS0uMTIyLjgyOC44MjgsMCwwLDAsLjA4NS0uMTg4Ljk0MS45NDEsMCwwLDAsLjA1Ni0uMTMyWk0zMi40OTUsMi4wNTl2MTUuNGwtMzAuNjE0LDUuNFY3LjMzNUwxNS4xNCw1LjA1Wk0xLjg4MSwzNC44VjI0Ljc2M2wzMC42MTQtNS40djkuOTg4TDE5LjU1MywzMS42MjlBNi41ODQsNi41ODQsMCwwLDAsNi43MjUsMzMuNDM0YzAsLjE2LDAsLjMsMCwuNDUxWm0xMS4zOSwzLjM0OGE0LjY3OSw0LjY3OSwwLDEsMCwwLS4wNDdabTIxLjEwNS05LjA4NVYxMC4wODJMNDEuMSw5LjE0MWwxMS41NjgsNi41ODRWMjUuNzg4bC0yLjgyMi41NDVhNi41ODQsNi41ODQsMCwwLDAtMTIuODY2LDEuNWMwLC4yMzUsMCwuNDgsMCwuNzE1Wm05LjE1MSwzLjQ4YTQuNjMyLDQuNjMyLDAsMSwwLDAtLjA0N1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE0ODMuNDI1IDk1NC43ODQpIi8+PC9nPjwvc3ZnPg==" alt="">
-                                            <span style="padding-left: 16px;">GIAO HÀNG TẠI NHÀ</span>
-                                        </h5>
-                                        <div class="location-card-infomation">
-                                            <h3>TỪ <span style="color:#00B3B4">THỨ TƯ, 07/07</span></h3>
-                                            <p>Giao hàng đến Đắk lak</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-button">
-                                        <button class="card-button-confirm">Thanh toán</button>
-                                    </div>
-                                </div>
+                        <div class="deliveried-date">
+                            <!-- <div class="text-deliveried-date">
+                                Giao hàng tiêu chuẩn<strong class="end-date"> từ thứ Năm, 15/07/2021</strong>
                             </div>
-                            <div class="deliveried-options-terms">
-                                <input type="checkbox" name="" checked id="" class="deliveried-options-terms-checkbox"> Tôi đã đọc và đồng ý với <span style="cursor: pointer;color: rgb(0, 0, 255);text-decoration: underline;">Điều khoản và Điều kiện</span>
+                            <button class="change-deliveried-date">Thay đổi</button> -->
+                        </div>
+                        <div class="checkout-infomation">
+                            <h3>Các tùy chọn thanh toán có sẵn</h3>
+                            <p>Vui lòng chọn tùy chọn Thanh toán của bạn</p>
+                            <div class="payment-options">
+                                <div class="payment-options-select">
+                                    <div class="payment-options-input-check"><input type="checkbox" class="payment-options-checkbox" name="" id="CashByCod"></div>
+                                    <h3>Thanh toán khi nhận hàng</h3>
+                                </div>
+                                <div class="payment-options-select">
+                                    <div class="payment-options-input-check"><input type="checkbox" class="payment-options-checkbox" name="" id="CashByZalopay"></div>
+                                    <h3>Thanh toán online với thẻ ATM nội địa hoặc ví điện tử Zalopay</h3>
+                                </div>
+                                <div class="payment-options-select">
+                                    <div class="payment-options-input-check"><input type="checkbox" class="payment-options-checkbox" name="" id="CashByVisa"></div>
+                                    <h3>Thanh toán online với thẻ credit/debit (VISA/ Master)</h3>
+                                </div>
+                                <div class="payment-options-button">
+                                    <button class="payment-options-button-confirm">XÁC NHẬN</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -363,16 +350,11 @@
 
     <!-- \ End Content -->
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 <script src="/public/assets/js/jquery-3.6.0.min.js"></script>
-<script src="/public/assets/js/order.js"></script>
+<script src="/public/assets/js/checkout.js"></script>
 
 </html>

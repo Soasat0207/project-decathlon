@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-mongoose.connect("mongodb://localhost:27017/decathlon", {
+mongoose.connect("mongodb://localhost/decathlon", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true,
 });
 
-// schema account
+// Accout Schema
 const accountSchema = new Schema(
   {
     username: String,
@@ -22,16 +22,20 @@ const accountSchema = new Schema(
     mainAddress: String,
     subAddress: String,
     city: String,
-    avatar: String,
+    avatar: {
+      type: String,
+      default:
+        "https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
+    },
     createdAt: Date,
-    role: String,
+    role: { type: String, default: "user" },
     status: String,
+    description: String,
   },
   {
     collection: "account",
   }
 );
-
 const lastInfoLoginSchema = new Schema(
   {
     dateLastLogin: [
@@ -46,9 +50,9 @@ const lastInfoLoginSchema = new Schema(
     collection: "lastInfoLogin",
   }
 );
-// end schema account
+// end account schema
 
-// schema product
+// Create product schema
 const colorProductSchema = new Schema(
   {
     colorCode: String,
@@ -58,6 +62,7 @@ const colorProductSchema = new Schema(
     collection: "colorProduct",
   }
 );
+
 const sizeProductSchema = new Schema(
   {
     size: String,
@@ -76,7 +81,8 @@ const levelProductSchema = new Schema(
     collection: "levelProduct",
   }
 );
-const ProductSchema = new Schema(
+
+const productSchema = new Schema(
   {
     name: String,
     img: [
@@ -123,11 +129,17 @@ const ProductSchema = new Schema(
       type: String,
       ref: "categoryProduct",
     },
+    categoryProductId: {
+      type: String,
+      ref: "categoryProduct",
+    },
+    status: String,
   },
   {
     collection: "product",
   }
 );
+
 const tradeMarkSchema = new Schema(
   {
     name: String,
@@ -159,7 +171,7 @@ const categoryProductSchema = new Schema(
     collection: "categoryProduct",
   }
 );
-// End schema product
+// end schema product
 
 // review and comment  schema
 const reviewSchema = new Schema(
@@ -221,11 +233,8 @@ const shoppingCartSchema = new Schema(
   {
     product: [
       {
-        productId: {
-          type: String,
-          ref: 'product',
-        },
-        quantity: Number,
+        type: String,
+        ref: 'selectedProduct'
       },
     ],
     userId: {
@@ -235,21 +244,19 @@ const shoppingCartSchema = new Schema(
   },
   { collection: "shoppingCart" }
 );
-
-
 // End shopping cart schema
-
 // Orders Schema
 const ordersSchema = new Schema(
   {
     product: [
-      {type: String, 
-      ref: 'selectedProduct'
+      { 
+        type: String, 
+        ref: "selectedProduct"
       }
     ],
     address: {
       type: String,
-      ref: 'useraddress'
+      ref: "useraddress",
     },
     userId: {
       type: String,
@@ -257,71 +264,36 @@ const ordersSchema = new Schema(
     },
     status: {
       type: String,
-      default: 'Dang van chuyen'
+      default: "Dang van chuyen",
     },
+    methodPayment: String,
     orderDate: Date,
-    payment: String,
     totalPrice: Number,
   },
   { collection: "orders" }
 );
 // End orders Schema
 
-// Model account
-const AccountModel = mongoose.model("account", accountSchema);
-const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
-// End model account
+// Create Model
+  const AccountModel = mongoose.model("account", accountSchema);
+  const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
+  const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
+  const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
+  const LevelProductModel = mongoose.model("levelProduct", levelProductSchema);
+  const ProductModel = mongoose.model("product", productSchema);
+  const TrademarkModel = mongoose.model("trademark", tradeMarkSchema);
+  const SupplierModel = mongoose.model("supplier", supplierSchema);
+  const CategoryProductModel = mongoose.model("categoryProduct",categoryProductSchema);
+  const ShoppingCartModel = mongoose.model( "shoppingCartModel",shoppingCartSchema );
+  const OrderModel = mongoose.model("orderModel", ordersSchema);
+  const ReviewModel = mongoose.model("review", reviewSchema);
+  const CommentModel = mongoose.model("comment", commentSchema);
+// end of Create Model
 
-// Product model
-const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
-const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
-const LevelProductModel = mongoose.model("levelProduct", levelProductSchema);
-const ProductModel = mongoose.model("product", ProductSchema);
-const TrademarkModel = mongoose.model("trademark", tradeMarkSchema);
-const SupplierModel = mongoose.model("supplier", supplierSchema);
-const CategoryProductModel = mongoose.model("categoryProduct", categoryProductSchema);
-const ShoppingCartModel = mongoose.model("shoppingCartModel", shoppingCartSchema);
-const OrderModel = mongoose.model("orderModel", ordersSchema);
-
-// ShoppingCartModel.findOne({_id:'60d442eeb679ae3a745c655b'})
-// .populate('product.productId')
-// .then(data=>{console.log(data.product);})
-// .catch(err=>{console.log(err);})
-
-// ProductModel.create({
-//   name: "Size 5 Football 2020 - Germany",
-//     img: [
-//       'https://contents.mediadecathlon.com/p1814563/671ed12bfe351b5cac761fe249e6af66/p1814563.jpg?f=650x650&format=auto',
-//     ],
-//     codeProduct: '8555660',
-//     price: '195.000',
-//     priceImport: '220.000',
-//     unit: 'VND',
-//     quantity: 10,
-//     descriptionShort: 'Fitting comfort',
-//     descriptionDetails: "The boot's machine-stitched lining is made from foam to make it more comfy.",
-//     title: 'OXELO',
-//     rate: '5',
-//     gender: 'male',
-//     imgColor: [''],
-//     sizeId: '',
-//     colorId: '',
-//     levelId: '',
-//     trademarkId: '',
-//     supplierId: '',
-//     categoryProductId: ''
-// })
-
-
-// End Product
-
-// Review and comment
-const ReviewModel = mongoose.model("review", reviewSchema);
-const CommentModel = mongoose.model("comment", commentSchema);
-// End review and comment
-
-// Export Model 
+// exports Model
 module.exports = {
+  OrderModel,
+  ShoppingCartModel,
   AccountModel,
   LastInfoLoginModel,
   ColorProductModel,
@@ -331,111 +303,7 @@ module.exports = {
   TrademarkModel,
   SupplierModel,
   CategoryProductModel,
-  ShoppingCartModel,
-  OrderModel,
   ReviewModel,
   CommentModel,
 };
-// End export model
-
-// ShoppingCartModel.create({
-//   product: [
-//     {
-//       productId: '60d48bce400b3f3a6081da7a',
-//       quantity: 2,
-//     },
-//     {
-//       productId: '60d48c62c545fd300c23e2cb',
-//       quantity: 1,
-//     },
-//     {
-//       productId: '60d48cb24864ab174ca806c7',
-//       quantity: 3,
-//     },
-//   ],
-//   userId: '60d441158e6b993304984a86',
-// }).then(data =>{
-//   console.log(data);
-// }).catch(err =>{
-//   console.log(err)
-// })
-
-// =================================================================Example=======================================================
-// reviewModel.findOneAndUpdate({
-//     productId:'60d2ecdcc0f69f9f8cc7b74b',
-// })
-// .populate({
-//     path:'reply',
-//     populate:{path:'accountId'}
-// })
-// .populate({
-//     path:'reply',
-//     populate:{path:'reviewId'}
-// })
-// .then((data)=>{
-//     console.log(data)
-// })
-// .catch((err)=>{
-//     console.log(err)
-// })
-
-// productModel.create({
-//     name:String,
-//     img:[
-//         "https://contents.mediadecathlon.com/p1800992/k$f6570730f6ff3ea4b05081347ded180c/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=112x112",
-//         "https://contents.mediadecathlon.com/p1801029/k$1c334332a02ee65e9db8fccf3fc4f9d8/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=112x112",
-//         'https://contents.mediadecathlon.com/p1800950/k$178d124a6d33ebb1b92e82b4e0a5651e/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=112x112',
-//         'https://contents.mediadecathlon.com/p1801012/k$6772dcb984ed9032969aaee6cac22b1e/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=112x112',
-//         'https://contents.mediadecathlon.com/p1800983/k$5e4135a26ac07e55ae56fa616353994d/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//         'https://contents.mediadecathlon.com/p1800963/k$5c7791c41404a15ac774b1d77924f5ef/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//         'https://contents.mediadecathlon.com/p1801002/k$bc5329b6229e87ffb7579346623e76fa/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//         'https://contents.mediadecathlon.com/p1801025/k$bf6b7783bfa387e37266525bbef1409b/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//         'https://contents.mediadecathlon.com/p1801014/k$6a8d42a5d226a04fd2356c19e203d1f8/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//         'https://contents.mediadecathlon.com/p1801005/k$574baa6441b258a85f2b716a7f2ec7a7/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//         'https://contents.mediadecathlon.com/p1800979/k$f85f54fc32d50d9429f4db08c225da88/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=1296x1296',
-//     ],
-//     codeProduct:'8554558',
-//     price:'40',
-//     priceImport:'35',
-//     unit:'cái',
-//     quantity:'10',
-//     descriptionShort:'BALO DU LỊCH PHƯỢT 40 LÍT ',
-//     descriptionDetails:'Các nhà thiết kế ba lô của chúng tôi đã tạo ra ba lô 40L này để cho phép bạn thực hiện một cuộc phiêu lưu với sự yên tâm hoàn toàn, nhờ có khóa kéo của nó.Kích thước của túi sẽ cho phép bạn mang nó trong cabin mà không cần phải kiểm tra trong kho. Nắp che mưa tích hợp sẽ bảo vệ đồ đạc bên trong túi trong trường hợp trời mưa.',
-//     title:'BALO DU LỊCH ',
-//     rate:'5',
-//     gender:'all',
-//     imgColor:['https://contents.mediadecathlon.com/p1800992/k$f6570730f6ff3ea4b05081347ded180c/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=48x48 48w, https://contents.mediadecathlon.com/p1800992/k$f6570730f6ff3ea4b05081347ded180c/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=96x96 96w, https://contents.mediadecathlon.com/p1800992/k$f6570730f6ff3ea4b05081347ded180c/sq/sac-a-dos-40-litres-de-trek-voyage-travel-100-bleu.jpg?format=auto&f=144x144 144w'],
-//     sizeId:'60d2e5187d64c699a8f0d9ee',
-//     colorId:'60d2e5187d64c699a8f0d9ed',
-//     levelId:'60d2e5187d64c699a8f0d9ef',
-//     trademarkId:'60d2e94044427f9cdea17f93',
-//     supplierId:'60d2e94044427f9cdea17f95',
-//     categoryProductId:'60d2e94044427f9cdea17f94',
-// })
-// productModel.findOne({
-//     codeProduct:'8554558'
-// })
-// .populate({
-//     path:'sizeId'
-// })
-// .populate({
-//     path:'colorId'
-// })
-// .populate({
-//     path:'levelId'
-// })
-// .populate({
-//     path:'trademarkId'
-// })
-// .populate({
-//     path:'supplierId'
-// })
-// .populate({
-//     path:'categoryProductId'
-// })
-// .then((data)=>{
-//     console.log(data);
-// })
-// .catch((err)=>{
-//     console.log(err);
-// })
+// end of exports model
