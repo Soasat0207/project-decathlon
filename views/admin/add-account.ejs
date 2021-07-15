@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <%- include('../partials/admin-head'); -%>
+    <style>
+        .form-message {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            padding: 4px 0 0;
+            color: #f33a58;
+        }       
+    </style>
+</head>
+<body class='theme-dank'>
+    <div class="body-warpper">
+        <div class="row no-gutters">
+            <%- include('../partials/body-admin-left'); -%>
+            <div class="col col-lg-10">
+                <div class="body_admin-right">
+                    <%- include('../partials/admin-navbar'); -%>
+                    <div class="body_admin-right-body">
+                        <div class="body_admin-right_page-content">
+                            <div class="body_admin-right_page-content-card">
+                                <div class="page-content-card-warpper">
+                                    <h5 class="page-content-card-warpper-title">Add New account</h5>
+                                    <form action="" method="POST" class="form" id="formAddAccount" enctype="multipart/form-data">
+                                        <div class="page-content-card-form">
+                                            <div class="row ">
+                                                <div class="col col-lg-8">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">User Name</label>
+                                                                        <input name="userName" type="text" class="form-control page-content-form_username" placeholder="Enter code product">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Password</label>
+                                                                        <input name="password" type="text" class="form-control page-content-form_password" placeholder="Enter product Name">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-6 ">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">First Name</label>
+                                                                        <input name="firstname" type="text" class="form-control page-content-form_fisrtname" placeholder="Enter product title">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">Last Name</label>
+                                                                        <input name="lastname" class="form-control page-content-form_lastname" rows="3" placeholder="Enter Description Short">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Email</label>
+                                                                        <input name="email" class="form-control page-content-form_email" rows="6" placeholder="Enter Description Details">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Phone</label>
+                                                                        <input name="phone" class="form-control page-content-form_phone" rows="6" placeholder="Enter Description Details">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Description</label>
+                                                                        <textarea name="description" class="form-control page-content-form_description" rows="6" placeholder="Enter Description Details"></textarea>
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image color</label>
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgAvatar" multiple>   
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-lg-4">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Address 1</label>
+                                                                        <input name="mainAddress" type="text" class="form-control page-content-form_mainAddress" placeholder="Enter Product Price">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Address 2</label>
+                                                                        <input name="subAddress" type="text" class="form-control page-content-form_subAddress" placeholder="Enter product Price Import">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">birthday</label>
+                                                                        <select name="birthday" class="form-select page-content-form_rate">
+                                                                            <option value=""></option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="1">1</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">Gender</label>
+                                                                        <select name="gender" class="form-select page-content-form_gender">
+                                                                            <option value=""></option>
+                                                                            <option value="male">male</option>
+                                                                            <option value="female">female</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">role</label>
+                                                                        <select name="role" class="form-select page-content-form_size">
+                                                                            <option value=""></option>
+                                                                            <option value="admin">admin</option>
+                                                                            <option value="user">user</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">city</label>
+                                                                        <select name="city" class="form-select page-content-form_color">
+                                                                            <option value=""></option>
+                                                                            <option value="hanoi">Hà Nội</option>
+                                                                            <option value="Hồ chí Minh">Hồ Chí Minh</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">status</label>
+                                                                        <select name="status" class="form-select page-content-form_level">
+                                                                            <option value=""></option>
+                                                                            <option value="1">1</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <button class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+                                                                </div>
+                                                            </div>         
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/admin-script'); -%>
+<script src="public/assets/js/ajaxAdminAccount.js"></script>
+</html>

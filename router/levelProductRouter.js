@@ -15,7 +15,6 @@ router.get('/',(req,res) =>{
 router.post('/',(req,res) =>{
     let description = req.body.description;
     let level = req.body.level;
-    console.log(req.body)
     ModelMongo.levelProductModel.create({
         description:description,
         level:level

@@ -18,6 +18,16 @@
      modal.style.display = "none";
    }
  }
+function disableModal() {
+  modal.style.display = "none";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}
+function enableModal() {
+  modal.style.display = "block";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}
 async function renderSize() {
  $('.admin-list-color').html('')
    try {
@@ -62,7 +72,9 @@ async function AddSize() {
      }
    });
    if(data.status == 200){
-     renderTrademark();
+    alert(data.message);
+    disableModal();
+    renderSize();
    }
    
  } catch (error) {
@@ -83,9 +95,15 @@ async function UpdateModalSize(id) {
         $('.page-content-form_description').val(data.data.description);
         $('.page-content-form_size').val(data.data.size);
         let div=`
-        <button onclick="UpdateSize('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+        <button type="button" onclick="UpdateSize('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
         `;
-        $('.btn-form-add-color').append(div);
+        if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 2){
+          $('.btn-form-add-color').children(`.page-content-card-form-btn`).eq(1).remove();
+          $('.btn-form-add-color').append(div);
+        }
+        if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 1){
+          $('.btn-form-add-color').append(div);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -106,7 +124,8 @@ async function UpdateModalSize(id) {
       });
       if(data.status == 200){
         alert(data.message);
-        renderTrademark();
+        disableModal();
+        renderSize();
       }
     } catch (error) {
       console.log(error);

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <%- include('../partials/admin-head'); -%>
+    <style>
+        .form-message {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            padding: 4px 0 0;
+            color: #f33a58;
+        }       
+    </style>
+</head>
+<body class='theme-dank'>
+    <div class="body-warpper">
+        <div class="row no-gutters">
+            <%- include('../partials/body-admin-left'); -%>
+            <div class="col col-lg-10">
+                <div class="body_admin-right">
+                    <%- include('../partials/admin-navbar'); -%>
+                    <div class="body_admin-right-body">
+                        <div class="body_admin-right_page-content">
+                            <div class="body_admin-right_page-content-card">
+                                <div class="page-content-card-warpper">
+                                    <h5 class="page-content-card-warpper-title">User Profilep</h5>
+                                    <div class="account-details">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="pdlr col col-lg-4">
+                                                    <div class="account-details-card">
+                                                        <div class="account-details-card-description">
+                                                            <div class="account-details-card-avatar">
+                                                                <img src="https://codervent.com/synadmin/demo/vertical/assets/images/avatars/avatar-2.png" alt="" class="account-details-card-img">
+                                                            </div>
+                                                            <div class="account-details-card-description-text">
+                                                                <h4>admin</h4>
+                                                                <p class="account-details-card-desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat temporibus vero repellat. Dicta quas voluptas provident odio assumenda, iure doloremque illum earum culpa voluptatibus laborum optio distinctio aperiam aspernatur impedit.</p>
+                                                                <hr class="my-4">
+                                                            </div>
+                                                        </div>
+                                                        <ul class="account-details-list-group">
+                                                            <li class="account-details-list-group-items">
+                                                                <h6 class="account-details-list-group-items-link-description"><span><i class="fal fa-globe"></i></span> Website</h6>
+                                                                <a class="account-details-list-group-items-link" href="">https://codervent.com</a>
+                                                            </li> 
+                                                            <li class="account-details-list-group-items">
+                                                                <h6 class="account-details-list-group-items-link-description"><span><i class="fal fa-globe"></i></span> Website</h6>
+                                                                <a class="account-details-list-group-items-link" href="">https://codervent.com</a>
+                                                            </li> 
+                                                            <li class="account-details-list-group-items">
+                                                                <h6 class="account-details-list-group-items-link-description"><span><i class="fal fa-globe"></i></span> Website</h6>
+                                                                <a class="account-details-list-group-items-link" href="">https://codervent.com</a>
+                                                            </li> 
+                                                         </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="pdlr col col-lg-8">
+                                                    <div class="account-details-card">
+                                                        <div class="col col-lg-12">
+                                                            <div class="page-content-card-form-input account-details-card-input  margin-bottom-2">
+                                                                <label class="page-content-card-form-input-label" for="">Code Product</label>
+                                                                <input name="CodeProduct" type="text" class="form-control page-content-form_code" placeholder="Enter code product">
+                                                                <span class="form-message"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/admin-script'); -%>
+<script src="public/assets/js/ajaxAdminAccount.js"></script>
+</html>

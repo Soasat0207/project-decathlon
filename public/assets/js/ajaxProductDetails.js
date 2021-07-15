@@ -1,12 +1,46 @@
 let link = window.location.href;
 let linkId = link.slice(link.lastIndexOf('/'),link.length);
+$('.seemore_review').click(()=>{
+    $('.review-add').attr("style","display:block");
+    $('.seemore_review').attr("style","display:none");
+})
+
+async function addReview() {
+    $('.btn-review-add').click(async()=>{
+        let comment = $('.review-add-comment').val();
+        let productId = linkId.slice(1,linkId.length);
+        let title = $('.review-add-title').val();
+        let rate = $('.review-add-rate').val();
+        try {
+            let data = await $.ajax({
+                url: "/api/review",
+                type: "POST",
+                data:{
+                    productId:productId,
+                    comment:comment,
+                    rate:rate,
+                    title:title,
+                }
+              });
+            if(data.status==200){
+                alert(data.message);
+                renderReview();
+                $('.review-add').attr("style","display:none");
+                $('.seemore_review').attr("style","display:block");
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }) 
+}
+addReview();
 async function renderProductDetails() {
     try {
         let data = await $.ajax({
           url: "/api/product/details"+linkId,
           type: "POST",
         });
-        console.log(data)
         data.map((data) => {
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
@@ -84,7 +118,11 @@ async function renderSize(codeProduct,colorId) {
             codeProduct:codeProduct, 
             colorId:colorId,
           }
+<<<<<<< HEAD
         });        
+=======
+        }); 
+>>>>>>> e36f778cafcc0b3aac6fb7bc697c528686779367
         if(data.status == 200) {
             let sizeArr = [];
             data.data.map((data)=>{
@@ -111,6 +149,104 @@ async function renderSize(codeProduct,colorId) {
         }
 
     } catch (error) {
+        console.log(error);
+    }
+}
+renderReview();
+async function renderReview() {
+    try{
+        let data = await $.ajax({
+          url: "/api/review",
+          type: "GET",
+          
+        });
+        data.map((data) => {
+            console.log(data)
+            let div = `
+                <div class="review-list-items">
+                    <div class="row no-gutters">
+                        <div class="col col-lg-3">
+                            <div class="review-items-info">
+                                <h3>${data.accountId.lastname}</hh3>
+                                <p class="review-items-info-accuracy"><i class="fal fa-check-circle"></i><span>Đã xác thực</span></p>
+                            </div>
+                        </div>
+                        <div class="col col-lg-9">
+                            <div class="review-items-details">
+                                <h3 class="review-items-details-title">${data.title}</h3>
+                                <div class="review-items-details-rate">
+                                    <svg class="full svelte-1eztogk" viewBox="0 0 32 32" widht="1.1em" height="1em" style="fill: url(&quot;#gradient-full-1-26&quot;);"><linearGradient id="gradient-full-1-26"><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="100%"></stop></linearGradient><path d="m16 26.0943175-8.59386153
+                                    3.819494c-.76761529.3411624-1.5883458-.3588243-1.37259057-1.1706584l2.35327244-8.8547885-6.0989377-6.1863042c-.58190844-.5902442-.23437487-1.5915311.58808263-1.6943383l7.49636683-.9370458
+                                    4.7535106-8.55631923c.3810053-.68580943 1.3673093-.68580943 1.7483146 0l4.7535106 8.55631923
+                                    7.4963668.9370458c.8224575.1028072 1.1699911 1.1040941.5880827 1.6943383l-6.0989377
+                                    6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
+                                    </svg>
+                                    <svg class="full svelte-1eztogk" viewBox="0 0 32 32" widht="1.1em" height="1em" style="fill: url(&quot;#gradient-full-1-26&quot;);"><linearGradient id="gradient-full-1-26"><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="100%"></stop></linearGradient><path d="m16 26.0943175-8.59386153
+                                    3.819494c-.76761529.3411624-1.5883458-.3588243-1.37259057-1.1706584l2.35327244-8.8547885-6.0989377-6.1863042c-.58190844-.5902442-.23437487-1.5915311.58808263-1.6943383l7.49636683-.9370458
+                                    4.7535106-8.55631923c.3810053-.68580943 1.3673093-.68580943 1.7483146 0l4.7535106 8.55631923
+                                    7.4963668.9370458c.8224575.1028072 1.1699911 1.1040941.5880827 1.6943383l-6.0989377
+                                    6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
+                                    </svg>
+                                    <svg class="full svelte-1eztogk" viewBox="0 0 32 32" widht="1.1em" height="1em" style="fill: url(&quot;#gradient-full-1-26&quot;);"><linearGradient id="gradient-full-1-26"><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="100%"></stop></linearGradient><path d="m16 26.0943175-8.59386153
+                                    3.819494c-.76761529.3411624-1.5883458-.3588243-1.37259057-1.1706584l2.35327244-8.8547885-6.0989377-6.1863042c-.58190844-.5902442-.23437487-1.5915311.58808263-1.6943383l7.49636683-.9370458
+                                    4.7535106-8.55631923c.3810053-.68580943 1.3673093-.68580943 1.7483146 0l4.7535106 8.55631923
+                                    7.4963668.9370458c.8224575.1028072 1.1699911 1.1040941.5880827 1.6943383l-6.0989377
+                                    6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
+                                    </svg>
+                                    <svg class="full svelte-1eztogk" viewBox="0 0 32 32" widht="1.1em" height="1em" style="fill: url(&quot;#gradient-full-1-26&quot;);"><linearGradient id="gradient-full-1-26"><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="100%"></stop></linearGradient><path d="m16 26.0943175-8.59386153
+                                    3.819494c-.76761529.3411624-1.5883458-.3588243-1.37259057-1.1706584l2.35327244-8.8547885-6.0989377-6.1863042c-.58190844-.5902442-.23437487-1.5915311.58808263-1.6943383l7.49636683-.9370458
+                                    4.7535106-8.55631923c.3810053-.68580943 1.3673093-.68580943 1.7483146 0l4.7535106 8.55631923
+                                    7.4963668.9370458c.8224575.1028072 1.1699911 1.1040941.5880827 1.6943383l-6.0989377
+                                    6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
+                                    </svg>
+                                    <svg class="full svelte-1eztogk" viewBox="0 0 32 32" widht="1.1em" height="1em" style="fill: url(&quot;#gradient-full-1-26&quot;);"><linearGradient id="gradient-full-1-26"><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="100%"></stop></linearGradient><path d="m16 26.0943175-8.59386153
+                                    3.819494c-.76761529.3411624-1.5883458-.3588243-1.37259057-1.1706584l2.35327244-8.8547885-6.0989377-6.1863042c-.58190844-.5902442-.23437487-1.5915311.58808263-1.6943383l7.49636683-.9370458
+                                    4.7535106-8.55631923c.3810053-.68580943 1.3673093-.68580943 1.7483146 0l4.7535106 8.55631923
+                                    7.4963668.9370458c.8224575.1028072 1.1699911 1.1040941.5880827 1.6943383l-6.0989377
+                                    6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
+                                    </svg>
+                                    <svg class="full svelte-1eztogk" viewBox="0 0 32 32" widht="1.1em" height="1em" style="fill: url(&quot;#gradient-full-1-26&quot;);"><linearGradient id="gradient-full-1-26"><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="0%"></stop><stop stop-color="#fdc62e" offset="100%"></stop></linearGradient><path d="m16 26.0943175-8.59386153
+                                    3.819494c-.76761529.3411624-1.5883458-.3588243-1.37259057-1.1706584l2.35327244-8.8547885-6.0989377-6.1863042c-.58190844-.5902442-.23437487-1.5915311.58808263-1.6943383l7.49636683-.9370458
+                                    4.7535106-8.55631923c.3810053-.68580943 1.3673093-.68580943 1.7483146 0l4.7535106 8.55631923
+                                    7.4963668.9370458c.8224575.1028072 1.1699911 1.1040941.5880827 1.6943383l-6.0989377
+                                    6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
+                                    </svg>
+                                    <span>${data.rate}/5</span>
+                                    <span class="review-items-details-rate-time">20/06/2021</span>
+                                </div>
+                                <div class="review-items-desc">
+                                    <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
+                                    <span>${data.comment}</span>
+                                </div>
+                                <div class="review-reaction">
+                                    <span><i class="fal fa-thumbs-up"></i><i class="review-add-input-comment fal fa-comments"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            `
+            $('.review-list-body').append(div);
+            
+            data.reply.map((data) => {
+                console.log(data);
+                let div=`
+                <div class="review-items-desc review-items-desc-feedback">
+                    <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
+                    <span>${data.comment}</span>
+                </div>
+                `
+            $('.review-items-details').append(div);
+            })
+        });
+        let addInputComment = $('.review-add-input-comment');
+        for (let i = 0; i < addInputComment.length; i++) {
+            addInputComment.eq(i).click(()=>{
+                addInputComment.eq(i).parent().parent().append(`<input class="review-add-title" type="text">`)
+            });
+        }  
+    }
+    catch(error){
         console.log(error);
     }
 }
