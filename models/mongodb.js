@@ -1,7 +1,7 @@
 const mongoose = require("../connectDB");
 const Schema = mongoose.Schema;
 
-// Accout Schema
+// Account Schema
 const accountSchema = new Schema(
   {
     username: String,
