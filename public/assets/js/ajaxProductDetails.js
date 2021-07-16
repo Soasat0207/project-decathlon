@@ -42,7 +42,7 @@ async function renderProductDetails() {
           type: "POST",
         });
         data.map((data) => {
-            console.log(45, data);
+            // console.log(45, data);
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
@@ -57,11 +57,23 @@ async function renderProductDetails() {
         // add event for button Add To Cart
         $('.product_details-addcart-btn-yellow').on('click', ()=>{
             let idOfProduct = $(`#addToCart${data._id}`).attr('id').slice(9, 100);
-            
-
+            $.ajax({
+                url: '/api/user/addToSelectedProduct',
+                type: 'POST',
+                data: {
+                    productId : idOfProduct
+                }
+            }).then(data =>{
+                if(data){
+                    // console.log(data);
+                    // console.log(idOfProduct);
+                    findAndCreateShoppingCart();
+                    alert('Thêm vào giỏ hàng thành công');
+                }
+            }).catch(err =>{
+                console.log(err);
+            })
         })
-
-
 
           data.imgColor.map((data)=>{
               let div =`
@@ -80,6 +92,91 @@ async function renderProductDetails() {
       }
 }
 renderProductDetails();
+
+// function find User in shopping cart
+    function findAndCreateShoppingCart(){
+        // let userCookies = getCookie('userId');
+        // get selected id in collection
+            $.ajax({
+                url: '/api/user/findSelectedProduct',
+                type: 'POST'
+            }).then(data =>{
+               if(data){
+                   let arrSelectedId = [];
+                   for (const iterator of data) {
+                    arrSelectedId.push(iterator._id)
+                   }
+                //    console.log(arrSelectedId);
+                   createOrUpdateShoppingCart(arrSelectedId);
+               }
+            }).catch(err =>{
+                console.log(err);
+            })
+        
+
+
+       }
+// function to find order in shopping cart and create shopping cart
+       function createOrUpdateShoppingCart(arrSelectedId){
+           $.ajax({
+               url: '/api/user/findShoppingCart',
+               type: 'POST'
+           }).then(data => {
+               if(data.length === 0){
+                   createShoppingCart(arrSelectedId);
+               }else{
+                   updateShoppingCart(arrSelectedId);
+               }
+           }).catch(err =>{
+               console.log(err);
+           })
+       }
+
+// function get id of selected product
+    function getSelectedId(){
+        $.ajax({
+            url: '/api/user/findSelectedProduct',
+            type: 'POST'
+        }).then(data =>{
+            console.log(data);
+        }).catch(err =>{
+            console.log(err);
+        })
+    }
+
+// function create shopping cart
+    function createShoppingCart(arrSelectedId){
+        
+        $.ajax({
+            url: '/api/user/createShoppingCart',
+            type: 'POST',
+            data: {
+                listProduct: arrSelectedId,
+            }
+        }).then(data =>{
+            console.log(data);
+        }).catch(err =>{
+            console.log(err);
+        })
+    }
+
+// function update shopping cart
+    function updateShoppingCart(arrSelectedId){
+        let lastSelectedId = arrSelectedId[arrSelectedId.length-1]
+        $.ajax({
+            url: '/api/user/updateShoppingCart',
+            type: 'PUT',
+            data: {
+                newProduct: lastSelectedId
+            }
+        }).then(data =>{
+            console.log(data);
+        }).catch(err =>{
+            console.log(err);
+        })
+    }
+
+
 async function renderColorImg(codeProduct) {
     try {
         let data = await $.ajax({
@@ -329,7 +426,22 @@ $.ajax({
     console.log(182,err);
 })
     
-
+// function to get cookies 
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 
 

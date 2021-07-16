@@ -226,15 +226,15 @@ const commentSchema = new Schema(
 const shoppingCartSchema = new Schema(
   {
     product: [
-      {
-        type: String,
-        ref: 'selectedProduct'
-      },
+       {
+          type: String,
+          ref: 'selectedProduct'
+        },
     ],
     userId: {
       type: String,
       ref: "account",
-    },
+    }
   },
   { collection: "shoppingCart" }
 );

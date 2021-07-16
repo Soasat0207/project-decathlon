@@ -9,10 +9,17 @@ cartRouter.post('/cartPage', (req, res, next)=>{
         userId : req.cookies.userId
     })
     .populate('product')
+    // .populate({
+    //     path: 'product',
+    //     populate: { path: 'productId'}
+    // })
     .populate({
         path: 'product',
-        populate: { path: 'productId'}
+        populate: { path: 'productId',
+        populate: { path : 'colorId'}
+    }
     })
+    
     .then(data =>{
         if(data){
           res.json(data)

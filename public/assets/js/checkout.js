@@ -28,14 +28,12 @@ function render() {
                 <h4>${objProduct.name}</h4>
               </div>
               <div class="cart-item-list-price">
-              <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price} ${objProduct.unit}</b></span>
+              <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price}</b></span>
               </div>
             </div>
           </div>
           `;
-          let pricePerOneProduct = parseInt(
-            objProduct.price.replace(/\./g, "")
-          );
+          let pricePerOneProduct = parseInt(objProduct.price.replace(/\,/g, ""));
           let quantityProduct = item.quantity;
           totalPrice += pricePerOneProduct * quantityProduct;
           $(".cart-item-list").append(productInfo);

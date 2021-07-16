@@ -1,7 +1,6 @@
 const mongoose = require('../connectDB');
 const Schema = mongoose.Schema;
 
-
 let SelectedProductSchema = new Schema({
     userId: String,
     productId: {
@@ -15,4 +14,5 @@ let SelectedProductSchema = new Schema({
 
 
 let SelectedProductModel = mongoose.model('selectedProduct', SelectedProductSchema);
+
 module.exports = SelectedProductModel;

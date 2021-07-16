@@ -12,5 +12,13 @@ SelectedProductRouter.post('/findSelectedProduct', (req, res, next) =>{
     })
 })
 
+SelectedProductRouter.post('/addToSelectedProduct', (req, res, next)=>{
+    SelectedProductModel.create({
+        userId: req.cookies.userId,
+        productId: req.body.productId,
+        quantity: 1
+    }).then(data => res.json(data))
+    .catch(err => res.json('Lỗi server'))
+})
 
 module.exports = SelectedProductRouter;

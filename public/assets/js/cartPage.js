@@ -13,16 +13,16 @@ function CartRender(){
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
-          console.log(item._id);
+          console.log(item);
           let content = `
               <div id = "content${item._id}" class = "cart-items-info">
                   <div class="cart-items-img"><img src="${item.img}" alt=""></div>
                   <div class="cart-items-info-product">
                       <div class="cart-items-info-product-description">
                           <div><h3>${item.name}</h3></div>
-                          <div>MÃ SẢN PHẨM: ${item.codeProduct}</div>
-                          <div>MÀU SẮC : ${item.imgColor[0]}</div>
-                          <div>KÍCH THƯỚC : None</div>
+                          <div>MÃ SẢN PHẨM: <strong>${item.codeProduct}</strong></div>
+                          <div>MÀU SẮC : <strong>${item.colorId.name}</strong></div>
+                          <div>KÍCH THƯỚC : <strong>None</strong></div>
                           <div>GIAO HÀNG TRONG VÒNG CHƯA ĐẦY 72 GIỜ</div>
                       </div>
                           <div id="pricePerOneProduct${item._id}" class="cart-items-unit-price">${item.price}</div>

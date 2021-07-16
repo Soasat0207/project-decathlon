@@ -9,12 +9,12 @@ function render() {
     type: "POST",
   })
     .then((data) => {
-      // console.log(12, data);
+      console.log(12, data);
       if (data) {
         let totalPrice = 0;
         for (const item of data.product) {
-          // console.log(item.productId);
           let objProduct = item.productId;
+          console.log(typeof objProduct.price);
           let productInfo = `
         <div class="cart-item-list-product">
           <div class="cart-item-list-image">
@@ -25,18 +25,17 @@ function render() {
               <h4>${objProduct.name}</h4>
             </div>
             <div class="cart-item-list-price">
-            <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price} ${objProduct.unit}</b></span>
+            <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price}</b></span>
             </div>
           </div>
         </div>
         `;
-          let pricePerOneProduct = parseInt(
-            objProduct.price.replace(/\./g, "")
-          );
+          let pricePerOneProduct = parseInt(objProduct.price.replace(/\,/g, ""));
           let quantityProduct = item.quantity;
           totalPrice += pricePerOneProduct * quantityProduct;
           $(".cart-item-list").append(productInfo);
         } // end for loop
+        console.log(38, totalPrice);
         if (totalPrice > 899000) {
           $(".shipping-cash-calc").append("Miễn phí");
         } else {
@@ -228,6 +227,15 @@ function renderOrderPage() {
     type: "POST",
   })
     .then(async (data) => {
+
+      let timeToDeliveried  = Date.now() + 3*24*60*60*1000;
+      let time = new Date(timeToDeliveried)
+      let date = time.getDate()
+      let day = time.getDay();
+      let month = time.getMonth() + 1;
+      let year = time.getFullYear()
+      let daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm','Thứ sáu','Thứ bảy']
+      // console.log(daysOfWeek[day],date, month, year);
       let content = `
     <div class="bg-border">
           <div class="deliveried-address">
@@ -243,7 +251,7 @@ function renderOrderPage() {
                       </div>
                       <div class="deliveried-options-right-content">
                           <div class="deliveried-options-list-date">
-                              Từ thứ 5, ngày 08/07
+                              Từ<b>\u00A0${daysOfWeek[day]}</b>, ngày<b>\u00A0${date}/${month}/${year}</b>
                           </div>
                           <div class="deliveried-options-list-cash">
                               36.000 VND
@@ -279,7 +287,7 @@ function renderOrderPage() {
         });
       } // end 'for' loop
 
-      // Add event when user click div
+  // Add event when user click div
       $(".deliveried-options-item").on("click", () => {
         // get id address from checked checkbox
         let checkedIdValue = $('.ratio:checked').attr('id').slice(5,100);
@@ -291,7 +299,15 @@ function renderOrderPage() {
             idAddress: checkedIdValue
           }
         }).then(data=>{
-        console.log(data);
+        // console.log(data);
+        let timeToDeliveried  = Date.now() + 3*24*60*60*1000;
+        let time = new Date(timeToDeliveried)
+        let date = time.getDate()
+        let day = time.getDay();
+        let month = time.getMonth() + 1;
+        let year = time.getFullYear()
+        let daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm','Thứ sáu','Thứ bảy']
+
           let content = `
           <div class="location-card">
               <h5>
@@ -299,7 +315,7 @@ function renderOrderPage() {
                   <span style="padding-left: 16px;">GIAO HÀNG TẠI NHÀ</span>
               </h5>
               <div class="location-card-infomation">
-                  <h3>TỪ <span style="color:#00B3B4">THỨ TƯ, 07/07</span></h3>
+                  <h3>TỪ <span style="color:#00B3B4">${daysOfWeek[day]}, ${date}/${month}/${year} </span></h3>
                   <p>Giao hàng đến ${data.district} ${data.province} </p>
               </div>
           </div>

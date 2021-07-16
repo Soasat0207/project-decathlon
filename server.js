@@ -9,6 +9,9 @@ const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const selectedProductRouter = require('./router/selectedProductRouter');
 const reviewRouter = require('./router/reviewRouter');
 const commentRouter = require('./router/commentRouter');
+const shoppingCartRouter = require('./router/shoppingCartRouter')
+
+
 const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 
@@ -136,6 +139,7 @@ app.use('/api/user/', ProductAdvantagesRouter);
 app.use('/api/nguoidung', userRouter);
 // Use router
 app.use('/api/user/', cartRouter);
+app.use('/api/user/', shoppingCartRouter);
 app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', checkoutRouter);
 app.use('/api/user/', selectedProductRouter);
