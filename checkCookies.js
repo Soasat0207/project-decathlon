@@ -7,8 +7,8 @@ const jwt = require('jsonwebtoken');
 
 async function checkCookies (req, res, next){
     let cookies = req.cookies.user;
-    let id = jwt.verify(cookies, 'duc').id;
 try{
+    let id = jwt.verify(cookies, 'duc').id;
     let data = await AccountModel.findOne({_id: id})
     if(data){
         req.id = data._id;

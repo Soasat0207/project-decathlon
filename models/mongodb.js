@@ -74,7 +74,12 @@ const levelProductSchema = new Schema(
     collection: "levelProduct",
   }
 );
-
+const accountBListSchema = new Schema(
+  {
+    token: String,
+  },
+  {collection: "blacklist"}
+);
 const productSchema = new Schema(
   {
     name: String,
@@ -280,6 +285,7 @@ const ordersSchema = new Schema(
   const OrderModel = mongoose.model("orderModel", ordersSchema);
   const ReviewModel = mongoose.model("review", reviewSchema);
   const CommentModel = mongoose.model("comment", commentSchema);
+  const AcountBListModel = mongoose.model("blacklist" ,accountBListSchema);
 // end of Create Model
 
 // exports Model
@@ -296,6 +302,6 @@ module.exports = {
   SupplierModel,
   CategoryProductModel,
   ReviewModel,
-  CommentModel,
+  CommentModel,AcountBListModel
 };
 // end of exports model

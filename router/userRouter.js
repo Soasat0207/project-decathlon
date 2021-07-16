@@ -45,7 +45,7 @@ userRouter.post('/dangnhap', async (req, res) => {
             res.json({
                 status: 200,
                 err: false,
-                mes: 'Thất bại',
+                mes: 'Thanh cong',
                 data: token
             })
         }else{
