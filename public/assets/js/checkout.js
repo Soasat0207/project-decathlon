@@ -13,7 +13,7 @@ function render() {
     type: "POST",
   })
     .then((data) => {
-      console.log(13, data);
+      // console.log(13, data);
       if (data) {
         let totalPrice = 0;
         for (const item of data.product) {
@@ -64,7 +64,7 @@ function renderCheckoutLeft() {
     type: "POST",
   })
     .then((data) => {
-      console.log(62, data);
+      // console.log(62, data);
       let deliveryAddress = `
       <div class="text-deliveried-address ">
       Giao hàng đến <span style="font-weight: 700;" class="end-address"> ${data.address.province}</span>

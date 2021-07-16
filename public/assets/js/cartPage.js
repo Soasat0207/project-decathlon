@@ -42,17 +42,18 @@ function CartRender(){
           $(".cart-items").append(content);
   
           // price total
-          let pricePerOneUnit = parseInt($(`#pricePerOneProduct${item._id}`).html().replace(/\./g, ""));
+          let pricePerOneUnit = parseInt($(`#pricePerOneProduct${item._id}`).html().replace(/\,/g, ""));
           let productQuantity = parseInt($(`#${item._id}`).val());
           totalPrices += ( pricePerOneUnit * productQuantity );
+          console.log(41, totalPrices);
   
           // price handler
           decreQuantity(item._id);
           increQuantity(item._id);
           priceOfOneProduct(item._id);
         } // \End for loop
-  
-        // console.log(48, totalPrices);
+        
+        console.log(56, totalPrices);
         // check shipping cash
         if(totalPrices > 899000){
             $('.cashShipping').html('');
@@ -68,11 +69,11 @@ function CartRender(){
           $('.freeShipCondition').append(`<i class="fal fa-truck"></i><strong >Bạn cần mua thêm ${extraMoney} để được MIỄN PHÍ GIAO HÀNG</strong>`);
 
         }
-        totalPrices = numberToCurrency(totalPrices)
+        totalPricesCurrencyFormated = numberToCurrency(totalPrices)
         $('.totalPriceOfProducts').html('');
-        $('.totalPriceOfProducts').html(totalPrices);
+        $('.totalPriceOfProducts').html(totalPricesCurrencyFormated);
         $('.totalPrices').html('');
-        $('.totalPrices').html(totalPrices);
+        $('.totalPrices').html(totalPricesCurrencyFormated);
       } // \End if condition
     })
     .catch((err) => {
@@ -147,10 +148,10 @@ function userUpdateQuantity(inputID){
 // function calculate price of one product
 function priceOfOneProduct(inputID) {
 
-  let pricePerOneUnit = parseInt($(`#pricePerOneProduct${inputID}`).html().replace(/\./g, ""));
+  let pricePerOneUnit = parseInt($(`#pricePerOneProduct${inputID}`).html().replace(/\,/g, ""));
   let productQuantity = parseInt($(`#${inputID}`).val());
   let totalUnitPrice = numberToCurrency(pricePerOneUnit * productQuantity)
-
+  
   $(`#price${inputID}`).html("");
   $(`#price${inputID}`).append(totalUnitPrice);
 }
@@ -171,6 +172,6 @@ function numberToCurrency(number){
   
   // function convert currency to number format
 function currencyToNumber(item){
-    var number = Number(item.replace(/[^0-9.-]+/g,""));
+    var number = Number(item.replace(/[^0-9,-]+/g,""));
     return number
 }

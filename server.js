@@ -105,9 +105,7 @@ app.get('/admin-add-account', (req, res) => {
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
-app.get('/checkout', (req, res, next) => {
-  res.sendFile(path.join(__dirname, './view/checkout.html'))
-})
+
 app.get('/dangky', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
 })
@@ -128,7 +126,7 @@ app.get('/order', (req, res) => {
   res.sendFile(path.join(__dirname, './views/order.html'))
 }) 
 app.get('/checkout', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/checkout.html'))
+  res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
 }) 
 // end admin
 // tạo đường dẫn tĩnh 

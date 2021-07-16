@@ -42,6 +42,7 @@ async function renderProductDetails() {
           type: "POST",
         });
         data.map((data) => {
+            console.log(45, data);
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
@@ -51,6 +52,16 @@ async function renderProductDetails() {
           $('.product_details-price').append(`<span class="product_details-price-text">${data.price} $</span>`);
           $('.product_details-medium-score').append(`<span>${data.rate}/5</span>`);
           $('.product_details-medium-score').append(`<span>${data.rate}/5</span>`);
+          $('.product_details-addcart-btn-yellow').attr("id", `addToCart${data._id}`)
+
+        // add event for button Add To Cart
+        $('.product_details-addcart-btn-yellow').on('click', ()=>{
+            let idOfProduct = $(`#addToCart${data._id}`).attr('id').slice(9, 100);
+            
+
+        })
+
+
 
           data.imgColor.map((data)=>{
               let div =`
