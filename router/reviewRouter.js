@@ -6,7 +6,7 @@ router.get('/',(req,res) =>{
     ModelMongo.ReviewModel.find({
 
     })
-    // .sort({createDate:-1})
+    .sort({createDate:-1})
     .populate({
         path:'productId'
     })
@@ -33,7 +33,7 @@ router.post('/',(req,res) =>{
     let title= req.body.title;
     let comment= req.body.comment;
     let accountId=token._id;
-    let createDate = new Date();
+    let createDate = (new Date()).valueOf();
     let status = true;
     ModelMongo.ReviewModel.create({
         productId:productId,
