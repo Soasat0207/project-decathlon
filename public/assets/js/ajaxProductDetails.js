@@ -311,16 +311,15 @@ function test(){
 
 // Hiển thị thông tin Advantages
 $.ajax({
-    url: '/api/user/viewadvantages/sp100011',
+    url: '/api/user/viewadvantages/sp116517',
     type: 'get',
 })
 .then((data) => {
-    console.log(15 ,data);
-    console.log(17, data.title1);
     if(data){
-        $('.photoAdvantages1').attr("src",data.advantagesPhoto1[0])
+        $('.photoAdvantages1').attr("src",`http://localhost:3000/${data.advantagesPhoto1[0]}`)
         $('.avdantagesTitle1').append(data.title1)
         $('.advantageContent01').append(data.advantagecontent1)
+        $('.photoAdvantages2').attr("src",`http://localhost:3000/${data.advantagesPhoto2[0]}`)
         $('.avdantagesTitle2').append(data.title2)
         $('.advantageContent02').append(data.advantagecontent2)
     }

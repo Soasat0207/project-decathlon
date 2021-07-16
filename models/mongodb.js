@@ -14,16 +14,17 @@ const accountSchema = new Schema(
     birthday: Date,
     mainAddress: String,
     subAddress: String,
+    noteAddress: String,
     city: String,
     avatar: {
       type: String,
       default:
         "https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
     },
-    createdAt: Date,
+    createdAt: { type: Date, default: new Date()},
     role: { type: String, default: "user" },
-    status: String,
-    description: String,
+    status: { type: Boolean, default: true},
+    description: { type: String, default: "123"},
   },
   {
     collection: "account",

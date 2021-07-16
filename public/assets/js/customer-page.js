@@ -45,7 +45,6 @@ function trahang() {
    $(".tabR").append(bien);
 
    if($('body').width() < 768){
-       console.log('ok');
        $(".tabR").css("display", "block");
        $(".tabL").css("display", "none")
 
@@ -84,6 +83,10 @@ function nutThongtin() {
     </div>
 
     <div class="hang3">
+        <div class="ngaysinh">
+        <p>Ngày sinh</p>
+        <input class="ngaysinh3" type="date">
+        </div>
         <p>Giới tính</p>
         <div class="gioitinh1">
             <div><input type="radio" name="giotinh" id="" class='nam3'></input><p>Nam</p></div>
@@ -103,7 +106,7 @@ function nutThongtin() {
     $(".tabR").append(bien);
 
     $.ajax({
-        url: '/api/nguoidung/thongtin',
+        url: '/api/cus/information',
         type: 'get',
     })
     .then((data) => {
@@ -112,18 +115,21 @@ function nutThongtin() {
         let ho;
         let email;
         let sdt;
-        let gender
+        let gender;
+        let birthday;
         if(data){
             ten = data.firstname;
             ho = data.lastname;
             email = data.email;
             sdt = data.phone;
-            gender = data.gender
+            gender = data.gender;
+            birthday = data.birthday.slice('0', '10');
         }
         $(".ten3").val(ten);
         $(".ho3").val(ho);
         $(".email3").val(email);
         $(".sdt3").val(sdt);
+        $(".ngaysinh3").val(birthday);
         if(gender == 'nu'){
             $('.nu3').prop("checked", true)
         }else{
@@ -135,7 +141,6 @@ function nutThongtin() {
     })
 
     if($('body').width() < 768){
-        console.log('ok');
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "none")
  
@@ -164,22 +169,25 @@ function nutDiachi() {
     $(".tabR").append(bien)
 
     $.ajax({
-        url: '/api/nguoidung/thongtin',
+        url: '/api/cus/information',
         type: 'get',
     })
     .then((data) => {
         let diachi;
         let ghichu;
+        let thanhpho
         let bien2;
         if(data.mainAddress){
             diachi = data.mainAddress;
             ghichu = data.noteAddress;
+            thanhpho = data.city;
             $(".tabR").html("");
             bien2 =`
             <div class="diachi">
             <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
                 <h3>Địa chỉ</h3>
                 <div>
+                    <div class="hangThanhpho"><p>Thành phố:</p><input type="text" class="noteThanhpho"></div>
                     <div class="hangDiachi"><p>Địa chỉ nhận hàng:</p><textarea name="" id="" cols="30" rows="10" class="diachinhanhang"></textarea></div>
                     <div class="hangGhichu"><p>Ghi chú:</p><textarea name="" id="" cols="30" rows="10" class="ghichu"></textarea></div>
                 </div>
@@ -189,6 +197,7 @@ function nutDiachi() {
             $(".tabR").append(bien2);
             $(".diachinhanhang").append(diachi);
             $(".ghichu").append(ghichu);
+            $('.noteThanhpho').val(thanhpho);
         }
         
     })
@@ -197,7 +206,6 @@ function nutDiachi() {
     })
 
     if($('body').width() < 768){
-        console.log('ok');
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "none")
  
@@ -213,7 +221,6 @@ function nutDiachi() {
 function nutThemdiachi() {
     let bien =`
     <div class="anNen">
-    <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
         <div class="themdiachi">
             <div class="hangdiachi1">
                 <h3>Thêm địa chỉ mới</h3>
@@ -221,6 +228,7 @@ function nutThemdiachi() {
             </div>
 
             <div class="diachinhanhang">
+                <input class="c" type="text" placeholder="Thành phố...">
                 <textarea name="" id="" cols="30" rows="10" placeholder="Địa chỉ nhận hàng..." class="a"></textarea>
                 <textarea name="" id="" cols="30" rows="10" placeholder="Ghi chú khi nhận hàng..." class="b"></textarea>
                 <button onclick="luudiachi()">Lưu địa chỉ</button>
@@ -240,12 +248,12 @@ function nutThoatdiachi(){
 
 // Check cookies
 $.ajax({
-    url: '/api/nguoidung/checkcookies',
+    url: '/api/cus/checkcookies',
     type: 'post',
 })
 .then((data) => {
     if(data !== 'Đăng nhập thành công'){
-        window.location.href = '/dangnhap'
+        window.location.href = '/login-cus'
     }
 })
 .catch((err) => {
@@ -255,13 +263,14 @@ $.ajax({
 // Cập nhập thông tin
 function nutLuuthongtin(){
     $.ajax({
-        url: "/api/nguoidung/capnhap",
+        url: "/api/cus/capnhap",
         type: 'put',
         data: {
             firstname: $('.ten3').val(),
             lastname: $('.ho3').val(),
             phone: $('.sdt3').val(),
             email: $('.email3').val(),
+            birthday: $('.ngaysinh3').val(),
         }
     })
     .then((data) => {
@@ -275,7 +284,7 @@ function nutLuuthongtin(){
 // Hiển thị email ở ô giao diện người dùng
 
 $.ajax({
-    url: '/api/nguoidung/thongtin',
+    url: '/api/cus/information',
     type: 'get',
 })
 .then((data) => {
@@ -292,11 +301,12 @@ $.ajax({
 // Thêm địa chỉ
 function luudiachi(){
     $.ajax({
-        url: '/api/nguoidung/diachi',
+        url: '/api/cus/address',
         type: 'put',
         data:{
             mainAddress: $('.a').val(),
             noteAddress: $('.b').val(),
+            city: $('.c').val(),
         }
     })
     .then((data) => {
@@ -310,11 +320,12 @@ function luudiachi(){
 // Sửa địa chỉ
 function suadiachi(){
     $.ajax({
-        url: "/api/nguoidung/diachi",
+        url: "/api/cus/address",
         type: 'put', 
         data: {
             mainAddress: $(".diachinhanhang").val(),
             noteAddress: $(".ghichu").val(),
+            city: $(".noteThanhpho").val(),
         }
     })
     .then((data) => {
@@ -328,13 +339,13 @@ function suadiachi(){
 // Đăng xuất
 function signout(){
     $.ajax({
-        url: "/api/nguoidung/blacklist",
+        url: "/api/cus/blacklist",
         type: "post"
     })
     .then((data) =>{
         if(data){
             delete_cookie('user')
-            window.location.href = '/dangnhap'
+            window.location.href = '/login-cus'
         }
     })
     .catch((err) => {

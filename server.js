@@ -105,17 +105,17 @@ app.get('/admin-add-account', (req, res) => {
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
+app.get('/registered-cus', (req, res)=>{
+  res.render('customer/registered-customers')
+})
+app.get('/login-cus', (req, res) => {
+  res.render('customer/customer-login')
+})
+app.get('/page-cus', (req, res) =>{
+  res.render('customer/customer-page')
+})
 
-app.get('/dangky', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
-})
-app.get('/nguoidung', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/trangUser.html'))
-})
 
-app.get('/dangnhap', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/dangnhapUser.html'))
-})
 app.get('/advantages', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
 }) 
@@ -133,7 +133,7 @@ app.get('/checkout', (req, res) => {
 app.use('/public',express.static(path.join(__dirname, './public')));
 // Use router
 app.use('/api/user/', ProductAdvantagesRouter);
-app.use('/api/nguoidung', userRouter);
+app.use('/api/cus', userRouter);
 // Use router
 app.use('/api/user/', cartRouter);
 app.use('/api/user/', userAddressRouter);
