@@ -9,6 +9,7 @@ function render() {
     type: "POST",
   })
     .then((data) => {
+      // console.log(12, data);
       if (data) {
         let totalPrice = 0;
         for (const item of data.product) {
@@ -60,7 +61,7 @@ function updateAddress() {
     type: "POST",
   })
     .then((data) => {
-      console.log(63, data);
+      // console.log(63, data);
       for (const item of data) {
         // console.log(63 , item);
         let content = `
@@ -272,7 +273,7 @@ function renderOrderPage() {
       `;
         $(".deliveried-address").prepend(addressContent);
 
-        // function only checked input
+        // Allow only checked input
         $(".ratio").on("change", function () {
           $(".ratio").not(this).prop("checked", false);
         });
@@ -303,17 +304,15 @@ function renderOrderPage() {
               </div>
           </div>
           <div class="card-button">
-              <button onlick="checkout('${data._id}')" class="card-button-confirm">Thanh toán</button>
+              <button onclick="createOrderFnc('${data._id}')" class="card-button-confirm">Thanh toán</button>
           </div>
         `;
         // add content to html 
         $(".card-container").html("");
         $(".card-container").append(content);
 
-        // checkout onclick
-          function checkout(id){
+        
 
-          }
         }).catch(err=>{
           console.log(err);
         })
@@ -325,10 +324,49 @@ function renderOrderPage() {
       console.log(err);
     });
 }
+// createOrderFnc onclick
+function createOrderFnc(id){
+  $.ajax({
+    url: '/api/user/findSelectedProduct',
+    type: 'POST'
+  }).then(data =>{
+    let productId = [];
+    data.forEach(item =>{
+      productId.push(item._id)
+    })
 
-// function 
+    // console.log(337, productId);
+    if(data){
+      let totalPriceString = $('.all-price-calc').html();
+      let totalPrice = currencyToNumber(totalPriceString);
+      // console.log(totalPrice);
+      createOrderModel(id);
+      
+      function createOrderModel(id){
+        $.ajax({
+          url: '/api/user/createOrder',
+          type: 'POST',
+          data: {
+            product: productId,
+            addressId: id,
+            methodPayment: '',
+            totalPrice: totalPrice
+          }
+        }).then(data=>{
+          if(data){
+            window.location.href = '/checkout'
+          }
+        }).catch(err =>{
+          console.log(err);
+        })
+      }
+    }
+  }).catch(err =>{
+    console.log(err);
+  })
+  
 
-
+}
 
 
 // function reload order page
@@ -351,3 +389,4 @@ function currencyToNumber(item) {
   var number = Number(item.replace(/[^0-9.-]+/g, ""));
   return number;
 }
+

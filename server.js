@@ -4,17 +4,19 @@ const port = 3000;
 const path = require('path');
 const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
+const checkoutRouter = require('./router/checkoutRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
-const orderRouter = require('./router/orderRouter');
-const SelectedProductRouter = require('./router/selectedProductRouter');
+const selectedProductRouter = require('./router/selectedProductRouter');
 const reviewRouter = require('./router/reviewRouter');
 const commentRouter = require('./router/commentRouter');
 const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
+
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
 // parse application/json
 app.use(express.json())
+
 // Send html file
 const productRouter = require('./router/productRouter');
 const categoryRouter = require('./router/categoryRouter');
@@ -62,12 +64,12 @@ app.get('/list-product', (req, res) => {
 app.get('/product-details/:id', (req, res) => {
   res.render('user/product_details');
 })
-app.get('/cart', (req, res, next) => {
-  res.render('user/cart');
-})
-app.get('/order', (req, res, next) => {
-  res.render('user/order');
-})
+// app.get('/cart', (req, res, next) => {
+//   res.render('user/cart');
+// })
+// app.get('/order', (req, res, next) => {
+//   res.render('user/order');
+// })
 //end user
 // admin
 app.get('/admin-list-category', (req, res) => {
@@ -103,6 +105,7 @@ app.get('/admin-add-account', (req, res) => {
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
+
 app.get('/dangky', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
 })
@@ -116,6 +119,15 @@ app.get('/dangnhap', (req, res) => {
 app.get('/advantages', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
 }) 
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/cart.html'))
+}) 
+app.get('/order', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/order.html'))
+}) 
+app.get('/checkout', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
+}) 
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
@@ -125,8 +137,8 @@ app.use('/api/nguoidung', userRouter);
 // Use router
 app.use('/api/user/', cartRouter);
 app.use('/api/user/', userAddressRouter);
-app.use('/api/user/', orderRouter);
-app.use('/api/user/', SelectedProductRouter);
+app.use('/api/user/', checkoutRouter);
+app.use('/api/user/', selectedProductRouter);
 app.use('/api/product',productRouter);
 app.use('/api/category',categoryRouter);
 app.use('/api/color',colorRouter);

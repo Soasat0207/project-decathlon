@@ -49,8 +49,8 @@ body{
 
 /* Checkbox rounded */
 .checkbox-round{
-    width: 1.3em;
-    height: 1.3em;
+    width: 1em;
+    height: 1em;
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;

@@ -232,11 +232,8 @@ const shoppingCartSchema = new Schema(
   {
     product: [
       {
-        productId: {
-          type: String,
-          ref: "product",
-        },
-        quantity: Number,
+        type: String,
+        ref: 'selectedProduct'
       },
     ],
     userId: {
@@ -250,7 +247,12 @@ const shoppingCartSchema = new Schema(
 // Orders Schema
 const ordersSchema = new Schema(
   {
-    product: [{ type: String, ref: "selectedProduct" }],
+    product: [
+      { 
+        type: String, 
+        ref: "selectedProduct"
+      }
+    ],
     address: {
       type: String,
       ref: "useraddress",
@@ -263,8 +265,8 @@ const ordersSchema = new Schema(
       type: String,
       default: "Dang van chuyen",
     },
+    methodPayment: String,
     orderDate: Date,
-    payment: String,
     totalPrice: Number,
   },
   { collection: "orders" }

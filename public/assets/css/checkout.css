@@ -1,0 +1,215 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #F8F9F9 !important;
+    height: 1000px !important;
+}
+.perfect-center-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.perfect-center-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-header{
+    padding: 12px 30px;
+    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 2%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.checkout-header-nav{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+.checkout-header-item{
+    display: flex;
+    align-items: center;
+}
+.checkout-header-item span{
+    padding: 10px 35px 10px 10px;
+    display: block;
+    color: #9a9e9f;
+    transition: color 0.3s ease;
+    margin: 0 20px;
+    cursor: default;
+    font-size: 1.6rem;
+}
+.checkout-header-item span:hover{
+    color:var(--green);
+}
+.checkout-header-item span:hover::before{
+    border-color: var(--green);
+}
+
+/* Checkbox rounded */
+.checkbox-round{
+    width: 1em;
+    height: 1em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-round:checked{
+    background-color: rgb(79, 209, 79,0.8);
+}
+.checkout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px !important;
+}
+.bg-border{
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.checkout-right div{
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.checkout-left{
+    width: 65%;
+    padding: 0px 20px;
+}
+.checkout-left>div{
+    margin: 10px;
+}
+.checkout-right{
+    width: 35%;
+    height: 500px;
+    padding: 0px 10px;
+}
+
+
+div.col-md-6 input, div.col-md-6 select{
+    width: 100%;
+}
+.save-address-btn{
+    padding: 10px;
+    font-size: 16px;
+}
+/* Cart promise css */
+.cart-promise{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    justify-content: space-around;
+}
+.cart-promise-div2{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+}
+.cart-promise-div2 img{
+    width: 60%;
+    height: 80%;
+}
+/* \End cart promise css */
+
+
+.cart-item-list{
+    display: flex;
+    flex-direction: column;
+}
+.cart-item-list-product{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cart-item-list-name{
+    font-weight: bold;
+}
+
+.cart-item-list-infomation{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.cart-item-list-image img{
+    width: 70px;
+    height: 70px;
+}
+
+.deliveried-address{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.change-deliveried-address, .change-deliveried-date{
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+.deliveried-date{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.checkout-infomation{
+    display: flex;
+    flex-direction: column;
+    
+}
+.payment-options{
+    display: flex;
+    flex-direction: column;
+}
+.payment-options > div{
+    padding: 15px 0px;
+}
+.payment-options-select{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 10px;
+}
+.payment-options-select > div{
+    padding: 0px 10px;
+}
+.payment-options-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.payment-options-button-confirm{
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: yellow;
+}
+.orderInfo{
+    color: green;
+    font-size: 24px;
+}
+.goToHomePage{
+    padding: 10px 10px !important;
+    border-radius: 8px;
+    background: yellow;
+}
+.orderNotification>*{
+    padding: 10px 0px;
+}

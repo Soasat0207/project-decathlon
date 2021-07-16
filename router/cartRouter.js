@@ -1,12 +1,18 @@
 const express = require('express');
 const cartRouter = express.Router();
 const model = require('../models/mongodb');
+const SelectedProductModel = require('../models/selectedProductModel')
 
 cartRouter.post('/cartPage', (req, res, next)=>{
+
     model.ShoppingCartModel.findOne({
         userId : req.cookies.userId
     })
-    .populate('product.productId')
+    .populate('product')
+    .populate({
+        path: 'product',
+        populate: { path: 'productId'}
+    })
     .then(data =>{
         if(data){
           res.json(data)
@@ -21,10 +27,9 @@ cartRouter.post('/cartPage', (req, res, next)=>{
 // delete product from Cart
 cartRouter.delete('/deleteProduct', (req, res, next) =>{
     
-    model.ShoppingCartModel.updateMany({
-        userId : req.cookies.userId
-    }, {
-        $pull :{ product:  { productId : req.body.productId}}
+    SelectedProductModel.deleteOne({
+        userId : req.cookies.userId,
+        productId : req.body.productId
     })
     .then(data => {
         if(data.nModified !== 0){
@@ -41,17 +46,17 @@ cartRouter.delete('/deleteProduct', (req, res, next) =>{
 
 cartRouter.put('/updateQuantity', (req, res, next)=>{
 
-    model.ShoppingCartModel.updateMany({
-        userId: req.cookies.userId,
-        "product.productId": req.body.productId 
+    SelectedProductModel.updateOne(
+        {
+        userId : req.cookies.userId,
+        productId : req.body.productId
         },
-        { $set: { "product.$.quantity" : req.body.newQuantity } }
-     ).then(data =>{
+        { quantity : req.body.newQuantity }
+    ).then(data =>{
         res.json(data)
     }).catch(err => {
         res.json(err)
     })
-    
 })
 
 module.exports = cartRouter;
