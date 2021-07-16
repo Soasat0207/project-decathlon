@@ -75,8 +75,6 @@ body{
 .checkbox-round:checked{
     background-color: rgb(79, 209, 79,0.8);
 }
-  
-  
 .checkout{
     display: flex;
     flex-direction: row;

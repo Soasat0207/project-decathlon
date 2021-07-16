@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List product</title>
+    <%- include('../partials/head-user'); -%>
+</head>
+<body style="position: relative;">
+    <%- include('../partials/user-navbar'); -%>
+    <section class="body">
+        <div class="body-warp">
+            <div class="body-header">
+                <h1 class="body-header_title">Quần áo và giày dép nữ </h1>
+            </div>
+            <div class="row">
+                <div class="hide-on-mobile-tablet body-warp-left col-lg-2 ">
+                    <div class="menu-search">
+                        <div class="menu-search-category">
+                            <h2 class="menu-search-category-title">Category <span><i class="far fa-plus"></i></span></h2>
+                            <ul class="menu-search-category-list">
+                                
+                            </ul>
+                        </div>
+                        <div class="menu-search-filter">
+                            <h2 class="menu-search-filter-title">Bộ lọc <span><i class="far fa-plus"></i></span></h2>
+                            <ul class="menu-search-filter-list menu-search-filter-list-level">
+                                <h4 class='menu-search-filter-item-title'>Lọc theo Trình Độ</h4>
+                            </ul>
+                            <ul class="menu-search-filter-list menu-search-filter-list-size">
+                                <h4 class='menu-search-filter-item-title'>Lọc theo Size</h4>
+                            </ul>
+                            <ul class="menu-search-filter-list">
+                                <h4 class='menu-search-filter-item-title'>Lọc theo màu sắc</h4>
+                                <li class="menu-search-filter-items menu-search-filter-items-color"></li>
+                            </ul>
+                            <ul class="menu-search-filter-list menu-search-filter-list-Trademark">
+                                <h4 class='menu-search-filter-item-title'>Lọc theo Thương Hiệu</h4>
+                            </ul>
+                            <ul class="menu-search-filter-list">
+                                <h4 class='menu-search-filter-item-title'>Lọc theo phạm vi gia</h4>
+                                <li class="menu-search-filter-items menu-search-filter-items-range">
+                                    <div class="menu-search-filter-range">
+                                        <div class="range-slider flat" data-ticks-position='top' style='--min:-500; --max:500; --value-a:-220; --value-b:400; --suffix:"$"; --text-value-a:"-220"; --text-value-b:"400";'>
+                                            <input type="range" min="-500" max="500" value="-220" oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value));">
+                                            <output></output>
+                                            <input type="range" min="-500" max="500" value="400" oninput="this.parentNode.style.setProperty('--value-b',this.value); this.parentNode.style.setProperty('--text-value-b', JSON.stringify(this.value))">
+                                            <output></output>
+                                            <div class='range-slider__progress'></div>
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="body-warp-right col-lg-10 col-md-12 col-sm-12">
+                    <div class="product-filters-top">
+                        <div class="row no-gutters">
+                            <div class="col col-lg-3 col-md-12 col-sm-12 product-sorting-bar">
+                                <button class="product-sorting-bar-btn">
+                                    <span class="product-sorting-bar-icon"><i class="far fa-map-marker-alt"></i></span>
+                                    <span class="product-sorting-bar-desc">Chọn của hàng của bạn xem tình trạng còn hàng </span>
+                                </button>
+                            </div>
+                            <div class=" col col-lg-9 col-md-12 col-sm-12 store-fillters">
+                                    <div class="product-sorting-bar store-fillters">
+                                        <div class="col col-lg-4 col-md-4  col-sm-4">
+                                            <div class="information-product">
+                                                <span class="hide-on-mobile-tablet information-product-number">1.398</span>
+                                                <span class="hide-on-mobile-tablet information-product-description">sản phẩm </span>
+                                                <span class='information-product-mobile-fillter hide-on-mobile-pc'><i class="fal fa-sliders-v"></i>Bộ lọc </span>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-8 col-md-8 col-sm-8">
+                                            <div class="information-product">
+                                                <div class="information-product-option">
+                                                    <div class="information-product-option-value">
+                                                        <p class="information-product-option-value-desc">Lựa chọn của chúng tôi</p>
+                                                        <span class="information-product-option-icon"><i class="far fa-chevron-down"></i></span>
+                                                        <ul class="information-product-list">
+                                                            <li class="information-product-items information-product-items-active">
+                                                                <a class="information-product-link"><span>Lựa chọn của chúng tôi</span></a>
+                                                            </li>
+                                                            <li class="information-product-items">
+                                                                <a class="information-product-link"><span>Lựa chọn của chúng tôi</span></a>
+                                                            </li>
+                                                            <li class="information-product-items">
+                                                                <a class="information-product-link"><span>Lựa chọn của chúng tôi</span></a>
+                                                            </li>
+                                                            <li class="information-product-items">
+                                                                <a class="information-product-link"><span>Lựa chọn của chúng tôi</span></a>
+                                                            </li>
+                                                        </ul>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list-wrapper">
+                        <div class="product-list">
+                        </div>
+                    </div>
+                    <div class="more-content">
+                        <button class="more-content-btn">Xem THÊM SẢN PHẨM </button>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+    <div class="filters-faceting">
+        <div class="filters-faceting-wrapper">
+            <div class="filters-faceting-top">
+                <span class="filters-faceting-top-description"><i class="fal fa-sliders-v"></i>Bộ lọc </span>
+                <span class="filters-faceting-top-close"><i class="fal fa-times-circle"></i></span>
+            </div>
+            <div class="filters-faceting-body">
+                <ul class="menu-search-filter-list menu-search-filter-list-mobile-warp">
+                    <h4 class='menu-search-filter-item-title menu-search-filter-item-title-mobile'>Lọc theo sản phẩm <i class="far fa-plus"></i></h4>
+                    <ul class="menu-search-filter-list-mobile ">
+                        <li class="menu-search-filter-items">
+                            <a href="" class="menu-search-filter-link">
+                                <input class="menu-search-filter-checkbox" type="checkbox" name="" id="">
+                                <p class="menu-search-filter-description">Quần Áo <span>(1127)</span></p>
+                            </a>
+                        </li>
+                        <li class="menu-search-filter-items">
+                            <a href="" class="menu-search-filter-link">
+                                <input class="menu-search-filter-checkbox" type="checkbox" name="" id="">
+                                <p class="menu-search-filter-description">Quần Áo <span>(1127)</span></p>
+                            </a>
+                        </li>
+                        <li class="menu-search-filter-items">
+                            <a href="" class="menu-search-filter-link">
+                                <input class="menu-search-filter-checkbox" type="checkbox" name="" id="">
+                                <p class="menu-search-filter-description">Quần Áo <span>(1127)</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </ul>
+                <ul class="menu-search-filter-list menu-search-filter-list-mobile-warp">
+                    <h4 class='menu-search-filter-item-title menu-search-filter-item-title-mobile'>Lọc theo sản phẩm <i class="far fa-plus"></i></h4>
+                    <ul class="menu-search-filter-list-mobile ">
+                        <li class="menu-search-filter-items">
+                            <a href="" class="menu-search-filter-link">
+                                <input class="menu-search-filter-checkbox" type="checkbox" name="" id="">
+                                <p class="menu-search-filter-description">Quần Áo <span>(1127)</span></p>
+                            </a>
+                        </li>
+                        <li class="menu-search-filter-items">
+                            <a href="" class="menu-search-filter-link">
+                                <input class="menu-search-filter-checkbox" type="checkbox" name="" id="">
+                                <p class="menu-search-filter-description">Quần Áo <span>(1127)</span></p>
+                            </a>
+                        </li>
+                        <li class="menu-search-filter-items">
+                            <a href="" class="menu-search-filter-link">
+                                <input class="menu-search-filter-checkbox" type="checkbox" name="" id="">
+                                <p class="menu-search-filter-description">Quần Áo <span>(1127)</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </ul>
+                
+            </div>
+            <div class="filters-faceting-footer">
+                <button class="filters-faceting-footer-btn">ỨNG DỤNG</button>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer'); -%>
+</body>
+<%- include('../partials/user-script.ejs'); -%>
+<script src="/public/assets/js/ajaxListProduct.js"></script>
+</html>

@@ -1,14 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require("../connectDB");
 const Schema = mongoose.Schema;
 
-mongoose.connect("mongodb://localhost/decathlon", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
-
-// Accout Schema
+// Account Schema
 const accountSchema = new Schema(
   {
     username: String,
@@ -182,6 +175,7 @@ const reviewSchema = new Schema(
     },
     rate: String,
     comment: String,
+    title: String,
     accountId: {
       type: String,
       ref: "account",

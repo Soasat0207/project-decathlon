@@ -1,12 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require('../connectDB');
 const Schema = mongoose.Schema;
-
-mongoose.connect("mongodb://localhost/decathlon", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
 
 let UserAddressSchema = new Schema({
     userId: String,

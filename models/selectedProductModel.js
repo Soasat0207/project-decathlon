@@ -1,12 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('../connectDB');
 const Schema = mongoose.Schema;
 
-mongoose.connect("mongodb://localhost/decathlon", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
 
 let SelectedProductSchema = new Schema({
     userId: String,
@@ -21,6 +15,4 @@ let SelectedProductSchema = new Schema({
 
 
 let SelectedProductModel = mongoose.model('selectedProduct', SelectedProductSchema);
-
-
 module.exports = SelectedProductModel;
