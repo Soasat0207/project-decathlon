@@ -23,5 +23,4 @@ let SelectedProductSchema = new Schema({
 let SelectedProductModel = mongoose.model('selectedProduct', SelectedProductSchema);
 
 
-
 module.exports = SelectedProductModel;
