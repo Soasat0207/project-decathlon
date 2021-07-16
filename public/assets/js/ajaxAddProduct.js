@@ -26,7 +26,10 @@ Validator({
 })
 async function createProduct() {
     let myForm = document.getElementById('formAddProduct');
-    let formData = new FormData(myForm);   
+    let formData = new FormData(myForm);
+    for(var pair of formData.entries()) {
+        console.log(pair[0],pair[1]);
+     }   
     try {
       let data = await $.ajax({
         url: "/api/product",

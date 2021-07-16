@@ -69,10 +69,24 @@ async function render() {
       url: "/api/product",
       type: "GET",
     });
-    
-    data.map(async(data,index) => {
-        await tableProduct(data,index);
+    let CodeProductArr = [];
+    data.map((data)=>{
+      if (CodeProductArr.indexOf(data) === -1) {
+        CodeProductArr.push(data.codeProduct);
+      }
+    })
+    let dataCodeProduct = CodeProductArr.filter((item,index)=>{
+      return CodeProductArr.indexOf(item) === index 
     });
+    dataCodeProduct.map(async(dataCodeProduct)=>{    
+      for(let i = 0; i <data.length; i++){
+          if(data[i].codeProduct == dataCodeProduct){
+            await tableProduct(data[i],i);
+             console.log(data[i]);
+          break;
+          }
+      }
+    })
     product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     
   } catch (error) {

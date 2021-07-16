@@ -167,7 +167,7 @@ async function renderReview() {
           type: "GET",
           
         });
-        data.map((data) => {
+        data.map((data, index) => {
             console.log(data)
             let div = `
                 <div class="review-list-items">
@@ -219,7 +219,7 @@ async function renderReview() {
                                     6.1863042 2.3532724 8.8547885c.2157552.8118341-.6049753 1.5118208-1.3725906 1.1706584z"></path>
                                     </svg>
                                     <span>${data.rate}/5</span>
-                                    <span class="review-items-details-rate-time">20/06/2021</span>
+                                    <span class="review-items-details-rate-time">${data.createDate}</span>
                                 </div>
                                 <div class="review-items-desc">
                                     <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
@@ -243,7 +243,7 @@ async function renderReview() {
                     <span>${data.comment}</span>
                 </div>
                 `
-            $('.review-items-details').append(div);
+            $('.review-items-details').eq(index).append(div);
             })
         });
         let addInputComment = $('.review-add-input-comment');

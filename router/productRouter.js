@@ -47,8 +47,10 @@ router.get('/',(req,res) =>{
 })
 // tạo database mới 
 router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgProduct', maxCount: 12 }]),(req,res,next) =>{
-    const imgColorArray= req.files.imgColor.map(element => {return '/public/uploads/'+element.filename})
+   
+    const imgColorArray= req.files.imgColor.map(element => {return '/public/uploads/'+element.originalname.split('.')[0]+element.filename})
     const imgProductArray= req.files.imgProduct.map(element => {return '/public/uploads/'+element.filename})
+    console.log(imgColorArray);
     let img = req.body.img;
     let imgColor = req.body.imgColor;
     let name = req.body.ProductName;
@@ -68,37 +70,37 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
     let trademarkId = req.body.productTradeMark;
     let supplierId = req.body.productSupplier;
     let categoryProductId = req.body.productCategory;
-    ModelMongo.ProductModel.create({
-        img:imgProductArray,
-        imgColor:imgColorArray,
-        name:name,
-        codeProduct:codeProduct,
-        priceImport:priceImport,
-        price:price,
-        unit:unit,
-        quantity:quantity,
-        descriptionShort:descriptionShort,
-        descriptionDetails:descriptionDetails,
-        title:title,
-        rate:rate,
-        gender:gender,
-        sizeId:sizeId,
-        colorId:colorId,
-        levelId:levelId,
-        trademarkId:trademarkId,
-        supplierId:supplierId,
-        categoryProductId:categoryProductId,
-    })
-    .then((data) =>{
-        return res.json({
-            message:'susses',
-            status:200,
-            data:data,
-        })
-    })
-    .catch((error)=>{
-        res.status(500).json('loi sever')
-    })
+    // ModelMongo.ProductModel.create({
+    //     img:imgProductArray,
+    //     imgColor:imgColorArray,
+    //     name:name,
+    //     codeProduct:codeProduct,
+    //     priceImport:priceImport,
+    //     price:price,
+    //     unit:unit,
+    //     quantity:quantity,
+    //     descriptionShort:descriptionShort,
+    //     descriptionDetails:descriptionDetails,
+    //     title:title,
+    //     rate:rate,
+    //     gender:gender,
+    //     sizeId:sizeId,
+    //     colorId:colorId,
+    //     levelId:levelId,
+    //     trademarkId:trademarkId,
+    //     supplierId:supplierId,
+    //     categoryProductId:categoryProductId,
+    // })
+    // .then((data) =>{
+    //     return res.json({
+    //         message:'susses',
+    //         status:200,
+    //         data:data,
+    //     })
+    // })
+    // .catch((error)=>{
+    //     res.status(500).json('loi sever')
+    // })
 });
 // tìm theo like name code product
 router.post('/findname',(req,res) =>{

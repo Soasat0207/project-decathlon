@@ -3,10 +3,10 @@ const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 const jwt = require('jsonwebtoken');
 router.get('/',(req,res) =>{
-    ModelMongo.reviewModel.find({
+    ModelMongo.ReviewModel.find({
 
     })
-    // .sort({createDate:-1})
+    .sort({createDate:-1})
     .populate({
         path:'productId'
     })
@@ -33,9 +33,9 @@ router.post('/',(req,res) =>{
     let title= req.body.title;
     let comment= req.body.comment;
     let accountId=token._id;
-    let createDate = new Date();
+    let createDate = (new Date()).valueOf();
     let status = true;
-    ModelMongo.reviewModel.create({
+    ModelMongo.ReviewModel.create({
         productId:productId,
         rate:rate,
         title:title,
@@ -60,7 +60,7 @@ router.put('/',(req,res) =>{
     let reply = req.body.reply;
     let id = req.body.id;
     console.log(reply)
-    ModelMongo.reviewModel.findOneAndUpdate({
+    ModelMongo.ReviewModel.findOneAndUpdate({
         _id:id,
     },{
         reply:reply,
