@@ -4,10 +4,9 @@ const model = require('../models/mongodb');
 const SelectedProductModel = require('../models/selectedProductModel')
 
 cartRouter.post('/cartPage', (req, res, next)=>{
-
     model.ShoppingCartModel.findOne({
         userId : req.cookies.userId,
-        sold : req.body.sold
+        sold : false
     })
     .populate('product')
     // .populate({

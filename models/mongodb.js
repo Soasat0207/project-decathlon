@@ -264,6 +264,10 @@ const ordersSchema = new Schema(
       type: String,
       default: "Dang van chuyen",
     },
+    sold: {
+      type : Boolean,
+      default: false
+    },
     methodPayment: String,
     orderDate: Date,
     totalPrice: Number,

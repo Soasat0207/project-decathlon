@@ -44,7 +44,8 @@ shoppingCartRouter.post('/createShoppingCart', (req, res, next)=>{
 })
 shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
     model.ShoppingCartModel.updateOne({
-        userId : req.cookies.userId
+        userId : req.cookies.userId,
+        sold: false
     }, {
         $push : { product : req.body.newProduct}
     })
@@ -56,6 +57,19 @@ shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
     })
 })
 
+// update sold status
+shoppingCartRouter.put('/updateSoldShoppingCart', (req, res, next)=>{
+    model.ShoppingCartModel.updateMany({
+        userId: req.cookies.userId,
+        sold: false
+    }, {
+        sold : true
+    }).then(data =>{
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+})
 
 module.exports = shoppingCartRouter;
 

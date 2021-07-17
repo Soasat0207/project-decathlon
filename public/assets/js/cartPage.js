@@ -12,11 +12,9 @@ function CartRender(){
   })
     .then((data) => {
       if (data) {
-        // console.log(12 ,data);
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
-          // console.log(item);
           let content = `
               <div id = "content${item._id}" class = "cart-items-info">
                   <div class="cart-items-img"><img src="${item.img}" alt=""></div>

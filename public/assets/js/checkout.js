@@ -125,7 +125,7 @@ function renderCheckoutLeft() {
 
 renderCheckoutLeft();
 
-// Change address button
+// Add event for Confirm button
 $(".payment-options-button-confirm").on("click", () => {
   let idChecked = $(".payment-options-checkbox:checked").attr("id");
   $.ajax({
@@ -137,6 +137,8 @@ $(".payment-options-button-confirm").on("click", () => {
   })
     .then((data) => {
       if (data.nModified !== 0) {
+        updateSoldForSelected();
+        updateSoldForShoppingCart();
         renderOrderConfirm();
       }
     })
@@ -144,7 +146,32 @@ $(".payment-options-button-confirm").on("click", () => {
       console.log(errr);
     });
 });
-// function xác nhận thông tin đơn hàng
+// function update sold status for selected product model
+function updateSoldForSelected(){
+  $.ajax({
+    url: '/api/user/updateSelectedProduct',
+    type : 'PUT'
+  }).then(data =>{
+    console.log(data);
+  }).catch(err =>{
+    console.log(err);
+  })
+}
+// function update sold status for shopping Cart model
+function updateSoldForShoppingCart(){
+  $.ajax({
+    url: '/api/user/updateSoldShoppingCart',
+    type : 'PUT'
+  }).then(data =>{
+    console.log(data);
+  }).catch(err =>{
+    console.log(err);
+  })
+}
+
+
+
+// function to confirm order infomation
 function renderOrderConfirm() {
   $(".checkout-infomation").html("");
   $(".deliveried-address").html("");
@@ -153,6 +180,7 @@ function renderOrderConfirm() {
     type: "POST",
   })
     .then((data) => {
+      console.log(data);
       let methodOfPayment = "";
       if (data.methodPayment === "CashByCod") {
         methodOfPayment = "Thanh toán khi nhận hàng";
@@ -178,7 +206,7 @@ function renderOrderConfirm() {
       $(".deliveried-address").append(addressConfirm);
       // go to homepage button
       $(".goToHomePage").on("click", () => {
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3000/list-product";
       });
     })
     .catch((err) => {

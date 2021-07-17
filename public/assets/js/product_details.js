@@ -65,3 +65,7 @@ renderCart()
 $('.list-view-cart').on('click', ()=>{
     window.location.href = 'http://localhost:3000/cart'
 })
+$('.navbar-list-items-cart').on('click', (event)=>{
+    event.preventDefault();
+    window.location.href = 'http://localhost:3000/cart'
+})

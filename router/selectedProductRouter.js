@@ -38,4 +38,17 @@ SelectedProductRouter.delete('/deleteSelectedProduct', (req, res, next)=>{
     })
 })
 
+SelectedProductRouter.put('/updateSelectedProduct', (req, res, next)=>{
+    SelectedProductModel.updateMany({
+        userId : req.cookies.userId,
+        sold : false
+    }, {
+        sold : true
+    }).then(data =>{
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+})
+
 module.exports = SelectedProductRouter;

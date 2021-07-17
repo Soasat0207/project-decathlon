@@ -21,11 +21,13 @@ checkoutRouter.post('/createOrder', (req, res,next) =>{
 
 // find order 
 checkoutRouter.post('/findOrder', (req,res,next)=>{
-    model.OrderModel.findOne({userId : req.cookies.userId})
+    model.OrderModel.find({
+        userId : req.cookies.userId,
+    })
     .populate('address')
     .populate('product')
     .then(data => {
-        res.json(data)
+        res.json(data[data.length - 1])
     }).catch(err =>{
         res.json(err)
     })
@@ -33,12 +35,14 @@ checkoutRouter.post('/findOrder', (req,res,next)=>{
 
 // checkout update method of payment
 checkoutRouter.put('/updatePaymentMethod', (req, res, next)=>{
-    // console.log(req.body.methodPayment);
-    // console.log(req.cookies.userId);
     model.OrderModel.updateOne(
-        { userId : req.cookies.userId },
         {
-        methodPayment: req.body.methodPayment
+             userId : req.cookies.userId,
+             sold : false
+             },
+        {
+        methodPayment: req.body.methodPayment,
+        sold : true
         })
     .then(data =>{
         res.json(data)

@@ -66,7 +66,6 @@ async function renderProductDetails() {
             }).then(data =>{
                 if(data){
                     findAndCreateShoppingCart();
-                    alert('Thêm vào giỏ hàng thành công');
                     renderCart();
                 }
             }).catch(err =>{
