@@ -15,7 +15,10 @@ shoppingCartRouter.get('/shoppingCart', (req, res, next)=>{
 })
 
 shoppingCartRouter.post('/findShoppingCart', (req, res, next)=>{
-    model.ShoppingCartModel.find({userId : req.cookies.userId})
+    model.ShoppingCartModel.find({
+        userId : req.cookies.userId,
+        sold : req.body.sold
+    })
     .then(data => {
         res.json(data)
     })
@@ -52,9 +55,6 @@ shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
         res.status(400).json('err')
     })
 })
-
-
-
 
 
 module.exports = shoppingCartRouter;

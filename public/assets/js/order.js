@@ -7,6 +7,9 @@ function render() {
   $.ajax({
     url: "/api/user/cartPage",
     type: "POST",
+    data: {
+      sold :false
+    }
   })
     .then((data) => {
       console.log(12, data);
@@ -344,7 +347,10 @@ function renderOrderPage() {
 function createOrderFnc(id){
   $.ajax({
     url: '/api/user/findSelectedProduct',
-    type: 'POST'
+    type: 'POST',
+    data: {
+      sold : false
+    }
   }).then(data =>{
     let productId = [];
     data.forEach(item =>{
@@ -359,6 +365,7 @@ function createOrderFnc(id){
       createOrderModel(id);
       
       function createOrderModel(id){
+
         $.ajax({
           url: '/api/user/createOrder',
           type: 'POST',

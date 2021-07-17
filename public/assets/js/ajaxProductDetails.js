@@ -65,8 +65,7 @@ async function renderProductDetails() {
                 }
             }).then(data =>{
                 if(data){
-                    // console.log(data);
-                    // console.log(idOfProduct);
+                  
                     findAndCreateShoppingCart();
                     alert('Thêm vào giỏ hàng thành công');
                 }
@@ -95,11 +94,14 @@ renderProductDetails();
 
 // function find User in shopping cart
     function findAndCreateShoppingCart(){
-        // let userCookies = getCookie('userId');
+        
         // get selected id in collection
             $.ajax({
                 url: '/api/user/findSelectedProduct',
-                type: 'POST'
+                type: 'POST',
+                data: {
+                    sold : false
+                }
             }).then(data =>{
                if(data){
                    let arrSelectedId = [];
@@ -112,15 +114,15 @@ renderProductDetails();
             }).catch(err =>{
                 console.log(err);
             })
-        
-
-
        }
 // function to find order in shopping cart and create shopping cart
        function createOrUpdateShoppingCart(arrSelectedId){
            $.ajax({
                url: '/api/user/findShoppingCart',
-               type: 'POST'
+               type: 'POST',
+               data : {
+                   sold : false
+               }
            }).then(data => {
                if(data.length === 0){
                    createShoppingCart(arrSelectedId);
@@ -132,17 +134,6 @@ renderProductDetails();
            })
        }
 
-// function get id of selected product
-    function getSelectedId(){
-        $.ajax({
-            url: '/api/user/findSelectedProduct',
-            type: 'POST'
-        }).then(data =>{
-            console.log(data);
-        }).catch(err =>{
-            console.log(err);
-        })
-    }
 
 // function create shopping cart
     function createShoppingCart(arrSelectedId){
@@ -265,7 +256,7 @@ async function renderReview() {
           
         });
         data.map((data, index) => {
-            console.log(data)
+            // console.log(data)
             let div = `
                 <div class="review-list-items">
                     <div class="row no-gutters">
@@ -425,23 +416,6 @@ $.ajax({
 .catch((err) => {
     console.log(182,err);
 })
-    
-// function to get cookies 
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
 
 
 

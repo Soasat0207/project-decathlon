@@ -5,7 +5,6 @@ const model = require('../models/mongodb')
 // create order 
 checkoutRouter.post('/createOrder', (req, res,next) =>{
     let currentTime = new Date();
-    console.log(req.body)
     model.OrderModel.create({
         product: req.body['product[]'],
         address: req.body.addressId,

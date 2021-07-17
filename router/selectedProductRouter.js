@@ -4,7 +4,8 @@ const SelectedProductRouter = express.Router();
 
 SelectedProductRouter.post('/findSelectedProduct', (req, res, next) =>{
     SelectedProductModel.find({
-        userId: req.cookies.userId
+        userId: req.cookies.userId,
+        sold : req.body.sold
     }).then(data =>{
         res.json(data)
     }).catch(err =>{

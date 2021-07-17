@@ -82,7 +82,7 @@ async function render() {
       for(let i = 0; i <data.length; i++){
           if(data[i].codeProduct == dataCodeProduct){
             await tableProduct(data[i],i);
-             console.log(data[i]);
+            //  console.log(data[i]);
           break;
           }
       }

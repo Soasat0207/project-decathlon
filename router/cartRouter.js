@@ -6,7 +6,8 @@ const SelectedProductModel = require('../models/selectedProductModel')
 cartRouter.post('/cartPage', (req, res, next)=>{
 
     model.ShoppingCartModel.findOne({
-        userId : req.cookies.userId
+        userId : req.cookies.userId,
+        sold : req.body.sold
     })
     .populate('product')
     // .populate({

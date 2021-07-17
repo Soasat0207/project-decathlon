@@ -11,6 +11,9 @@ function render() {
   $.ajax({
     url: "/api/user/cartPage",
     type: "POST",
+    data : {
+      sold : false
+    }
   })
     .then((data) => {
       // console.log(13, data);

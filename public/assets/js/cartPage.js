@@ -6,10 +6,13 @@ function CartRender(){
   $.ajax({
     url: "/api/user/cartPage",
     type: "POST",
+    data: {
+      sold : false
+    }
   })
     .then((data) => {
       if (data) {
-        console.log(12 ,data);
+        // console.log(12 ,data);
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
