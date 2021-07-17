@@ -42,7 +42,7 @@ async function renderProductDetails() {
           type: "POST",
         });
         data.map((data) => {
-            console.log(45, data);
+            // console.log(45, data);
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
@@ -168,7 +168,7 @@ async function renderReview() {
           
         });
         data.map((data) => {
-            console.log(data)
+            // console.log(data)
             let div = `
                 <div class="review-list-items">
                     <div class="row no-gutters">
@@ -236,7 +236,7 @@ async function renderReview() {
             $('.review-list-body').append(div);
             
             data.reply.map((data) => {
-                console.log(data);
+                // console.log(data);
                 let div=`
                 <div class="review-items-desc review-items-desc-feedback">
                     <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
