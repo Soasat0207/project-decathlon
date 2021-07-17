@@ -65,9 +65,9 @@ async function renderProductDetails() {
                 }
             }).then(data =>{
                 if(data){
-                  
                     findAndCreateShoppingCart();
                     alert('Thêm vào giỏ hàng thành công');
+                    renderCart();
                 }
             }).catch(err =>{
                 console.log(err);
@@ -324,7 +324,7 @@ async function renderReview() {
             $('.review-list-body').append(div);
             
             data.reply.map((data) => {
-                console.log(data);
+                // console.log(data);
                 let div=`
                 <div class="review-items-desc review-items-desc-feedback">
                     <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
@@ -417,5 +417,46 @@ $.ajax({
     console.log(182,err);
 })
 
+// function render cart 
+function renderCart(){
+    $('.listSelectedProduct').html('');
+    $.ajax({
+        url: '/api/user/findSelectedProduct',
+        type : 'POST',
+        data: {
+            sold : false
+        }
+    }).then(data =>{
+        // console.log(data);
+        data.forEach(element => {
 
+            let liItem = `
+        <li class="list-cart-items">
+            <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
+            <div class="list-cart-item-wrapper">
+                <div class="list-cart-item-head">
+                    <h5 class="list-cart-item-name">${element.productId.name}</h5>
+                    <p class="list-cart-item-price">${element.productId.price}</p>
+                    <p class="list-cart-item-multiphy">x</p>
+                    <p class="list-cart-item-quatity">${element.quantity}</p>
+                </div>
+                <div class="list-cart-item-body">
+                    <p class="list-cart-item-category">Phân loại: ${element.productId.categoryProductId.name}</p>
+                    <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
+                </div>
+            </div>
+        </li>
+        `
+        $('.listSelectedProduct').append(liItem);
+    // add event for Delete button 
+        $(`#item${element._id}`).on('click', ()=>{
+          let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
+          deleteSelectedProduct(selectedId)
+        })
 
+        }); // end loop
+
+    }).catch(err =>{
+        console.log('Server error');
+    })
+}
