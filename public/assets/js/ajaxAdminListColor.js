@@ -3,11 +3,13 @@ function disableModal() {
   $('.page-content-form_code').val('');
   $('.page-content-form_name').val('');
 }
+
 function enableModal() {
   modal.style.display = "block";
   $('.page-content-form_code').val('');
   $('.page-content-form_name').val('');
 }
+
 async function renderTableColor() {
   $('.admin-list-color').html('')
     try {

@@ -262,7 +262,7 @@ const ordersSchema = new Schema(
     },
     status: {
       type: String,
-      default: "Dang van chuyen",
+      default: "Received",
     },
     sold: {
       type : Boolean,
