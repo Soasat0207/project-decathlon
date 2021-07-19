@@ -62,12 +62,12 @@ app.get('/list-product', (req, res) => {
 app.get('/product-details/:id', (req, res) => {
   res.render('user/product_details');
 })
-app.get('/cart', (req, res, next) => {
-  res.render('user/cart');
-})
-app.get('/order', (req, res, next) => {
-  res.render('user/order');
-})
+// app.get('/cart', (req, res, next) => {
+//   res.render('user/cart');
+// })
+// app.get('/order', (req, res, next) => {
+//   res.render('user/order');
+// })
 //end user
 // admin
 app.get('/admin-list-category', (req, res) => {
@@ -115,7 +115,16 @@ app.get('/dangnhap', (req, res) => {
 })
 app.get('/advantages', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
-}) 
+})
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/cart.html'))
+})
+app.get('/order', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/order.html'))
+})
+app.get('/checkout', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/checkout.html'))
+})
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
