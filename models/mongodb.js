@@ -137,6 +137,7 @@ const tradeMarkSchema = new Schema(
   {
     name: String,
     description: String,
+    img: String
   },
   {
     collection: "trademark",
@@ -274,7 +275,21 @@ const ordersSchema = new Schema(
   { collection: "orders" }
 );
 // End orders Schema
-
+const BannerSaleSchema = new Schema(
+  {
+    description: String,
+    createDate:Date,
+    img: [
+      {
+        type: String,
+      },
+    ],
+    status:Boolean,
+  },
+  {
+    collection: "bannerSale",
+  }
+);
 // Create Model
   const AccountModel = mongoose.model("account", accountSchema);
   const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
@@ -289,6 +304,8 @@ const ordersSchema = new Schema(
   const OrderModel = mongoose.model("orderModel", ordersSchema);
   const ReviewModel = mongoose.model("review", reviewSchema);
   const CommentModel = mongoose.model("comment", commentSchema);
+  const BannerSaleModel = mongoose.model("bannerSale", BannerSaleSchema);
+
 // end of Create Model
 
 // exports Model
@@ -306,5 +323,6 @@ module.exports = {
   CategoryProductModel,
   ReviewModel,
   CommentModel,
+  BannerSaleModel,
 };
 // end of exports model

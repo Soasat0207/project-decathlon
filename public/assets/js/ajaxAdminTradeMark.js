@@ -39,6 +39,7 @@ async function renderTrademark() {
           let div = ``;
           div=`
           <tr class="${index}">
+              <td><img src="${data.img}" class="bannerSaleImg"></img></td>
               <td><p>${data.name}</p></td>
               <td>${data.description}</td>
               <td>

@@ -4,6 +4,10 @@
 //         console.log($(`.navbar-search-input`).val())
 //     }, 1000);
 // });
+let currentPage = 1;
+let view = 10;
+let totalPage= Number;
+let catagory = '';
 async function tableProduct(data,index){
     let div = ``;
     div = `
@@ -65,33 +69,74 @@ async function tableProduct(data,index){
 
 async function render() {
   try {
+    let CodeProductArr = [];
+    $('.pagination').html(``);
+    $('.product-list').html(``);
+    if(currentPage < 1 ){
+      currentPage = 1;
+    }
     let data = await $.ajax({
       url: "/api/product",
       type: "GET",
     });
-    let CodeProductArr = [];
     data.map((data)=>{
       if (CodeProductArr.indexOf(data) === -1) {
         CodeProductArr.push(data.codeProduct);
       }
     })
+    
     let dataCodeProduct = CodeProductArr.filter((item,index)=>{
       return CodeProductArr.indexOf(item) === index 
     });
-    dataCodeProduct.map(async(dataCodeProduct)=>{    
+    totalPage = Math.ceil((dataCodeProduct.length)/view);
+    dataCodeProduct = dataCodeProduct.skip((currentPage-1)*view);
+    dataCodeProduct = dataCodeProduct.limit(view);
+    let dataNoDup = [];
+    dataCodeProduct.map(async(dataCodeProduct)=>{  
       for(let i = 0; i <data.length; i++){
           if(data[i].codeProduct == dataCodeProduct){
+            dataNoDup.push(data[i]);
             await tableProduct(data[i],i);
-            //  console.log(data[i]);
           break;
           }
       }
     })
+    for(let i = 0;i<dataNoDup.length;i++){
+      console.log(dataNoDup[i].categoryProductId._id);
+      console.log(106,catagory);
+    }
+    for(let i = 1; i <= totalPage ; i++){
+      let item = $(`
+          <li class="page-item"><a class="page-link" onclick=loadPage(${i}) href="#">${i}</a></li>
+      `)
+      $('.pagination').append(item);
+  }
     product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     
   } catch (error) {
     console.log(error);
   }
+}
+function loadPage(page) {
+  currentPage = page;
+  render();
+}
+function paginationNextPage(){
+  currentPage += 1 ;
+  if(currentPage <1){
+    currentPage = 1;
+  }
+  if(currentPage > totalPage){
+    currentPage = 1;
+  }
+  render();
+}
+function paginationPrevPage(){
+  currentPage -= 1 ;
+  if(currentPage < 1 ){
+    currentPage = totalPage;
+  }
+  render();
 }
 async function renderCategory(){
     try {
@@ -180,6 +225,7 @@ async function renderTableFindColor(colorId) {
 }
 async function renderTableFindCategory(categoryProductId) {
     try {
+      catagory = categoryProductId
       let data = await $.ajax({
         url: "/api/product/findByCategory",
         type: "POST",
@@ -408,6 +454,7 @@ $('.navbar-search-input').keyup(function() {
     }
   }, 1000);  
 })
+
 renderSize();
 renderCategory();
 renderColor();

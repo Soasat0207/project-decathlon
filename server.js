@@ -7,7 +7,9 @@ const checkoutRouter = require('./router/checkoutRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
 const reviewRouter = require('./router/reviewRouter');
 const commentRouter = require('./router/commentRouter');
-const shoppingCartRouter = require('./router/shoppingCartRouter')
+const shoppingCartRouter = require('./router/shoppingCartRouter');
+const BannerSaleRouter = require('./router/BannerSaleRouter');
+
 
 
 const cookieParser = require('cookie-parser');
@@ -97,11 +99,17 @@ app.get('/admin-add-product', (req, res) => {
 app.get('/admin-list-product', (req, res) => {
   res.render('admin/list-product');
 })
+app.get('/admin-list-bannerSale', (req, res) => {
+  res.render('admin/list-bannerSale');
+})
 app.get('/admin-account-details', (req, res) => {
   res.render('admin/account-details');
 })
 app.get('/admin-add-account', (req, res) => {
   res.render('admin/add-account');
+})
+app.get('/admin-add-bannerSale', (req, res) => {
+  res.render('admin/add-bannerSale');
 })
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
@@ -153,10 +161,7 @@ app.use('/api/trademark',trademarkRouter);
 app.use('/api/account',accountRouter);
 app.use('/api/review',reviewRouter);
 app.use('/api/comment',commentRouter);
-
-
-
-
+app.use('/api/BannerSale',BannerSaleRouter);
 var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }, { name: 'advantagesPhoto', maxCount: 3 } ])
 app.post('/profile2', cpUpload, async function (req, res, next) {
   try{
