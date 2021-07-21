@@ -7,6 +7,10 @@ let SelectedProductSchema = new Schema({
       type: String,
       ref: 'product'
     },
+    sold: {
+      type: Boolean,
+      default: false
+    },
     quantity: Number
 }, {
     collection: 'selectedProduct'

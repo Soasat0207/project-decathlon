@@ -7,7 +7,7 @@
 let currentPage = 1;
 let view = 10;
 let totalPage= Number;
-let catagory = ''
+let catagory = '';
 async function tableProduct(data,index){
     let div = ``;
     div = `
@@ -91,7 +91,7 @@ async function render() {
     totalPage = Math.ceil((dataCodeProduct.length)/view);
     dataCodeProduct = dataCodeProduct.skip((currentPage-1)*view);
     dataCodeProduct = dataCodeProduct.limit(view);
-    let dataNoDup = []
+    let dataNoDup = [];
     dataCodeProduct.map(async(dataCodeProduct)=>{  
       for(let i = 0; i <data.length; i++){
           if(data[i].codeProduct == dataCodeProduct){

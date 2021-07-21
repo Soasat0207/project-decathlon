@@ -235,6 +235,10 @@ const shoppingCartSchema = new Schema(
     userId: {
       type: String,
       ref: "account",
+    },
+    sold: {
+      type: Boolean,
+      default: false
     }
   },
   { collection: "shoppingCart" }

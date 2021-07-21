@@ -65,10 +65,9 @@ async function renderProductDetails() {
                 }
             }).then(data =>{
                 if(data){
-                    // console.log(data);
-                    // console.log(idOfProduct);
                     findAndCreateShoppingCart();
                     alert('Thêm vào giỏ hàng thành công');
+                    renderCart();
                 }
             }).catch(err =>{
                 console.log(err);
@@ -95,11 +94,14 @@ renderProductDetails();
 
 // function find User in shopping cart
     function findAndCreateShoppingCart(){
-        // let userCookies = getCookie('userId');
+        
         // get selected id in collection
             $.ajax({
                 url: '/api/user/findSelectedProduct',
-                type: 'POST'
+                type: 'POST',
+                data: {
+                    sold : false
+                }
             }).then(data =>{
                if(data){
                    let arrSelectedId = [];
@@ -112,15 +114,15 @@ renderProductDetails();
             }).catch(err =>{
                 console.log(err);
             })
-        
-
-
        }
 // function to find order in shopping cart and create shopping cart
        function createOrUpdateShoppingCart(arrSelectedId){
            $.ajax({
                url: '/api/user/findShoppingCart',
-               type: 'POST'
+               type: 'POST',
+               data : {
+                   sold : false
+               }
            }).then(data => {
                if(data.length === 0){
                    createShoppingCart(arrSelectedId);
@@ -132,17 +134,6 @@ renderProductDetails();
            })
        }
 
-// function get id of selected product
-    function getSelectedId(){
-        $.ajax({
-            url: '/api/user/findSelectedProduct',
-            type: 'POST'
-        }).then(data =>{
-            console.log(data);
-        }).catch(err =>{
-            console.log(err);
-        })
-    }
 
 // function create shopping cart
     function createShoppingCart(arrSelectedId){
@@ -265,7 +256,7 @@ async function renderReview() {
           
         });
         data.map((data, index) => {
-            console.log(data)
+            // console.log(data)
             let div = `
                 <div class="review-list-items">
                     <div class="row no-gutters">
@@ -333,7 +324,7 @@ async function renderReview() {
             $('.review-list-body').append(div);
             
             data.reply.map((data) => {
-                console.log(data);
+                // console.log(data);
                 let div=`
                 <div class="review-items-desc review-items-desc-feedback">
                     <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
@@ -425,23 +416,47 @@ $.ajax({
 .catch((err) => {
     console.log(182,err);
 })
-    
-// function to get cookies 
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
 
+// function render cart 
+function renderCart(){
+    $('.listSelectedProduct').html('');
+    $.ajax({
+        url: '/api/user/findSelectedProduct',
+        type : 'POST',
+        data: {
+            sold : false
+        }
+    }).then(data =>{
+        // console.log(data);
+        data.forEach(element => {
 
+            let liItem = `
+        <li class="list-cart-items">
+            <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
+            <div class="list-cart-item-wrapper">
+                <div class="list-cart-item-head">
+                    <h5 class="list-cart-item-name">${element.productId.name}</h5>
+                    <p class="list-cart-item-price">${element.productId.price}</p>
+                    <p class="list-cart-item-multiphy">x</p>
+                    <p class="list-cart-item-quatity">${element.quantity}</p>
+                </div>
+                <div class="list-cart-item-body">
+                    <p class="list-cart-item-category">Phân loại: ${element.productId.categoryProductId.name}</p>
+                    <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
+                </div>
+            </div>
+        </li>
+        `
+        $('.listSelectedProduct').append(liItem);
+    // add event for Delete button 
+        $(`#item${element._id}`).on('click', ()=>{
+          let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
+          deleteSelectedProduct(selectedId)
+        })
 
+        }); // end loop
+
+    }).catch(err =>{
+        console.log('Server error');
+    })
+}

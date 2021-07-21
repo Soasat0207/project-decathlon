@@ -6,14 +6,17 @@ function CartRender(){
   $.ajax({
     url: "/api/user/cartPage",
     type: "POST",
+    data: {
+      sold : false
+    }
   })
     .then((data) => {
       if (data) {
-        console.log(12 ,data);
+        // console.log(12 ,data);
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
-          console.log(item);
+          // console.log(item);
           let content = `
               <div id = "content${item._id}" class = "cart-items-info">
                   <div class="cart-items-img"><img src="${item.img}" alt=""></div>
@@ -45,15 +48,14 @@ function CartRender(){
           let pricePerOneUnit = parseInt($(`#pricePerOneProduct${item._id}`).html().replace(/\,/g, ""));
           let productQuantity = parseInt($(`#${item._id}`).val());
           totalPrices += ( pricePerOneUnit * productQuantity );
-          console.log(41, totalPrices);
+          // console.log(41, totalPrices);
   
           // price handler
           decreQuantity(item._id);
           increQuantity(item._id);
           priceOfOneProduct(item._id);
         } // \End for loop
-        
-        console.log(56, totalPrices);
+
         // check shipping cash
         if(totalPrices > 899000){
             $('.cashShipping').html('');
