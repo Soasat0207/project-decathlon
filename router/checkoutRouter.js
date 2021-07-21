@@ -4,9 +4,13 @@ const model = require('../models/mongodb')
 
 // create order 
 checkoutRouter.post('/createOrder', (req, res,next) =>{
+
     let currentTime = new Date();
+    const {addressId,methodPayment,totalPrice, ...rest} = req.body;
+    const newObj = Object.assign({}, {...rest});
+    let arrayProductId = convertStringToArray(newObj);
     model.OrderModel.create({
-        product: req.body['product[]'],
+        product: arrayProductId,
         address: req.body.addressId,
         userId: req.cookies.userId,
         orderDate: currentTime ,
@@ -72,5 +76,25 @@ checkoutRouter.delete('/deleteOrder/:id', (req, res, next)=>{
         res.json(err)
     })
 })
+
+// function to convert String ( from client sent to server) to array include product info
+function convertStringToArray(item){
+    let array = [];
+    let index = -1;
+    for (const key in item) {
+        let arr = key.split('][');
+        let x = arr[0]
+        let keyData = arr[1].slice(0,arr[1].length-1)
+        if(index < x[x.length-1]){
+            let obj = {}
+            obj[keyData] = item[key]
+            array.push(obj)
+            index++
+        }
+        array[index][keyData]=item[key]
+    }
+    return array
+}
+
 
 module.exports = checkoutRouter;

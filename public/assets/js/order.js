@@ -1,23 +1,19 @@
 updateAddress();
-render();
+renderCartInfo();
 
 // function to render
-function render() {
-  $(".cart-item-list").html("");
-  $.ajax({
-    url: "/api/user/cartPage",
+async function renderCartInfo() {
+  try {
+    $(".cart-item-list").html("");
+  let data = await $.ajax({
+    url: "/api/user/findShoppingCart",
     type: "POST",
-    data: {
-      sold :false
-    }
-  })
-    .then((data) => {
-      console.log(12, data);
-      if (data) {
+  });
+  console.log(12, data);
+  if (data) {
         let totalPrice = 0;
         for (const item of data.product) {
           let objProduct = item.productId;
-          console.log(typeof objProduct.price);
           let productInfo = `
         <div class="cart-item-list-product">
           <div class="cart-item-list-image">
@@ -38,7 +34,6 @@ function render() {
           totalPrice += pricePerOneProduct * quantityProduct;
           $(".cart-item-list").append(productInfo);
         } // end for loop
-        console.log(38, totalPrice);
         if (totalPrice > 899000) {
           $(".shipping-cash-calc").append("Miễn phí");
         } else {
@@ -49,24 +44,21 @@ function render() {
         $(".total-price-calc").append(stringTotalPrice);
         $(".all-price-calc").append(stringTotalPrice);
       } // end if condition
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // function update Address to html
-function updateAddress() {
+async function updateAddress() {
+  try {
   $(".checkout-left-address-list").html("");
-  $.ajax({
+  let data = await $.ajax({
     url: "/api/user/findUserAddress",
     type: "POST",
   })
-    .then((data) => {
-      // console.log(63, data);
-      for (const item of data) {
-        // console.log(63 , item);
-        let content = `
+  for (const item of data) {
+    let content = `
     <div id ="${item._id}" class="selected-address">
       <div class="selected-homeAddress">
         <div>${item.homeAddress}</div>
@@ -91,67 +83,61 @@ function updateAddress() {
           deleteAddress(item._id);
         });
       } // end for loop
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Add event to Edit address button
-function editAddress(idAddress) {
-  // console.log(idAddress);
-  $.ajax({
-    url: "/api/user/findbyIdAddress",
-    type: "POST",
-    data: {
-      idAddress: idAddress,
-    },
-  })
-    .then((data) => {
-      if (data) {
-        $("#homeAddressEdited").val(data.homeAddress);
-        $("#provinceSelectedEdited").val(data.province);
-        $("#districtSelectedEdited").val(data.district);
-        $("#wardSelectedEdited").val(data.ward);
-        $("#firstNameEdited").val(data.firstName);
-        $("#lastNameEdited").val(data.lastName);
-        $("#phoneNumberEdited").val(data.phone);
-        $("#deliveryAddressEdited").val(data.deliveryAddress);
-        $("#personalAddressEdited").val(data.personalAddress);
-        $("#companyAddressEdited").val(data.companyAddress);
-        //send id address to confirm edit btn
-        $(".edit-confirm-btn").attr("id", `idAdress${idAddress}`);
-      }
+async function editAddress(idAddress) {
+  try {
+    let data = await $.ajax({
+      url: "/api/user/findbyIdAddress",
+      type: "POST",
+      data: {
+        idAddress: idAddress,
+      },
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    if (data) {
+      $("#homeAddressEdited").val(data.homeAddress);
+      $("#provinceSelectedEdited").val(data.province);
+      $("#districtSelectedEdited").val(data.district);
+      $("#wardSelectedEdited").val(data.ward);
+      $("#firstNameEdited").val(data.firstName);
+      $("#lastNameEdited").val(data.lastName);
+      $("#phoneNumberEdited").val(data.phone);
+      $("#deliveryAddressEdited").val(data.deliveryAddress);
+      $("#personalAddressEdited").val(data.personalAddress);
+      $("#companyAddressEdited").val(data.companyAddress);
+      //send id address to confirm edit btn
+      $(".edit-confirm-btn").attr("id", `idAdress${idAddress}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // add event to delete address button
-function deleteAddress(idAddress) {
-  $.ajax({
-    url: "/api/user/deleteUserAddress",
-    type: "DELETE",
-    data: {
-      idAddress: idAddress,
-    },
-  })
-    .then((data) => {
-      if (data.deletedCount !== 0) {
-        updateAddress();
-      }
+async function deleteAddress(idAddress) {
+  try {
+    let data = await $.ajax({
+      url: "/api/user/deleteUserAddress",
+      type: "DELETE",
+      data: { idAddress: idAddress,}
     })
-    .catch((err) => {
-      console.log(" Server error");
-    });
+    if (data.deletedCount !== 0) {
+      updateAddress();
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Add event when user click Confirm edit button
-$(".edit-confirm-btn").on("click", function () {
-  let idAddress = $(this).attr("id").slice(8, 100);
-
-  $.ajax({
+$(".edit-confirm-btn").on("click",async function () {
+  try {
+    let idAddress = $(this).attr("id").slice(8, 100);
+    let data = await $.ajax({
     url: "/api/user/updateUserAddress",
     type: "PUT",
     data: {
@@ -166,22 +152,21 @@ $(".edit-confirm-btn").on("click", function () {
       deliveryAddress: $("#deliveryAddressEdited").val(),
       personalAddress: $("#personalAddressEdited").val(),
       companyAddress: $("#companyAddressEdited").val(),
-    },
-  })
-    .then((data) => {
-      console.log(data);
-      if (data.nModified !== 0) {
-        updateAddress();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    }
+  });
+  if (data.nModified !== 0) {
+    updateAddress();
+  }
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
 // when user click Save Address btn
-$(".save-address-btn").on("click", function () {
-  $.ajax({
+$(".save-address-btn").on("click", async function () {
+ try {
+  let data = await $.ajax({
     url: "/api/user/userAddress",
     type: "POST",
     data: {
@@ -197,7 +182,7 @@ $(".save-address-btn").on("click", function () {
       companyAddress: $("#companyAddress").val(),
     },
   })
-    .then((data) => {
+
       if (data) {
         $("#homeAddress").val("");
         $("#provinceSelected").val("");
@@ -211,10 +196,9 @@ $(".save-address-btn").on("click", function () {
         $("#companyAddress").val("");
         updateAddress();
       }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+ } catch (error) {
+   console.log(error);
+ }
 });
 
 // Add event to Choose form delivery
@@ -223,23 +207,22 @@ $(".checkout-right-delivery-button").on("click", () => {
 });
 
 // render to order page
-function renderOrderPage() {
-  $(".checkout-left").html("");
-  $.ajax({
+async function renderOrderPage() {
+  try {
+    $(".checkout-left").html("");
+  let data = await $.ajax({
     url: "/api/user/findUserAddress",
     type: "POST",
   })
-    .then(async (data) => {
+  let timeToDeliveried  = Date.now() + 3*24*60*60*1000;
+  let time = new Date(timeToDeliveried)
+  let date = time.getDate()
+  let day = time.getDay();
+  let month = time.getMonth() + 1;
+  let year = time.getFullYear()
+  let daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm','Thứ sáu','Thứ bảy'];
 
-      let timeToDeliveried  = Date.now() + 3*24*60*60*1000;
-      let time = new Date(timeToDeliveried)
-      let date = time.getDate()
-      let day = time.getDay();
-      let month = time.getMonth() + 1;
-      let year = time.getFullYear()
-      let daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm','Thứ sáu','Thứ bảy']
-      // console.log(daysOfWeek[day],date, month, year);
-      let content = `
+  let content = `
     <div class="bg-border">
           <div class="deliveried-address">
           </div>
@@ -288,29 +271,29 @@ function renderOrderPage() {
         $(".ratio").on("change", function () {
           $(".ratio").not(this).prop("checked", false);
         });
-      } // end 'for' loop
+      } // end for loop
 
   // Add event when user click div
-      $(".deliveried-options-item").on("click", () => {
+      $(".deliveried-options-item").on("click",async () => {
         // get id address from checked checkbox
         let checkedIdValue = $('.ratio:checked').attr('id').slice(5,100);
         // ajax to get address from db
-        $.ajax({
-          url: '/api/user/findbyIdAddress',
-          type: 'POST',
-          data: {
-            idAddress: checkedIdValue
-          }
-        }).then(data=>{
-        // console.log(data);
-        let timeToDeliveried  = Date.now() + 3*24*60*60*1000;
-        let time = new Date(timeToDeliveried)
-        let date = time.getDate()
-        let day = time.getDay();
-        let month = time.getMonth() + 1;
-        let year = time.getFullYear()
-        let daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm','Thứ sáu','Thứ bảy']
-
+        try {
+          let data = await $.ajax({
+            url: '/api/user/findbyIdAddress',
+            type: 'POST',
+            data: {
+              idAddress: checkedIdValue
+            }
+          })
+          let timeToDeliveried  = Date.now() + 3*24*60*60*1000;
+          let time = new Date(timeToDeliveried)
+          let date = time.getDate()
+          let day = time.getDay();
+          let month = time.getMonth() + 1;
+          let year = time.getFullYear()
+          let daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm','Thứ sáu','Thứ bảy']
+  
           let content = `
           <div class="location-card">
               <h5>
@@ -323,74 +306,64 @@ function renderOrderPage() {
               </div>
           </div>
           <div class="card-button">
-              <button onclick="createOrderFnc('${data._id}')" class="card-button-confirm">Thanh toán</button>
+              <button onclick="createOrderButton('${data._id}')" class="card-button-confirm">Thanh toán</button>
           </div>
-        `;
-        // add content to html 
-        $(".card-container").html("");
-        $(".card-container").append(content);
-
-        
-
-        }).catch(err=>{
-          console.log(err);
-        })
-        
+          `;
+          // add content to html 
+          $(".card-container").html("");
+          $(".card-container").append(content);
+        } catch (error) {
+          console.log(error);
+        }
       }); 
       // end of event for div click
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  } catch (error) {
+    console.log(error);
+  }
 }
-// createOrderFnc onclick
-function createOrderFnc(id){
-  $.ajax({
-    url: '/api/user/findSelectedProduct',
-    type: 'POST',
-    data: {
-      sold : false
-    }
-  }).then(data =>{
-    let productId = [];
-    data.forEach(item =>{
-      productId.push(item._id)
-    })
+// function to create order
+async function createOrderButton(idAddress){
+ try {
+  let data = await $.ajax({
+    url: '/api/user/findShoppingCart',
+    type: 'POST'
+  })
+  let arrayProductId = [];
+  let arr = data.product;
+  arr.forEach(item =>{
+    let obj  = {productId : item.productId._id, quantity : item.quantity};
+    arrayProductId.push(obj);
+  })
 
-    // console.log(337, productId);
-    if(data){
+  if(data){
       let totalPriceString = $('.all-price-calc').html();
       let totalPrice = currencyToNumber(totalPriceString);
-      // console.log(totalPrice);
-      createOrderModel(id);
-      
-      function createOrderModel(id){
-
-        $.ajax({
-          url: '/api/user/createOrder',
-          type: 'POST',
-          data: {
-            product: productId,
-            addressId: id,
-            methodPayment: '',
-            totalPrice: totalPrice
-          }
-        }).then(data=>{
-          if(data){
-            window.location.href = '/checkout'
-          }
-        }).catch(err =>{
-          console.log(err);
-        })
-      }
+      createOrder(arrayProductId, idAddress , totalPrice);
     }
-  }).catch(err =>{
-    console.log(err);
-  })
-  
-
+ } catch (error) {
+   console.log(error);
+ }
 }
-
+// function to create order 
+async function createOrder(arrayProductId, idAddress, totalPrice){
+  try {
+    let data = await $.ajax({
+      url: '/api/user/createOrder',
+      type: 'POST',
+      data: {
+        arrayProductId: arrayProductId,
+        addressId: idAddress,
+        methodPayment: '',
+        totalPrice: totalPrice
+      }
+    })
+    if(data){
+      window.location.href = 'http://localhost:3000/checkout'
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // function reload order page
 function reloadOderPage() {

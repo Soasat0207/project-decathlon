@@ -225,7 +225,7 @@ const commentSchema = new Schema(
 
 // Shopping cart schema
 const shoppingCartSchema = new Schema(
-  { // a muốn tạo schema như này
+  { 
     product: [
       {
       productId : {
@@ -239,7 +239,6 @@ const shoppingCartSchema = new Schema(
       type: String,
       ref: "account",
     },
-    
   },
   { collection: "shoppingCart" }
 );

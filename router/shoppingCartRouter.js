@@ -55,7 +55,7 @@ shoppingCartRouter.post('/createShoppingCart', (req, res, next)=>{
         res.status(400).json(err)
     })
 })
-
+// update shopping cart 
 shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
     let arrayProductId = convertStringToArray(req.body)
     model.ShoppingCartModel.updateOne({
@@ -70,7 +70,19 @@ shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
         res.status(400).json('err')
     })
 })
-
+// update quantity 
+shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
+    console.log(req.body);
+    model.ShoppingCartModel.updateOne({
+        "product._id" : req.body.selectedId,
+    },{
+        '$set' : { "product.$.quantity" : req.body.newQuantity}
+    }).then(data =>{
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+})
 // function to convert String ( from client sent to server) to array include product info
 function convertStringToArray(item){
     let array = [];

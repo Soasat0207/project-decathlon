@@ -8,7 +8,7 @@ function renderCart(){
         // console.log(data);
         let arrProduct = data.product
         arrProduct.forEach(element => {
-            console.log(11, element);
+            // console.log(11, element);
             let liItem = `
         <li class="list-cart-items">
             <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
