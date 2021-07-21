@@ -6,15 +6,13 @@ function CartRender(){
   $.ajax({
     url: "/api/user/cartPage",
     type: "POST",
-    data: {
-      sold : false
-    }
   })
     .then((data) => {
       if (data) {
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
+          console.log(obj);
           let content = `
               <div id = "content${item._id}" class = "cart-items-info">
                   <div class="cart-items-img"><img src="${item.img}" alt=""></div>
@@ -46,7 +44,6 @@ function CartRender(){
           let pricePerOneUnit = parseInt($(`#pricePerOneProduct${item._id}`).html().replace(/\,/g, ""));
           let productQuantity = parseInt($(`#${item._id}`).val());
           totalPrices += ( pricePerOneUnit * productQuantity );
-          // console.log(41, totalPrices);
   
           // price handler
           decreQuantity(item._id);
@@ -120,6 +117,7 @@ function increQuantity(inputID) {
     if (increaseQuantity >= 1 && increaseQuantity < 5) {
       increaseQuantity++;
     }
+    console.log(increaseQuantity);
     $(`#${inputID}`).val(increaseQuantity);
     userUpdateQuantity(inputID);
     priceOfOneProduct(inputID);
@@ -129,7 +127,8 @@ function increQuantity(inputID) {
 
 // function to update quantity
 function userUpdateQuantity(inputID){
-  // console.log(131, $(`#${inputID}`).val());
+  console.log(133, $(`#${inputID}`).val());
+  
   $.ajax({
     url: '/api/user/updateQuantity',
     type: 'PUT',

@@ -32,6 +32,17 @@ checkoutRouter.post('/findOrder', (req,res,next)=>{
         res.json(err)
     })
 })
+// find all order 
+checkoutRouter.post('/findAllOrders', (req, res, next)=>{
+    model.OrderModel.find({})
+    .populate('address')
+    .populate('userId')
+    .then(data =>{
+        res.json(data)
+    }).catch(err=>{
+        res.status(400).json(err)
+    })
+})
 
 // checkout update method of payment
 checkoutRouter.put('/updatePaymentMethod', (req, res, next)=>{
@@ -51,5 +62,15 @@ checkoutRouter.put('/updatePaymentMethod', (req, res, next)=>{
     })
 })
 
+checkoutRouter.delete('/deleteOrder/:id', (req, res, next)=>{
+    let orderId = req.params.id;
+   
+    model.OrderModel.deleteOne({ _id : orderId})
+    .then(data => {
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+})
 
 module.exports = checkoutRouter;

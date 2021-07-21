@@ -19,8 +19,8 @@
 .path_bar{
     display: flex;
     flex-wrap: wrap;
-   
 }
+
 .path_bar-list{
     list-style: none;
     padding: 0;
@@ -792,8 +792,5 @@
     }
 }
 @media (max-width :739px){
-    .product_details-color{
     
-    }
-
 }

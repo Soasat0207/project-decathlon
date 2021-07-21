@@ -2,11 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
 const checkoutRouter = require('./router/checkoutRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
-const selectedProductRouter = require('./router/selectedProductRouter');
 const reviewRouter = require('./router/reviewRouter');
 const commentRouter = require('./router/commentRouter');
 const shoppingCartRouter = require('./router/shoppingCartRouter')
@@ -108,6 +106,9 @@ app.get('/admin-add-account', (req, res) => {
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
+app.get('/admin-list-order', (req, res) => {
+  res.render('admin/list-order');
+})
 
 app.get('/dangky', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
@@ -131,6 +132,7 @@ app.get('/order', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
 }) 
+
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
@@ -138,11 +140,9 @@ app.use('/public',express.static(path.join(__dirname, './public')));
 app.use('/api/user/', ProductAdvantagesRouter);
 app.use('/api/nguoidung', userRouter);
 // Use router
-app.use('/api/user/', cartRouter);
 app.use('/api/user/', shoppingCartRouter);
 app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', checkoutRouter);
-app.use('/api/user/', selectedProductRouter);
 app.use('/api/product',productRouter);
 app.use('/api/category',categoryRouter);
 app.use('/api/color',colorRouter);

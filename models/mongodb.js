@@ -224,21 +224,21 @@ const commentSchema = new Schema(
 
 // Shopping cart schema
 const shoppingCartSchema = new Schema(
-  {
+  { // a muốn tạo schema như này
     product: [
-       {
+      {
+      productId : {
           type: String,
-          ref: 'selectedProduct'
-        },
+          ref: 'product'
+      },
+      quantity: String,
+      },
     ],
     userId: {
       type: String,
       ref: "account",
     },
-    sold: {
-      type: Boolean,
-      default: false
-    }
+    
   },
   { collection: "shoppingCart" }
 );
@@ -247,9 +247,12 @@ const shoppingCartSchema = new Schema(
 const ordersSchema = new Schema(
   {
     product: [
-      { 
-        type: String, 
-        ref: "selectedProduct"
+      {
+        productId:{ 
+          type: String, 
+          ref: "selectedProduct"
+        },
+        quantity: String
       }
     ],
     address: {
@@ -263,10 +266,6 @@ const ordersSchema = new Schema(
     status: {
       type: String,
       default: "Received",
-    },
-    sold: {
-      type : Boolean,
-      default: false
     },
     methodPayment: String,
     orderDate: Date,
