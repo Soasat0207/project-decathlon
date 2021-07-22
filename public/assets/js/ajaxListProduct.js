@@ -220,7 +220,6 @@ async function renderTableFindColor(colorId) {
 }
 async function renderTableFindCategory(categoryProductId) {
     try {
-      catagory = categoryProductId
       let data = await $.ajax({
         url: "/api/product/findByCategory",
         type: "POST",
