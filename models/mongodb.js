@@ -14,16 +14,17 @@ const accountSchema = new Schema(
     birthday: Date,
     mainAddress: String,
     subAddress: String,
+    noteAddress: String,
     city: String,
     avatar: {
       type: String,
       default:
         "https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
     },
-    createdAt: Date,
+    createdAt: { type: Date, default: new Date()},
     role: { type: String, default: "user" },
-    status: String,
-    description: String,
+    status: { type: Boolean, default: true},
+    description: { type: String, default: "123"},
   },
   {
     collection: "account",
@@ -74,7 +75,12 @@ const levelProductSchema = new Schema(
     collection: "levelProduct",
   }
 );
-
+const accountBListSchema = new Schema(
+  {
+    token: String,
+  },
+  {collection: "blacklist"}
+);
 const productSchema = new Schema(
   {
     name: String,
@@ -303,6 +309,7 @@ const BannerSaleSchema = new Schema(
   const OrderModel = mongoose.model("orderModel", ordersSchema);
   const ReviewModel = mongoose.model("review", reviewSchema);
   const CommentModel = mongoose.model("comment", commentSchema);
+  const AcountBListModel = mongoose.model("blacklist" ,accountBListSchema);
   const BannerSaleModel = mongoose.model("bannerSale", BannerSaleSchema);
 
 // end of Create Model
@@ -321,7 +328,7 @@ module.exports = {
   SupplierModel,
   CategoryProductModel,
   ReviewModel,
-  CommentModel,
+  CommentModel,AcountBListModel,
   BannerSaleModel,
 };
 // end of exports model

@@ -23,14 +23,14 @@ $(".lang").on("click", (event) => {
 
 // Nút chuyển sang trang đăng ký
 function nutChuyenDK(){
-    window.location.href = '/dangky'
+    window.location.href = '/registered-cus'
 }
 
 // Nút đăng nhập
 async function nutdangnhap(){
     try{
         let data = await $.ajax({
-            url: '/api/nguoidung/dangnhap',
+            url: '/api/cus/login-cus',
             type: 'post',
             data:{
                 username: $('.taikhoan').val(),
@@ -40,7 +40,7 @@ async function nutdangnhap(){
         console.log(data);
         if(data.status == 200){
             setCookie('user', data.data, 30);
-            window.location.href = '/nguoidung';
+            window.location.href = '/page-cus';
         }
     }
     catch(error){
