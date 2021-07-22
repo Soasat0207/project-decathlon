@@ -7,6 +7,20 @@ const checkCookies1 = require('../checkCookies')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const path = require('path');
+
+var multer  = require('multer')
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,path.join(__dirname,'../public/uploads'))
+    },
+    filename: function (req, file, cb) {
+      let index = file.originalname.lastIndexOf('.');
+      let extention = file.originalname.slice(index,file.originalname.length);
+      cb(null, file.fieldname + '-' + Date.now() + extention);
+    }
+  })
+var upload = multer({ storage: storage })
 
 // Đăng ký
 userRouter.post('/registeredcus', async (req, res) =>{
@@ -112,7 +126,7 @@ userRouter.put('/address', checkCookies1.checkCookies, async (req, res) => {
 
 
 // Check cookies
-userRouter.post('/checkcookies', checkCookies1.checkToken ,checkCookies1.checkCookies,  (req, res) =>{
+userRouter.post('/checkcookies', checkCookies1.checkToken ,checkCookies1.checkCookies, checkCookies1.checkRole,  (req, res) =>{
     res.json('Đăng nhập thành công')
 })
 
@@ -144,5 +158,28 @@ userRouter.post('/blacklist', checkCookies1.checkCookies, async (req, res)=>{
         res.json(error)
     }
 })
+
+// Up avatar user
+userRouter.put('/avataruser', checkCookies1.checkCookies, upload.single('avatarUser'), async function (req, res, next) {
+    try{
+        let id = req.id;
+        let data1 = req.file.path;
+        let index = data1.indexOf("public");
+        let link = data1.slice(index, data1.length);
+        
+        let data = await AccountModel.findOneAndUpdate({_id: id}, {avatar: link})
+        if(data){
+            res.json(data)
+        }
+  
+    }
+    catch(error){
+        res.json(error)
+    }
+
+  })
+
+  
+  
 
 module.exports = userRouter;

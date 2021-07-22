@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.deliAll div h2{
+    color: darkorange;
+}
+
+.deliAll div p span{
+    font-weight: bold;
+}
+
+.returnpro{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

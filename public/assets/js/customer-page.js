@@ -87,11 +87,19 @@ function nutThongtin() {
         <p>Ngày sinh</p>
         <input class="ngaysinh3" type="date">
         </div>
-        <p>Giới tính</p>
+        <p class="gioitinh3">Giới tính</p>
         <div class="gioitinh1">
             <div><input type="radio" name="giotinh" id="" class='nam3'></input><p>Nam</p></div>
             <div><input type="radio" name="giotinh" id="" class = 'nu3'></input><p>Nữ</p></div>
         </div>
+    </div>
+
+    <div>
+    <p>Ảnh đại diện</p>
+    <form>
+        <img class="avacus" src="" alt="">
+        <input type="file" name="avatarUser" multiple>
+    </form>
     </div>
 
     <div class="hang5">
@@ -117,6 +125,7 @@ function nutThongtin() {
         let sdt;
         let gender;
         let birthday;
+        let avatar;
         if(data){
             ten = data.firstname;
             ho = data.lastname;
@@ -124,7 +133,9 @@ function nutThongtin() {
             sdt = data.phone;
             gender = data.gender;
             birthday = data.birthday.slice('0', '10');
+            avatar = data.avatar;
         }
+        $('.avacus').attr('src', avatar) 
         $(".ten3").val(ten);
         $(".ho3").val(ho);
         $(".email3").val(email);
@@ -240,6 +251,7 @@ function nutThemdiachi() {
     </div>
     `
     $("body").append(bien)
+    
 }
 
 function nutThoatdiachi(){
@@ -261,24 +273,41 @@ $.ajax({
 })
 
 // Cập nhập thông tin
-function nutLuuthongtin(){
-    $.ajax({
-        url: "/api/cus/capnhap",
-        type: 'put',
-        data: {
-            firstname: $('.ten3').val(),
-            lastname: $('.ho3').val(),
-            phone: $('.sdt3').val(),
-            email: $('.email3').val(),
-            birthday: $('.ngaysinh3').val(),
-        }
-    })
-    .then((data) => {
-        console.log(data);
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+async function nutLuuthongtin(){
+    try{
+     let data = await $.ajax({
+                    url: "/api/cus/capnhap",
+                    type: 'put',
+                    data: {
+                            firstname: $('.ten3').val(),
+                            lastname: $('.ho3').val(),
+                            phone: $('.sdt3').val(),
+                            email: $('.email3').val(),
+                            birthday: $('.ngaysinh3').val(),
+                    }
+                    })
+                    
+                    console.log(data);
+                    
+
+        let data12 = $('form')[0];
+        console.log(16, data12);
+        let form1 = new FormData(data12);
+        let ava = await $.ajax({
+                        url: "/api/cus/avataruser",
+                        type: "put",
+                        data: form1,
+                        processData: false,
+                        contentType: false,
+                    })
+                    console.log(15, ava.avatar);
+                    $('.avacus').attr("src", ava.avatar)
+
+        nutThongtin()              
+    }
+    catch(error){
+        console.log(error);
+    }
 }
 
 // Hiển thị email ở ô giao diện người dùng
@@ -289,10 +318,13 @@ $.ajax({
 })
 .then((data) => {
     let chenEmail;
+    let avatar;
     if(data){
         chenEmail = data.email;
+        avatar = data.avatar;
     }
-    $('.hienthiEmail').append(chenEmail)
+$('.avacus').attr('src', avatar)    
+$('.hienthiEmail').append(chenEmail)
 })
 .catch((err) => {
     console.log(err);
@@ -357,3 +389,26 @@ function signout(){
 function delete_cookie(name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
+
+// Upload Avatar
+// async function upAvatar(){
+//     try{
+//         let data = $('form')[0];
+//         let form1 = new FormData(data);
+//         let ava = await $.ajax({
+//             url: "/api/cus/avataruser",
+//             type: "put",
+//             data: form1,
+//             processData: false,
+//             contentType: false,
+//         })
+//         console.log(15, ava.avatar);
+//         $('.avacus').attr("src", ava.avatar)
+
+
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+
+// }

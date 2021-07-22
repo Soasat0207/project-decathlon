@@ -74,6 +74,11 @@ ul{
     border-radius: 10px;
 }
 
+.avacus{
+    width: 150px;
+    height: 150px;
+}
+
 .donhang2{
     border: 1px solid black;
     background-color: white;
@@ -121,6 +126,9 @@ ul{
     justify-content: space-between;
 }
 
+.gioitinh3{
+    margin-bottom: 0 !important;
+}
 .hang1 div input{
     padding: 15px;
     border-radius: 4px;
@@ -168,6 +176,7 @@ ul{
 
 .gioitinh1 div p{
     margin-left: 5px;
+    margin-bottom: 0;
 }
 
 
@@ -190,11 +199,16 @@ ul{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
 }
 
 .hang5 button{
     padding: 10px 30px;
     cursor: pointer;
+    /* width: 20px;
+    height: 45px; */
+    border-radius: 4px;
 }
 
 .diachi{
@@ -354,6 +368,17 @@ ul{
 .ngaysinh{
     padding: 0 !important;
     padding-bottom: 30px !important;
+}
+
+.hienthiEmail{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lim{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
 }
 @media only screen and (max-width: 768px){
 /* .tabR{
