@@ -1,5 +1,4 @@
 CartRender();
-
 //function to Render
 async function CartRender(){
   try {
