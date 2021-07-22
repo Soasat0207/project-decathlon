@@ -385,6 +385,7 @@ header:hover{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-height: 100px;
 }
 .navbar-list_cart-nocart .navbar-list-nocart-img,
 .navbar-list_cart-nocart .navbar-list-nocart-text{
@@ -470,13 +471,31 @@ header:hover{
     float: right;
     color: var(--white-color);
     border-radius: 2px;
-    margin: 0 1.2rem 1.2rem 0;
+    margin: 0.5rem 1.2rem 1.2rem 0;
     min-width: 12.4rem;
-    background-color:blue;
+    background-color:black;
     display: flex;
     justify-content:center;
     height:3rem;
     align-items: center;
+}
+.list-view-cart:hover{
+    background-color: #17aa15 !important;
+}
+.cartContainer{
+    position: relative;
+}
+.numberProductInCart{
+    display: flex;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 0.7rem;
+    background-color: yellow;
+    position: absolute;
+    top: 0rem;
+    right: 0.5rem;
+    justify-content: center;
+    align-content: center;
 }
 .navbar-search{
     width:50%;

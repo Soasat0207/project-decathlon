@@ -9,7 +9,7 @@ shoppingCartRouter.post('/findShoppingCart', (req, res, next)=>{
     .populate({
         path: 'product',
         populate: { path: 'productId',
-        populate: { path: 'categoryProductId'}}
+        populate: { path: 'categoryProductId , colorId ,  sizeId'}}
     })
     .then(data =>{
         if(data){

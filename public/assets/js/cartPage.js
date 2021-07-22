@@ -20,7 +20,7 @@ async function CartRender(){
                     <div><h3>${item.name}</h3></div>
                     <div>MÃ SẢN PHẨM: <strong>${item.codeProduct}</strong></div>
                     <div>MÀU SẮC : <strong>${item.colorId.name}</strong></div>
-                    <div>KÍCH THƯỚC : <strong>None</strong></div>
+                    <div>KÍCH THƯỚC : <strong>${item.sizeId.size}</strong></div>
                     <div>GIAO HÀNG TRONG VÒNG CHƯA ĐẦY 72 GIỜ</div>
                 </div>
                   <div id="pricePerOneProduct${obj._id}" class="cart-items-unit-price">${item.price}</div>
