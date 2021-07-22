@@ -11,6 +11,7 @@ async function CartRender(){
  
   if (data) {
         var totalPrices = 0;
+        console.log(14, data);
         for (const obj of data.product) {
           let item = obj.productId;
           let content = `
