@@ -473,4 +473,30 @@ router.delete('/',(req,res) =>{
         res.status(500).json('loi sever')
     })
 })
+router.post('/findProductById', (req, res, next)=>{
+    ModelMongo.ProductModel.findOne({
+        _id : req.body.productId
+    })
+    .then(data =>{
+        res.json(data)
+    })
+    .catch(err =>{
+        res.json(err)
+    })
+})
+router.put('/findProductByIdAndUpdateQuantity', (req, res, next)=>{
+   
+    ModelMongo.ProductModel.updateOne({
+        _id : req.body.productId
+    },{
+        quantity : req.body.newQuantity
+    })
+    .then(data =>{
+        res.json(data)
+    })
+    .catch(err =>{
+        res.json(err)
+    })
+})
+
 module.exports = router

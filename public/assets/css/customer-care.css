@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;}
+
+.a2 img{
+    width: 25%;
+    height: 25%;
+}
+
+.a2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 30px !important;
+    border: none !important;
+}
+
+.a2 div{
+    border: none;
+    margin-left: 25px;
+}
+
+.a2 div h3{
+    color: #0082c3;
+}
+
+.deliAll div p {
+    padding: 5px 0;
+}
+
+.cuscare{
+    display: flex;
+    justify-content: center;
+}
+
+.cuscare img{
+    width: 70%;
+}
+
+
+
+

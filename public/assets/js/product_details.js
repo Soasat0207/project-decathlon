@@ -2,15 +2,13 @@
 function renderCart(){
     $('.listSelectedProduct').html('');
     $.ajax({
-        url: '/api/user/findSelectedProduct',
+        url: '/api/user/findShoppingCart',
         type : 'POST',
-        data: {
-            sold : false
-        }
     }).then(data =>{
         // console.log(data);
-        data.forEach(element => {
-
+        let arrProduct = data.product
+        arrProduct.forEach(element => {
+            // console.log(11, element);
             let liItem = `
         <li class="list-cart-items">
             <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
@@ -22,7 +20,7 @@ function renderCart(){
                     <p class="list-cart-item-quatity">${element.quantity}</p>
                 </div>
                 <div class="list-cart-item-body">
-                    <p class="list-cart-item-category">Phân loại: ${element.productId.categoryProductId.name}</p>
+                    <p class="list-cart-item-category">Species: ${element.productId.categoryProductId.name}</p>
                     <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
                 </div>
             </div>
@@ -35,19 +33,20 @@ function renderCart(){
           deleteSelectedProduct(selectedId)
         })
 
-        }); // end loop
+        });
+        // end loop
 
     }).catch(err =>{
         console.log('Server error');
     })
 }
-renderCart()
+renderCart();
 
 // function to delete selected item from Database
     function deleteSelectedProduct(selectedId){
         $.ajax({
-            url: '/api/user/deleteSelectedProduct',
-            type: 'DELETE',
+            url: '/api/user/findAndDeleteOneProduct',
+            type: 'PUT',
             data: {
                 selectedId : selectedId
             }
@@ -61,7 +60,6 @@ renderCart()
     }
 
 // add event for Show Cart button
-
 $('.list-view-cart').on('click', ()=>{
     window.location.href = 'http://localhost:3000/cart'
-})
+});

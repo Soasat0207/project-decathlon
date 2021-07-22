@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List order</title>
+    <style>
+      .admin-list-order th{
+        text-transform: capitalize !important;
+      }
+      .detailBtn{
+          padding: 10px;
+          border-radius: 5px;
+      }
+    </style>
+    <%- include('../partials/admin-head'); -%>
+  </head>
+  <body class="theme-dank">
+    <div class="body-warpper">
+      <div class="row no-gutters">
+        <%- include('../partials/body-admin-left'); -%>
+        <div class="col col-lg-10">
+          <div class="body_admin-right">
+            <%- include('../partials/admin-navbar'); -%>
+            <div class="body_admin-right-body">
+              <div class="body_admin-right_page-content">
+                <div class="body_admin-right_page-content-card">
+                  <div class="page-content-card-warpper">
+                    <h5 class="page-content-card-warpper-title">
+                      Recent Orders
+                    </h5>
+                    <!-- <button id="openModal">Open Modal</button> -->
+                    <div class="page-content-card-form">
+                      <div class="row">
+                        <div class="col col-lg-12">
+                          <div class="border">
+                            <div class="page-content-card-warpper">
+                              <div class="page-content-table-warpper">
+                                <body>
+                                  <table>
+                                    <thead>
+                                      <tr>
+                                        <th>Details</th>
+                                        <th>Code</th>
+                                        <th>User fullname</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Address</th>
+                                        <th>Total prices</th>
+                                        <th>Actions</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="admin-list-order">
+
+                                    </tbody>
+                                  </table>
+                                </body>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include('../partials/admin-script'); -%>
+  <script src="public/assets/js/modal.js"></script>
+  <script src="public/assets/js/admin-list-order.js"></script>
+</html>

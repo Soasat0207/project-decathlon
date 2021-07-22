@@ -68,24 +68,25 @@ async function renderProductDetails() {
           $('.product_details-addcart-btn-yellow').attr("id", `addToCart${data._id}`)
 
         // add event for button Add To Cart
-        $('.product_details-addcart-btn-yellow').on('click', ()=>{
-            let idOfProduct = $(`#addToCart${data._id}`).attr('id').slice(9, 100);
-            $.ajax({
-                url: '/api/user/addToSelectedProduct',
-                type: 'POST',
-                data: {
-                    productId : idOfProduct
-                }
-            }).then(data =>{
-                if(data){
-                    findAndCreateShoppingCart();
-                    alert('Thêm vào giỏ hàng thành công');
-                    renderCart();
-                }
-            }).catch(err =>{
-                console.log(err);
+            
+            $('.product_details-addcart-btn-yellow').on('click', ()=>{
+                let quantity = 1;
+                let idOfProduct = $(`#addToCart${data._id}`).attr('id').slice(9, 100);
+                let arrListProduct = [{productId : idOfProduct, quantity: quantity}];
+
+                $.ajax({
+                    url: '/api/user/findShoppingCart',
+                    type: 'POST',
+                }).then(data =>{
+                    if(data === 'Nothing'){
+                        createShoppingCart(arrListProduct);
+                    }else{
+                        updateShoppingCart(arrListProduct);
+                    }
+                }).catch(err =>{
+                    console.log(err);
+                })
             })
-        })
 
           data.imgColor.map((data)=>{
               let div =`
@@ -147,36 +148,38 @@ async function renderProductDetails() {
 
 
 // function create shopping cart
-    function createShoppingCart(arrSelectedId){
-        
+    function createShoppingCart(arrListProduct){
         $.ajax({
             url: '/api/user/createShoppingCart',
             type: 'POST',
-            data: {
-                listProduct: arrSelectedId,
+            data : {
+                arrListProduct : arrListProduct
             }
         }).then(data =>{
-            console.log(data);
+            if(data){
+                renderCart();
+            }
         }).catch(err =>{
             console.log(err);
         })
     }
 
-// function update shopping cart
-    function updateShoppingCart(arrSelectedId){
-        let lastSelectedId = arrSelectedId[arrSelectedId.length-1]
-        $.ajax({
-            url: '/api/user/updateShoppingCart',
-            type: 'PUT',
-            data: {
-                newProduct: lastSelectedId
-            }
-        }).then(data =>{
-            console.log(data);
-        }).catch(err =>{
-            console.log(err);
-        })
-    }
+// function find and update shopping cart
+function updateShoppingCart(arrListProduct){
+    $.ajax({
+        url: '/api/user/updateShoppingCart',
+        type : 'PUT',
+        data: {
+            arrListProduct : arrListProduct
+        }
+    }).then(data =>{
+        if(data){
+            renderCart();
+        }
+    }).catch(err =>{
+        console.log(err);
+    })
+}
 
 
 async function renderColorImg(codeProduct) {
@@ -409,16 +412,15 @@ function test(){
 
 // Hiển thị thông tin Advantages
 $.ajax({
-    url: '/api/user/viewadvantages/sp100011',
+    url: '/api/user/viewadvantages/sp116517',
     type: 'get',
 })
 .then((data) => {
-    console.log(15 ,data);
-    console.log(17, data.title1);
     if(data){
-        $('.photoAdvantages1').attr("src",data.advantagesPhoto1[0])
+        $('.photoAdvantages1').attr("src",`http://localhost:3000/${data.advantagesPhoto1[0]}`)
         $('.avdantagesTitle1').append(data.title1)
         $('.advantageContent01').append(data.advantagecontent1)
+        $('.photoAdvantages2').attr("src",`http://localhost:3000/${data.advantagesPhoto2[0]}`)
         $('.avdantagesTitle2').append(data.title2)
         $('.advantageContent02').append(data.advantagecontent2)
     }
@@ -431,15 +433,13 @@ $.ajax({
 function renderCart(){
     $('.listSelectedProduct').html('');
     $.ajax({
-        url: '/api/user/findSelectedProduct',
+        url: '/api/user/findShoppingCart',
         type : 'POST',
-        data: {
-            sold : false
-        }
     }).then(data =>{
         // console.log(data);
-        data.forEach(element => {
-
+        let arrProduct = data.product
+        arrProduct.forEach(element => {
+            console.log('oke');
             let liItem = `
         <li class="list-cart-items">
             <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
@@ -451,7 +451,7 @@ function renderCart(){
                     <p class="list-cart-item-quatity">${element.quantity}</p>
                 </div>
                 <div class="list-cart-item-body">
-                    <p class="list-cart-item-category">Phân loại: ${element.productId.categoryProductId.name}</p>
+                    <p class="list-cart-item-category">Species: ${element.productId.categoryProductId.name}</p>
                     <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
                 </div>
             </div>
@@ -464,7 +464,8 @@ function renderCart(){
           deleteSelectedProduct(selectedId)
         })
 
-        }); // end loop
+        });
+        // end loop
 
     }).catch(err =>{
         console.log('Server error');

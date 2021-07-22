@@ -23,10 +23,13 @@ $(".lang").on("click", (event) => {
 // Nhập thông tin đăng ký
 async function nutDangky(){
     try{
+        $( "form" ).submit(function( event ) {
+            event.preventDefault();
+          });
         $('.ndtk3').css('display', 'block')
         let gender
         if($('.nam2').prop("checked") == false && $('.nu2').prop("checked") == false){
-            console.log('chuwa chon gioi tinh');
+            console.log('chua chon gioi tinh');
         }else if($('.nam2').prop("checked")){
             gender = 'nam'
         }else{
@@ -43,7 +46,7 @@ async function nutDangky(){
                 $('.ndtk2').html('Không được để rỗng ô nhập')
             }else{
                 let data = await $.ajax({
-                    url: '/api/nguoidung/dangky',
+                    url: '/api/cus/registeredcus',
                     type: 'post',
                     data: {
                         username: $('.taikhoan2').val(),
@@ -73,5 +76,5 @@ async function nutDangky(){
 }
 
 function nutchuyenDN(){
-    window.location.href = '/dangnhap'
+    window.location.href = '/login-cus'
 }

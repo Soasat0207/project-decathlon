@@ -2,11 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
 const checkoutRouter = require('./router/checkoutRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
-const selectedProductRouter = require('./router/selectedProductRouter');
 const reviewRouter = require('./router/reviewRouter');
 const commentRouter = require('./router/commentRouter');
 const shoppingCartRouter = require('./router/shoppingCartRouter');
@@ -38,7 +36,8 @@ const AdvantagesModel = require('./models/ProductAdvantagesModel')
 // parse cookie
 app.use(cookieParser())
 app.use(bodyParser.json());
-var multer  = require('multer')
+var multer  = require('multer');
+const { get } = require('mongoose');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null,path.join(__dirname,'./public/uploads'))
@@ -116,17 +115,52 @@ app.get('/admin-add-bannerSale', (req, res) => {
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
 })
+app.get('/registered-cus', (req, res)=>{
+  res.render('customer/registered-customers')
+})
+app.get('/login-cus', (req, res) => {
+  res.render('customer/customer-login')
+})
+app.get('/admin-list-order', (req, res) => {
+  res.render('admin/list-order');
+})
+app.get('/page-cus', (req, res) =>{
+  res.render('customer/customer-page')
+})
 
-app.get('/dangky', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/dangkyUser.html'))
+// Get footer subsection
+app.get('/delivery-method', (req, res) => {
+  res.render('footer subsection/delivery-method')
 })
-app.get('/nguoidung', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/trangUser.html'))
+app.get('/payment-methods', (req, res) => {
+  res.render('footer subsection/payment-methods')
+})
+app.get('/return-process', (req, res) => {
+  res.render('footer subsection/return-process')
+})
+app.get('/frequently-asked-questions', (req, res) => {
+  res.render('footer subsection/frequently-asked-questions')
+})
+app.get('/store-address', (req, res) => {
+  res.render('footer subsection/store-address')
+})
+app.get('/customer-care', (req, res) => {
+  res.render('footer subsection/customer-care')
+})
+app.get('/offers-for-businesses', (req, res) => {
+  res.render('footer subsection/offers-for-businesses')
+})
+app.get('/who-is-deca', (req, res) => {
+  res.render('footer subsection/who-is-deca')
+})
+app.get('/terms-of-purchase', (req, res) => {
+  res.render('footer subsection/terms-of-purchase')
+})
+app.get('/privacy-policy', (req, res) => {
+  res.render('footer subsection/privacy-policy')
 })
 
-app.get('/dangnhap', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/dangnhapUser.html'))
-})
+
 app.get('/advantages', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
 }) 
@@ -139,18 +173,17 @@ app.get('/order', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
 }) 
+
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
 // Use router
 app.use('/api/user/', ProductAdvantagesRouter);
-app.use('/api/nguoidung', userRouter);
+app.use('/api/cus', userRouter);
 // Use router
-app.use('/api/user/', cartRouter);
 app.use('/api/user/', shoppingCartRouter);
 app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', checkoutRouter);
-app.use('/api/user/', selectedProductRouter);
 app.use('/api/product',productRouter);
 app.use('/api/category',categoryRouter);
 app.use('/api/color',colorRouter);
