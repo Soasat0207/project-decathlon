@@ -120,11 +120,9 @@ app.get('/registered-cus', (req, res)=>{
 })
 app.get('/login-cus', (req, res) => {
   res.render('customer/customer-login')
+})
 app.get('/admin-list-order', (req, res) => {
   res.render('admin/list-order');
-})
-
-
 })
 app.get('/page-cus', (req, res) =>{
   res.render('customer/customer-page')
