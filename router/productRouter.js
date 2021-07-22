@@ -7,12 +7,12 @@ const { copyFileSync } = require('fs');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '../public/uploads'))
+        cb(null, path.join(__dirname, '../public/uploads'))
     },
     filename: function (req, file, cb) {
-      let index = file.originalname.lastIndexOf('.');
-      let extention = file.originalname.slice(index, file.originalname.length);
-     cb(null, file.fieldname + '-' + Date.now() + extention);
+        let index = file.originalname.lastIndexOf('.');
+        let extention = file.originalname.slice(index, file.originalname.length);
+        cb(null, file.originalname.split('.')[0]+file.fieldname + '-' + Date.now() + extention);
     }
   })
 var upload = multer({ storage: storage })
@@ -47,8 +47,17 @@ router.get('/',(req,res) =>{
 })
 // tạo database mới 
 router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgProduct', maxCount: 12 }]),(req,res,next) =>{
-    const imgColorArray= req.files.imgColor.map(element => {return '/public/uploads/'+element.filename})
-    const imgProductArray= req.files.imgProduct.map(element => {return '/public/uploads/'+element.filename})
+    let imgColorArray = [];
+    let imgProductArray= [];
+    if(req.files.imgColor){
+        imgColorArray= req.files.imgColor.map(element => {return '/public/uploads/'+element.filename})
+    }
+    if(req.files.imgProduct){
+        imgProductArray= req.files.imgProduct.map(element => {return '/public/uploads/'+element.filename})
+    }
+    console.log(imgProductArray);
+    console.log(imgColorArray);
+    
     let img = req.body.img;
     let imgColor = req.body.imgColor;
     let name = req.body.ProductName;
@@ -68,37 +77,37 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
     let trademarkId = req.body.productTradeMark;
     let supplierId = req.body.productSupplier;
     let categoryProductId = req.body.productCategory;
-    ModelMongo.ProductModel.create({
-        img:imgProductArray,
-        imgColor:imgColorArray,
-        name:name,
-        codeProduct:codeProduct,
-        priceImport:priceImport,
-        price:price,
-        unit:unit,
-        quantity:quantity,
-        descriptionShort:descriptionShort,
-        descriptionDetails:descriptionDetails,
-        title:title,
-        rate:rate,
-        gender:gender,
-        sizeId:sizeId,
-        colorId:colorId,
-        levelId:levelId,
-        trademarkId:trademarkId,
-        supplierId:supplierId,
-        categoryProductId:categoryProductId,
-    })
-    .then((data) =>{
-        return res.json({
-            message:'susses',
-            status:200,
-            data:data,
-        })
-    })
-    .catch((error)=>{
-        res.status(500).json('loi sever')
-    })
+    // ModelMongo.ProductModel.create({
+    //     img:imgProductArray,
+    //     imgColor:imgColorArray,
+    //     name:name,
+    //     codeProduct:codeProduct,
+    //     priceImport:priceImport,
+    //     price:price,
+    //     unit:unit,
+    //     quantity:quantity,
+    //     descriptionShort:descriptionShort,
+    //     descriptionDetails:descriptionDetails,
+    //     title:title,
+    //     rate:rate,
+    //     gender:gender,
+    //     sizeId:sizeId,
+    //     colorId:colorId,
+    //     levelId:levelId,
+    //     trademarkId:trademarkId,
+    //     supplierId:supplierId,
+    //     categoryProductId:categoryProductId,
+    // })
+    // .then((data) =>{
+    //     return res.json({
+    //         message:'susses',
+    //         status:200,
+    //         data:data,
+    //     })
+    // })
+    // .catch((error)=>{
+    //     res.status(500).json('loi sever')
+    // })
 });
 // tìm theo like name code product
 router.post('/findname',(req,res) =>{
@@ -107,7 +116,6 @@ router.post('/findname',(req,res) =>{
     ModelMongo.ProductModel.find({
         $or: [
             {name:{ $regex: new RegExp(name, "i")}},
-            // {codeProduct:{ $regex: new RegExp(codeProduct, "i")}},
         ]
     })
     .populate({

@@ -4,154 +4,129 @@ $(".payment-options-checkbox").on("change", function () {
 });
 
 // function to render checkout right
-function render() {
-  $(".cart-item-list").html("");
+async function renderCartInfo() {
+  try {
+    $(".cart-item-list").html("");
   $(".checkbox-round:last").attr("checked", "checked");
-
-  $.ajax({
-    url: "/api/user/cartPage",
-    type: "POST",
+  let data = await $.ajax({
+    url: "/api/user/findShoppingCart",
+    type: "POST"
   })
-    .then((data) => {
-      // console.log(13, data);
-      if (data) {
-        let totalPrice = 0;
-        for (const item of data.product) {
-          let objProduct = item.productId;
-          let productInfo = `
-          <div class="cart-item-list-product">
-            <div class="cart-item-list-image">
-              <img src="${objProduct.img[0]}" alt="">
-            </div>
-            <div class="cart-item-list-infomation">
-              <div class="cart-item-list-name">
-                <h4>${objProduct.name}</h4>
-              </div>
-              <div class="cart-item-list-price">
-              <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price} ${objProduct.unit}</b></span>
-              </div>
-            </div>
+  if (data) {
+    let totalPrice = 0;
+    for (const item of data.product) {
+      let objProduct = item.productId;
+      let productInfo = `
+      <div class="cart-item-list-product">
+        <div class="cart-item-list-image">
+          <img src="${objProduct.img[0]}" alt="">
+        </div>
+        <div class="cart-item-list-infomation">
+          <div class="cart-item-list-name">
+            <h4>${objProduct.name}</h4>
           </div>
-          `;
-          let pricePerOneProduct = parseInt(
-            objProduct.price.replace(/\./g, "")
-          );
-          let quantityProduct = item.quantity;
-          totalPrice += pricePerOneProduct * quantityProduct;
-          $(".cart-item-list").append(productInfo);
-        } // end for loop
-        if (totalPrice > 899000) {
-          $(".shipping-cash-calc").append("Miễn phí");
-        } else {
-          $(".shipping-cash-calc").append("Có phí");
-        }
-        let stringTotalPrice = numberToCurrency(totalPrice);
+          <div class="cart-item-list-price">
+          <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price}</b></span>
+          </div>
+        </div>
+      </div>
+      `;
+      let pricePerOneProduct = parseInt(objProduct.price.replace(/\,/g, ""));
+      let quantityProduct = item.quantity;
+      totalPrice += pricePerOneProduct * quantityProduct;
+      $(".cart-item-list").append(productInfo);
+    } // end for loop
+    if (totalPrice > 899000) {
+      $(".shipping-cash-calc").append("Miễn phí");
+    } else {
+      $(".shipping-cash-calc").append("Có phí");
+    }
+    let stringTotalPrice = numberToCurrency(totalPrice);
 
-        $(".total-price-calc").append(stringTotalPrice);
-        $(".all-price-calc").append(stringTotalPrice);
-      } // end if condition
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    $(".total-price-calc").append(stringTotalPrice);
+    $(".all-price-calc").append(stringTotalPrice);
+  } // end if condition
+  } catch (error) {
+    console.log(error);
+  }
 }
-render();
+renderCartInfo();
 
 // render checkout-left for checkout page
-function renderCheckoutLeft() {
-  $.ajax({
-    url: "/api/user/findOrder",
-    type: "POST",
-  })
-    .then((data) => {
-      // console.log(62, data);
-      let deliveryAddress = `
-      <div class="text-deliveried-address ">
-      Giao hàng đến <span style="font-weight: 700;" class="end-address"> ${data.address.province}</span>
-      </div>
-      <button class="change-deliveried-address">Thay đổi</button>
-      `;
-      let timeToDelivery = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
-      let date = timeToDelivery.getDate();
-      let month = timeToDelivery.getMonth() + 1;
-      let year = timeToDelivery.getFullYear();
-
-      let dayNumber = timeToDelivery.getDay();
-      let dayToDeliveried = "";
-      switch (dayNumber) {
-        case 0:
-          dayToDeliveried = "Chủ nhật";
-          break;
-        case 1:
-          dayToDeliveried = "Thứ hai";
-          break;
-        case 2:
-          dayToDeliveried = "Thứ ba";
-          break;
-        case 3:
-          dayToDeliveried = "Thứ tư";
-          break;
-        case 4:
-          dayToDeliveried = "Thứ năm";
-          break;
-        case 5:
-          dayToDeliveried = "Thứ sáu";
-          break;
-        case 6:
-          dayToDeliveried = "Thứ bảy";
-          break;
-      }
-
-      let dateOfDeliveried = `
-      <div class="text-deliveried-date">
-        Giao hàng tiêu chuẩn<strong class="end-date"> từ ${dayToDeliveried}, ${date}/${month}/${year} </strong>
-      </div>
-      `;
-      $(".deliveried-address").html("");
-      $(".deliveried-address").append(deliveryAddress);
-      $(".deliveried-date").html("");
-      $(".deliveried-date").append(dateOfDeliveried);
-
-      // Change address button
-      $(".change-deliveried-address").on("click", () => {
-        window.location.href = "http://localhost:3000/order";
-      });
+async function renderCheckoutLeft() {
+  try {
+    let data = await $.ajax({
+      url: "/api/user/findOrder",
+      type: "POST",
     })
-    .catch((err) => {
-      console.log(err);
+    let deliveryAddress = `
+    <div class="text-deliveried-address ">
+    Giao hàng đến <span style="font-weight: 700;" class="end-address"> ${data.address.province}</span>
+    </div>
+    <button class="change-deliveried-address">Thay đổi</button>
+    `;
+    let timeToDelivery = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+    let date = timeToDelivery.getDate();
+    let month = timeToDelivery.getMonth() + 1;
+    let year = timeToDelivery.getFullYear();
+  
+    let dayNumber = timeToDelivery.getDay();
+    let arrayOfWeekday = ["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy" ];
+    let dayToDeliveried = arrayOfWeekday[dayNumber];
+  
+    let dateOfDeliveried = `
+    <div class="text-deliveried-date">
+      Giao hàng tiêu chuẩn<strong class="end-date"> từ ${dayToDeliveried}, ${date}/${month}/${year} </strong>
+    </div>
+    `;
+    $(".deliveried-address").html("");
+    $(".deliveried-address").append(deliveryAddress);
+    $(".deliveried-date").html("");
+    $(".deliveried-date").append(dateOfDeliveried);
+  
+    // Change address button
+    $(".change-deliveried-address").on("click", () => {
+      window.location.href = "http://localhost:3000/order";
     });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 renderCheckoutLeft();
 
-// Change address button
-$(".payment-options-button-confirm").on("click", () => {
+// Add event for Confirm button
+$(".payment-options-button-confirm").on("click", async () => {
+  try {
   let idChecked = $(".payment-options-checkbox:checked").attr("id");
-  $.ajax({
+  let data = await $.ajax({
     url: "/api/user/updatePaymentMethod",
     type: "PUT",
-    data: {
-      methodPayment: idChecked,
-    },
+    data: {methodPayment: idChecked}
   })
-    .then((data) => {
-      if (data.nModified !== 0) {
-        renderOrderConfirm();
-      }
+  if(data){
+   let data2 = await $.ajax({
+    url: '/api/user/deleteShoppingCart',
+    type: 'DELETE'
     })
-    .catch((err) => {
-      console.log(errr);
-    });
+  if(data2.deletedCount !== 0){
+    renderOrderConfirm();
+  }
+  }
+  } catch (error) {
+    console.log(error);
+  }
 });
-// function xác nhận thông tin đơn hàng
-function renderOrderConfirm() {
-  $(".checkout-infomation").html("");
+
+// function to confirm order infomation
+async function renderOrderConfirm() {
+  try {
+    $(".checkout-infomation").html("");
   $(".deliveried-address").html("");
-  $.ajax({
+  let data = await $.ajax({
     url: "/api/user/findOrder",
     type: "POST",
   })
-    .then((data) => {
       let methodOfPayment = "";
       if (data.methodPayment === "CashByCod") {
         methodOfPayment = "Thanh toán khi nhận hàng";
@@ -177,12 +152,11 @@ function renderOrderConfirm() {
       $(".deliveried-address").append(addressConfirm);
       // go to homepage button
       $(".goToHomePage").on("click", () => {
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3000/list-product";
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // function convert number to VND format

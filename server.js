@@ -2,13 +2,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-const cartRouter = require('./router/cartRouter');
 const userAddressRouter = require('./router/userAddressRouter');
 const checkoutRouter = require('./router/checkoutRouter');
 const ProductAdvantagesRouter = require('./router/ProductAdvantagesRouter')
-const selectedProductRouter = require('./router/selectedProductRouter');
 const reviewRouter = require('./router/reviewRouter');
 const commentRouter = require('./router/commentRouter');
+const shoppingCartRouter = require('./router/shoppingCartRouter');
+const BannerSaleRouter = require('./router/BannerSaleRouter');
+
+
+
 const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 
@@ -97,11 +100,17 @@ app.get('/admin-add-product', (req, res) => {
 app.get('/admin-list-product', (req, res) => {
   res.render('admin/list-product');
 })
+app.get('/admin-list-bannerSale', (req, res) => {
+  res.render('admin/list-bannerSale');
+})
 app.get('/admin-account-details', (req, res) => {
   res.render('admin/account-details');
 })
 app.get('/admin-add-account', (req, res) => {
   res.render('admin/add-account');
+})
+app.get('/admin-add-bannerSale', (req, res) => {
+  res.render('admin/add-bannerSale');
 })
 app.get('/admin-login', (req, res) => {
   res.render('admin/login');
@@ -111,6 +120,11 @@ app.get('/registered-cus', (req, res)=>{
 })
 app.get('/login-cus', (req, res) => {
   res.render('customer/customer-login')
+app.get('/admin-list-order', (req, res) => {
+  res.render('admin/list-order');
+})
+
+
 })
 app.get('/page-cus', (req, res) =>{
   res.render('customer/customer-page')
@@ -169,10 +183,9 @@ app.use('/public',express.static(path.join(__dirname, './public')));
 app.use('/api/user/', ProductAdvantagesRouter);
 app.use('/api/cus', userRouter);
 // Use router
-app.use('/api/user/', cartRouter);
+app.use('/api/user/', shoppingCartRouter);
 app.use('/api/user/', userAddressRouter);
 app.use('/api/user/', checkoutRouter);
-app.use('/api/user/', selectedProductRouter);
 app.use('/api/product',productRouter);
 app.use('/api/category',categoryRouter);
 app.use('/api/color',colorRouter);
@@ -183,10 +196,7 @@ app.use('/api/trademark',trademarkRouter);
 app.use('/api/account',accountRouter);
 app.use('/api/review',reviewRouter);
 app.use('/api/comment',commentRouter);
-
-
-
-
+app.use('/api/BannerSale',BannerSaleRouter);
 var cpUpload = upload.fields([{ name: 'advantagesPhoto1', maxCount: 3 }, { name: 'advantagesPhoto2', maxCount: 3 }, { name: 'advantagesPhoto', maxCount: 3 } ])
 app.post('/profile2', cpUpload, async function (req, res, next) {
   try{

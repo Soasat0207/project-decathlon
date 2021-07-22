@@ -143,6 +143,7 @@ const tradeMarkSchema = new Schema(
   {
     name: String,
     description: String,
+    img: String
   },
   {
     collection: "trademark",
@@ -230,11 +231,14 @@ const commentSchema = new Schema(
 
 // Shopping cart schema
 const shoppingCartSchema = new Schema(
-  {
+  { 
     product: [
       {
-        type: String,
-        ref: 'selectedProduct'
+      productId : {
+          type: String,
+          ref: 'product'
+      },
+      quantity: String,
       },
     ],
     userId: {
@@ -249,9 +253,12 @@ const shoppingCartSchema = new Schema(
 const ordersSchema = new Schema(
   {
     product: [
-      { 
-        type: String, 
-        ref: "selectedProduct"
+      {
+        productId:{ 
+          type: String, 
+          ref: "selectedProduct"
+        },
+        quantity: String
       }
     ],
     address: {
@@ -264,7 +271,7 @@ const ordersSchema = new Schema(
     },
     status: {
       type: String,
-      default: "Dang van chuyen",
+      default: "Received",
     },
     methodPayment: String,
     orderDate: Date,
@@ -273,7 +280,21 @@ const ordersSchema = new Schema(
   { collection: "orders" }
 );
 // End orders Schema
-
+const BannerSaleSchema = new Schema(
+  {
+    description: String,
+    createDate:Date,
+    img: [
+      {
+        type: String,
+      },
+    ],
+    status:Boolean,
+  },
+  {
+    collection: "bannerSale",
+  }
+);
 // Create Model
   const AccountModel = mongoose.model("account", accountSchema);
   const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
@@ -289,6 +310,8 @@ const ordersSchema = new Schema(
   const ReviewModel = mongoose.model("review", reviewSchema);
   const CommentModel = mongoose.model("comment", commentSchema);
   const AcountBListModel = mongoose.model("blacklist" ,accountBListSchema);
+  const BannerSaleModel = mongoose.model("bannerSale", BannerSaleSchema);
+
 // end of Create Model
 
 // exports Model
@@ -305,6 +328,7 @@ module.exports = {
   SupplierModel,
   CategoryProductModel,
   ReviewModel,
-  CommentModel,AcountBListModel
+  CommentModel,AcountBListModel,
+  BannerSaleModel,
 };
 // end of exports model

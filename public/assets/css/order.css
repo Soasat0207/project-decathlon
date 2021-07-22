@@ -311,3 +311,7 @@ div.col-md-6 input, div.col-md-6 select{
 .card-container{
     margin: 20px 0;
 }
+
+.location-card-infomation span{
+    text-transform: uppercase;
+}

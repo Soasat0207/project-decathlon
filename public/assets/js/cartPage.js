@@ -1,60 +1,57 @@
 CartRender();
 
 //function to Render
-function CartRender(){
+async function CartRender(){
+  try {
   $(".cart-items").html('');
-  $.ajax({
-    url: "/api/user/cartPage",
+  let data = await $.ajax({
+    url: "/api/user/findShoppingCart",
     type: "POST",
-  })
-    .then((data) => {
-      if (data) {
-        console.log(12 ,data);
+  });
+ 
+  if (data) {
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
-          console.log(item._id);
           let content = `
-              <div id = "content${item._id}" class = "cart-items-info">
-                  <div class="cart-items-img"><img src="${item.img}" alt=""></div>
-                  <div class="cart-items-info-product">
-                      <div class="cart-items-info-product-description">
-                          <div><h3>${item.name}</h3></div>
-                          <div>MÃ SẢN PHẨM: ${item.codeProduct}</div>
-                          <div>MÀU SẮC : ${item.imgColor[0]}</div>
-                          <div>KÍCH THƯỚC : None</div>
-                          <div>GIAO HÀNG TRONG VÒNG CHƯA ĐẦY 72 GIỜ</div>
-                      </div>
-                          <div id="pricePerOneProduct${item._id}" class="cart-items-unit-price">${item.price}</div>
-                          <div class="cart-items-quantity cart-items-unit-price">
-                              <button id="decre${item._id}" class="cart-items-quantity-btn cart-items-quantity-btn-decrease">-</button>
-                              <input id = "${item._id}" class="cart-items-quantity-input" type="number" value ="${obj.quantity}" min='1' max='5'>
-                              <button id="incre${item._id}" class="cart-items-quantity-btn cart-items-quantity-btn-increase">+</button>
-                          </div>
-                          <div id="price${item._id}" class="cart-items-total-price cart-items-unit-price"></div>
-                      </div>
-                      <div class="cart-items-delete cart-items-unit-price"><button onclick="deleteProduct('${item._id}')">X</button>
-                      </div>
-              </div>
+            <div id = "content${obj._id}" class = "cart-items-info">
+              <div class="cart-items-img"><img src="${item.img}" alt=""></div>
+              <div class="cart-items-info-product">
+                <div class="cart-items-info-product-description">
+                    <div><h3>${item.name}</h3></div>
+                    <div>MÃ SẢN PHẨM: <strong>${item.codeProduct}</strong></div>
+                    <div>MÀU SẮC : <strong>${item.colorId.name}</strong></div>
+                    <div>KÍCH THƯỚC : <strong>None</strong></div>
+                    <div>GIAO HÀNG TRONG VÒNG CHƯA ĐẦY 72 GIỜ</div>
+                </div>
+                  <div id="pricePerOneProduct${obj._id}" class="cart-items-unit-price">${item.price}</div>
+                  <div class="cart-items-quantity cart-items-unit-price">
+                      <button id="decre${obj._id}" class="cart-items-quantity-btn cart-items-quantity-btn-decrease">-</button>
+                      <input id = "input${obj._id}" class="cart-items-quantity-input" type="number" value ="${obj.quantity}" min='1' max='5'>
+                      <button id="incre${obj._id}" class="cart-items-quantity-btn cart-items-quantity-btn-increase">+</button>
+                  </div>
+                  <div id="price${obj._id}" class="cart-items-total-price cart-items-unit-price"></div>
+                </div>
+                <div class="cart-items-delete cart-items-unit-price"><button onclick="deleteProduct('${obj._id}')">X</button>
+                </div>
+            </div>
               `;
           
-          // append to html file
+          // append to html
           $(".cart-items").append(content);
   
           // price total
-          let pricePerOneUnit = parseInt($(`#pricePerOneProduct${item._id}`).html().replace(/\,/g, ""));
-          let productQuantity = parseInt($(`#${item._id}`).val());
+          let pricePerOneUnit = parseInt($(`#pricePerOneProduct${obj._id}`).html().replace(/\,/g, ""));
+          let productQuantity = parseInt($(`#input${obj._id}`).val());
           totalPrices += ( pricePerOneUnit * productQuantity );
-          console.log(41, totalPrices);
   
           // price handler
-          decreQuantity(item._id);
-          increQuantity(item._id);
-          priceOfOneProduct(item._id);
+          decreQuantity(obj._id);
+          increQuantity(obj._id);
+          priceOfOneProduct(obj._id);
         } // \End for loop
-        
-        console.log(56, totalPrices);
-        // check shipping cash
+
+      // check shipping cash
         if(totalPrices > 899000){
             $('.cashShipping').html('');
             $('.cashShipping').append('Miễn phí');
@@ -67,93 +64,95 @@ function CartRender(){
           $('.cashShipping').append('Tính khi chọn hình thức giao hàng');
           $('.freeShipCondition').html('');
           $('.freeShipCondition').append(`<i class="fal fa-truck"></i><strong >Bạn cần mua thêm ${extraMoney} để được MIỄN PHÍ GIAO HÀNG</strong>`);
-
         }
         totalPricesCurrencyFormated = numberToCurrency(totalPrices)
         $('.totalPriceOfProducts').html('');
         $('.totalPriceOfProducts').html(totalPricesCurrencyFormated);
         $('.totalPrices').html('');
         $('.totalPrices').html(totalPricesCurrencyFormated);
-      } // \End if condition
-    })
-    .catch((err) => {
-      console.log("Server err");
-    });
-} // \end function CartRender
-
-// delete a product that user was selected
-function deleteProduct(productId){
-  $.ajax({
-    url: '/api/user/deleteProduct/',
-    type: 'DELETE',
-    data: { productId : productId}
-  }).then(data => {
-    if(data === "Xoa thanh cong"){
-      alert('Xoa san pham thanh cong');
-      CartRender();
-    }else{
-      alert('Khong co gi de xoa')
     }
-  }).catch(err => {
-    console.log(err);
-  })
+  } catch (error) {
+    console.log(error);
+  }
+} 
+// \end function CartRender
+
+// delete a product 
+async function deleteProduct(selectedId){
+  try {
+    let data = await $.ajax({
+      url: '/api/user/findAndDeleteOneProduct',
+      type: 'PUT',
+      data: { selectedId : selectedId}
+    }).then(data => {
+      console.log(data);
+      if(data){
+        alert('Xoa san pham thanh cong');
+        CartRender();
+      }
+    })
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function decreQuantity(inputID) {
+ function decreQuantity(selectedId) {
   // when user click "-" button
-  $(`#decre${inputID}`).on("click", () => {
-    let decreaseQuantity = parseInt($(`#${inputID}`).val());
+  $(`#decre${selectedId}`).on("click", () => {
+    let decreaseQuantity = parseInt($(`#input${selectedId}`).val());
     if (decreaseQuantity > 1 && decreaseQuantity <= 5) {
       decreaseQuantity--;
     }
-    $(`#${inputID}`).val(decreaseQuantity);
-    userUpdateQuantity(inputID);
-    priceOfOneProduct(inputID);
-    CartRender();
+    $(`#input${selectedId}`).val(decreaseQuantity);
+    updateQuantityCart(selectedId);
+    priceOfOneProduct(selectedId);
   });
+ 
 }
 
-function increQuantity(inputID) {
-  // when user click "+" button
-  $(`#incre${inputID}`).on("click", () => {
-    let increaseQuantity = parseInt($(`#${inputID}`).val());
+function increQuantity(selectedId) {
+    // when user click "+" button
+  $(`#incre${selectedId}`).on("click", () => {
+    let increaseQuantity = parseInt($(`#input${selectedId}`).val());
     if (increaseQuantity >= 1 && increaseQuantity < 5) {
       increaseQuantity++;
     }
-    $(`#${inputID}`).val(increaseQuantity);
-    userUpdateQuantity(inputID);
-    priceOfOneProduct(inputID);
-    CartRender();
+    $(`#input${selectedId}`).val(increaseQuantity);
+    updateQuantityCart(selectedId);
+    priceOfOneProduct(selectedId);
   });
 }
 
 // function to update quantity
-function userUpdateQuantity(inputID){
-  // console.log(131, $(`#${inputID}`).val());
-  $.ajax({
-    url: '/api/user/updateQuantity',
-    type: 'PUT',
-    data: {
-      productId: inputID,
-      newQuantity: $(`#${inputID}`).val()
+async function updateQuantityCart(selectedId){
+  try {
+    let data = await $.ajax({
+      url: '/api/user/updateQuantityShoppingCart',
+      type: 'PUT',
+      data: {
+        selectedId: selectedId,
+        newQuantity: $(`#input${selectedId}`).val()
+      }
+    })
+    if(data.nModified !== 0){
+      CartRender();
+      renderNavbarCart();
     }
-  }).then(data => {
-    console.log(data);
-  }).catch(err =>{
-    console.log(err);
-  })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-
 // function calculate price of one product
-function priceOfOneProduct(inputID) {
+function priceOfOneProduct(selectedId) {
 
-  let pricePerOneUnit = parseInt($(`#pricePerOneProduct${inputID}`).html().replace(/\,/g, ""));
-  let productQuantity = parseInt($(`#${inputID}`).val());
+  let pricePerOneUnit = parseInt($(`#pricePerOneProduct${selectedId}`).html().replace(/\,/g, ""));
+  let productQuantity = parseInt($(`#input${selectedId}`).val());
   let totalUnitPrice = numberToCurrency(pricePerOneUnit * productQuantity)
   
-  $(`#price${inputID}`).html("");
-  $(`#price${inputID}`).append(totalUnitPrice);
+  $(`#price${selectedId}`).html("");
+  $(`#price${selectedId}`).append(totalUnitPrice);
 }
 
 // add event for continue button
@@ -174,4 +173,47 @@ function numberToCurrency(number){
 function currencyToNumber(item){
     var number = Number(item.replace(/[^0-9,-]+/g,""));
     return number
+}
+
+// function render cart in navbar
+async function renderNavbarCart(){
+  $('.listSelectedProduct').html('');
+  try {
+    let data = await $.ajax({
+      url: '/api/user/findShoppingCart',
+      type : 'POST',
+  });
+  if(data){
+    let arrProduct = data.product
+      arrProduct.forEach(element => {
+      let liItem = `
+      <li class="list-cart-items">
+          <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
+          <div class="list-cart-item-wrapper">
+              <div class="list-cart-item-head">
+                  <h5 class="list-cart-item-name">${element.productId.name}</h5>
+                  <p class="list-cart-item-price">${element.productId.price}</p>
+                  <p class="list-cart-item-multiphy">x</p>
+                  <p class="list-cart-item-quatity">${element.quantity}</p>
+              </div>
+              <div class="list-cart-item-body">
+                  <p class="list-cart-item-category">Species: ${element.productId.categoryProductId.name}</p>
+                  <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
+              </div>
+          </div>
+      </li>
+      `
+      $('.listSelectedProduct').append(liItem);
+  // add event for Delete button 
+      $(`#item${element._id}`).on('click', ()=>{
+        let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
+        deleteSelectedProduct(selectedId)
+      })
+
+      });
+      // end loop
+  }
+  } catch (error) {
+    console.log(error);
+  }
 }

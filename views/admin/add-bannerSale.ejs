@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <%- include('../partials/admin-head'); -%>
+</head>
+<body class='theme-dank'>
+    <div class="body-warpper">
+        <div class="row no-gutters">
+            <%- include('../partials/body-admin-left'); -%>
+            <div class="col col-lg-10">
+                <div class="body_admin-right">
+                    <%- include('../partials/admin-navbar'); -%>
+                    <div class="body_admin-right-body">
+                        <div class="body_admin-right_page-content">
+                            <div class="body_admin-right_page-content-card">
+                                <div class="page-content-card-warpper">
+                                    <h5 class="page-content-card-warpper-title">Add Banner</h5>
+                                    <form action="" method="POST" class="form" id="formAddBannerSale" enctype="multipart/form-data">
+                                        <div class="page-content-card-form">
+                                            <div class="row ">
+                                                <div class="col col-lg-8">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image product</label>
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgBannerSale">   
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Description</label>
+                                                                        <textarea name="description" class="form-control page-content-form_description" rows="6" placeholder="Enter Description Short"></textarea>
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-lg-4">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Status</label>
+                                                                        <select name="bannerSale_Status" class="form-select page-content-form_Status">
+                                                                            <option value=""></option>
+                                                                            <option value="true">true</option>
+                                                                            <option value="false">false</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <button class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/admin-script'); -%>
+<script src="public/assets/js/ajaxAddBannerSale.js"></script>
+</html>

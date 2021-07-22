@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List category</title>
+    <%- include('../partials/admin-head'); -%>
+</head>
+<body class='theme-dank'>
+    <div class="body-warpper">
+        <div class="row no-gutters">
+            <%- include('../partials/body-admin-left'); -%>
+            <div class="col col-lg-10">
+                <div class="body_admin-right">
+                    <%- include('../partials/admin-navbar'); -%>
+                    <div class="body_admin-right-body">
+                        <div class="body_admin-right_page-content">
+                            <div class="body_admin-right_page-content-card">
+                                <div class="page-content-card-warpper">
+                                    <h5 class="page-content-card-warpper-title">Recent Orders</h5>
+                                    <button class="openModal" id="openModal">Open Modal</button>
+                                    <div class="page-content-card-form">
+                                        <div class="row ">
+                                            <div class="col col-lg-12">
+                                                <div class="border">
+                                                    <div class="page-content-card-warpper">
+                                                        <div class="page-content-table-warpper">
+                                                            <body>
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>img</th>
+                                                                            <th>Description</th>
+                                                                            <th>Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="admin-list-color">
+                                                                        
+                                                                    </tbody>                    
+                                                                </table>
+                                                                </body>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="myModal" class="modal">
+                                                    <!-- Modal content -->
+                                                    <div class="container">
+                                                        <div class="modal-content">
+                                                            <span class="close">&times;</span>
+                                                            <form action="" method="POST" class="form" id="formAddProduct">
+                                                                <div class="page-content-card-form">
+                                                                    <div class="row ">
+                                                                        <div class="col col-lg-12">
+                                                                            <div class="border">
+                                                                                <div class="page-content-card-warpper">
+                                                                                    <div class="row no-gutters">
+                                                                                        <div class="col col-lg-12">
+                                                                                            <div class="page-content-card-form-input  margin-bottom-2">
+                                                                                                <label class="page-content-card-form-input-label" for="">Description</label>
+                                                                                                <textarea type="text" class="form-control page-content-form_description" placeholder="Enter code product"></textarea>>
+                                                                                                <span class="form-message"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col col-lg-12">
+                                                                                            <div class="page-content-card-form-input  margin-bottom-2">
+                                                                                                <label class="page-content-card-form-input-label" for="">name</label>
+                                                                                                <input type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+                                                                                                <span class="form-message"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="btn-form-add-color col col-md-12">
+                                                                                            <button onclick="AddCategory()" type="button" class="form-submit page-content-card-form-btn">SAVE PRODUCT(add)</button>    
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>  
+</body>
+<%- include('../partials/admin-script'); -%>
+<script src="public/assets/js/ajaxAdminListBannerSale.js"></script>
+</html>
