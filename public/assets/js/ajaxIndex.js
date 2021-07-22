@@ -1,13 +1,124 @@
 const LimitProduct = 6;
 let div = ``;
+// Retrieve
+console.log(localStorage["dataIdProducts"]);
+let stored_dataIdProducts;
+
+
 async function renderIndex(){
+    document.querySelector('.activate-clear-localstorage').addEventListener('click',()=>{
+        localStorage.removeItem('dataIdProducts');
+    });
+    if(localStorage["dataIdProducts"]){
+        stored_dataIdProducts = JSON.parse(localStorage["dataIdProducts"]);
+        stored_dataIdProducts = stored_dataIdProducts.filter((item,index)=>{
+            return stored_dataIdProducts.indexOf(item) === index 
+        });
+        stored_dataIdProducts = stored_dataIdProducts.limit(4);
+        renderLastViewProduct();
+    }
+    else{
+        document.querySelector('.activate-localstorage').setAttribute('style','display: none')
+    }
     renderCategorySea();
     RenderBanner();
     renderCategoryFitnessClub();
     renderLocalBrandBig();
 }
 renderIndex();
-async function tableCategoryProductSale(data,index){
+async function renderLastViewProduct(){
+    stored_dataIdProducts.map(async(stored_dataIdProducts,index)=>{
+        try {
+            let productId = stored_dataIdProducts;
+            let data = await $.ajax({
+              url: "/api/product/findProductId",
+              type: "POST",
+              data:{
+                productId:productId,
+              }
+            });
+            if(data.status == 200){
+                data.data.map((data)=>{
+                    let div=`
+                    <div class="col col-lg-3 col-md-2 col-sm-3">
+                                <div class="topic_sell-product">
+                                    <div class="topic_sell-product-list">
+                                            <a href="/product-details/${data._id}"><img src="${data.img[0]}" alt="" class="topic_sell-product-img"></a>
+                                            <p class="topic_sell-product-text">${data.trademarkId.name}</p>
+                                            <p class="topic_sell-product-description">${data.name}</p>
+                                            <div class="topic_sell-product-rate">
+                                                <input id="star5" type="radio" name="rate" value="5">
+                                                <label  for="star5"></label>
+                                                <input id="star4" type="radio" name="rate" value="4">
+                                                <label  for="star4"></label>
+                                                <input id="star3" type="radio" name="rate" value="3">
+                                                <label  for="star3"></label>
+                                                <input id="star2" type="radio" name="rate" value="2">
+                                                <label  for="star2"></label>
+                                                <input id="star1" type="radio" name="rate" value="1">
+                                                <label  for="star1"></label>
+                                            </div>
+                                            <p class="topic_sell-product-leadtime">Prise de rdv en 72h</p>
+                                            <div class="topic_sell-product-price">
+                                                <p>${data.price}</p>
+                                            </div>
+                                    </div>
+                                    <div class="topic_sell-addtocart">
+                                        <div class="topic_sell-addtocart-size topic_sell-addtocart-size${index}">
+                                        </div>
+                                        <button class="btn topic_sell-addtocart-btn product_details-addcart-btn product_details-addcart-btn-yellow">
+                                            Thêm vào giỏ hàng 
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>`;
+                    $(`.carousel-activate-lastViewProduct`).append(div);
+                    renderSizeLastView(data.codeProduct,data.colorId,index);
+                })
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    })
+}
+async function renderSizeLastView(codeProduct,colorId,indexdiv) {
+    try {
+        let data = await $.ajax({
+          url: "/api/product/findSize",
+          type: "POST",
+          data:{
+            codeProduct:codeProduct, 
+            colorId:colorId,
+          }
+        }); 
+        if(data.status == 200) {
+            let sizeArr = [];
+            data.data.map((data)=>{
+                if (sizeArr.indexOf(data) === -1) {
+                   sizeArr.push(data.sizeId._id);
+                }
+            })
+            let dataSize = sizeArr.filter((item,index)=>{
+                return sizeArr.indexOf(item) === index 
+            })
+            
+            dataSize.map((dataSize)=>{
+                for(let i = 0; i < data.data.length; i++){
+                    if(data.data[i].sizeId._id == dataSize){
+                    let div =`<p>${data.data[i].sizeId.size}</p>`
+                    $(`topic_sell-addtocart-size${indexdiv}`).append(div);
+                    break;
+                    }
+                }
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+async function divTableCategoryProduct(data){
     div=`
     <div class="topic_sell-product">
         <div class="topic_sell-product-list">
@@ -32,33 +143,13 @@ async function tableCategoryProductSale(data,index){
                 </div>
         </div>
     </div>`
+}
+async function tableCategoryProductSale(data,index){
+    divTableCategoryProduct(data);
     $('.topic_sell-right-sea').append(div); 
 }
 async function tableCategoryProductFitnessClub(data,index){
-    div=`
-    <div class="topic_sell-product">
-        <div class="topic_sell-product-list">
-                <a href="/product-details/${data._id}"><img src="${data.img[0]}" alt="" class="topic_sell-product-img"></a>
-                <p class="topic_sell-product-text">${data.trademarkId.name}</p>
-                <p class="topic_sell-product-description">${data.name}</p>
-                <div class="topic_sell-product-rate">
-                    <input id="star5" type="radio" name="rate" value="5">
-                    <label  for="star5"></label>
-                    <input id="star4" type="radio" name="rate" value="4">
-                    <label  for="star4"></label>
-                    <input id="star3" type="radio" name="rate" value="3">
-                    <label  for="star3"></label>
-                    <input id="star2" type="radio" name="rate" value="2">
-                    <label  for="star2"></label>
-                    <input id="star1" type="radio" name="rate" value="1">
-                    <label  for="star1"></label>
-                </div>
-                <p class="topic_sell-product-leadtime">Prise de rdv en 72h</p>
-                <div class="topic_sell-product-price">
-                    <p>${data.price}$</p>
-                </div>
-        </div>
-    </div>`
+    divTableCategoryProduct(data);
     $('.topic_sell-right-indoor').append(div); 
 }
 async function renderCategorySea(){
@@ -131,10 +222,6 @@ async function renderCategoryFitnessClub(){
         console.log(error);
     }
 }
-let slideIndex = 1;
-let delay = 10000;
-let slides ;
-let box;
 async function RenderBanner(){
     try {
         let CodeProductArr = [];
@@ -158,40 +245,8 @@ async function RenderBanner(){
         $('.carousel-banner_slider').append(divPlusBanner); 
         slides = document.querySelectorAll('.box');
         box = document.querySelectorAll('.trail div');
-        // function plusSlidesBanner(n){
-        //     console.log('ok');
-        //     showSlides(slideIndex += n);
-        //     restart();
-        //     animate();
-        // };
-        
         showSlides(slideIndex); 
-        // function randomSlides(){
-
-        //     if(slideIndex > slides.length){
-        //         slideIndex = 1 ;
-        //     }
-        //     for (let i = 0; i < slides.length; i++) {
-        //         box[i].classList.remove('active');
-        //         slides[i].style.display = 'none';
-        //     }
-            
-        //     if(slideIndex === slides.length + 1 ){
-        //         slideIndex=1;
-        //     }
-        //     if(slideIndex == 0){
-        //         slideIndex = slides.length;
-        //     }
-        //     let randomNumber = Math.ceil(Math.random() * slides.length)-1;
-        //     animate();
-        //     box[randomNumber].classList.add('active');
-        //     slides[randomNumber].style.display = "grid";
-        // }
-        // let autoChange = setInterval(randomSlides,delay);
-        // const restart = function(){
-        //     clearInterval(autoChange);
-        //     autoChange = setInterval(randomSlides,delay)
-        // }
+        
     }
     catch (error) {
         console.log(error);
@@ -206,7 +261,6 @@ async function renderLocalBrandBig(){
         });
         data = data.limit(5);
         data.map((data)=>{
-            console.log(data);
             let div=`
             <div class="col col-lg-2-4 col-md-2 col-sm-3">
                 <div class="local_brand-items">
@@ -223,29 +277,4 @@ async function renderLocalBrandBig(){
         console.log(error);
     }
 }
-function showSlides(n){
-    console.log(n);
-    if(slideIndex > slides.length){
-        slideIndex = 1 ;
-    }
-    // duyệt qua để cho tất cả các thằng sliders đều none và các thằng có clas active xoá đi
-    for (let i = 0; i < slides.length; i++) {
-        box[i].classList.remove('active');
-        slides[i].style.display = 'none';
-    }
-    
-    if(slideIndex === slides.length + 1 ){
-        slideIndex=1;
-    }
-    if(slideIndex == 0){
-        slideIndex = slides.length;
-    }
-    box[slideIndex-1].classList.add('active');
-    slides[slideIndex-1].style.display = "grid";
-}
-function plusSlidesBanner(n){
-    console.log('ok');
-    showSlides(slideIndex += n);
-    // restart();
-    // animate();
-};
+

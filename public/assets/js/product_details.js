@@ -39,7 +39,7 @@ async function renderCart(){
     }
 
 }
-renderCart()
+renderCart();
 
 // function to delete selected item from Database
     function deleteSelectedProduct(selectedId){
@@ -59,8 +59,6 @@ renderCart()
     }
 
 // add event for Show Cart button
-
 $('.list-view-cart').on('click', ()=>{
     window.location.href = 'http://localhost:3000/cart'
-})
-
+});
