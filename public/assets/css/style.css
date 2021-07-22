@@ -14,7 +14,6 @@
     background-color: #ccc;
    
 }
-
 .local_brand-items-link{
     display:flex;
     justify-content: center;
@@ -23,7 +22,7 @@
 }
 .local_brand-img{
     width:9.4rem;
-    height:9.4rem
+    height:8.4rem
 }
 .local_brand-title{
     font-size:1.4rem;
@@ -42,12 +41,73 @@
 .activate{
 
 }
+.activate-decs-head{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.activate-decs-head a{
+    color:var(--primary-color);
+    text-decoration:line;
+    font-size: 1.4rem;
+}
 .activate-decs{
     font-size: 2.6rem;
     font-weight: 600;
 }
+.topic_sell-product:hover .topic_sell-addtocart{
+    opacity: 1;
+    top: 73%;
+}
+.topic_sell-addtocart{
+    position:absolute;
+    background-color: var(--white-color);
+    padding: 1rem 1rem;
+    border: 0.1rem solid #eff1f3;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 0.4rem;
+    box-shadow: 0 1px 20px 0 rgb(0 0 0 / 7%);
+    top: 90%;
+    left: 0%;
+    width: 100%;
+    opacity: 0;
+    overflow:hidden;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 2s linear;
+    -o-transition: all 2s linear;
+    animation: fillBottomToTop 0.5s 0.5s linear;
+}
+@keyframes fillBottomToTop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+.topic_sell-addtocart-size{
+    display:flex;
+    justify-content:flex-start;
+    align-items: center;
+    
+}
+.topic_sell-addtocart-size p{
+    padding: 0.6rem 1.6rem;
+    background: var(--primary-color);
+    color: white;
+    font-size: 2rem;
+    margin: 1rem;
+}
+.topic_sell-addtocart-btn{
+    padding: 1rem 3.7rem!important;
+}
 .carousel-activate{
-    width:100%
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -12px;
+    margin-right: -12px;
 }
 .activate-items-link{
     display:flex;
@@ -92,6 +152,8 @@
 .topic_sell-warp{
     display:grid;
     grid-template-columns: repeat(2,1fr);
+    min-height: 600px;
+    position: relative;
 }
 .topic_sell-left{
     width:100%;
@@ -103,7 +165,11 @@
     display:flex;
     justify-content:center;
     align-items:center;
-    border-radius:1rem
+    border-radius:1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
 }
 .topic_sell-sea .topic_sell-left{
     background-image: url(https://contents.mediadecathlon.com/s870611/k$1b285e19061623c7129dddf700fb6335/product%20tile%20desktop.jpg?format=auto);
@@ -116,7 +182,7 @@
 }
 .topic_sell-banner{
     width:100%;
-    text-align: center;
+    padding:3rem;
 }
 .topic_sell-banner-detail{
     font-size:4rem;
@@ -154,6 +220,21 @@
     grid-gap: 1rem;
     position: relative;
     padding-left: 2rem;
+}
+.topic_sell-right-sea{
+    position: absolute;
+    left: 46%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.topic_sell-right-indoor,.topic_sell-right-sport{
+    position: absolute;
+    right:-6%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.topic_sell-right-sport .topic_sell-product-list{
+    border: 1px solid #dbdfe0;
 }
 .topic_sell-product{
     position: relative;

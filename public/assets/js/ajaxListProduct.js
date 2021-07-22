@@ -69,7 +69,7 @@ async function tableProduct(data,index){
 
 async function render() {
   try {
-    let CodeProductArr = [];
+    
     $('.pagination').html(``);
     $('.product-list').html(``);
     if(currentPage < 1 ){
@@ -79,42 +79,40 @@ async function render() {
       url: "/api/product",
       type: "GET",
     });
-    data.map((data)=>{
-      if (CodeProductArr.indexOf(data) === -1) {
-        CodeProductArr.push(data.codeProduct);
-      }
-    })
-    
-    let dataCodeProduct = CodeProductArr.filter((item,index)=>{
-      return CodeProductArr.indexOf(item) === index 
-    });
-    totalPage = Math.ceil((dataCodeProduct.length)/view);
-    dataCodeProduct = dataCodeProduct.skip((currentPage-1)*view);
-    dataCodeProduct = dataCodeProduct.limit(view);
-    let dataNoDup = [];
-    dataCodeProduct.map(async(dataCodeProduct)=>{  
-      for(let i = 0; i <data.length; i++){
-          if(data[i].codeProduct == dataCodeProduct){
-            dataNoDup.push(data[i]);
-            await tableProduct(data[i],i);
-          break;
-          }
-      }
-    })
-    for(let i = 0;i<dataNoDup.length;i++){
-      console.log(dataNoDup[i].categoryProductId._id);
-      console.log(106,catagory);
-    }
-    for(let i = 1; i <= totalPage ; i++){
-      let item = $(`
-          <li class="page-item"><a class="page-link" onclick=loadPage(${i}) href="#">${i}</a></li>
-      `)
-      $('.pagination').append(item);
-  }
+    CheckCodeProduct(data);
     product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     
   } catch (error) {
     console.log(error);
+  }
+}
+function CheckCodeProduct(data){
+  $('.product-list').html('');
+  let CodeProductArr = [];
+  data.map((data)=>{
+    if(CodeProductArr.indexOf(data) === -1) {
+      CodeProductArr.push(data.codeProduct);
+    }
+  })
+  let dataCodeProduct = CodeProductArr.filter((item,index)=>{
+    return CodeProductArr.indexOf(item) === index 
+  });
+  totalPage = Math.ceil((dataCodeProduct.length)/view);
+  dataCodeProduct = dataCodeProduct.skip((currentPage-1)*view);
+  dataCodeProduct = dataCodeProduct.limit(view);
+  dataCodeProduct.map(async(dataCodeProduct)=>{  
+    for(let i = 0; i <data.length; i++){
+        if(data[i].codeProduct == dataCodeProduct){
+          await tableProduct(data[i],i);
+        break;
+        }
+    }
+  })
+  for(let i = 1; i <= totalPage ; i++){
+    let item = $(`
+        <li class="page-item"><a class="page-link" onclick=loadPage(${i}) href="#">${i}</a></li>
+    `)
+    $('.pagination').append(item);
   }
 }
 function loadPage(page) {
@@ -213,10 +211,7 @@ async function renderTableFindColor(colorId) {
         }
       });
     if(data.status == 200){
-        $('.product-list').html('')
-        data.data.map(async(data,index) => {
-            await tableProduct(data,index);
-        });
+      CheckCodeProduct(data.data);
       product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     }
     } catch (error) {
@@ -233,17 +228,15 @@ async function renderTableFindCategory(categoryProductId) {
             categoryProductId:categoryProductId
         }
       });
-    if(data.status == 200){
-        $('.product-list').html('')
-        data.data.map(async(data,index) => {
-            await tableProduct(data,index);
-        });
-      product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
-    }
+      if(data.status == 200){
+        CheckCodeProduct(data.data);
+        product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+      }
     } catch (error) {
       console.log(error);
     }
 }
+
 async function renderLevel(){
     try {
         let data = await $.ajax({
@@ -260,7 +253,7 @@ async function renderLevel(){
                 </a>
             </li>
             `
-            $('.menu-search-filter-list-level'  ).append(div);     
+            $('.menu-search-filter-list-level').append(div);     
         })
         data.map(async(item,index) => {
             try {
@@ -294,10 +287,7 @@ async function renderTableFindLevel(levelId) {
         }
       });
     if(data.status == 200){
-        $('.product-list').html('')
-        data.data.map(async(data,index) => {
-            await tableProduct(data,index);
-        });
+      CheckCodeProduct(data.data);
       product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     }
     } catch (error) {
@@ -354,10 +344,7 @@ async function renderTableFindSize(sizeId) {
         }
       });
     if(data.status == 200){
-        $('.product-list').html('')
-        data.data.map(async(data,index) => {
-            await tableProduct(data,index);
-        });
+      CheckCodeProduct(data.data);
       product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     }
     } catch (error) {
@@ -414,10 +401,7 @@ async function renderTableFindTrademark(trademarkId) {
         }
       });
     if(data.status == 200){
-        $('.product-list').html('')
-        data.data.map(async(data,index) => {
-            await tableProduct(data,index);
-        });
+      CheckCodeProduct(data.data);
       product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     }
     } catch (error) {
