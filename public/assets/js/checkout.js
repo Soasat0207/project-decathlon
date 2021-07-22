@@ -5,7 +5,8 @@ $(".payment-options-checkbox").on("change", function () {
 
 // function to render checkout right
 async function renderCartInfo() {
-  $(".cart-item-list").html("");
+  try {
+    $(".cart-item-list").html("");
   $(".checkbox-round:last").attr("checked", "checked");
   let data = await $.ajax({
     url: "/api/user/findShoppingCart",
@@ -45,104 +46,87 @@ async function renderCartInfo() {
     $(".total-price-calc").append(stringTotalPrice);
     $(".all-price-calc").append(stringTotalPrice);
   } // end if condition
+  } catch (error) {
+    console.log(error);
+  }
 }
 renderCartInfo();
 
 // render checkout-left for checkout page
 async function renderCheckoutLeft() {
-  let data = await $.ajax({
-    url: "/api/user/findOrder",
-    type: "POST",
-  })
-  let deliveryAddress = `
-  <div class="text-deliveried-address ">
-  Giao hàng đến <span style="font-weight: 700;" class="end-address"> ${data.address.province}</span>
-  </div>
-  <button class="change-deliveried-address">Thay đổi</button>
-  `;
-  let timeToDelivery = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
-  let date = timeToDelivery.getDate();
-  let month = timeToDelivery.getMonth() + 1;
-  let year = timeToDelivery.getFullYear();
-
-  let dayNumber = timeToDelivery.getDay();
-  let arrayOfWeekday = ["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy" ];
-  let dayToDeliveried = arrayOfWeekday[dayNumber];
-
-  let dateOfDeliveried = `
-  <div class="text-deliveried-date">
-    Giao hàng tiêu chuẩn<strong class="end-date"> từ ${dayToDeliveried}, ${date}/${month}/${year} </strong>
-  </div>
-  `;
-  $(".deliveried-address").html("");
-  $(".deliveried-address").append(deliveryAddress);
-  $(".deliveried-date").html("");
-  $(".deliveried-date").append(dateOfDeliveried);
-
-  // Change address button
-  $(".change-deliveried-address").on("click", () => {
-    window.location.href = "http://localhost:3000/order";
-  });
+  try {
+    let data = await $.ajax({
+      url: "/api/user/findOrder",
+      type: "POST",
+    })
+    let deliveryAddress = `
+    <div class="text-deliveried-address ">
+    Giao hàng đến <span style="font-weight: 700;" class="end-address"> ${data.address.province}</span>
+    </div>
+    <button class="change-deliveried-address">Thay đổi</button>
+    `;
+    let timeToDelivery = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+    let date = timeToDelivery.getDate();
+    let month = timeToDelivery.getMonth() + 1;
+    let year = timeToDelivery.getFullYear();
+  
+    let dayNumber = timeToDelivery.getDay();
+    let arrayOfWeekday = ["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy" ];
+    let dayToDeliveried = arrayOfWeekday[dayNumber];
+  
+    let dateOfDeliveried = `
+    <div class="text-deliveried-date">
+      Giao hàng tiêu chuẩn<strong class="end-date"> từ ${dayToDeliveried}, ${date}/${month}/${year} </strong>
+    </div>
+    `;
+    $(".deliveried-address").html("");
+    $(".deliveried-address").append(deliveryAddress);
+    $(".deliveried-date").html("");
+    $(".deliveried-date").append(dateOfDeliveried);
+  
+    // Change address button
+    $(".change-deliveried-address").on("click", () => {
+      window.location.href = "http://localhost:3000/order";
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 renderCheckoutLeft();
 
 // Add event for Confirm button
-$(".payment-options-button-confirm").on("click", () => {
+$(".payment-options-button-confirm").on("click", async () => {
+  try {
   let idChecked = $(".payment-options-checkbox:checked").attr("id");
-  $.ajax({
+  let data = await $.ajax({
     url: "/api/user/updatePaymentMethod",
     type: "PUT",
-    data: {
-      methodPayment: idChecked,
-    },
+    data: {methodPayment: idChecked}
   })
-    .then((data) => {
-      if (data.nModified !== 0) {
-        updateSoldForSelected();
-        updateSoldForShoppingCart();
-        renderOrderConfirm();
-      }
+  if(data){
+   let data2 = await $.ajax({
+    url: '/api/user/deleteShoppingCart',
+    type: 'DELETE'
     })
-    .catch((err) => {
-      console.log(errr);
-    });
+  if(data2.deletedCount !== 0){
+    renderOrderConfirm();
+  }
+  }
+  } catch (error) {
+    console.log(error);
+  }
 });
-// function update sold status for selected product model
-function updateSoldForSelected(){
-  $.ajax({
-    url: '/api/user/updateSelectedProduct',
-    type : 'PUT'
-  }).then(data =>{
-    console.log(data);
-  }).catch(err =>{
-    console.log(err);
-  })
-}
-// function update sold status for shopping Cart model
-function updateSoldForShoppingCart(){
-  $.ajax({
-    url: '/api/user/updateSoldShoppingCart',
-    type : 'PUT'
-  }).then(data =>{
-    console.log(data);
-  }).catch(err =>{
-    console.log(err);
-  })
-}
-
-
 
 // function to confirm order infomation
-function renderOrderConfirm() {
-  $(".checkout-infomation").html("");
+async function renderOrderConfirm() {
+  try {
+    $(".checkout-infomation").html("");
   $(".deliveried-address").html("");
-  $.ajax({
+  let data = await $.ajax({
     url: "/api/user/findOrder",
     type: "POST",
   })
-    .then((data) => {
-      console.log(data);
       let methodOfPayment = "";
       if (data.methodPayment === "CashByCod") {
         methodOfPayment = "Thanh toán khi nhận hàng";
@@ -170,10 +154,9 @@ function renderOrderConfirm() {
       $(".goToHomePage").on("click", () => {
         window.location.href = "http://localhost:3000/list-product";
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // function convert number to VND format

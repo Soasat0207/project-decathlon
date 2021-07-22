@@ -22,7 +22,7 @@ shoppingCartRouter.post('/findShoppingCart', (req, res, next)=>{
     })
 })
 
-// find shopping cart by userId + selected productId and update
+// find shopping cart by userId + selected productId and delete one
 shoppingCartRouter.put('/findAndDeleteOneProduct', (req, res, next)=>{
     // console.log(req.body);
     model.ShoppingCartModel.updateOne({
@@ -55,7 +55,7 @@ shoppingCartRouter.post('/createShoppingCart', (req, res, next)=>{
         res.status(400).json(err)
     })
 })
-// update shopping cart 
+// add product for shopping cart 
 shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
     let arrayProductId = convertStringToArray(req.body)
     model.ShoppingCartModel.updateOne({
@@ -70,13 +70,23 @@ shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
         res.status(400).json('err')
     })
 })
-// update quantity 
+// update quantity for shopping cart
 shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
-    console.log(req.body);
     model.ShoppingCartModel.updateOne({
         "product._id" : req.body.selectedId,
     },{
         '$set' : { "product.$.quantity" : req.body.newQuantity}
+    }).then(data =>{
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+})
+
+// delete shopping cart after order was created
+shoppingCartRouter.delete('/deleteShoppingCart', (req, res, next)=>{
+    model.ShoppingCartModel.deleteOne({
+        userId : req.cookies.userId,
     }).then(data =>{
         res.json(data)
     }).catch(err =>{

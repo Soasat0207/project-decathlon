@@ -51,14 +51,9 @@ checkoutRouter.post('/findAllOrders', (req, res, next)=>{
 // checkout update method of payment
 checkoutRouter.put('/updatePaymentMethod', (req, res, next)=>{
     model.OrderModel.updateOne(
-        {
-             userId : req.cookies.userId,
-             sold : false
-             },
-        {
-        methodPayment: req.body.methodPayment,
-        sold : true
-        })
+        { userId : req.cookies.userId},
+        { methodPayment: req.body.methodPayment}
+    )
     .then(data =>{
         res.json(data)
     }).catch(err => {
