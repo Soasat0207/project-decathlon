@@ -160,21 +160,6 @@ $('.button-continue').on('click', ()=>{
   window.location.href = '/order'
 })
 
-// function convert number to VND format
-function numberToCurrency(number){
-   let formatedNumber = (number).toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'VND',
-    });
-    return formatedNumber
-  }
-  
-  // function convert currency to number format
-function currencyToNumber(item){
-    var number = Number(item.replace(/[^0-9,-]+/g,""));
-    return number
-}
-
 // function render cart in navbar
 async function renderNavbarCart(){
   $('.listSelectedProduct').html('');
@@ -216,4 +201,19 @@ async function renderNavbarCart(){
   } catch (error) {
     console.log(error);
   }
+}
+
+// function convert number to VND format
+function numberToCurrency(number){
+  let formatedNumber = (number).toLocaleString('en-US', {
+     style: 'currency',
+     currency: 'VND',
+   });
+   return formatedNumber
+ }
+ 
+ // function convert currency to number format
+function currencyToNumber(item){
+   var number = Number(item.replace(/[^0-9,-]+/g,""));
+   return number
 }

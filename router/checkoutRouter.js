@@ -23,13 +23,24 @@ checkoutRouter.post('/createOrder', (req, res,next) =>{
     })
 })
 
-// find order 
+// find order by userId  
 checkoutRouter.post('/findOrder', (req,res,next)=>{
     model.OrderModel.find({
         userId : req.cookies.userId,
     })
-    .populate('address')
-    .populate('product')
+    .populate("address , product")
+    .then(data => {
+        res.json(data[data.length - 1])
+    }).catch(err =>{
+        res.json(err)
+    })
+})
+// find order by userId  
+checkoutRouter.post('/findOrderById', (req,res,next)=>{
+    model.OrderModel.find({
+        _id : req.body.orderId
+    })
+    .populate("address , product, userId")
     .then(data => {
         res.json(data[data.length - 1])
     }).catch(err =>{

@@ -105,6 +105,7 @@ $(".payment-options-button-confirm").on("click", async () => {
     data: {methodPayment: idChecked}
   })
   if(data){
+    // ajax to delete shopping cart after order has created
    let data2 = await $.ajax({
     url: '/api/user/deleteShoppingCart',
     type: 'DELETE'
