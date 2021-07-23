@@ -436,3 +436,18 @@
 .local_big-brand-items-link .local_brand-img{
     width: 15.4rem;
 }
+.pay12{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.pay12 ul li{
+    list-style: none;
+    
+}
+
+.pay12 ul li img{
+    width: 70px;
+    
+}

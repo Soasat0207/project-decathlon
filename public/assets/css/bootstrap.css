@@ -4726,7 +4726,11 @@ tbody.collapse.show {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
 }
+
 
 .page-link {
   position: relative;
