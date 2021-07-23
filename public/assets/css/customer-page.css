@@ -9,9 +9,12 @@
     flex-direction: row;
     background-color: #f8f9f9;
     padding: 40px 190px;
+    font-size: initial;
 
 }
-
+.thoat123{
+    display: none;
+}
 .tabL{
     display: flex;
     flex-direction: column;
@@ -219,18 +222,6 @@ ul{
     padding: 25px;
 }
 
-.diachi button{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 50px;
-    border: 1px solid black;
-    margin: 20px 150px;
-    border-radius: 4px;
-    background-color:white;
-    border: dotted;
-}
 
 .diachi button i{
     font-size: 50px;
@@ -384,6 +375,19 @@ ul{
 /* .tabR{
     /* display: none; */
 /* } */
+.diachi button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px;
+    border: 1px solid black;
+    margin: 20px 150px;
+    border-radius: 4px;
+    background-color:white;
+    border: dotted;
+}
+
 .tabR{
     display: none;
 }
@@ -404,6 +408,7 @@ ul{
 }
 
 .thoat123{
+    display: block;
     border: none;
     background-color: #f8f9f9;
     text-align: left;

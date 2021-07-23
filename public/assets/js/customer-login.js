@@ -70,3 +70,13 @@ function setCookie(cname, cvalue, exdays) {
     let expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
+
+
+// Go back to the main page
+function goback(){
+    window.location.href ='/'
+}
+
+$('.logo').on('click', () => {
+    window.location.href ='/'
+})

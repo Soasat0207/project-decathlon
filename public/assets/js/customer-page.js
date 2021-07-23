@@ -10,6 +10,7 @@ function resize (){
         $(".tabL").css("display", "block");
         $(".nutthoat").css("display", "none")
         $('.thoat123').css("display", "none")
+        console.log($('.thoat123'));
     }
 
 }
@@ -195,7 +196,7 @@ function nutDiachi() {
             $(".tabR").html("");
             bien2 =`
             <div class="diachi">
-            <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
+                <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
                 <h3>Địa chỉ</h3>
                 <div>
                     <div class="hangThanhpho"><p>Thành phố:</p><input type="text" class="noteThanhpho"></div>
@@ -221,6 +222,7 @@ function nutDiachi() {
         $(".tabL").css("display", "none")
  
     }    if($('body').width() >= 768){
+        console.log('ok')
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "block");
         $(".nutthoat").css("display", "none")

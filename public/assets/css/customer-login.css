@@ -66,6 +66,7 @@
 
 .logo{
     padding: 16px;
+    cursor: pointer;
 }
 
 .logo img{
