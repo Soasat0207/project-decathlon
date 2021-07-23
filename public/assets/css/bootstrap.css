@@ -4722,7 +4722,7 @@ tbody.collapse.show {
 .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  /* display: flex; */
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
