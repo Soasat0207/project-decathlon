@@ -9,7 +9,6 @@ async function renderCartInfo() {
     url: "/api/user/findShoppingCart",
     type: "POST",
   });
-  console.log(12, data);
   if (data) {
         let totalPrice = 0;
         for (const item of data.product) {
@@ -334,16 +333,56 @@ async function createOrderButton(idAddress){
     let obj  = {productId : item.productId._id, quantity : item.quantity};
     arrayProductId.push(obj);
   })
-
   if(data){
       let totalPriceString = $('.all-price-calc').html();
       let totalPrice = currencyToNumber(totalPriceString);
       createOrder(arrayProductId, idAddress , totalPrice);
+      for (let i = 0; i < arrayProductId.length ; i++){
+        updateProductQuantity(arrayProductId[i].productId, arrayProductId[i].quantity);
+        console.log('Update quantity succesfully')
+      }
     }
  } catch (error) {
    console.log(error);
  }
 }
+
+// function to find by id and update quantity after order created
+async function updateProductQuantity(productId, qtyInCart){
+ try {
+  let data = await $.ajax({
+    url: '/api/product/findProductById',
+    type : 'POST',
+    data : {
+      productId : productId
+    }
+  })
+  if(data){
+    let qtyFromCart = parseInt(qtyInCart);
+    let qtyFromStorage = parseInt(data.quantity);
+    console.log(361, 'kho : ', qtyFromStorage, 'cart : ', qtyFromCart);
+    let updateQty = qtyFromStorage - qtyFromCart;
+    try {
+      let data2 = await $.ajax({
+        url : '/api/product/findProductByIdAndUpdateQuantity',
+        type: 'PUT',
+        data: {
+          productId : productId,
+          newQuantity: updateQty
+        }
+      })
+      if(data2.nModified !== 0){
+        console.log('Update quantity succesfully')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+ } catch (error) {
+   console.log(error);
+ }
+}
+
 // function to create order 
 async function createOrder(arrayProductId, idAddress, totalPrice){
   try {

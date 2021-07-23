@@ -55,9 +55,6 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
     if(req.files.imgProduct){
         imgProductArray= req.files.imgProduct.map(element => {return '/public/uploads/'+element.filename})
     }
-    console.log(imgProductArray);
-    console.log(imgColorArray);
-    
     let img = req.body.img;
     let imgColor = req.body.imgColor;
     let name = req.body.ProductName;
@@ -77,37 +74,37 @@ router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgPr
     let trademarkId = req.body.productTradeMark;
     let supplierId = req.body.productSupplier;
     let categoryProductId = req.body.productCategory;
-    // ModelMongo.ProductModel.create({
-    //     img:imgProductArray,
-    //     imgColor:imgColorArray,
-    //     name:name,
-    //     codeProduct:codeProduct,
-    //     priceImport:priceImport,
-    //     price:price,
-    //     unit:unit,
-    //     quantity:quantity,
-    //     descriptionShort:descriptionShort,
-    //     descriptionDetails:descriptionDetails,
-    //     title:title,
-    //     rate:rate,
-    //     gender:gender,
-    //     sizeId:sizeId,
-    //     colorId:colorId,
-    //     levelId:levelId,
-    //     trademarkId:trademarkId,
-    //     supplierId:supplierId,
-    //     categoryProductId:categoryProductId,
-    // })
-    // .then((data) =>{
-    //     return res.json({
-    //         message:'susses',
-    //         status:200,
-    //         data:data,
-    //     })
-    // })
-    // .catch((error)=>{
-    //     res.status(500).json('loi sever')
-    // })
+    ModelMongo.ProductModel.create({
+        img:imgProductArray,
+        imgColor:imgColorArray,
+        name:name,
+        codeProduct:codeProduct,
+        priceImport:priceImport,
+        price:price,
+        unit:unit,
+        quantity:quantity,
+        descriptionShort:descriptionShort,
+        descriptionDetails:descriptionDetails,
+        title:title,
+        rate:rate,
+        gender:gender,
+        sizeId:sizeId,
+        colorId:colorId,
+        levelId:levelId,
+        trademarkId:trademarkId,
+        supplierId:supplierId,
+        categoryProductId:categoryProductId,
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
 });
 // tìm theo like name code product
 router.post('/findname',(req,res) =>{
@@ -117,6 +114,40 @@ router.post('/findname',(req,res) =>{
         $or: [
             {name:{ $regex: new RegExp(name, "i")}},
         ]
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        return res.json({
+            message:'susses',
+            status:200,
+            data:data,
+        })
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.post('/findProductId',(req,res) =>{
+    let productId = req.body.productId;
+    ModelMongo.ProductModel.find({
+        _id:productId,
     })
     .populate({
         path:'sizeId'
@@ -442,4 +473,30 @@ router.delete('/',(req,res) =>{
         res.status(500).json('loi sever')
     })
 })
+router.post('/findProductById', (req, res, next)=>{
+    ModelMongo.ProductModel.findOne({
+        _id : req.body.productId
+    })
+    .then(data =>{
+        res.json(data)
+    })
+    .catch(err =>{
+        res.json(err)
+    })
+})
+router.put('/findProductByIdAndUpdateQuantity', (req, res, next)=>{
+   
+    ModelMongo.ProductModel.updateOne({
+        _id : req.body.productId
+    },{
+        quantity : req.body.newQuantity
+    })
+    .then(data =>{
+        res.json(data)
+    })
+    .catch(err =>{
+        res.json(err)
+    })
+})
+
 module.exports = router

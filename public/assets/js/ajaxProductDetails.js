@@ -1,10 +1,24 @@
 let link = window.location.href;
 let linkId = link.slice(link.lastIndexOf('/'),link.length);
+var dataIdProducts =[];
+let stored_dataIdProducts;
 $('.seemore_review').click(()=>{
     $('.review-add').attr("style","display:block");
     $('.seemore_review').attr("style","display:none");
 })
 
+async function renderProductDetailsFrist(){
+    if(localStorage["dataIdProducts"]){
+        stored_dataIdProducts = JSON.parse(localStorage["dataIdProducts"])
+        dataIdProducts.push.apply(dataIdProducts,stored_dataIdProducts);
+    }
+    dataIdProducts.push(linkId.slice(1,linkId.length));
+    localStorage["dataIdProducts"] = JSON.stringify(dataIdProducts);
+    addReview();
+    renderReview();
+    renderProductDetails();
+};
+renderProductDetailsFrist();
 async function addReview() {
     $('.btn-review-add').click(async()=>{
         let comment = $('.review-add-comment').val();
@@ -34,8 +48,6 @@ async function addReview() {
         }
     }) 
 }
-addReview();
-
 async function renderProductDetails() {
     try {
         let data = await $.ajax({
@@ -92,7 +104,48 @@ async function renderProductDetails() {
         console.log(error);
       }
 }
-renderProductDetails();
+// function find User in shopping cart
+    function findAndCreateShoppingCart(){
+        
+        // get selected id in collection
+            $.ajax({
+                url: '/api/user/findSelectedProduct',
+                type: 'POST',
+                data: {
+                    sold : false
+                }
+            }).then(data =>{
+               if(data){
+                   let arrSelectedId = [];
+                   for (const iterator of data) {
+                    arrSelectedId.push(iterator._id)
+                   }
+                //    console.log(arrSelectedId);
+                   createOrUpdateShoppingCart(arrSelectedId);
+               }
+            }).catch(err =>{
+                console.log(err);
+            })
+       }
+// function to find order in shopping cart and create shopping cart
+       function createOrUpdateShoppingCart(arrSelectedId){
+           $.ajax({
+               url: '/api/user/findShoppingCart',
+               type: 'POST',
+               data : {
+                   sold : false
+               }
+           }).then(data => {
+               if(data.length === 0){
+                   createShoppingCart(arrSelectedId);
+               }else{
+                   updateShoppingCart(arrSelectedId);
+               }
+           }).catch(err =>{
+               console.log(err);
+           })
+       }
+
 
 // function create shopping cart
     function createShoppingCart(arrListProduct){
@@ -208,7 +261,6 @@ async function renderSize(codeProduct,colorId) {
         console.log(error);
     }
 }
-renderReview();
 async function renderReview() {
     try{
         let data = await $.ajax({

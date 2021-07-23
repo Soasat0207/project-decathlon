@@ -1,32 +1,31 @@
 // function render cart 
-function renderCart(){
+async function renderCart(){
+    try {
     $('.listSelectedProduct').html('');
-    $.ajax({
+    let data = await $.ajax({
         url: '/api/user/findShoppingCart',
-        type : 'POST',
-    }).then(data =>{
-        // console.log(data);
-        let arrProduct = data.product
-        arrProduct.forEach(element => {
-            // console.log(11, element);
-            let liItem = `
-        <li class="list-cart-items">
-            <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
-            <div class="list-cart-item-wrapper">
-                <div class="list-cart-item-head">
-                    <h5 class="list-cart-item-name">${element.productId.name}</h5>
-                    <p class="list-cart-item-price">${element.productId.price}</p>
-                    <p class="list-cart-item-multiphy">x</p>
-                    <p class="list-cart-item-quatity">${element.quantity}</p>
-                </div>
-                <div class="list-cart-item-body">
-                    <p class="list-cart-item-category">Species: ${element.productId.categoryProductId.name}</p>
-                    <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
-                </div>
+        type : 'POST'
+    })
+    let arrProduct = data.product
+    arrProduct.forEach(element => {
+    let liItem = `
+    <li class="list-cart-items">
+        <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
+        <div class="list-cart-item-wrapper">
+            <div class="list-cart-item-head">
+                <h5 class="list-cart-item-name">${element.productId.name}</h5>
+                <p class="list-cart-item-price">${element.productId.price}</p>
+                <p class="list-cart-item-multiphy">x</p>
+                <p class="list-cart-item-quatity">${element.quantity}</p>
             </div>
-        </li>
-        `
-        $('.listSelectedProduct').append(liItem);
+            <div class="list-cart-item-body">
+                <p class="list-cart-item-category">Species: ${element.productId.categoryProductId.name}</p>
+                <p class="list-cart-item-delete"><button class ="delProduct" id ="item${element._id}">Delete</button></p>
+            </div>
+        </div>
+    </li>
+    `
+    $('.listSelectedProduct').append(liItem);
     // add event for Delete button 
         $(`#item${element._id}`).on('click', ()=>{
           let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
@@ -35,12 +34,12 @@ function renderCart(){
 
         });
         // end loop
+    } catch (error) {
+        console.log(error);
+    }
 
-    }).catch(err =>{
-        console.log('Server error');
-    })
 }
-renderCart()
+renderCart();
 
 // function to delete selected item from Database
     function deleteSelectedProduct(selectedId){
@@ -60,8 +59,6 @@ renderCart()
     }
 
 // add event for Show Cart button
-
 $('.list-view-cart').on('click', ()=>{
     window.location.href = 'http://localhost:3000/cart'
-})
-
+});
