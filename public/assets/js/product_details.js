@@ -6,7 +6,6 @@ async function renderCart(){
         url: '/api/user/findShoppingCart',
         type : 'POST'
     })
-    console.log(9, data);
     if(data === "Nothing" || data.product.length === 0){
         $('.navbarShowListCart').html('');
         let listCart = `
