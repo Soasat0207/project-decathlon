@@ -127,6 +127,10 @@ app.get('/admin-list-order', (req, res) => {
 app.get('/page-cus', (req, res) =>{
   res.render('customer/customer-page')
 })
+app.get('/admin-add-advantages', (req, res) =>{
+  res.render('admin/admin-add-advantages')
+})
+
 
 // Get footer subsection
 app.get('/delivery-method', (req, res) => {
@@ -161,9 +165,7 @@ app.get('/privacy-policy', (req, res) => {
 })
 
 
-app.get('/advantages', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/admin-add-advantages.html'))
-}) 
+
 app.get('/cart', (req, res) => {
   res.sendFile(path.join(__dirname, './views/cart.html'))
 }) 
