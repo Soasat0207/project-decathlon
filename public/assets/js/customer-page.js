@@ -8,42 +8,42 @@ function resize (){
     if($('body').width() >= 768){
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "block");
-        $(".nutthoat").css("display", "none")
-        $('.thoat123').css("display", "none")
-        console.log($('.thoat123'));
+        $(".exitButton").css("display", "none")
+        $('.exit123').css("display", "none")
+        console.log($('.exit123'));
     }
 
 }
 
 $(".tabR").html("");
-let bien = `
-    <div class="donhang">
-        <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
-        <div class="donhang2">
+let variable = `
+    <div class="ordersRank">
+        <h3 class="ordersRank1">Product Orders</h3>
+        <div class="ordersRank2">
             <i class="fas fa-cart-plus"></i>
-            <span>Chưa có đơn hàng!</span>
+            <span>No orders yet!</span>
         </div>
     </div>
   
 `
-$(".tabR").append(bien);
+$(".tabR").append(variable);
 
 
-function trahang() {
+function returnsP() {
     $(".tabR").html("");
-    let bien = `
-    <div class="donhang">
-        <button class="thoat123" onclick="thoat()" ><i class="fas fa-undo"></i></button>
-        <h3 class="donhang1">Đơn hàng & Trả hàng</h3>
-        <div class="donhang2">
+    let variable = `
+    <div class="ordersRank">
+        <button class="exit123" onclick="exit4()" ><i class="fas fa-undo"></i></button>
+        <h3 class="ordersRank1">Product Orders</h3>
+        <div class="ordersRank2">
             <i class="fas fa-cart-plus"></i>
-            <span>Chưa có đơn hàng!</span>
+            <span>No orders yet!</span>
         </div>
     </div>
     </div>
         </div>
     `
-   $(".tabR").append(bien);
+   $(".tabR").append(variable);
 
    if($('body').width() < 768){
        $(".tabR").css("display", "block");
@@ -52,14 +52,14 @@ function trahang() {
    }    if($('body').width() >= 768){
     $(".tabR").css("display", "block");
     $(".tabL").css("display", "block");
-    $(".nutthoat").css("display", "none")
-    $('.thoat123').css("display", "none")
+    $(".exitButton").css("display", "none")
+    $('.exit123').css("display", "none")
 }
 
 
 }
 
-function thoat(){
+function exit4(){
     $(".tabR").css("display", "none")
     $(".tabL").css("display", "block")
     
@@ -67,52 +67,52 @@ function thoat(){
 
 
 
-function nutThongtin() {
+function infoButton() {
     $(".tabR").html("");
-    let bien = `
-    <div class="thongtin">
-    <button class="thoat123" onclick="thoat()" ><i class="fas fa-undo"></i></button>
-    <h3>Thông tin cá nhân</h3>
-    <div class="hang1 row">
-        <div class="col-xs-12 col-md-6">Tên <input type="text" placeholder="Tên" class="ten3"></div>
-        <div class="col-xs-12 col-md-6">Họ <input type="text" placeholder="Họ" class="ho3"></div>
+    let variable = `
+    <div class="information5">
+    <button class="exit123" onclick="exit4()" ><i class="fas fa-undo"></i></button>
+    <h3>Personal information</h3>
+    <div class="rowC1 row">
+        <div class="col-xs-12 col-md-6">Name <input type="text" placeholder="Name" class="name3"></div>
+        <div class="col-xs-12 col-md-6">Surname <input type="text" placeholder="Surname" class="surname3"></div>
     </div>
 
-    <div class="hang2 row">
-        <div class="col-xs-12 col-md-6">Số điện thoại <input type="number" placeholder="Số điện thoại" class="sdt3"></div>
-        <div class="col-xs-12 col-md-6">Hòm thư Email <input type="text" placeholder="Hòm thư Email" class="email3"></div>
+    <div class="rowC2 row">
+        <div class="col-xs-12 col-md-6">Phone number <input type="number" placeholder="Phone number" class="phone3"></div>
+        <div class="col-xs-12 col-md-6">Email <input type="text" placeholder="Email" class="email3"></div>
     </div>
 
-    <div class="hang3">
-        <div class="ngaysinh">
-        <p>Ngày sinh</p>
-        <input class="ngaysinh3" type="date">
+    <div class="rowC3">
+        <div class="birthday">
+        <p>Date of birth</p>
+        <input class="birthday3" type="date">
         </div>
-        <p class="gioitinh3">Giới tính</p>
-        <div class="gioitinh1">
-            <div><input type="radio" name="giotinh" id="" class='nam3'></input><p>Nam</p></div>
-            <div><input type="radio" name="giotinh" id="" class = 'nu3'></input><p>Nữ</p></div>
+        <p class="sex3">Sex</p>
+        <div class="sex1">
+            <div><input type="radio" name="sex" id="" class='male3'></input><p>Male</p></div>
+            <div><input type="radio" name="sex" id="" class = 'female3'></input><p>Female</p></div>
         </div>
     </div>
 
     <div>
-    <p>Ảnh đại diện</p>
+    <p>Avatar</p>
     <form>
         <img class="avacus" src="" alt="">
         <input type="file" name="avatarUser" multiple>
     </form>
     </div>
 
-    <div class="hang5">
+    <div class="rowC5">
         <div>
             <input type="checkbox" name="" id="">
-            <p>Tôi đã đọc và đồng ý với <a href="">Điều khoản và Điều kiện</a></p>
+            <p>I have read and agree to <a href="">Terms and Condition</a></p>
         </div>
-        <button onclick="nutLuuthongtin()">Lưu</button>
+        <button onclick="infoSaveButton5()">Save</button>
     </div>
     </div>
     `
-    $(".tabR").append(bien);
+    $(".tabR").append(variable);
 
     $.ajax({
         url: '/api/cus/information',
@@ -137,15 +137,15 @@ function nutThongtin() {
             avatar = data.avatar;
         }
         $('.avacus').attr('src', avatar) 
-        $(".ten3").val(ten);
-        $(".ho3").val(ho);
+        $(".name3").val(ten);
+        $(".surname3").val(ho);
         $(".email3").val(email);
-        $(".sdt3").val(sdt);
-        $(".ngaysinh3").val(birthday);
+        $(".phone3").val(sdt);
+        $(".birthday3").val(birthday);
         if(gender == 'nu'){
-            $('.nu3').prop("checked", true)
+            $('.female3').prop("checked", true)
         }else{
-            $('.nam3').prop("checked", true)
+            $('.male3').prop("checked", true)
         }
     })
     .catch((err) => {
@@ -159,57 +159,59 @@ function nutThongtin() {
     }    if($('body').width() >= 768){
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "block");
-        $(".nutthoat").css("display", "none")
-        $('.thoat123').css("display", "none")
+        $(".exitButton").css("display", "none")
+        $('.exit123').css("display", "none")
     }
 
  
 }
 
-function nutDiachi() {
+function addressButton() {
     $(".tabR").html("");
-    let bien = `
-    <div class="diachi">
-    <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
-        <h3>Địa chỉ</h3>
-        <button onclick="nutThemdiachi()">
+    let variable = `
+    <div class="address">
+    <button class="exit123" onclick="exit4()"><i class="fas fa-undo"></i></button>
+        <h3>Address</h3>
+        <button onclick="addAddressButton()">
             <i class="fas fa-plus"></i>
-            <p>Thêm địa chỉ mới</p>
+            <p>Add new address</p>
         </button>
     </div>
     `
-    $(".tabR").append(bien)
+    $(".tabR").append(variable)
 
     $.ajax({
         url: '/api/cus/information',
         type: 'get',
     })
     .then((data) => {
-        let diachi;
-        let ghichu;
-        let thanhpho
-        let bien2;
+        let address;
+        let note;
+        let city
+        let variable2;
         if(data.mainAddress){
-            diachi = data.mainAddress;
-            ghichu = data.noteAddress;
-            thanhpho = data.city;
+            address = data.mainAddress;
+            note = data.noteAddress;
+            city = data.city;
             $(".tabR").html("");
-            bien2 =`
-            <div class="diachi">
-                <button class="thoat123" onclick="thoat()"><i class="fas fa-undo"></i></button>
+            variable2 =`
+            <div class="address">
+                <button class="exit123" onclick="exit4()"><i class="fas fa-undo"></i></button>
                 <h3>Địa chỉ</h3>
                 <div>
-                    <div class="hangThanhpho"><p>Thành phố:</p><input type="text" class="noteThanhpho"></div>
-                    <div class="hangDiachi"><p>Địa chỉ nhận hàng:</p><textarea name="" id="" cols="30" rows="10" class="diachinhanhang"></textarea></div>
-                    <div class="hangGhichu"><p>Ghi chú:</p><textarea name="" id="" cols="30" rows="10" class="ghichu"></textarea></div>
+                    <div class="cityRow"><p>City:</p><input type="text" class="notecity"></div>
+                    <div class="addressRow"><p>Delivery address:</p><textarea name="" id="" cols="30" rows="10" class="deliveryAddress"></textarea></div>
+                    <div class="noteRow"><p>Note:</p><textarea name="" id="" cols="30" rows="10" class="note"></textarea></div>
                 </div>
-                <button class="nutdiachi4" onclick="suadiachi()">Sửa</button>
+                <div class="adjust">
+                    <button class="addressButton4" onclick="editAddress()">Edit</button>
+                </div>
             </div>
             `
-            $(".tabR").append(bien2);
-            $(".diachinhanhang").append(diachi);
-            $(".ghichu").append(ghichu);
-            $('.noteThanhpho').val(thanhpho);
+            $(".tabR").append(variable2);
+            $(".deliveryAddress").append(diachi);
+            $(".note").append(note);
+            $('.notecity').val(city);
         }
         
     })
@@ -225,26 +227,26 @@ function nutDiachi() {
         console.log('ok')
         $(".tabR").css("display", "block");
         $(".tabL").css("display", "block");
-        $(".nutthoat").css("display", "none")
-        $('.thoat123').css("display", "none")
+        $(".exitButton").css("display", "none")
+        $('.exit123').css("display", "none")
     }
 
  }
 
-function nutThemdiachi() {
-    let bien =`
-    <div class="anNen">
-        <div class="themdiachi">
-            <div class="hangdiachi1">
-                <h3>Thêm địa chỉ mới</h3>
-                <button onclick="nutThoatdiachi()"><i class="fas fa-times"></i></button>
+function addAddressButton() {
+    let variable =`
+    <div class="hideBackground1">
+        <div class="addaddress">
+            <div class="addressRow1">
+                <h3>Add new address</h3>
+                <button onclick="addressExitButton()"><i class="fas fa-times"></i></button>
             </div>
 
-            <div class="diachinhanhang">
-                <input class="c" type="text" placeholder="Thành phố...">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Địa chỉ nhận hàng..." class="a"></textarea>
-                <textarea name="" id="" cols="30" rows="10" placeholder="Ghi chú khi nhận hàng..." class="b"></textarea>
-                <button onclick="luudiachi()">Lưu địa chỉ</button>
+            <div class="deliveryAddress">
+                <input class="c" type="text" placeholder="City...">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Delivery address..." class="a"></textarea>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Note when receiving goods..." class="b"></textarea>
+                <button onclick="saveAddress()">Save address</button>
 
             </div>
             
@@ -252,12 +254,12 @@ function nutThemdiachi() {
         </div>
     </div>
     `
-    $("body").append(bien)
+    $("body").append(variable)
     
 }
 
-function nutThoatdiachi(){
-    $(".anNen").css("display", "none")
+function addressExitButton(){
+    $(".hideBackground1").css("display", "none")
 }
 
 // Check cookies
@@ -266,7 +268,7 @@ $.ajax({
     type: 'post',
 })
 .then((data) => {
-    if(data !== 'Đăng nhập thành công'){
+    if(data !== 'Login successful'){
         window.location.href = '/login-cus'
     }
 })
@@ -274,18 +276,18 @@ $.ajax({
     console.log(err);
 })
 
-// Cập nhập thông tin
-async function nutLuuthongtin(){
+// Update information
+async function infoSaveButton5(){
     try{
      let data = await $.ajax({
                     url: "/api/cus/capnhap",
                     type: 'put',
                     data: {
-                            firstname: $('.ten3').val(),
-                            lastname: $('.ho3').val(),
-                            phone: $('.sdt3').val(),
+                            firstname: $('.name3').val(),
+                            lastname: $('.surname3').val(),
+                            phone: $('.phone3').val(),
                             email: $('.email3').val(),
-                            birthday: $('.ngaysinh3').val(),
+                            birthday: $('.birthday3').val(),
                     }
                     })
                     
@@ -305,35 +307,35 @@ async function nutLuuthongtin(){
                     console.log(15, ava.avatar);
                     $('.avacus').attr("src", ava.avatar)
 
-        nutThongtin()              
+        infoButton()              
     }
     catch(error){
         console.log(error);
     }
 }
 
-// Hiển thị email ở ô giao diện người dùng
+// Show email in UI box
 
 $.ajax({
     url: '/api/cus/information',
     type: 'get',
 })
 .then((data) => {
-    let chenEmail;
+    let insertEmail;
     let avatar;
     if(data){
-        chenEmail = data.email;
+        insertEmail = data.email;
         avatar = data.avatar;
     }
 $('.avacus').attr('src', avatar)    
-$('.hienthiEmail').append(chenEmail)
+$('.showEmail').append(insertEmail)
 })
 .catch((err) => {
     console.log(err);
 })
 
-// Thêm địa chỉ
-function luudiachi(){
+// Add address
+function saveAddress(){
     $.ajax({
         url: '/api/cus/address',
         type: 'put',
@@ -351,15 +353,15 @@ function luudiachi(){
     })
 }
 
-// Sửa địa chỉ
-function suadiachi(){
+// Edit the address
+function editAddress(){
     $.ajax({
         url: "/api/cus/address",
         type: 'put', 
         data: {
-            mainAddress: $(".diachinhanhang").val(),
-            noteAddress: $(".ghichu").val(),
-            city: $(".noteThanhpho").val(),
+            mainAddress: $(".deliveryAddress").val(),
+            noteAddress: $(".note").val(),
+            city: $(".notecity").val(),
         }
     })
     .then((data) => {
@@ -370,7 +372,7 @@ function suadiachi(){
     })
 }
 
-// Đăng xuất
+// Log out
 function signout(){
     $.ajax({
         url: "/api/cus/blacklist",
@@ -387,30 +389,9 @@ function signout(){
     })
 }
 
-// Xóa Cookies khi đăng xuất
+// Clear Cookies on logout
 function delete_cookie(name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
-// Upload Avatar
-// async function upAvatar(){
-//     try{
-//         let data = $('form')[0];
-//         let form1 = new FormData(data);
-//         let ava = await $.ajax({
-//             url: "/api/cus/avataruser",
-//             type: "put",
-//             data: form1,
-//             processData: false,
-//             contentType: false,
-//         })
-//         console.log(15, ava.avatar);
-//         $('.avacus').attr("src", ava.avatar)
 
-
-//     }
-//     catch(error){
-//         console.log(error);
-//     }
-
-// }

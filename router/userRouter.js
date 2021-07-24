@@ -85,7 +85,7 @@ userRouter.post('/login-cus', async (req, res) => {
 
 })
 
-// Cập nhập thông tin
+// Update information
 userRouter.put('/capnhap', checkCookies1.checkCookies, async (req, res) => {
     let id = req.id;
     try{
@@ -127,7 +127,7 @@ userRouter.put('/address', checkCookies1.checkCookies, async (req, res) => {
 
 // Check cookies
 userRouter.post('/checkcookies', checkCookies1.checkToken ,checkCookies1.checkCookies, checkCookies1.checkRole,  (req, res) =>{
-    res.json('Đăng nhập thành công')
+    res.json('Login successful')
 })
 
 // Hiển thị các ô thông tin

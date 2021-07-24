@@ -68,10 +68,10 @@
     width: 100%;
     opacity: 0;
     overflow:hidden;
-    /* -webkit-transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
     -moz-transition: all 2s linear;
     -o-transition: all 2s linear;
-    animation: fillBottomToTop 0.5s 0.5s linear; */
+    animation: fillBottomToTop 0.5s 0.5s linear;
 }
 
 /* add photo footer */

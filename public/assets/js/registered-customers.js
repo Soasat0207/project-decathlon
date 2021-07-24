@@ -5,7 +5,7 @@ function tiengviet2 (){
     
 }
 
-function nutthoat(){
+function exitButton(){
     $(".annen").css("display","none")
 }
 
