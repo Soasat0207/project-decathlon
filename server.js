@@ -97,6 +97,9 @@ app.get('/admin-list-tradeMark', (req, res) => {
 app.get('/admin-add-product', (req, res) => {
   res.render('admin/add-product');
 })
+app.get('/admin-update-product/:id', (req, res) => {
+  res.render('admin/updateProduct');
+})
 app.get('/admin-list-product', (req, res) => {
   res.render('admin/list-product');
 })

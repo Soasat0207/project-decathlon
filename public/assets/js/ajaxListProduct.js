@@ -1,13 +1,9 @@
-
-// $(".navbar-search-input").keyup(function(){
-//     setTimeout(function(){
-//         console.log($(`.navbar-search-input`).val())
-//     }, 1000);
-// });
 let currentPage = 1;
 let view = 10;
 let totalPage= Number;
-let catagory = '';
+let totalPages ;
+let page = 1;
+let element;
 async function tableProduct(data,index){
     let div = ``;
     div = `
@@ -69,8 +65,7 @@ async function tableProduct(data,index){
 
 async function render() {
   try {
-    
-    $('.pagination').html(``);
+    // $('.pagination').html(``);
     $('.product-list').html(``);
     if(currentPage < 1 ){
       currentPage = 1;
@@ -86,6 +81,7 @@ async function render() {
     console.log(error);
   }
 }
+
 function CheckCodeProduct(data){
   $('.product-list').html('');
   let CodeProductArr = [];
@@ -108,14 +104,78 @@ function CheckCodeProduct(data){
         }
     }
   })
-  for(let i = 1; i <= totalPage ; i++){
-    let item = $(`
-        <li class="page-item"><a class="page-link" onclick=loadPage(${i}) href="#">${i}</a></li>
-    `)
-    $('.pagination').append(item);
-  }
+  element = document.querySelector(".pagination-items");
+  totalPages=totalPage;
+  element.innerHTML = createPagination(totalPages, page);
+  // for(let i = 1; i <= totalPage ; i++){
+  //   let item = $(`
+  //       <li class="page-item"><a class="page-link" onclick=loadPage(${i}) href="#">${i}</a></li>
+  //   `)
+  //   $('.pagination-items').append(item);
+    
+  // }
+  //calling function with passing parameters and adding inside element which is ul tag
 }
-function loadPage(page) {
+function createPagination(totalPages, page){
+  let liTag = '';
+  let active;
+  let beforePage = page - 1;
+  let afterPage = page + 1;
+  if(page > 1){ //show the next button if the page value is greater than 1
+    liTag += `<li class="btn prev" onclick="createPagination(totalPages, ${page - 1});loadPage(${page - 1})"><span><i class="fas fa-angle-left"></i> Prev</span></li>`;
+  }
+  if(page > 2){ //if page value is less than 2 then add 1 after the previous button
+    liTag += `<li class="first numb" onclick="createPagination(totalPages, 1)"><span>1</span></li>`;
+    if(page > 3){ //if page value is greater than 3 then add this (...) after the first li or page
+      liTag += `<li class="dots"><span>...</span></li>`;
+    }
+  }
+  // how many pages or li show before the current li
+  if (page == totalPages) {
+    if(totalPages == 1){
+      beforePage = 0 
+    }
+    else{
+      beforePage = beforePage - 2;
+    }
+  } else if (page == totalPages - 1) {
+    beforePage = beforePage - 1;
+  }
+  // how many pages or li show after the current li
+  if (page == 1) {
+    afterPage = afterPage + 2;
+  } else if (page == 2) {
+    afterPage  = afterPage + 1;
+  }
+  for (var plength = beforePage; plength <= afterPage; plength++) {
+    if (plength > totalPages) { //if plength is greater than totalPage length then continue
+      continue;
+    }
+    if (plength == 0) { //if plength is 0 than add +1 in plength value
+      plength = plength + 1;
+    }
+    if(page == plength){ //if page is equal to plength than assign active string in the active variable
+      active = "active";
+    }else{ //else leave empty to the active variable
+      active = "";
+    }
+    liTag += `<li class="numb ${active}" onclick="createPagination(totalPages, ${plength});loadPage(${plength})"><span>${plength}</span></li>`;
+  }
+
+  if(page < totalPages - 1){ //if page value is less than totalPage value by -1 then show the last li or page
+    if(page < totalPages - 2){ //if page value is less than totalPage value by -2 then add this (...) before the last li or page
+      liTag += `<li class="dots"><span>...</span></li>`;
+    }
+    liTag += `<li class="last numb" onclick="createPagination(totalPages, ${totalPages})"><span>${totalPages}</span></li>`;
+  }
+
+  if (page < totalPages) { //show the next button if the page value is less than totalPage(20)
+    liTag += `<li class="btn next" onclick="createPagination(totalPages, ${page + 1});loadPage(${page + 1})"><span>Next <i class="fas fa-angle-right"></i></span></li>`;
+  }
+  element.innerHTML = liTag; //add li tag inside ul tag
+  return liTag; //reurn the li tag
+}
+async function loadPage(page) {
   currentPage = page;
   render();
 }
@@ -414,7 +474,6 @@ $('.navbar-search-input').keyup(function() {
   }
   globalTimeout = setTimeout(async function() {
     let name = $('.navbar-search-input').val();
-    console.log($('.navbar-search-input').val());
     try {
         let data = await $.ajax({
           url: "/api/product/findname",

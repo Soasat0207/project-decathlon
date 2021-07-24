@@ -177,7 +177,7 @@ router.post('/findProductId',(req,res) =>{
     .catch((error)=>{
         res.status(500).json('loi sever')
     })
-})
+});
 router.post('/findByCategory',(req,res) =>{
     let categoryProductId = req.body.categoryProductId;
     ModelMongo.ProductModel.find({
@@ -431,6 +431,72 @@ router.post('/details/:id',(req,res) =>{
     let id = req.params.id;
     ModelMongo.ProductModel.find({
         _id:id,
+    })
+    .populate({
+        path:'sizeId'
+    })
+    .populate({
+        path:'colorId'
+    })
+    .populate({
+        path:'levelId'
+    })
+    .populate({
+        path:'trademarkId'
+    })
+    .populate({
+        path:'supplierId'
+    })
+    .populate({
+        path:'categoryProductId'
+    })
+    .then((data) =>{
+        res.json(data);
+    })
+    .catch((error)=>{
+        res.status(500).json('loi sever')
+    })
+})
+router.put('/',(req,res) =>{
+    let id = req.body.id;
+    let name = req.body.ProductName;
+    let codeProduct = req.body.CodeProduct;
+    let priceImport = req.body.priceImport;
+    let price = req.body.productPrice;
+    let unit = req.body.productUnit;
+    let quantity = req.body.productQuantity;
+    let descriptionShort = req.body.descriptionShort;
+    let descriptionDetails = req.body.descriptionDetails;
+    let title = req.body.productTitle;
+    let rate = req.body.productRate;
+    let gender = req.body.productGender;
+    let sizeId = req.body.productSize;
+    let colorId = req.body.productColor;
+    let levelId = req.body.productLevel;
+    let trademarkId = req.body.productTradeMark;
+    let supplierId = req.body.productSupplier;
+    let categoryProductId = req.body.productCategory;
+    console.log(req.body);
+    ModelMongo.ProductModel.findOneAndUpdate({
+        _id:id,
+    },{
+        name:name,
+        codeProduct:codeProduct,
+        priceImport:priceImport,
+        price:price,
+        unit:unit,
+        quantity:quantity,
+        descriptionShort:descriptionShort,
+        descriptionDetails:descriptionDetails,
+        title:title,
+        rate:rate,
+        gender:gender,
+        sizeId:sizeId,
+        colorId:colorId,
+        levelId:levelId,
+        trademarkId:trademarkId,
+        supplierId:supplierId,
+        categoryProductId:categoryProductId,
     })
     .populate({
         path:'sizeId'

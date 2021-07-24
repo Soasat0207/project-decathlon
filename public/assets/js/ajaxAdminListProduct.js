@@ -19,7 +19,9 @@ async function renderTableProduct() {
                 <p class="status status-paid">Paid</p>
              </td>
              <td>
-                <button onclick="DeleteColor('${data._id}')">X</button>
+                <button onclick="DeleteProduct('${data._id}')">X</button>
+                <button onclick="UpdateProduct('${data._id}')">sửa</button>
+
              </td>
         </tr>
         `
@@ -32,7 +34,7 @@ async function renderTableProduct() {
   }
 renderTableProduct();
   
-async function DeleteColor(id) {
+async function DeleteProduct(id) {
   if (confirm('Are you sure you want to save this thing into the database?')) {
     try {
       let data = await $.ajax({
@@ -52,5 +54,4 @@ async function DeleteColor(id) {
   } else {
     console.log('Thing was not saved to the database.');
   }
-
 }
