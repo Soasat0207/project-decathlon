@@ -68,12 +68,7 @@ app.get('/list-product', (req, res) => {
 app.get('/product-details/:id', (req, res) => {
   res.render('user/product_details');
 })
-// app.get('/cart', (req, res, next) => {
-//   res.render('user/cart');
-// })
-// app.get('/order', (req, res, next) => {
-//   res.render('user/order');
-// })
+
 //end user
 // admin
 app.get('/admin-list-category', (req, res) => {
@@ -174,7 +169,10 @@ app.get('/order', (req, res) => {
 }) 
 app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
-}) 
+})
+app.get('/admin-order-details', (req, res) =>{
+  res.sendFile(path.join(__dirname, './views/admin/order-details.html'))
+})
 
 // end admin
 // tạo đường dẫn tĩnh 

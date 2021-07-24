@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-size: 1.6rem;
+}
+.listContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 5%;
+}
+.list-group{
+    width: 20%;
+}
+.order-content{
+    width: 80%;
+    margin : 0 auto !important;
+}
+.tab-pane{
+    margin : 0 auto !important;
+}
+
+/* css for tab 2 */
+.ratings i {
+    font-size: 16px;
+    color: red
+}
+
+.strike-text {
+    color: red;
+    text-decoration: line-through
+}
+
+.product-image {
+    width: 100%
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 3px;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.spec-1 {
+    color: #938787;
+    font-size: 15px
+}
+
+h5 {
+    font-weight: 400
+}
+
+.para {
+    font-size: 16px
+}
+

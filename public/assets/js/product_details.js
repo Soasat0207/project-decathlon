@@ -6,6 +6,27 @@ async function renderCart(){
         url: '/api/user/findShoppingCart',
         type : 'POST'
     })
+    if(data === "Nothing" || data.product.length === 0){
+        $('.navbarShowListCart').html('');
+        let listCart = `
+        <div class="navbar-list_cart-nocart">
+            <img class="navbar-list-nocart-img" src="../mint/assets/image/no-cart.png" alt="">
+            <p class="navbar-list-nocart-text">Chưa có sản phẩm </p>
+        </div>
+        `
+        $('.navbarShowListCart').append(listCart);
+    }else{
+        $('.navbarShowListCart').html('');
+        let listCart = `
+        <h4 class="list_cart-heading">Sản phẩm đã thêm </h4>
+        <ul class="list_cart listSelectedProduct">
+        </ul>
+        <button class=" btn btn-primary list-view-cart">Show Cart</button>
+        `;
+        $('.navbarShowListCart').append(listCart);
+        // $('.cartContainer').html('');
+        $('.cartContainer').append(`<p class ="numberProductInCart">${data.product.length}</p>`);
+    }
     let arrProduct = data.product
     arrProduct.forEach(element => {
     let liItem = `
@@ -31,7 +52,6 @@ async function renderCart(){
           let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
           deleteSelectedProduct(selectedId)
         })
-
         });
         // end loop
     } catch (error) {

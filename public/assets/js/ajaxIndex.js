@@ -18,7 +18,7 @@ async function renderIndex(){
         renderLastViewProduct();
     }
     else{
-        document.querySelector('.activate-localstorage').setAttribute('style','display: none')
+        document.querySelector('.activate-localstorage').setAttribute('style','display: none');
     }
     renderCategorySea();
     RenderBanner();

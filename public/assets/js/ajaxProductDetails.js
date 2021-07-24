@@ -21,6 +21,58 @@ async function renderProductDetailsFrist(){
     renderProductDetails();
 };
 renderProductDetailsFrist();
+renderLastViewProduct2();
+async function renderLastViewProduct2(){
+    stored_dataIdProducts = JSON.parse(localStorage["dataIdProducts"]);
+        stored_dataIdProducts = stored_dataIdProducts.filter((item,index)=>{
+            return stored_dataIdProducts.indexOf(item) === index 
+        });
+    stored_dataIdProducts = stored_dataIdProducts.limit(4);
+    stored_dataIdProducts.map(async(stored_dataIdProducts,index)=>{
+        try {
+            let productId = stored_dataIdProducts;
+            let data = await $.ajax({
+              url: "/api/product/findProductId",
+              type: "POST",
+              data:{
+                productId:productId,
+              }
+            });
+            if(data.status == 200){
+                data.data.map((data)=>{
+                    let div=`
+                    <div class="col col-lg-3">
+                        <div class="product-items">
+                            <div class="product_gallert">
+                                <div class="product_gallert-slider">
+                                    <img src="${data.img[0]}" alt="" class="product_gallert-slider-img">
+                                </div>
+                            </div> 
+                        <div class="product_info-wrapper">
+                            <a href="" class="product_info-link">
+                                <span class="product_info-brand">${data.trademarkId.name}</span>
+                                <span class="product_info-description">${data.name}</span>
+                            </a>
+                            <div class="product_info-availability recommended-Products-list-items-info-availability">
+                                <span class="product_info-availability-description ">Có sẵn giao hàng trực tuyến trong vòng chưa đầy 72 giờ</span>
+                            </div>
+                            <div class="product-info-sticker"><span class="product_info-sticker-description">Phát triển </span></div>
+                            <div class="product-info-price" class="product_info-price-description">${data.price}$</span></div>
+                            
+                        </div>
+                        <a href="" class="product-review-overview-counts-btn recommended-Products-btn"><span>Thêm vào giỏ hàng </span></a>
+                        </div>
+                    </div>    
+                    `
+                    $(`.recommended-Products-list-items-lastViews`).append(div);
+                })
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    })
+}
 async function addReview() {
     $('.btn-review-add').click(async()=>{
         let comment = $('.review-add-comment').val();
@@ -101,8 +153,9 @@ async function renderProductDetails() {
               `
               $('.product-thumbs-slider').append(div);
           })
-        renderColorImg(data.codeProduct)
-        renderSize(data.codeProduct,data.colorId._id)
+        renderColorImg(data.codeProduct);
+        renderSize(data.codeProduct,data.colorId._id);
+        renderRecommendProduct(data.categoryProductId._id)
         });
         test();
         
@@ -112,13 +165,68 @@ async function renderProductDetails() {
  
 }
 
-// console.log(33, codeTest);
-
-
-
+async function renderRecommendProduct(categoryProductId) {
+    let view = 4;
+    let currentPage = 1;
+    try {
+        let CodeProductArr = [];
+        let data = await $.ajax({
+            url: "/api/product/findByCategory",
+            type: "POST",
+            data:{
+                categoryProductId:categoryProductId
+            }
+        });
+        if(data.status == 200){
+            data.data.map((data)=>{
+                if(CodeProductArr.indexOf(data) === -1) {
+                  CodeProductArr.push(data.codeProduct);
+                }
+            })
+            let dataCodeProduct = CodeProductArr.filter((item,index)=>{
+                return CodeProductArr.indexOf(item) === index 
+            });
+            dataCodeProduct = dataCodeProduct.skip((currentPage-1)*view);
+            dataCodeProduct = dataCodeProduct.limit(view);
+            dataCodeProduct.map(async(dataCodeProduct)=>{  
+                for(let i = 0; i <data.data.length; i++){
+                    if(data.data[i].codeProduct == dataCodeProduct){
+                    let div =`
+                    <div class="col col-lg-3">
+                        <div class="product-items">
+                            <div class="product_gallert">
+                                <div class="product_gallert-slider">
+                                    <img src="${data.data[i].img[0]}" alt="" class="product_gallert-slider-img">
+                                </div>
+                            </div> 
+                        <div class="product_info-wrapper">
+                            <a href="" class="product_info-link">
+                                <span class="product_info-brand">${data.data[i].trademarkId.name}</span>
+                                <span class="product_info-description">${data.data[i].name}</span>
+                            </a>
+                            <div class="product_info-availability recommended-Products-list-items-info-availability">
+                                <span class="product_info-availability-description ">Có sẵn giao hàng trực tuyến trong vòng chưa đầy 72 giờ</span>
+                            </div>
+                            <div class="product-info-sticker"><span class="product_info-sticker-description">Phát triển </span></div>
+                            <div class="product-info-price" class="product_info-price-description">${data.data[i].price}$</span></div>
+                            
+                        </div>
+                        <a href="" class="product-review-overview-counts-btn recommended-Products-btn"><span>Thêm vào giỏ hàng </span></a>
+                        </div>
+                    </div>    
+                    `
+                    $(`.recommended-Products-list-items-recomemt`).append(div);
+                    break;
+                    }
+                }
+            })
+        }
+      } catch (error) {
+        console.log(error);
+      }
+}
 // function find User in shopping cart
-    function findAndCreateShoppingCart(){
-        
+function findAndCreateShoppingCart(){
         // get selected id in collection
             $.ajax({
                 url: '/api/user/findSelectedProduct',
@@ -138,7 +246,7 @@ async function renderProductDetails() {
             }).catch(err =>{
                 console.log(err);
             })
-       }
+}
 // function to find order in shopping cart and create shopping cart
        function createOrUpdateShoppingCart(arrSelectedId){
            $.ajax({

@@ -8,7 +8,9 @@ async function renderListOrder(){
             type: 'POST'
         })
         if( data.length > 0){
+            console.log(11, data);
             data.forEach(item =>{
+                console.log(13 ,item);
                 let orderCode = item._id.slice(item._id.length - 8, item._id.length);
                 let date = new Date(item.orderDate).getDate();
                 let month = new Date(item.orderDate).getMonth() + 1;
