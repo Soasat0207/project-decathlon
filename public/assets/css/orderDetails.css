@@ -20,6 +20,7 @@ body{
     margin : 0 auto !important;
     height: 100vh;
     overflow: auto;
+    padding : 0 5%;
 }
 .tab-pane{
     margin : 0 auto !important;
@@ -73,3 +74,6 @@ h5 {
 .fa-arrow-square-right{
     color: blue;
 }
+th, td {
+    padding: 5px;
+  }
