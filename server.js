@@ -176,10 +176,14 @@ app.get('/order', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
 }) 
+app.get('/index', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/index.html'))
+})
 
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
+app.use('/js',express.static(path.join(__dirname, './js')));
 // Use router
 app.use('/api/user/', ProductAdvantagesRouter);
 app.use('/api/cus', userRouter);
