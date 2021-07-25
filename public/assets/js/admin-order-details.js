@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-  
   // show only tab pane
   $('#myList a').on('click', function (e) {
     e.preventDefault()
