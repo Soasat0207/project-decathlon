@@ -27,6 +27,7 @@ async function renderLastViewProduct2(){
         stored_dataIdProducts = stored_dataIdProducts.filter((item,index)=>{
             return stored_dataIdProducts.indexOf(item) === index 
         });
+    stored_dataIdProducts=stored_dataIdProducts.reverse();
     stored_dataIdProducts = stored_dataIdProducts.limit(4);
     stored_dataIdProducts.map(async(stored_dataIdProducts,index)=>{
         try {
