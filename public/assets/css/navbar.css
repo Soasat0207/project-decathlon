@@ -41,7 +41,7 @@
   grid-template-columns:7% 12% auto 25%;
   align-items: center;
   height: 6.6rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding:0 5rem
 }
 
@@ -66,7 +66,7 @@
     justify-content: center;
     align-items: center;
 }
-.nav-item img{
+.nav-item a.nav-item-icon{
     margin: 0 auto 2px;
     height: 19px;
 }
@@ -176,7 +176,14 @@ input {
 }
 
 /* MOBILE MENU & ANIMATION */
-
+.nav-item:hover .navbar-list_cart{
+  display:block
+}
+.list-cart-items{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .menu-toggle .bar{
   width: 25px;
   height: 3px;
