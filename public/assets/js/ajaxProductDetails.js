@@ -111,7 +111,7 @@ async function renderProductDetails() {
         });
         data.map((data) => {
             console.log(data.img[0]);
-          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}"`);
+          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
             <h1 class="product_details-heading-desc">${data.title} - ${data.colorId.name}</h1>
@@ -377,6 +377,8 @@ async function renderSize(codeProduct,colorId) {
         console.log(error);
     }
 }
+
+console.log(12312313);
 async function renderReview() {
     try{
         let data = await $.ajax({
@@ -384,6 +386,7 @@ async function renderReview() {
           type: "GET",
           
         });
+        console.log(392,data);
         data.map((data, index) => {
             // console.log(data)
             let div = `
