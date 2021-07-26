@@ -4,6 +4,12 @@
         "introduce" : "Giới Thiệu",
         "product"   : "Sản Phẩm",
         "service"   : "Dịch Vụ",
-        "contact"   : "Liên Hệ" 
+        "contact"   : "Liên Hệ",
+        "MyAccount" : "Tài Khoản",
+        "MyStore"   : "Cửa Hàng",
+        "MyBasket"  : "Giỏ Hàng"
+    },
+    "showcase":{
+        "search-placeholder":"Tìm Kiếm"
     }
 }

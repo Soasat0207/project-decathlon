@@ -4,6 +4,12 @@
         "introduce" : "Introduce",
         "product"   : "Products",
         "service"   : "Services",
-        "contact"   : "Contact Us" 
+        "contact"   : "Contact",
+        "MyAccount" : "My Account",
+        "MyStore"   : "My Store",
+        "MyBasket"  : "My Basket"
+    },
+    "showcase":{
+        "search-placeholder":"Search Here"
     }
 }
