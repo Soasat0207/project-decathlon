@@ -101,6 +101,8 @@ async function addReview() {
         }
     }) 
 }
+
+
 async function renderProductDetails() {
     try {
         let data = await $.ajax({
@@ -108,6 +110,9 @@ async function renderProductDetails() {
           type: "POST",
         });
         data.map((data) => {
+            // console.log(45, data);
+
+
           $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
@@ -139,7 +144,6 @@ async function renderProductDetails() {
                     console.log(err);
                 })
             })
-
           data.imgColor.map((data)=>{
               let div =`
               <div class="product-thumbs-slider-img-image">
@@ -153,10 +157,13 @@ async function renderProductDetails() {
         renderRecommendProduct(data.categoryProductId._id)
         });
         test();
+        
       } catch (error) {
         console.log(error);
       }
+ 
 }
+
 async function renderRecommendProduct(categoryProductId) {
     let view = 4;
     let currentPage = 1;
@@ -523,23 +530,37 @@ function test(){
 }
 
 // Hiển thị thông tin Advantages
+
 $.ajax({
-    url: '/api/user/viewadvantages/sp116517',
-    type: 'get',
+    url: "/api/product/details"+linkId,
+    type: "POST",
 })
-.then((data) => {
-    if(data){
-        $('.photoAdvantages1').attr("src",`http://localhost:3000/${data.advantagesPhoto1[0]}`)
-        $('.avdantagesTitle1').append(data.title1)
-        $('.advantageContent01').append(data.advantagecontent1)
-        $('.photoAdvantages2').attr("src",`http://localhost:3000/${data.advantagesPhoto2[0]}`)
-        $('.avdantagesTitle2').append(data.title2)
-        $('.advantageContent02').append(data.advantagecontent2)
-    }
+.then((data) =>{
+    // console.log(31, data[0].codeProduct);
+    let idAdvan = data[0].codeProduct;
+    $.ajax({
+        url: '/api/user/viewadvantages/sp116517' + idAdvan,
+        type: 'get',
+    })
+    .then((data) => {
+        if(data){
+            $('.photoAdvantages1').attr("src",`http://localhost:3000/${data.advantagesPhoto1[0]}`)
+            $('.avdantagesTitle1').append(data.title1)
+            $('.advantageContent01').append(data.advantagecontent1)
+            $('.photoAdvantages2').attr("src",`http://localhost:3000/${data.advantagesPhoto2[0]}`)
+            $('.avdantagesTitle2').append(data.title2)
+            $('.advantageContent02').append(data.advantagecontent2)
+        }
+    })
+    .catch((err) => {
+        console.log(182,err);
+    })
 })
 .catch((err) => {
-    console.log(182,err);
+    console.log(err);
 })
+
+
 
 // function render cart 
 function renderCart(){

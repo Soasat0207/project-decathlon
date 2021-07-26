@@ -4,12 +4,12 @@
     box-sizing: border-box ;
 }
 
-.tong{
+.toTal{
     display: flex;
     flex-direction: column;
 }
 
-.phan1{
+.part1{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,14 +20,14 @@
 
 }
 
-.quaylai{
+.comeBack{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
 
-.quaylai1{
+.comeBack1{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,16 +36,16 @@
     width: 30%;
 }
 
-.quaylai1:hover{
+.comeBack1:hover{
     cursor: pointer;
 }
 
-.quaylai1  i {
+.comeBack1  i {
     font-size: 10px;
     font-weight:bold;
 }
 
-.chuQuayLai{
+.backWord{
     margin: 8px;
     text-decoration: underline;
     font-weight:bold;
@@ -55,17 +55,18 @@
     color: #00689d;
 }
 
-.chuQuayLai:hover{
+.backWord:hover{
     cursor: pointer;
     text-decoration: none;
 }
 
-.rong{
+.hollow{
     width: 30%;
 }
 
 .logo{
     padding: 16px;
+    cursor: pointer;
 }
 
 .logo img{
@@ -74,14 +75,14 @@
 
 }
 
-.phan2{
+.part2{
     background-color: #e8ebef4f;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.hoac{
+.or{
     /* position: relative; */
     width: 100%;
 }
@@ -113,13 +114,13 @@
     background-color: rgb(85, 85, 87);
 }
 
-.phan2chinh1{
+.part2main1{
     width: 500px;
     background-color: white;
     padding: 48px;
 }
 
-.sizechu1{
+.fontSize1{
     font-size: 19px;
     margin: 16px 0;
 }
@@ -134,7 +135,7 @@
     font-size: 15px;
 }
 
-.nutTiep{
+.nextButton{
     height: 48px;
     width: 100%;
     background-color: #007dbc;
@@ -144,12 +145,12 @@
     color: #fff;
 }
 
-.nutTiep:hover {
+.nextButton:hover {
     cursor: pointer;
     background-color: #00689d;
 }
 
-.noidung1{
+.content1{
     margin-bottom: 37px;
 }
 
@@ -171,7 +172,7 @@
     border-radius: 4px;
 }
 
-.taotaikhoan{
+.createAcc{
     width: 180px;
     height: 50px;
     border-radius: 4px;
@@ -181,25 +182,25 @@
 
 }
 
-.taotaikhoan:hover{
+.createAcc:hover{
     background-color: hsla(199,8%,49%,.05);
     cursor: pointer;
 } 
 
-.taotaikhoantong{
+.createAccTotal{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.chu2{
+.font2{
     text-align: center;
     color: #344450;
     margin: 30px 0 5px 0;
 }
 
-.phan3{
+.part3{
     padding: 12px 16px;
     display: flex;
     flex-direction: column;
@@ -212,7 +213,7 @@
     justify-content: space-between;
 }
 
-.bachucnang a{
+.threeFunctions a{
     text-decoration: none;
 }
 
@@ -234,7 +235,7 @@
     font-size: 30px;
 }
 
-.dieukhoan{
+.provision{
     font-size: 14px;
     color: rgb(99, 99, 99);
 }
@@ -337,7 +338,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-.chuQuayLai{
+.backWord{
     display: none;
 }
 

@@ -5,7 +5,7 @@ function tiengviet2 (){
     
 }
 
-function nutthoat(){
+function exitButton(){
     $(".annen").css("display","none")
 }
 
@@ -20,40 +20,40 @@ $(".lang").on("click", (event) => {
     let i = $(event.target).children()[0]
     $(i).attr("id", "active")
 })
-// Nhập thông tin đăng ký
-async function nutDangky(){
+// Enter registration information
+async function subscribeButton(){
     try{
         $( "form" ).submit(function( event ) {
             event.preventDefault();
           });
         $('.ndtk3').css('display', 'block')
         let gender
-        if($('.nam2').prop("checked") == false && $('.nu2').prop("checked") == false){
-            console.log('chua chon gioi tinh');
-        }else if($('.nam2').prop("checked")){
-            gender = 'nam'
+        if($('.male2').prop("checked") == false && $('.female2').prop("checked") == false){
+            console.log('no gender selected');
+        }else if($('.male2').prop("checked")){
+            gender = 'male'
         }else{
-            gender = 'nu'
+            gender = 'female'
         }
 
         //-------------------------------------------
-        if($('.taikhoan2').val().length < 8){
-            $('.ndtk3').html('Tài khoản nhập tối thiểu 8 ký tự!')
-            $('.ndtk2').html('Tài khoản nhập tối thiểu 8 ký tự!')
+        if($('.account2').val().length < 8){
+            $('.ndtk3').html('Account must enter at least 8 characters!')
+            $('.ndtk2').html('Account must enter at least 8 characters!')
         }else{
-            if($('.taikhoan2').val() == "" || $('.matkhau2').val() == "" || $('.ten2').val() == '' ||  $('.ho2').val() =="" || $('.sdt2').val() =="" || $('.email2').val() ==""){
-                console.log("Không được để rỗng ô nhập");
-                $('.ndtk2').html('Không được để rỗng ô nhập')
+            if($('.account2').val() == "" || $('.password2').val() == "" || $('.name2').val() == '' ||  $('.lastName2').val() =="" || $('.phone2').val() =="" || $('.email2').val() ==""){
+                console.log("Do not leave the input field blank");
+                $('.ndtk2').html('Do not leave the input field blank')
             }else{
                 let data = await $.ajax({
                     url: '/api/cus/registeredcus',
                     type: 'post',
                     data: {
-                        username: $('.taikhoan2').val(),
-                        password: $('.matkhau2').val(),
-                        firstname: $('.ten2').val(),
-                        lastname: $('.ho2').val(),
-                        phone: $('.sdt2').val(),
+                        username: $('.account2').val(),
+                        password: $('.password2').val(),
+                        firstname: $('.name2').val(),
+                        lastname: $('.lastName2').val(),
+                        phone: $('.phone2').val(),
                         gender: gender,
                         email: $('.email2').val(), 
                     }
@@ -61,8 +61,8 @@ async function nutDangky(){
                 //---------------------------------------
                 if(data){
                     console.log(43, data);
-                    if(data == 'Tài khoản đã tồn tại'){
-                        $('.ndtk2').html('Tài khoản đã tồn tại')
+                    if(data == 'Account already exists'){
+                        $('.ndtk2').html('Account already exists')
                     }
                 }
             }
@@ -75,6 +75,15 @@ async function nutDangky(){
     }
 }
 
-function nutchuyenDN(){
+function loginSwitch(){
     window.location.href = '/login-cus'
 }
+
+// Go back to the main page
+function goback(){
+    window.location.href ='/'
+}
+
+$('.logo').on('click', () => {
+    window.location.href ='/'
+})

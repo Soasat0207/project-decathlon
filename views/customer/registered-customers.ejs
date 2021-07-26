@@ -7,59 +7,59 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/assets/css/registered-customers.css">
+    <link rel="stylesheet" href="/public/assets/css/registered-customers.css">
 </head>
 <body>
-    <div class="tong">
-        <div class="phan1">
-            <div class="quaylai">
-                <div class="quaylai1">
+    <div class="toTal">
+        <div class="part1">
+            <div class="comeBack">
+                <div class="comeBack1">
                     <i class="fas fa-chevron-left"></i>
-                    <button class="chuQuayLai">Quay lại</button>
+                    <button onclick="goback()" class="backWord">Come back</button>
                 </div>
 
                 <div class="logo">
                     <img data-v-296253b9="" alt="Decathlon Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNzYiIGhlaWdodD0iNDQiIHZpZXdCb3g9IjUwNCAxMjYgMTc2IDQ0Ij48cGF0aCBmaWxsPSIjMDA4MkMzIiBkPSJNNTA0IDEyNmgxNzZ2NDRINTA0eiIvPjxwYXRoIGQ9Ik01MzQuOTg0IDE0NS44MTZjLS40LTIuNjY1LTEuNTItNC44NC0zLjMwNy02LjQ0LTIuNDc4LTIuMjMtNS4xMTUtMi43MDMtOC44OTYtMi43MDNoLTguMTN2MjIuNjE2aDguOTNjMy4zNDUgMCA1LjU4NS0uNDUgOC4xMjUtMi44IDEuNzg0LTEuNjczIDIuODg1LTMuNzc0IDMuMjgtNi4yNTh2OS4wNGgxMi45NHYtNC45NThoLTcuMTJ2LTQuMWw2LjE2NS0uMDA2di00Ljg2M2wtNi4xNjUuMDA0di0zLjY5N2w3LjEyLS4wMDV2LTQuOTc3aC0xMi45NHY5LjE0NnptLTEyLjE3NCA4LjUwNmgtMi4zMzd2LTEyLjc4NWgyLjMxYzQuMjc0IDAgNi41ODQgMi4yOTYgNi41ODQgNi4zNyAwIDQuNDQ4LTIuMTA0IDYuNDE1LTYuNTU3IDYuNDE1em00My40NzItMy43NTZjLS44NTQgMS4zNTItMi43MTQgMy40OS01LjUyNSAzLjQ1Ni00LjU3NS0uMDctNi4yOTgtMy4yMzQtNi4yOTgtNi4wNyAwLTMuMjMzIDIuNTctNi4wMSA1Ljk0Mi02LjA3IDMuOC0uMDggNi42MyAzLjU2MyA2LjYzIDMuNTYzbDIuOTctNC43OTVzLTMuMzY1LTQuNTY3LTkuNTQ4LTQuNDNjLTkuMzEyLjIxMi0xMi4wMiA4LjAwOC0xMi4wMiAxMS42MjMgMCA3LjYxMyA1Ljg1OCAxMS40MTYgMTAuNjUgMTEuODc1IDYuODg2LjY3MiAxMC42Ni0zLjgzMyAxMC42Ni0zLjgzM3MtLjA0NC0uMDEuMTg4LS4wMTZhNDA1LjM4IDQwNS4zOCAwIDAgMSA1LjA1OC4wMTV2My4zOWg1LjYwM3YtMjIuNmgtNi4wODhjLS4wMDMtLjAwMi03LjQ5MyAxMi43NDUtOC4yMjMgMTMuODl6bTguODIyLjU5aC0zbDMtNS4xMnY1LjEyem02LjcwMS05LjA4Nmg0LjUyMnYxNy4yMmg1LjgxNnYtMTcuMjJoNC41MTZ2LTUuNDA3aC0xNC44NTVtMjcuODU5IDguNTk1aC01Ljk4NnYtOC41ODhoLTUuODE3djIyLjYyaDUuODE3di04LjY1NWg1Ljk4NnY4LjY1Nmg1LjgxOHYtMjIuNjJoLTUuODE3bTUzLjg3OS4wMDN2MTIuNTYybC04Ljc0Mi0xMi41NjJoLTUuMjU3djcuN2MtLjU2OC0xLjc4LTEuNTgtMy40Mi0zLjAxMi00LjgxNS0yLjIzLTIuMTc2LTUuMTMyLTMuMzU4LTguMTk3LTMuMzU4LTMuMjYgMC02LjEgMS4xMi04LjM1NiAzLjMyNy0yLjI2IDIuMjA0LTMuNDggNS4wODctMy40OCA4LjIyMyAwIDIuNDguNTk3IDQuNjU3IDEuNzc3IDYuNTRoLTUuMjNWMTM2LjY4aC01Ljc4NXYyMi42MWgxMi41NzN2LTMuMDJjMi4yNSAyLjMxOCA1LjExOCAzLjUwNiA4LjQ3IDMuNTA2IDMuMTk0IDAgNi4yMy0xLjI0OCA4LjQ1OC0zLjU1YTExLjM5MiAxMS4zOTIgMCAwIDAgMi43ODQtNC42OTV2Ny43Nmg1LjgyNnYtMTIuNmw4Ljg4IDEyLjZoNS4xMnYtMjIuNjE1aC01LjgyN3pNNjM4LjMgMTU0LjE0MmMtMy4xNjIgMC02LjAzLTIuNzQzLTYuMDMtNi4zMjcgMC0zLjMyOCAyLjY4Mi01Ljk4OCA2LjA5OC01Ljk4OCAzLjIyOCAwIDUuOTA4IDIuNjYgNS45MDggNS45ODggMCAzLjcwNS0yLjY4IDYuMzI3LTUuOTc1IDYuMzI3eiIgZmlsbD0iI0ZGRiIvPjwvc3ZnPg==">
                 </div>
 
-                <div class="rong"></div>
+                <div class="hollow"></div>
             </div>
         </div>
 
-        <div class="phan2">
-            <div class="phan2chinh1">
-                <h1>Đăng ký</h1>
-                <p class="sizechu1 noidung1">Tạo tài khoản một lần và đăng nhập tất cả các trang web và đối tác của Decathlon chỉ bằng một cú nhấp chuột!</p>
+        <div class="part2">
+            <div class="part2main1">
+                <h1>Register</h1>
+                <p class="fontSize1 content1">Create a one-time account and log in to all Decathlon sites and partners with one click!</p>
                 <form action="">
                     <div class="tai12 row">
-                        <div class="sizechu1">Tài khoản <input type="text" placeholder="Nhập tài khoản tại đây!" class="sizechu1 input1 taikhoan2" ><div class="sizechu1 ndtk3"></div></div>
-                        <div class="sizechu1">Mật khẩu <input type="password" placeholder="Nhập mật khẩu tại đây!" class="sizechu1 input1 matkhau2" ></div>
+                        <div class="fontSize1">Account <input type="text" placeholder="Enter your account here!" class="fontSize1 input1 account2" ><div class="fontSize1 ndtk3"></div></div>
+                        <div class="fontSize1">Password <input type="password" placeholder="Enter your password here!" class="fontSize1 input1 password2" ></div>
                     </div>
-                    <div class="hoten row">
-                        <div class="sizechu1 col-xs-12 col-md-6">Tên<input type="text" placeholder="Nhập tên tại đây!" class="sizechu1 input1 ten2" ></div>
-                        <div class="sizechu1 col-xs-12 col-md-6">Họ<input type="text" placeholder="Nhập họ tại đây!" class="sizechu1 input1 ho2" ></div>
+                    <div class="fullName row">
+                        <div class="fontSize1 col-xs-12 col-md-6">Name<input type="text" placeholder="Enter your name here!" class="fontSize1 input1 name2" ></div>
+                        <div class="fontSize1 col-xs-12 col-md-6">Last name<input type="text" placeholder="Enter your last name here!" class="fontSize1 input1 lastName2" ></div>
                     </div>
-                    <div class="lienhe row">
-                        <div class="sizechu1 col-xs-12 col-md-6">Số điện thoại<input type="number" placeholder="Nhập tại đây!" class="sizechu1 input1 sdt2" ></div>
-                        <div class="sizechu1 col-xs-12 col-md-6">Email<input type="email" placeholder="Nhập email tại đây!" class="sizechu1 input1 email2" ></div>
+                    <div class="contact row">
+                        <div class="fontSize1 col-xs-12 col-md-6">Phone number<input type="number" placeholder="Enter here!" class="fontSize1 input1 phone2" ></div>
+                        <div class="fontSize1 col-xs-12 col-md-6">Email<input type="email" placeholder="Enter your Email here!" class="fontSize1 input1 email2" ></div>
                     </div>
-                    <div class="donggioitinh sizechu1">
-                        <p>Giới tính</p>
-                        <div class="gioitinh">
-                            <div><input value="Nam" type="radio" name="chon" id="" class="nam2"><p>Nam</p></div>
-                            <div><input value="Nữ" type="radio" name="chon" id="" class="nu2"><p>Nữ</p></div>
+                    <div class="same-sex fontSize1">
+                        <p>Sex</p>
+                        <div class="sex">
+                            <div><input value="Male" type="radio" name="select" id="" class="male2"><p>Male</p></div>
+                            <div><input value="Female" type="radio" name="select" id="" class="female2"><p>Female</p></div>
                         </div>
                     </div>
-                    <div class="sizechu1 ndtk2"></div>
-                    <button onclick="nutDangky()"  class="sizechu1 nutTiep">Đăng Ký</button>
+                    <div class="fontSize1 ndtk2"></div>
+                    <button onclick="subscribeButton()"  class="fontSize1 nextButton">Register</button>
                 </form>
-                <div class="hoac sizechu1"><p class="test">HOẶC</p></div>
-                <p class="sizechu1 chu2">Bạn đã có tài khoản? <button onclick="nutchuyenDN()" class="sizechu1 chu2 chudangnhap">Đăng nhập</button></p>
+                <div class="or fontSize1"><p class="test">Or</p></div>
+                <p class="fontSize1 font2">Already have an account? <button onclick="loginSwitch()" class="fontSize1 font2 loginLetter">Login</button></p>
             </div>
 
         </div>
 
-        <div class="phan3">
+        <div class="part3">
             <div class="tiengviet">
                 <div class="tiengviet1" onclick="tiengviet2()">
                     <i class="fas fa-language ngonngu"></i>
@@ -67,18 +67,18 @@
                     <i class="fas fa-sort-down"></i>
                 </div>
 
-                <div class="bachucnang">
-                    <a href="">Hỗ trợ - </a>
-                    <a href="">Bảo mật - </a>
+                <div class="threeFunctions">
+                    <a href="">Support - </a>
+                    <a href="">Security - </a>
                     <a href="">About</a>
                 </div>
             </div>
-            <div class="dieukhoan">Trang này được bảo vệ bởi reCaptcha. <a href="">Chính sách bảo mật của Google</a>  áp dụng cùng <a href="">Điều khoản</a></div>
+            <div class="provision">This page is protected by reCaptcha. <a href="">Google's Privacy Policy</a>  apply the same <a href="">Provision</a></div>
         </div>
 
         <div class="annen">
             <div class="bangngonngu">
-                <button class="x" onclick="nutthoat()" >X</button>
+                <button class="x" onclick="exitButton()" >X</button>
                 <div class="tiengviet lang">Tiếng Việt <i class="fas fa-check"></i></div>
                 <div class="english lang">English <i class="fas fa-check"></i></div>
             </div>

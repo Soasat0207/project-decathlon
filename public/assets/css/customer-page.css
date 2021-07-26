@@ -4,14 +4,17 @@
     box-sizing: border-box;
 }
 
-.tongUser{
+.toTalUser{
     display: flex;
     flex-direction: row;
     background-color: #f8f9f9;
     padding: 40px 190px;
+    font-size: initial;
 
 }
-
+.exit123{
+    display: none;
+}
 .tabL{
     display: flex;
     flex-direction: column;
@@ -58,16 +61,16 @@ ul{
 
 }
 
-.dangxuat{
+.logOut{
     margin-bottom: none;
 }
 
-.donhang{
+.ordersRank{
     display: flex;
     flex-direction: column;
 }
 
-.donhang1{
+.ordersRank1{
     border: 1px solid black;
     padding: 30px 20px;
     background-color: white;
@@ -79,7 +82,7 @@ ul{
     height: 150px;
 }
 
-.donhang2{
+.ordersRank2{
     border: 1px solid black;
     background-color: white;
     border-radius: 10px;
@@ -92,7 +95,7 @@ ul{
 
 }
 
-.donhang2 i{
+.ordersRank2 i{
     font-size: 80px;
     border: 1px solid black;
     border-radius: 50%;
@@ -102,13 +105,13 @@ ul{
     border: dotted;
 }
 
-.donhang2 span{
+.ordersRank2 span{
     font-style: italic;
     font-weight: bold;
     margin-top: 30px;
 }
 
-.thongtin{
+.information5{
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -116,20 +119,20 @@ ul{
     padding: 25px;
 }
 
-.thongtin div{
+.information5 div{
     padding: 10px 10px;
 }
 
-.hang1{
+.rowC1{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.gioitinh3{
+.sex3{
     margin-bottom: 0 !important;
 }
-.hang1 div input{
+.rowC1 div input{
     padding: 15px;
     border-radius: 4px;
     border: none;
@@ -139,17 +142,17 @@ ul{
     margin-top: 10px;
 }
 
-/* .hang1 div{
+/* .rowC1 div{
     width: 45%;
 } */
 
-.hang2{
+.rowC2{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.hang2 div input{
+.rowC2 div input{
     padding: 15px;
     border-radius: 4px;
     border: none;
@@ -159,43 +162,43 @@ ul{
     margin-top: 10px;
 }
 
-/* .hang2 div{
+/* .rowC2 div{
     width: 45%;
 } */
 
-.gioitinh1{
+.sex1{
     display: flex;
     flex-direction: row;
 }
 
-.gioitinh1 div{
+.sex1 div{
     display: flex;
     align-items: center;
     margin-right: 30px;
 }
 
-.gioitinh1 div p{
+.sex1 div p{
     margin-left: 5px;
     margin-bottom: 0;
 }
 
 
-.hang5 div{
+.rowC5 div{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.hang5 div p{
+.rowC5 div p{
     padding-left: 5px;
 
 }
 
-.hang5 div{
+.rowC5 div{
     width: 60%;
 }
 
-.hang5{
+.rowC5{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -203,7 +206,7 @@ ul{
     align-items: center;
 }
 
-.hang5 button{
+.rowC5 button{
     padding: 10px 30px;
     cursor: pointer;
     /* width: 20px;
@@ -211,7 +214,7 @@ ul{
     border-radius: 4px;
 }
 
-.diachi{
+.address{
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -219,29 +222,17 @@ ul{
     padding: 25px;
 }
 
-.diachi button{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 50px;
-    border: 1px solid black;
-    margin: 20px 150px;
-    border-radius: 4px;
-    background-color:white;
-    border: dotted;
-}
 
-.diachi button i{
+.address button i{
     font-size: 50px;
     margin-bottom: 10px;
 }
 
-.diachi button p{
+.address button p{
     font-weight: bold;
 }
 
-.diachi button:hover{
+.address button:hover{
     background-color: #f8f9f9;
     cursor: pointer;
 }
@@ -260,7 +251,7 @@ ul{
 
 }
 
-.themdiachi{
+.addaddress{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -271,7 +262,7 @@ ul{
     padding: 10px;
 }
 
-.hangdiachi1{
+.addressRow1{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -279,22 +270,28 @@ ul{
     width: 100%;
 }
 
-.hangdiachi1 button{
+.addressRow1 button{
     background-color: none;
     border:none;
     cursor: pointer;
 }
 
-.hangdiachi1 button i{
+.addressRow1 button i{
     font-size: 30px;
 }
 
-.diachinhanhang{
+.addressnhanhang{
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 20px;
-    height: 380px;
+    height: 150px;
+}
+
+.adjust{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: flex-end;
 }
 
 .a{
@@ -314,7 +311,7 @@ ul{
     margin-bottom: 20px;
 }
 
-.diachinhanhang button{
+.addressnhanhang button{
     padding: 15px;
     width: 35%;
     background-color: lightslategray;
@@ -322,55 +319,56 @@ ul{
     border: none;
 }
 
-.diachinhanhang button:hover{
+.addressnhanhang button:hover{
     cursor: pointer;
     background-color: mediumslateblue;
 }
 
-.ngaysinh3{
+.birthday3{
     padding: 0 10px;
 }
 
-.noteThanhpho{
+.notecity{
     padding: 20px;
 }
 
-.diachi div{
+.address div{
     padding: 15px;
     display: flex;
     flex-direction: column;
 }
 
-.hangDiachi p {
+.addressRow p {
     margin: 10px 0;
 }
 
-.hangGhichu p{
+.noteRow p{
     margin: 10px 0;
 }
  
-.hangGhichu textarea {
+.noteRow textarea {
     padding: 20px;
 }
 
 
-.ghichu{
+.note{
     height: 150px;
 }
 
-.nutdiachi4{
+.addressButton4{
     border: none !important;
     background-color: silver !important;
-    padding: 20px !important;
-    width: 10% !important;
+    padding: 10px 30px !important;
+    border-radius: 4px;
+
 }
 
-.ngaysinh{
+.birthday{
     padding: 0 !important;
     padding-bottom: 30px !important;
 }
 
-.hienthiEmail{
+.showEmail{
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -384,11 +382,24 @@ ul{
 /* .tabR{
     /* display: none; */
 /* } */
+.address button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px;
+    border: 1px solid black;
+    margin: 20px 150px;
+    border-radius: 4px;
+    background-color:white;
+    border: dotted;
+}
+
 .tabR{
     display: none;
 }
 
-.tongUser {
+.toTalUser {
     display: flex;
     flex-direction: column;
     background-color: #f8f9f9;
@@ -403,7 +414,8 @@ ul{
     width: 100%;
 }
 
-.thoat123{
+.exit123{
+    display: block;
     border: none;
     background-color: #f8f9f9;
     text-align: left;
@@ -411,7 +423,7 @@ ul{
     font-size: larger;
 }
 
-.thongtin .thoat123 {
+.information5 .exit123 {
     border: none;
     background-color: #ffffff;
     text-align: left;
@@ -419,7 +431,7 @@ ul{
     font-size: larger;
 }
 
-.diachi .thoat123 {
+.address .exit123 {
     border: none;
     background-color: #ffffff;
     text-align: left;
@@ -429,7 +441,7 @@ ul{
     width: 10%;
 }
 
-.diachi button i{
+.address button i{
     font-size: 20px;
 }
 }

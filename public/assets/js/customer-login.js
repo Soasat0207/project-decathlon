@@ -5,7 +5,7 @@ function tiengviet2 (){
     
 }
 
-function nutthoat(){
+function exitButton(){
     $(".annen").css("display","none")
 }
 
@@ -22,19 +22,19 @@ $(".lang").on("click", (event) => {
 })
 
 // Nút chuyển sang trang đăng ký
-function nutChuyenDK(){
+function switchToRegis(){
     window.location.href = '/registered-cus'
 }
 
 // Nút đăng nhập
-async function nutdangnhap(){
+async function loginButton(){
     try{
         let data = await $.ajax({
             url: '/api/cus/login-cus',
             type: 'post',
             data:{
-                username: $('.taikhoan').val(),
-                password: $('.matkhau').val(),
+                username: $('.account').val(),
+                password: $('.password').val(),
             }
         })
         console.log(data);
@@ -49,17 +49,17 @@ async function nutdangnhap(){
 }
 
 // Đăng nhập bằng enter
-$('.taikhoan').on("keyup", (event)=>{
+$('.account').on("keyup", (event)=>{
     if (event.keyCode === 13) {
         event.preventDefault();
-        nutdangnhap()
+        loginButton()
        }
 })
 
-$('.matkhau').on("keyup", (event)=>{
+$('.password').on("keyup", (event)=>{
     if (event.keyCode === 13) {
         event.preventDefault();
-        nutdangnhap()
+        loginButton()
        }
 })
 
@@ -70,3 +70,13 @@ function setCookie(cname, cvalue, exdays) {
     let expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
+
+
+// Go back to the main page
+function goback(){
+    window.location.href ='/'
+}
+
+$('.logo').on('click', () => {
+    window.location.href ='/'
+})

@@ -66,7 +66,7 @@
     justify-content: center;
     align-items: center;
 }
-.nav-item a.nav-item-icon{
+.nav-item .nav-item-icon{
     margin: 0 auto 2px;
     height: 19px;
 }
