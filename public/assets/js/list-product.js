@@ -1,7 +1,7 @@
 let option_product = document.querySelector('.information-product-option');
 let product_list = document.querySelector('.information-product-list');
-let product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
-let product_gallert_slider_img = document.querySelector('.product_gallert-slider-img');
+let product_thumbnail_img ;
+let product_gallert_slider_img ;
 let menu_search_filter_mobile = document.querySelectorAll('.menu-search-filter-item-title-mobile')
 let menu_search_filter_list = document.querySelectorAll('.menu-search-filter-list-mobile-warp');
 option_product.addEventListener('click',()=>{
@@ -16,16 +16,9 @@ option_product.addEventListener('click',()=>{
         product_list.setAttribute('style','display:none')
     }  
 })
-Array.prototype.map.call(product_thumbnail_img,(product_thumbnail_img)=>{
-    product_thumbnail_img.addEventListener('click',()=>{
-        product_gallert_slider_img.setAttribute('src',`${product_thumbnail_img.getAttribute('src')}`)
-    })
-})
 let value = 0;
 function plusSlides(n){
-    console.log(product_thumbnail_img);
     value -= (100/(product_thumbnail_img.length));
-    console.log(value);
     let value_max =-(100 -(100/(product_thumbnail_img.length)*3));
     if(value < (value_max)){
         value = 0 ;
