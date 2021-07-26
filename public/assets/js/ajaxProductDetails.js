@@ -1,5 +1,3 @@
-const { render } = require("ejs");
-
 let link = window.location.href;
 let linkId = link.slice(link.lastIndexOf('/'),link.length);
 var dataIdProducts =[];

@@ -83,6 +83,26 @@ shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
     })
 })
 
+// increese quantity for shoppingcart
+shoppingCartRouter.put('/changeQuantityShoppingCart', (req, res,next)=>{
+    
+    model.ShoppingCartModel.findOneAndUpdate({
+        $and : [
+            {
+                userId : req.cookies.userId,
+            },
+            {
+                product: { $elemMatch : { "productId" : req.body.idProductCart}}
+            }
+        ]
+    },{ $set: {  "product.$.quantity" : req.body.newQuantity} })
+    .then(data =>{
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+} )
+
 // delete shopping cart after order was created
 shoppingCartRouter.delete('/deleteShoppingCart', (req, res, next)=>{
     model.ShoppingCartModel.deleteOne({

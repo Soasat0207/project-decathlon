@@ -50,7 +50,6 @@ checkoutRouter.post('/findOrderById', (req,res,next)=>{
 // find order by order id via params
 checkoutRouter.post('/findOrderDetails/:id', async (req, res,next)=>{
     try {
-    console.log(req.params.id);
     let data = await model.OrderModel.findOne({ _id : req.params.id})
     .populate(" userId , address ")
     .populate({ 
