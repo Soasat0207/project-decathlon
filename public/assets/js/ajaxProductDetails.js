@@ -110,10 +110,8 @@ async function renderProductDetails() {
           type: "POST",
         });
         data.map((data) => {
-            // console.log(45, data);
-
-
-          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
+            console.log(data.img[0]);
+          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}"`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
             <h1 class="product_details-heading-desc">${data.title} - ${data.colorId.name}</h1>
@@ -163,7 +161,6 @@ async function renderProductDetails() {
       }
  
 }
-
 async function renderRecommendProduct(categoryProductId) {
     let view = 4;
     let currentPage = 1;

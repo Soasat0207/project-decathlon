@@ -11,6 +11,7 @@ async function CartRender(){
   if (data) {
         var totalPrices = 0;
         for (const obj of data.product) {
+          console.log(obj);
           let item = obj.productId;
           let content = `
             <div id = "content${obj._id}" class = "cart-items-info">
@@ -69,6 +70,26 @@ async function CartRender(){
         $('.totalPriceOfProducts').html(totalPricesCurrencyFormated);
         $('.totalPrices').html('');
         $('.totalPrices').html(totalPricesCurrencyFormated);
+
+    // add event for continue button
+      $('.button-continue').on('click', async ()=>{
+        let data = await $.ajax({
+        url: "/api/user/findShoppingCart",
+        type: "POST"
+        });
+        if(data.product.length === 0){
+          // $(".cart").html('');
+          let emptyCartNoti = `
+          <div class = "emptyCartNoti">
+            <div>Your shopping cart is empty, you cannot continue. Please click the button <b>back</b> to continue</div>
+            <div><button class="backToListProduct"><a href ="http://localhost:3000/list-product">BACK</a></button></div>
+          </div>
+          `
+          $(".cart").append(emptyCartNoti);
+        }else{
+          window.location.href = '/order'
+        }
+      })
     }
   } catch (error) {
     console.log(error);
@@ -154,10 +175,7 @@ function priceOfOneProduct(selectedId) {
   $(`#price${selectedId}`).append(totalUnitPrice);
 }
 
-// add event for continue button
-$('.button-continue').on('click', ()=>{
-  window.location.href = '/order'
-})
+
 
 // function render cart in navbar
 async function renderNavbarCart(){

@@ -173,7 +173,7 @@ app.get('/order', (req, res) => {
 app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
 })
-app.get('/admin-order-details', (req, res) =>{
+app.get('/admin-order-details/:id', (req, res) =>{
   res.sendFile(path.join(__dirname, './views/admin/order-details.html'))
 }) 
 app.get('/index', (req, res) => {

@@ -35,7 +35,7 @@ checkoutRouter.post('/findOrder', (req,res,next)=>{
         res.json(err)
     })
 })
-// find order by userId  
+// find order by order Id   
 checkoutRouter.post('/findOrderById', (req,res,next)=>{
     model.OrderModel.find({
         _id : req.body.orderId
@@ -47,6 +47,51 @@ checkoutRouter.post('/findOrderById', (req,res,next)=>{
         res.json(err)
     })
 })
+// find order by order id via params
+checkoutRouter.post('/findOrderDetails/:id', async (req, res,next)=>{
+    try {
+    let data = await model.OrderModel.findOne({ _id : req.params.id})
+    .populate(" userId , address ")
+    .populate({ 
+        path: 'product',
+        populate: {
+          path: 'productId',
+          model: 'product',
+          populate : [
+              {
+              path: 'sizeId',
+              model: 'sizeProduct'
+            },
+              {
+              path: 'colorId',
+              model: 'colorProduct'
+            },
+              {
+              path: 'levelId',
+              model: 'levelProduct'
+            },
+              {
+              path: 'trademarkId',
+              model: 'trademark'
+            },
+              {
+              path: 'supplierId',
+              model: 'supplier'
+            },
+              {
+              path: 'categoryProductId',
+              model: 'categoryProduct'
+            }
+            ]
+        },
+     })
+     res.json(data)
+    } catch (error) {
+       res.json(error);
+    }
+    
+})
+
 // find all order 
 checkoutRouter.post('/findAllOrders', (req, res, next)=>{
     model.OrderModel.find({})

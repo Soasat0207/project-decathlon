@@ -24,7 +24,6 @@ async function renderCart(){
         <button class=" btn btn-primary list-view-cart">Show Cart</button>
         `;
         $('.navbarShowListCart').append(listCart);
-        // $('.cartContainer').html('');
         $('.cartContainer').append(`<p class ="numberProductInCart">${data.product.length}</p>`);
     }
     let arrProduct = data.product

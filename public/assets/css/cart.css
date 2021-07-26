@@ -318,3 +318,15 @@ body{
 .totalPriceOfProducts, .totalPrices{
     font-weight: bold;
 }
+.emptyCartNoti{
+    font-size: 24px;
+    color: red;
+}
+.backToListProduct {
+    padding: 2% 10%;
+    background-color: yellow;
+    border-radius: 8px;
+}
+.backToListProduct a{
+   text-decoration: none
+}
