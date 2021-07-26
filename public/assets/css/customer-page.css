@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.tongUser{
+.toTalUser{
     display: flex;
     flex-direction: row;
     background-color: #f8f9f9;
@@ -61,7 +61,7 @@ ul{
 
 }
 
-.dangxuat{
+.logOut{
     margin-bottom: none;
 }
 
@@ -399,7 +399,7 @@ ul{
     display: none;
 }
 
-.tongUser {
+.toTalUser {
     display: flex;
     flex-direction: column;
     background-color: #f8f9f9;

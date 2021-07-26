@@ -28,7 +28,7 @@ userRouter.post('/registeredcus', async (req, res) =>{
         let pass =  await bcrypt.hash(req.body.password,saltRounds)
         let data2 = await AccountModel.findOne({username: req.body.username})
         if(data2){
-            res.json('Tài khoản đã tồn tại')
+            res.json('Account already exists')
         }else{
             let data = await AccountModel.create({
                 username: req.body.username,

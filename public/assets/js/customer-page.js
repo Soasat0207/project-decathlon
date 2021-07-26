@@ -75,7 +75,7 @@ function infoButton() {
     <h3>Personal information</h3>
     <div class="rowC1 row">
         <div class="col-xs-12 col-md-6">Name <input type="text" placeholder="Name" class="name3"></div>
-        <div class="col-xs-12 col-md-6">Surname <input type="text" placeholder="Surname" class="surname3"></div>
+        <div class="col-xs-12 col-md-6">Last name<input type="text" placeholder="Surname" class="surname3"></div>
     </div>
 
     <div class="rowC2 row">
@@ -123,7 +123,7 @@ function infoButton() {
         let ten;
         let ho;
         let email;
-        let sdt;
+        let phone;
         let gender;
         let birthday;
         let avatar;
@@ -131,7 +131,7 @@ function infoButton() {
             ten = data.firstname;
             ho = data.lastname;
             email = data.email;
-            sdt = data.phone;
+            phone = data.phone;
             gender = data.gender;
             birthday = data.birthday.slice('0', '10');
             avatar = data.avatar;
@@ -140,7 +140,7 @@ function infoButton() {
         $(".name3").val(ten);
         $(".surname3").val(ho);
         $(".email3").val(email);
-        $(".phone3").val(sdt);
+        $(".phone3").val(phone);
         $(".birthday3").val(birthday);
         if(gender == 'nu'){
             $('.female3').prop("checked", true)
@@ -197,7 +197,7 @@ function addressButton() {
             variable2 =`
             <div class="address">
                 <button class="exit123" onclick="exit4()"><i class="fas fa-undo"></i></button>
-                <h3>Địa chỉ</h3>
+                <h3>Address</h3>
                 <div>
                     <div class="cityRow"><p>City:</p><input type="text" class="notecity"></div>
                     <div class="addressRow"><p>Delivery address:</p><textarea name="" id="" cols="30" rows="10" class="deliveryAddress"></textarea></div>
