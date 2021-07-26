@@ -6,6 +6,7 @@ let page = 1;
 let element;
 
 async function tableProduct(data, index) {
+  console.log(9,data);
   let div = ``;
   div = `
             <div class=" col-lg-3 col-md-6 col-sm-6">
@@ -83,6 +84,8 @@ async function render() {
       url: "/api/product",
       type: "GET",
     });
+
+    console.log(88,data);
     CheckCodeProduct(data);
     product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
 

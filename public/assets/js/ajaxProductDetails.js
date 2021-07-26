@@ -1,5 +1,3 @@
-const { render } = require("ejs");
-
 let link = window.location.href;
 let linkId = link.slice(link.lastIndexOf('/'),link.length);
 var dataIdProducts =[];
@@ -382,6 +380,8 @@ async function renderSize(codeProduct,colorId) {
         console.log(error);
     }
 }
+
+console.log(12312313);
 async function renderReview() {
     try{
         let data = await $.ajax({
@@ -389,6 +389,7 @@ async function renderReview() {
           type: "GET",
           
         });
+        console.log(392,data);
         data.map((data, index) => {
             // console.log(data)
             let div = `

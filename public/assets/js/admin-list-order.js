@@ -57,6 +57,7 @@ async function renderListOrder(){
 // button show detail
 async function showDetail(item){
    try {
+       console.log(16, item);
     let orderId = $(item).attr('id').slice(6, 100);
     let data = await $.ajax({
         url: '/api/user/findOrderById',
