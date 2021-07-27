@@ -14,6 +14,7 @@ async function renderIndex(){
         stored_dataIdProducts = stored_dataIdProducts.filter((item,index)=>{
             return stored_dataIdProducts.indexOf(item) === index 
         });
+        stored_dataIdProducts=stored_dataIdProducts.reverse();
         stored_dataIdProducts = stored_dataIdProducts.limit(4);
         renderLastViewProduct();
     }
@@ -91,7 +92,7 @@ async function renderSizeLastView(codeProduct,colorId,indexdiv) {
             codeProduct:codeProduct, 
             colorId:colorId,
           }
-        }); 
+        });
         if(data.status == 200) {
             let sizeArr = [];
             data.data.map((data)=>{
@@ -102,12 +103,11 @@ async function renderSizeLastView(codeProduct,colorId,indexdiv) {
             let dataSize = sizeArr.filter((item,index)=>{
                 return sizeArr.indexOf(item) === index 
             })
-            
-            dataSize.map((dataSize)=>{
+            dataSize.map((dataSize)=>{    
                 for(let i = 0; i < data.data.length; i++){
                     if(data.data[i].sizeId._id == dataSize){
                     let div =`<p>${data.data[i].sizeId.size}</p>`
-                    $(`topic_sell-addtocart-size${indexdiv}`).append(div);
+                    $(`.topic_sell-addtocart-size${indexdiv}`).append(div);
                     break;
                     }
                 }

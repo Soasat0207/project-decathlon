@@ -84,18 +84,29 @@ shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
 })
 
 // increese quantity for shoppingcart
-shoppingCartRouter.put('/changeQuantityShoppingCart', (req, res,next)=>{
+shoppingCartRouter.put('/changeQuantityShoppingCart', (req, res,next) =>{
     
-    model.ShoppingCartModel.findOneAndUpdate({
-        $and : [
-            {
-                userId : req.cookies.userId,
-            },
-            {
-                product: { $elemMatch : { "productId" : req.body.idProductCart}}
-            }
-        ]
-    },{ $set: {  "product.$.quantity" : req.body.newQuantity} })
+    // model.ShoppingCartModel.findOneAndUpdate({
+    //     $and : [
+    //         {
+    //             userId : req.cookies.userId,
+    //         },
+    //         {
+    //             product: { $elemMatch : { "productId" : req.body.idProductCart}}
+    //         }
+    //     ]
+    // },{ $set: {  "product.$.quantity" : "2"} })
+    // .then(data =>{
+    //     res.json(data)
+    // }).catch(err =>{
+    //     res.json(err)
+    // })
+    model.ShoppingCartModel.updateOne({
+        userId : req.cookies.userId,
+        "product.productId" : req.body.idProductCart
+    }, {
+        $inc : {"product.$.quantity":req.body.newQuantity}
+    })
     .then(data =>{
         res.json(data)
     }).catch(err =>{

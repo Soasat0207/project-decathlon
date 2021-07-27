@@ -92,6 +92,9 @@ app.get('/admin-list-tradeMark', (req, res) => {
 app.get('/admin-add-product', (req, res) => {
   res.render('admin/add-product');
 })
+app.get('/admin-update-product/:id', (req, res) => {
+  res.render('admin/updateProduct');
+})
 app.get('/admin-list-product', (req, res) => {
   res.render('admin/list-product');
 })
@@ -172,11 +175,15 @@ app.get('/checkout', (req, res) => {
 })
 app.get('/admin-order-details/:id', (req, res) =>{
   res.sendFile(path.join(__dirname, './views/admin/order-details.html'))
+}) 
+app.get('/index', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/index.html'))
 })
 
 // end admin
 // tạo đường dẫn tĩnh 
 app.use('/public',express.static(path.join(__dirname, './public')));
+app.use('/js',express.static(path.join(__dirname, './js')));
 // Use router
 app.use('/api/user/', ProductAdvantagesRouter);
 app.use('/api/cus', userRouter);
