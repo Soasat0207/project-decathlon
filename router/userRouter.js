@@ -50,7 +50,7 @@ userRouter.post('/registeredcus', async (req, res) =>{
 })
 
 // Đăng nhập
-userRouter.post('/login-cus', async (req, res) => {
+userRouter.post('/login-cus', checkCookies1.checkCookies, async (req, res) => {
     try {
         let password= req.body.password;
         let data =  await AccountModel.findOne({username: req.body.username})
