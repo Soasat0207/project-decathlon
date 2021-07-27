@@ -24,7 +24,6 @@ shoppingCartRouter.post('/findShoppingCart', (req, res, next)=>{
 
 // find shopping cart by userId + selected productId and delete one
 shoppingCartRouter.put('/findAndDeleteOneProduct', (req, res, next)=>{
-    // console.log(req.body);
     model.ShoppingCartModel.updateOne({
         userId : req.cookies.userId
     },{
@@ -84,35 +83,53 @@ shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
 })
 
 // increese quantity for shoppingcart
-shoppingCartRouter.put('/changeQuantityShoppingCart', (req, res,next) =>{
-    
-    // model.ShoppingCartModel.findOneAndUpdate({
-    //     $and : [
-    //         {
-    //             userId : req.cookies.userId,
-    //         },
-    //         {
-    //             product: { $elemMatch : { "productId" : req.body.idProductCart}}
-    //         }
-    //     ]
-    // },{ $set: {  "product.$.quantity" : "2"} })
-    // .then(data =>{
-    //     res.json(data)
-    // }).catch(err =>{
-    //     res.json(err)
-    // })
+shoppingCartRouter.put('/changeQuantityShoppingCart',(req, res, next)=>{
+    console.log(87, req.body);
+    model.ShoppingCartModel.findOne({
+        userId : req.cookies.userId,
+        "product.productId" : req.body.idProductCart
+    })
+    .then(data => {
+        if(data){
+        // take array include productid and quantity
+            let arrProduct = data.product;
+            let idOfProductCart = req.body.idProductCart;
+            let obj ;
+           for(let i = 0; i < arrProduct.length; i++){
+               if( arrProduct[i].productId === idOfProductCart){
+                obj = arrProduct[i];
+                break;
+               }
+           }
+            req.obj = obj;
+            next();
+        }else{
+            res.json('This product doesnt exist')
+        }
+    })
+    .catch(err =>{
+        res.json(err)
+    })
+},(req, res, next) =>{
+    let qtyNumber = parseInt(req.obj.quantity) + 1  ;
+
     model.ShoppingCartModel.updateOne({
         userId : req.cookies.userId,
         "product.productId" : req.body.idProductCart
     }, {
-        $inc : {"product.$.quantity":req.body.newQuantity}
+        $set:{"product.$.quantity":qtyNumber}
     })
     .then(data =>{
-        res.json(data)
+        if(data.nModified !== 0){
+            res.json('Update shopping cart successfully')
+        }else{
+            res.json('Nothing to update')
+        }
     }).catch(err =>{
         res.json(err)
     })
-} )
+}
+)
 
 // delete shopping cart after order was created
 shoppingCartRouter.delete('/deleteShoppingCart', (req, res, next)=>{
@@ -124,7 +141,7 @@ shoppingCartRouter.delete('/deleteShoppingCart', (req, res, next)=>{
         res.json(err)
     })
 })
-// function to convert String ( from client sent to server) to array include product info
+// function to convert String ( from client send to server) to array include product info
 function convertStringToArray(item){
     let array = [];
     let index = -1;

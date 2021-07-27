@@ -135,7 +135,7 @@ async function renderProductDetails() {
                     if(data === 'Nothing'){
                         createShoppingCart(arrListProduct);
                     }else{
-                        updateShoppingCart(arrListProduct);
+                        updateShoppingCart(idOfProduct);
                     }
                 }).catch(err =>{
                     console.log(err);
@@ -221,49 +221,6 @@ async function renderRecommendProduct(categoryProductId) {
       }
 }
 
-
-// function find User in shopping cart
-function findAndCreateShoppingCart(){
-        // get selected id in collection
-            $.ajax({
-                url: '/api/user/findSelectedProduct',
-                type: 'POST',
-                data: {
-                    sold : false
-                }
-            }).then(data =>{
-               if(data){
-                   let arrSelectedId = [];
-                   for (const iterator of data) {
-                    arrSelectedId.push(iterator._id)
-                   }
-                //    console.log(arrSelectedId);
-                   createOrUpdateShoppingCart(arrSelectedId);
-               }
-            }).catch(err =>{
-                console.log(err);
-            })
-}
-// function to find order in shopping cart and create shopping cart
-       function createOrUpdateShoppingCart(arrSelectedId){
-           $.ajax({
-               url: '/api/user/findShoppingCart',
-               type: 'POST',
-               data : {
-                   sold : false
-               }
-           }).then(data => {
-               if(data.length === 0){
-                   createShoppingCart(arrSelectedId);
-               }else{
-                   updateShoppingCart(arrSelectedId);
-               }
-           }).catch(err =>{
-               console.log(err);
-           })
-       }
-
-
 // function create shopping cart
     function createShoppingCart(arrListProduct){
         $.ajax({
@@ -282,22 +239,41 @@ function findAndCreateShoppingCart(){
     }
 
 // function find and update shopping cart
-function updateShoppingCart(arrListProduct){
+function updateShoppingCart(idOfProduct){
     $.ajax({
-        url: '/api/user/updateShoppingCart',
+        url: '/api/user/changeQuantityShoppingCart',
         type : 'PUT',
         data: {
-            arrListProduct : arrListProduct
+            idProductCart : idOfProduct
         }
-    }).then(data =>{
-        if(data){
-            renderCart();
-        }
+    })
+    .then(data =>{
+       if( data === 'This product doesnt exist' ){
+        let arrayProductId = [ { productId : idOfProduct, quantity : 1}]
+        createProductShoppingCart(arrayProductId);
+       }else{
+        renderCart();
+       }
     }).catch(err =>{
         console.log(err);
     })
 }
-
+// function to create product in shopping cart exist
+function createProductShoppingCart(arrayProductId){
+    $.ajax({
+        url: '/api/user/updateShoppingCart',
+        type : 'PUT',
+        data: {
+            arrayProductId : arrayProductId
+        }
+    }).then(data =>{
+       if(data){
+        renderCart();
+       }
+    }).catch(err =>{
+        console.log(err);
+    })
+}
 
 async function renderColorImg(codeProduct) {
     try {
@@ -361,7 +337,6 @@ async function renderSize(codeProduct,colorId) {
             })
             
             dataSize.map((dataSize)=>{
-                
                 for(let i = 0; i < data.data.length; i++){
                     if(data.data[i].sizeId._id == dataSize){
                         let div =`
@@ -386,7 +361,6 @@ async function renderReview() {
           
         });
         data.map((data, index) => {
-            // console.log(data)
             let div = `
                 <div class="review-list-items">
                     <div class="row no-gutters">
@@ -454,7 +428,6 @@ async function renderReview() {
             $('.review-list-body').append(div);
             
             data.reply.map((data) => {
-                // console.log(data);
                 let div=`
                 <div class="review-items-desc review-items-desc-feedback">
                     <img class="review-items-avatar-user" src="${data.accountId.avatar}" alt="">
@@ -534,7 +507,6 @@ $.ajax({
     type: "POST",
 })
 .then((data) =>{
-    // console.log(31, data[0].codeProduct);
     let idAdvan = data[0].codeProduct;
     $.ajax({
         url: '/api/user/viewadvantages/sp116517' + idAdvan,
@@ -551,7 +523,7 @@ $.ajax({
         }
     })
     .catch((err) => {
-        console.log(182,err);
+        console.log(err);
     })
 })
 .catch((err) => {
@@ -567,10 +539,8 @@ function renderCart(){
         url: '/api/user/findShoppingCart',
         type : 'POST',
     }).then(data =>{
-        // console.log(data);
         let arrProduct = data.product
         arrProduct.forEach(element => {
-            console.log('oke');
             let liItem = `
         <li class="list-cart-items">
             <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">

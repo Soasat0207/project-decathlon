@@ -11,7 +11,6 @@ async function CartRender(){
   if (data) {
         var totalPrices = 0;
         for (const obj of data.product) {
-          console.log(obj);
           let item = obj.productId;
           let content = `
             <div id = "content${obj._id}" class = "cart-items-info">
@@ -128,7 +127,6 @@ async function deleteProduct(selectedId){
     updateQuantityCart(selectedId);
     priceOfOneProduct(selectedId);
   });
- 
 }
 
 function increQuantity(selectedId) {

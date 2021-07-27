@@ -10,8 +10,6 @@ const commentRouter = require('./router/commentRouter');
 const shoppingCartRouter = require('./router/shoppingCartRouter');
 const BannerSaleRouter = require('./router/BannerSaleRouter');
 
-
-
 const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 
@@ -160,6 +158,10 @@ app.get('/terms-of-purchase', (req, res) => {
 })
 app.get('/privacy-policy', (req, res) => {
   res.render('footer subsection/privacy-policy')
+})
+
+app.get('/cart1', (req, res) => {
+  res.render('user/cart1')
 })
 
 

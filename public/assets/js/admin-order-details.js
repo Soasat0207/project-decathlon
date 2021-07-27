@@ -1,10 +1,11 @@
-$( document ).ready(function() {
+$(document).ready(function() {
   // show only tab pane
   $('#myList a').on('click', function (e) {
-    e.preventDefault()
+    e.preventDefault();
     $('.list-group-item').removeClass('active');
     $('.tab-pane').removeClass('active');
     $(this).addClass('active');
+    
     let link = $(this).attr('href');
     if( link === "#userInfo" ){
       $('#userInfo').addClass('active');
@@ -26,6 +27,7 @@ $( document ).ready(function() {
   // render order details function
   let link = window.location.href;
   let orderId = link.slice(link.lastIndexOf('/') + 1, link.length)
+  console.log(29, orderId);
   async function renderOrderDetails(){
   try {
     let data = await $.ajax({

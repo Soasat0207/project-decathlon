@@ -24,13 +24,14 @@ $( document ).ready(function() {
                         <th>${item.address.district} ${item.address.province}</th>
                         <th>${totalPrice}</th>
                         <th>
-                            <div><button id = "del${item._id}" class= "deleteButton">X</button></div>
+                            <div><button id ="del${item._id}" class= "deleteButton">X</button></div>
                         </th>
                     </tr>
                     `
                     $('.admin-list-order').append(content);
                 // add event for delete button 
-                    $(`#del${item._id}`).on('click', function(){
+                    $(`#del${item._id}`).on('click', ()=>{
+                        console.log($(this).attr('id'));
                         let orderId = $(this).attr('id').slice(3,100);
                         $.ajax({
                             url: '/api/user/deleteOrder/' + orderId,
@@ -46,8 +47,7 @@ $( document ).ready(function() {
                             console.log(err);
                         })
                     })
-                })
-                
+                }) //end for loop
             } // end condition
         } catch (error) {
             console.log(error);
