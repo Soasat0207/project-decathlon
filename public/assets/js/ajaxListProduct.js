@@ -6,7 +6,6 @@ let page = 1;
 let element;
 
 async function tableProduct(data, index) {
-  console.log(9,data);
   let div = ``;
   div = `
             <div class=" col-lg-3 col-md-6 col-sm-6">
@@ -218,7 +217,6 @@ function createPagination(totalPages,page) {
 async function loadPage(page) {
   currentPage = page;
   render();
-
 }
 
 function paginationNextPage() {
