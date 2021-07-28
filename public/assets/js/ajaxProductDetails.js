@@ -231,58 +231,60 @@ async function renderRecommendProduct(categoryProductId) {
 }
 
 // function create shopping cart
-    function createShoppingCart(arrListProduct){
-        $.ajax({
-            url: '/api/user/createShoppingCart',
-            type: 'POST',
-            data : {
-                arrListProduct : arrListProduct
-            }
-        }).then(data =>{
-            if(data){
-                renderCart();
-            }
-        }).catch(err =>{
-            console.log(err);
-        })
+async function createShoppingCart(arrListProduct){
+    try {
+     let data = await $.ajax({
+         url: '/api/user/createShoppingCart',
+         type: 'POST',
+         data : {
+             arrListProduct : arrListProduct
+         }
+     })
+     if(data){
+         renderCart();
+     }
+    } catch (error) {
+        console.log(error);
     }
+ }
 
 // function find and update shopping cart
-function updateShoppingCart(idOfProduct){
-    $.ajax({
-        url: '/api/user/changeQuantityShoppingCart',
-        type : 'PUT',
-        data: {
-            idProductCart : idOfProduct
-        }
-    })
-    .then(data =>{
-       if( data === 'This product doesnt exist' ){
-        let arrayProductId = [ { productId : idOfProduct, quantity : 1}]
-        createProductShoppingCart(arrayProductId);
-       }else{
-        renderCart();
-       }
-    }).catch(err =>{
-        console.log(err);
-    })
-}
+ async function updateShoppingCart(idOfProduct){
+ try {
+     let data = await $.ajax({
+         url: '/api/user/changeQuantityShoppingCart',
+         type : 'PUT',
+         data: {
+             idProductCart : idOfProduct
+         }
+     })
+     if( data === 'This product doesnt exist' ){
+         let arrayProductId = [ { productId : idOfProduct, quantity : 1}]
+         createProductShoppingCart(arrayProductId);
+     }else{
+         renderCart();
+     }
+ } catch (error) {
+     console.log(error);
+ }
+ }
 // function to create product in shopping cart exist
-function createProductShoppingCart(arrayProductId){
-    $.ajax({
-        url: '/api/user/updateShoppingCart',
-        type : 'PUT',
-        data: {
-            arrayProductId : arrayProductId
-        }
-    }).then(data =>{
-       if(data){
-        renderCart();
-       }
-    }).catch(err =>{
-        console.log(err);
-    })
-}
+ async function createProductShoppingCart(arrayProductId){
+     try {
+         let data = await $.ajax({
+             url: '/api/user/updateShoppingCart',
+             type : 'PUT',
+             data: {
+                 arrayProductId : arrayProductId
+             }
+         })
+         if(data){
+             renderCart();
+         }
+     } catch (error) {
+         console.log(error);
+     }
+ }
 
 async function renderColorImg(codeProduct) {
     try {

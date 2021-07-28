@@ -1,7 +1,6 @@
 const LimitProduct = 6;
 let div = ``;
 // Retrieve
-console.log(localStorage["dataIdProducts"]);
 let stored_dataIdProducts;
 
 
@@ -67,7 +66,7 @@ async function renderLastViewProduct(){
                                     <div class="topic_sell-addtocart">
                                         <div class="topic_sell-addtocart-size topic_sell-addtocart-size${index}">
                                         </div>
-                                        <button class="btn topic_sell-addtocart-btn product_details-addcart-btn product_details-addcart-btn-yellow">
+                                        <button id="idProduct${data._id}" class="btn topic_sell-addtocart-btn product_details-addcart-btn product_details-addcart-btn-yellow">
                                             Thêm vào giỏ hàng 
                                         </button>
                                     </div>
@@ -75,6 +74,25 @@ async function renderLastViewProduct(){
                         </div>`;
                     $(`.carousel-activate-lastViewProduct`).append(div);
                     renderSizeLastView(data.codeProduct,data.colorId,index);
+                // add event for button Add To Cart
+                    $(`#idProduct${data._id}`).on( 'click' ,async function(){
+                        try {
+                            let quantity = 1;
+                            let idOfProduct = $(this).attr('id').slice(9, 100);
+                            let arrListProduct = [{productId : idOfProduct, quantity: quantity}];
+                            let data = await $.ajax({
+                                url: '/api/user/findShoppingCart',
+                                type: 'POST',
+                            })
+                            if(data === 'Nothing'){
+                                createShoppingCart(arrListProduct);
+                            }else{
+                                updateShoppingCart(idOfProduct);
+                            }
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    })
                 })
             }
         }
@@ -277,4 +295,58 @@ async function renderLocalBrandBig(){
         console.log(error);
     }
 }
+// function create shopping cart
+    async function createShoppingCart(arrListProduct){
+       try {
+        let data = await $.ajax({
+            url: '/api/user/createShoppingCart',
+            type: 'POST',
+            data : {
+                arrListProduct : arrListProduct
+            }
+        })
+        if(data){
+            renderCart();
+        }
+       } catch (error) {
+           console.log(error);
+       }
+    }
 
+// function find and update shopping cart
+    async function updateShoppingCart(idOfProduct){
+    try {
+        let data = await $.ajax({
+            url: '/api/user/changeQuantityShoppingCart',
+            type : 'PUT',
+            data: {
+                idProductCart : idOfProduct
+            }
+        })
+        if( data === 'This product doesnt exist' ){
+            let arrayProductId = [ { productId : idOfProduct, quantity : 1}]
+            createProductShoppingCart(arrayProductId);
+        }else{
+            renderCart();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    }
+// function to create product in shopping cart exist
+    async function createProductShoppingCart(arrayProductId){
+        try {
+            let data = await $.ajax({
+                url: '/api/user/updateShoppingCart',
+                type : 'PUT',
+                data: {
+                    arrayProductId : arrayProductId
+                }
+            })
+            if(data){
+                renderCart();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
