@@ -342,3 +342,18 @@ body{
     align-items: center;
     padding : 5% 10%;
 }
+.nav-cart_showInfo{
+    position: relative;
+}
+.nav-cart_showNumber{
+    position: absolute;
+    /* background-color: yellow; */
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 0.9rem;
+    top: 0rem;
+    right: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
