@@ -202,7 +202,20 @@ $(".save-address-btn").on("click", async function () {
 
 // Add event to Choose form delivery
 $(".checkout-right-delivery-button").on("click", () => {
-  renderOrderPage();
+  $.ajax({
+    url: '/api/user/findUserAddress',
+    type: 'POST'
+  }).then(data => {
+    if(data.length !== 0){
+      renderOrderPage();
+    }else {
+      $('.checkout-notification').html('');
+      let content = `
+      <span style="color:red">You have not an address, please add your address to continue</span>
+      `
+      $('.checkout-notification').append(content)
+    }
+  })
 });
 
 // render to order page

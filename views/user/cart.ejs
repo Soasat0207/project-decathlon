@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart Page</title>
     <%- include('../partials/head-user'); -%>
-    
 </head>
-
 <body>
-    <%- include('../partials/user-navbar'); -%>
+    <!-- Header -->
+    <%- include('../partials/user-navbar'); %>
+    <!-- \ End of header -->
+
     <!-- Content -->
     <section class="body" id="">
         <div class="container">
@@ -39,14 +41,8 @@
                         <div class="cart-header-empty-text cart-header-items-text"><span></span></div>
                     </div>
                     
-                    <div class="cart ">
+                    <div class="cart cart-list-item">
                         <!-- thêm class cart-empty khi không có sản phẩm  -->
-                        <img class="cart-empty-img"
-                            src="https://cdncontent.decathlon.vn/_next/static/images/cart-empty-f5957296fcc29441a35bd50dda22ee00.svg"
-                            alt="">
-                        <h2 class="cart-empty-title">Không có sản phẩm trong giỏ hàng?</h2>
-                        <a href="" class="product-review-overview-counts-btn cart-empty-btn"><span>Thêm vào giỏ hàng
-                            </span></a>
                         <ul class="card-eligibility">
                             <li><span><i style="color:var(--green)" class="fal fa-check-circle"></i> <strong>Ưu
                                         đãi</strong></span></li>
@@ -120,6 +116,9 @@
         </div>
     </section>
 </body>
-<script src="/public/assets/js/jquery-3.6.0.min.js"></script>
+<footer>
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/user-script.ejs'); -%>
+</footer>
 <script src="/public/assets/js/cartPage.js"></script>
 </html>

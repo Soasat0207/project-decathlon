@@ -330,3 +330,15 @@ body{
 .backToListProduct a{
    text-decoration: none
 }
+.empty-cart-noti img{
+    display: block;
+    max-width:50%;
+    max-height: 50%;
+}
+.empty-cart-noti{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding : 5% 10%;
+}

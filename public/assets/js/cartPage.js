@@ -7,8 +7,7 @@ async function CartRender(){
     url: "/api/user/findShoppingCart",
     type: "POST",
   });
- 
-  if (data) {
+  if (data.product.length !== 0) {
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
@@ -77,10 +76,10 @@ async function CartRender(){
         type: "POST"
         });
         if(data.product.length === 0){
-          // $(".cart").html('');
+          $(".cart").html('');
           let emptyCartNoti = `
           <div class = "emptyCartNoti">
-            <div>Your shopping cart is empty, you cannot continue. Please click the button <b>back</b> to continue</div>
+            <div>You cannot continue with an empty cart. Please click the button <b>back</b> to spend your money</div>
             <div><button class="backToListProduct"><a href ="http://localhost:3000/list-product">BACK</a></button></div>
           </div>
           `
@@ -89,6 +88,18 @@ async function CartRender(){
           window.location.href = '/order'
         }
       })
+    }else{
+      $(".cart-list-item").html('');
+      let cartItem = `
+      <div class = "empty-cart-noti">
+        <img src="http://localhost:3000/public/uploads/cart-empty-1.jpg" alt="">
+        <h2>Không có sản phẩm trong giỏ hàng</h2>
+        <a href="http://localhost:3000/list-product" class="product-review-overview-counts-btn cart-empty-btn">
+            <span>Thêm vào giỏ hàng</span>
+        </a>
+      </div>
+      `
+      $(".cart-list-item").append(cartItem);
     }
   } catch (error) {
     console.log(error);
