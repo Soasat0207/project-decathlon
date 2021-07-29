@@ -3,7 +3,6 @@ let div = ``;
 // Retrieve
 let stored_dataIdProducts;
 
-
 async function renderIndex(){
     document.querySelector('.activate-clear-localstorage').addEventListener('click',()=>{
         localStorage.removeItem('dataIdProducts');
@@ -241,6 +240,7 @@ async function renderCategoryFitnessClub(){
     }
 }
 async function RenderBanner(){
+
     try {
         let CodeProductArr = [];
         let data = await $.ajax({

@@ -27,9 +27,9 @@ async function renderCart(){
         $('.cartContainer').append(`<p class ="numberProductInCart">${data.product.length}</p>`);
     }
     // add event for Show Cart button
-    $('.list-view-cart').on('click', ()=>{
-        window.location.href = 'http://localhost:3000/cart'
-    });
+        $('.list-view-cart').on('click', ()=>{
+            window.location.href = 'http://localhost:3000/cart'
+        });
     let arrProduct = data.product
     let qtyTotalProduct = 0;
     arrProduct.forEach(element => {
