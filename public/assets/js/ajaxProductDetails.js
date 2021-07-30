@@ -532,7 +532,7 @@ function test(){
     })
 }
 
-// Hiển thị thông tin Advantages
+// Showing information Advantages
 
 $.ajax({
     url: "/api/product/details"+linkId,
@@ -542,7 +542,7 @@ $.ajax({
     // console.log(31, data[0].codeProduct);
     let idAdvan = data[0].codeProduct;
     $.ajax({
-        url: '/api/user/viewadvantages/sp116517' + idAdvan,
+        url: '/api/user/viewadvantages/' + idAdvan,
         type: 'get',
     })
     .then((data) => {

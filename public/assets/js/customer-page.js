@@ -280,7 +280,7 @@ $.ajax({
 async function infoSaveButton5(){
     try{
      let data = await $.ajax({
-                    url: "/api/cus/capnhap",
+                    url: "/api/cus/update",
                     type: 'put',
                     data: {
                             firstname: $('.name3').val(),
@@ -393,5 +393,4 @@ function signout(){
 function delete_cookie(name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
-
 

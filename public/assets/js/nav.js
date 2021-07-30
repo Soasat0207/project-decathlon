@@ -12,3 +12,21 @@ function scrollFunction(){
         document.querySelector('.grad-bar').classList.remove('navbar-fiexd');
     }
 }
+
+//Append avatar for My Account
+$.ajax({
+    url: '/api/cus/information',
+    type: 'get',
+})
+.then((data) => {
+    if(data){
+        console.log(23, data);
+        $('.myAccount').html("")
+        $('.myAccount').append(data.firstname)
+        $('.avatarNav').attr('src', data.avatar)
+    }
+
+})
+.catch((err) => {
+    console.log(err);
+})
