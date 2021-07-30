@@ -1,3 +1,17 @@
+$.ajax({
+  url: '/api/cus/checkcookies',
+  type: 'post',
+})
+.then((data) => {
+  if(data !== 'Login successful'){
+    alert('You need login first to show this page')
+      window.location.href = '/login-cus'
+  }
+})
+.catch((err) => {
+  console.log(err);
+})
+
 // allow only one payment option was checked
 $(".payment-options-checkbox").on("change", function () {
   $(".payment-options-checkbox").not(this).prop("checked", false);

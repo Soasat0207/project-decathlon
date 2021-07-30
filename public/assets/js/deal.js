@@ -4,8 +4,7 @@ let backgroundImg = document.querySelector('.deal-body-left');
 let titleImg = document.querySelector('.deal-detail-title');
 let colorPrice = document.querySelector('.price-shose');
 let colorBtn = document.querySelector('.price-btn');
-
-Array.prototype.map.call(productColor, (productColor) => {
+Array.prototype.map.call( productColor, (productColor) => {
     productColor.addEventListener('click', () => {
         document.querySelector('.active_color').classList.remove('active_color')
         productColor.classList.add('active_color')

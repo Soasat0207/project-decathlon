@@ -1,10 +1,10 @@
 const express = require('express');
 const checkoutRouter = express.Router();
-const model = require('../models/mongodb')
+const model = require('../models/mongodb');
+const check = require('../checkCookies')
 
 // create order 
-checkoutRouter.post('/createOrder', (req, res,next) =>{
-
+checkoutRouter.post('/createOrder', check.checkCookies, (req, res,next) =>{
     let currentTime = new Date();
     const {addressId,methodPayment,totalPrice, ...rest} = req.body;
     const newObj = Object.assign({}, {...rest});
@@ -12,7 +12,7 @@ checkoutRouter.post('/createOrder', (req, res,next) =>{
     model.OrderModel.create({
         product: arrayProductId,
         address: req.body.addressId,
-        userId: req.cookies.userId,
+        userId: req.id,
         orderDate: currentTime ,
         methodPayment: req.body.methodPayment,
         totalPrice: req.body.totalPrice
@@ -24,9 +24,9 @@ checkoutRouter.post('/createOrder', (req, res,next) =>{
 })
 
 // find order by userId  
-checkoutRouter.post('/findOrder', (req,res,next)=>{
+checkoutRouter.post('/findOrder',check.checkCookies, (req,res,next)=>{
     model.OrderModel.find({
-        userId : req.cookies.userId,
+        userId : req.id,
     })
     .populate("address , product")
     .then(data => {
@@ -93,7 +93,7 @@ checkoutRouter.post('/findOrderDetails/:id', async (req, res,next)=>{
 })
 
 // find all order 
-checkoutRouter.post('/findAllOrders', (req, res, next)=>{
+checkoutRouter.post('/findAllOrders',check.checkCookies, (req, res, next)=>{
     model.OrderModel.find({})
     .populate('address')
     .populate('userId')
@@ -105,9 +105,9 @@ checkoutRouter.post('/findAllOrders', (req, res, next)=>{
 })
 
 // checkout update method of payment
-checkoutRouter.put('/updatePaymentMethod', (req, res, next)=>{
+checkoutRouter.put('/updatePaymentMethod',check.checkCookies, (req, res, next)=>{
     model.OrderModel.updateOne(
-        { userId : req.cookies.userId},
+        { userId : req.id },
         { methodPayment: req.body.methodPayment}
     )
     .then(data =>{

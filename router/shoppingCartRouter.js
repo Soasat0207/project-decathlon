@@ -1,10 +1,11 @@
 const express = require('express');
 const shoppingCartRouter = express.Router();
 const model = require('../models/mongodb')
+const cookies = require('../checkCookies');
 
-shoppingCartRouter.post('/findShoppingCart', (req, res, next)=>{
+shoppingCartRouter.post('/findShoppingCart', cookies.checkCookies, (req, res, next)=>{
     model.ShoppingCartModel.findOne({
-        userId : req.cookies.userId,
+        userId : req.id,
     })
     .populate({
         path: 'product',
@@ -23,9 +24,9 @@ shoppingCartRouter.post('/findShoppingCart', (req, res, next)=>{
 })
 
 // find shopping cart by userId + selected productId and delete one
-shoppingCartRouter.put('/findAndDeleteOneProduct', (req, res, next)=>{
+shoppingCartRouter.put('/findAndDeleteOneProduct',cookies.checkCookies, (req, res, next)=>{
     model.ShoppingCartModel.updateOne({
-        userId : req.cookies.userId
+        userId : req.id
     },{
         $pull : { product : { _id : req.body.selectedId}}
     })
@@ -41,10 +42,10 @@ shoppingCartRouter.put('/findAndDeleteOneProduct', (req, res, next)=>{
 })
 
 // Create new shopping cart
-shoppingCartRouter.post('/createShoppingCart', (req, res, next)=>{
+shoppingCartRouter.post('/createShoppingCart',cookies.checkCookies, (req, res, next)=>{
     let arrayProductId = convertStringToArray(req.body)
     model.ShoppingCartModel.create({
-        userId: req.cookies.userId,
+        userId: req.id,
         product : arrayProductId
     })
     .then(data => {
@@ -55,10 +56,10 @@ shoppingCartRouter.post('/createShoppingCart', (req, res, next)=>{
     })
 })
 // add product for shopping cart 
-shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
+shoppingCartRouter.put('/updateShoppingCart',cookies.checkCookies, (req, res, next)=>{
     let arrayProductId = convertStringToArray(req.body)
     model.ShoppingCartModel.updateOne({
-        userId : req.cookies.userId,
+        userId : req.id,
     }, {
         $push : { product : { $each : arrayProductId }}
     })
@@ -70,7 +71,7 @@ shoppingCartRouter.put('/updateShoppingCart', (req, res, next)=>{
     })
 })
 // update quantity for shopping cart
-shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
+shoppingCartRouter.put('/updateQuantityShoppingCart', cookies.checkCookies, (req, res,next)=>{
     model.ShoppingCartModel.updateOne({
         "product._id" : req.body.selectedId,
     },{
@@ -83,10 +84,9 @@ shoppingCartRouter.put('/updateQuantityShoppingCart', (req, res,next)=>{
 })
 
 // increese quantity for shoppingcart
-shoppingCartRouter.put('/changeQuantityShoppingCart',(req, res, next)=>{
-    console.log(87, req.body);
+shoppingCartRouter.put('/changeQuantityShoppingCart',cookies.checkCookies ,(req, res, next)=>{
     model.ShoppingCartModel.findOne({
-        userId : req.cookies.userId,
+        userId : req.id,
         "product.productId" : req.body.idProductCart
     })
     .then(data => {
@@ -113,8 +113,9 @@ shoppingCartRouter.put('/changeQuantityShoppingCart',(req, res, next)=>{
 },(req, res, next) =>{
     let qtyNumber = parseInt(req.obj.quantity) + 1  ;
 
+    console.log(116, req.id);
     model.ShoppingCartModel.updateOne({
-        userId : req.cookies.userId,
+        userId : req.id,
         "product.productId" : req.body.idProductCart
     }, {
         $set:{"product.$.quantity":qtyNumber}
@@ -132,9 +133,9 @@ shoppingCartRouter.put('/changeQuantityShoppingCart',(req, res, next)=>{
 )
 
 // delete shopping cart after order was created
-shoppingCartRouter.delete('/deleteShoppingCart', (req, res, next)=>{
+shoppingCartRouter.delete('/deleteShoppingCart',cookies.checkCookies, (req, res, next) => {
     model.ShoppingCartModel.deleteOne({
-        userId : req.cookies.userId,
+        userId : req.id,
     }).then(data =>{
         res.json(data)
     }).catch(err =>{

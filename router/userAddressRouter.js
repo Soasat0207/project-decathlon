@@ -1,11 +1,12 @@
 const express = require('express');
 const addressRouter = express.Router();
-const UserAddressModel = require('../models/addressModel')
+const UserAddressModel = require('../models/addressModel');
+const check = require('../checkCookies')
 
-addressRouter.post('/userAddress', async (req, res, next)=>{
+addressRouter.post('/userAddress', check.checkCookies, async (req, res, next)=>{
     try {
         let data = await UserAddressModel.create({
-            userId: req.cookies.userId,
+            userId: req.id,
             homeAddress: req.body.homeAddress,
             province: req.body.province,
             district: req.body.district,
@@ -23,9 +24,9 @@ addressRouter.post('/userAddress', async (req, res, next)=>{
     }
 })
 // find by cookies
-addressRouter.post('/findUserAddress', async (req, res, next)=>{
+addressRouter.post('/findUserAddress',check.checkCookies, async (req, res, next)=>{
     try {
-        let data = await UserAddressModel.find({ userId: req.cookies.userId })
+        let data = await UserAddressModel.find({ userId: req.id })
         res.json(data)
     } catch (error) {
         res.json('Server error')
