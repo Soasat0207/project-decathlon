@@ -11,7 +11,7 @@ try{
     let id = jwt.verify(cookies, 'duc').id;
     let data = await AccountModel.findOne({_id: id})
     if(data){
-        req.role = data.role
+        req.role = data.role;
         req.id = data._id;
         next()
     }else(

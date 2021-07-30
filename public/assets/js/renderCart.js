@@ -7,28 +7,33 @@ async function renderCart(){
         type : 'POST'
     })
     if(data === "Nothing" || data.product.length === 0){
-        $('.navbarShowListCart').html('');
+        $('.navbar-list_cart').html('');
         let listCart = `
         <div class="navbar-list_cart-nocart">
-            <img class="navbar-list-nocart-img" src="../mint/assets/image/no-cart.png" alt="">
+            <img class="navbar-list-nocart-img" src="http://learnmongodbthehardway.com/images/originals/shopping_cart_racing.png" alt="">
             <p class="navbar-list-nocart-text">Chưa có sản phẩm </p>
         </div>
         `
-        $('.navbarShowListCart').append(listCart);
+        $('.navbar-list_cart').append(listCart);
     }else{
-        $('.navbarShowListCart').html('');
+        $('.navbar-list_cart').html('');
         let listCart = `
         <h4 class="list_cart-heading">Sản phẩm đã thêm </h4>
         <ul class="list_cart listSelectedProduct">
         </ul>
-        <button class=" btn btn-primary list-view-cart">Show Cart</button>
+        <button class="btn btn-primary list-view-cart">Show Cart</button>
         `;
-        $('.navbarShowListCart').append(listCart);
-        // $('.cartContainer').html('');
+        $('.navbar-list_cart').append(listCart);
         $('.cartContainer').append(`<p class ="numberProductInCart">${data.product.length}</p>`);
     }
+    // add event for Show Cart button
+        $('.list-view-cart').on('click', ()=>{
+            window.location.href = 'http://localhost:3000/cart'
+        });
     let arrProduct = data.product
+    let qtyTotalProduct = 0;
     arrProduct.forEach(element => {
+    qtyTotalProduct += parseInt(element.quantity)
     let liItem = `
     <li class="list-cart-items">
         <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
@@ -54,10 +59,15 @@ async function renderCart(){
         })
         });
         // end loop
+    if(qtyTotalProduct != 0){
+        $('.nav-cart_showNumber').html('');
+        $('.nav-cart_showNumber').append(qtyTotalProduct)
+        $('.nav-cart_showNumber').attr('style', 'background-color : yellow')
+    }else{
+    }
     } catch (error) {
         console.log(error);
     }
-
 }
 renderCart();
 
@@ -70,15 +80,10 @@ renderCart();
                 selectedId : selectedId
             }
         }).then(data =>{
-           if(data.deletedCount !== 0){
-               renderCart()
+           if(data){
+               renderCart();
            }
         }).catch(err =>{
             console.log(err);
         })
     }
-
-// add event for Show Cart button
-$('.list-view-cart').on('click', ()=>{
-    window.location.href = 'http://localhost:3000/cart'
-});

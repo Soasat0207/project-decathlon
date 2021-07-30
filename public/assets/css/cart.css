@@ -318,3 +318,42 @@ body{
 .totalPriceOfProducts, .totalPrices{
     font-weight: bold;
 }
+.emptyCartNoti{
+    font-size: 24px;
+    color: red;
+}
+.backToListProduct {
+    padding: 2% 10%;
+    background-color: yellow;
+    border-radius: 8px;
+}
+.backToListProduct a{
+   text-decoration: none
+}
+.empty-cart-noti img{
+    display: block;
+    max-width:50%;
+    max-height: 50%;
+}
+.empty-cart-noti{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding : 5% 10%;
+}
+.nav-cart_showInfo{
+    position: relative;
+}
+.nav-cart_showNumber{
+    position: absolute;
+    /* background-color: yellow; */
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 0.9rem;
+    top: 0rem;
+    right: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

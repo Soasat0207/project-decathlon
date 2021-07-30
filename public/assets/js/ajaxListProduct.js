@@ -18,13 +18,13 @@ async function tableProduct(data, index) {
                           </div>
                         </a>
                         <div class="product_gallert-thumbnails product_gallert-thumbnails${index}">
-                            <span onclick="prevSlides(-1)"><i class="fal fa-chevron-left"></i></span>
+                            <span class="product_gallert-thumbnails-prev${index}"><i class="fal fa-chevron-left"></i></span>
                             <div class="product_gallert-thumbnails-wrapper">
                             
                             <div class="product_gallert-thumbnails-list-img product_gallert-thumbnails-list-img${index}"> </div>
                             
                             </div>
-                            <span onclick="plusSlides()"><i class="fal fa-chevron-right"></i></span> 
+                            <span class="product_gallert-thumbnails-plus${index}" ><i class="fal fa-chevron-right"></i></span> 
                         </div>
                     </div> 
                     <div class="product_info-wrapper">
@@ -65,12 +65,31 @@ async function tableProduct(data, index) {
     $(`.product_gallert-thumbnails-list-img${index}`).append(divImgColor);
   })
   product_thumbnail_img = document.querySelectorAll(`.product_gallert-thumbnails-img${index}`);
-  product_gallert_slider_img = document.querySelector(`.product_gallert-slider-img${index}`);
   Array.prototype.map.call(product_thumbnail_img,(product_thumbnail_img)=>{
     product_thumbnail_img.addEventListener('click',()=>{
-        product_gallert_slider_img.setAttribute('src',`${product_thumbnail_img.getAttribute('src')}`)
+      let itemParent = product_thumbnail_img.parentNode;
+      product_gallert_slider_img=itemParent.parentNode.parentNode.parentNode.querySelector(`.product_gallert-slider-img`);
+      product_gallert_slider_img.setAttribute('src',`${product_thumbnail_img.getAttribute('src')}`)
     })
-})
+  })
+  document.querySelector(`.product_gallert-thumbnails-plus${index}`).addEventListener('click',()=>{
+    product_thumbnail_img = document.querySelector(`.product_gallert-thumbnails-plus${index}`).parentNode.querySelectorAll(`.product_gallert-thumbnails-img${index}`);
+    value -= (100/(product_thumbnail_img.length));
+    let value_max =-(100 -(100/(product_thumbnail_img.length)*3));
+    if(value < (value_max)){
+        value = 0 ;
+    }
+    document.querySelector(`.product_gallert-thumbnails-list-img${index}`).style.transform = `translateX(${value}%)`; 
+  })
+  document.querySelector(`.product_gallert-thumbnails-prev${index}`).addEventListener('click',()=>{
+    product_thumbnail_img = document.querySelector(`.product_gallert-thumbnails-prev${index}`).parentNode.querySelectorAll(`.product_gallert-thumbnails-img${index}`);
+    value += (100/(product_thumbnail_img.length));
+    let value_max =-(100 -(100/(product_thumbnail_img.length)*3));
+    if(value > 0){
+        value = value_max ;
+    }
+    document.querySelector(`.product_gallert-thumbnails-list-img${index}`).style.transform = `translateX(${value}%)`;
+  })
 }
 
 async function render() {
@@ -88,10 +107,28 @@ async function render() {
     console.log(88,data);
     CheckCodeProduct(data);
     product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
+    
 
   } catch (error) {
     console.log(error);
   }
+}
+async function renderPaginator(){
+  $('.product-list').html(``);
+    if (currentPage < 1) {
+      currentPage = 1;
+    }
+    let data = await $.ajax({
+      url: "/api/product",
+      type: "GET",
+    });
+  CheckCodeProduct(data);
+  element.innerHTML = createPagination(totalPages, page,render);
+}
+renderPaginator();
+async function renderPaginatorChild(data){
+  CheckCodeProduct(data);
+  element.innerHTML = createPagination(totalPages, page);
 }
 
 function CheckCodeProduct(data) {
@@ -118,18 +155,9 @@ function CheckCodeProduct(data) {
   })
   element = document.querySelector(".pagination-items");
   totalPages = totalPage;
-  element.innerHTML = createPagination(totalPages, page);
-  // for(let i = 1; i <= totalPage ; i++){
-  //   let item = $(`
-  //       <li class="page-item"><a class="page-link" onclick=loadPage(${i}) href="#">${i}</a></li>
-  //   `)
-  //   $('.pagination-items').append(item);
-
-  // }
   //calling function with passing parameters and adding inside element which is ul tag
 }
-
-function createPagination(totalPages, page) {
+function createPagination(totalPages,page) {
   let liTag = '';
   let active;
   let beforePage = page - 1;
@@ -190,6 +218,7 @@ function createPagination(totalPages, page) {
 async function loadPage(page) {
   currentPage = page;
   render();
+
 }
 
 function paginationNextPage() {
@@ -298,8 +327,10 @@ async function renderTableFindCategory(categoryProductId) {
         categoryProductId: categoryProductId
       }
     });
+    
     if (data.status == 200) {
       CheckCodeProduct(data.data);
+      renderPaginatorChild(data.data)
       product_thumbnail_img = document.querySelectorAll('.product_gallert-thumbnails-img');
     }
   } catch (error) {
@@ -362,7 +393,7 @@ async function renderTableFindLevel(levelId) {
     console.log(error);
   }
 }
-async function renderSize() {
+async function renderSize() {  
   try {
     let data = await $.ajax({
       url: "/api/size",

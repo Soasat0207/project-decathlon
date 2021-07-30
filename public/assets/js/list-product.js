@@ -18,6 +18,7 @@ option_product.addEventListener('click',()=>{
 })
 let value = 0;
 function plusSlides(n){
+    console.log(product_thumbnail_img);
     value -= (100/(product_thumbnail_img.length));
     let value_max =-(100 -(100/(product_thumbnail_img.length)*3));
     if(value < (value_max)){

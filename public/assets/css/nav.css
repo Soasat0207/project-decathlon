@@ -385,7 +385,7 @@ header:hover{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100px;
+    min-height: 150px;
 }
 .navbar-list_cart-nocart .navbar-list-nocart-img,
 .navbar-list_cart-nocart .navbar-list-nocart-text{

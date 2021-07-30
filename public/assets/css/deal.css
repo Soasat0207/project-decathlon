@@ -151,6 +151,9 @@
     border-radius: 4rem;
     transition: .4s ease;
 }
+.price-btn:hover{
+    cursor: pointer;
+}
 @media (max-width: 1080px) {
     .deal-body{
         grid-template-columns: repeat(1,1fr);
@@ -191,7 +194,5 @@
     box-shadow: inset 0 0 10px 2px grey;
     filter: drop-shadow(0 0 2px grey); 
 }
-  
-
 
 /* end deal */
