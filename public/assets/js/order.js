@@ -13,6 +13,7 @@ async function renderCartInfo() {
         let totalPrice = 0;
         for (const item of data.product) {
           let objProduct = item.productId;
+          console.log(16, objProduct);
           let productInfo = `
         <div class="cart-item-list-product">
           <div class="cart-item-list-image">
@@ -23,7 +24,9 @@ async function renderCartInfo() {
               <h4>${objProduct.name}</h4>
             </div>
             <div class="cart-item-list-price">
-            <span>Số lượng: <b>${item.quantity}</b> </span><span>Giá: <b>${objProduct.price}</b></span>
+              <span>Số lượng: <b>${item.quantity}</b></span>
+              <span>Giá: <b>${objProduct.price}</b></span>
+              <span>Kích cỡ: <b>${objProduct.sizeId.size}</b></span>
             </div>
           </div>
         </div>

@@ -171,6 +171,7 @@ div.col-md-6 input, div.col-md-6 select{
 .cart-item-list-infomation{
     display: flex;
     flex-direction: column;
+    padding : 0rem 1rem;
     width: 100%;
 }
 .cart-item-list-image img{
