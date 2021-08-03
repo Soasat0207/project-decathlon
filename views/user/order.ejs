@@ -28,7 +28,7 @@
 
 <body>
     <!-- Header -->
-    
+
     <!-- \ End of header -->
 
     <!-- Content -->
@@ -49,7 +49,7 @@
                     </li>
                     <li class="checkout-header-item">
                         <span>Thanh Toán
-                            <input type="checkbox"  class="checkbox-round" />
+                            <input type="checkbox" class="checkbox-round" />
                         </span>
                     </li>
                 </ul>
@@ -59,187 +59,35 @@
             <div class="checkout">
                 <!-- Check out left -->
                 <div class="checkout-left">
-                    <div class="checkout-left-address"><b>Địa chỉ</b></div>
-                    <div class="checkout-left-text">Vui lòng nhập địa chỉ giao hàng và hóa đơn GTGT</div>
-                    <div class="checkout-left-input-address">
-                        <div class="checkout-left-address-list">
-                            
-                        </div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Thêm địa chỉ mới</button>
-                        <!-- modal-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Thêm địa chỉ mới</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-body-form">
-                                            <div class="address-form1">
-                                                <div class="address-form-input1 col-md-6">
-                                                    <input type="text" placeholder="Home address" name=""
-                                                        id="homeAddress">
-                                                </div>
-                                                <div class="address-form-input2 col-md-6">
-                                                    <select class="form-select" id="provinceSelected"
-                                                        aria-label="Default select example">
-                                                        <option value="" selected>Choose your province</option>
-                                                        <option value="Ha Noi">Tp. Hà Nội</option>
-                                                        <option value="HCM">Tp. Hồ Chí Minh</option>
-                                                        <option value="Da Nang">Tp. Đà Nẵng</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="address-form2">
-                                                <div class="col-md-6">
-                                                    <select class="form-select" id="districtSelected"
-                                                        aria-label="Default select example">
-                                                        <option value="" selected>Choose your district</option>
-                                                        <option value="Quan Hoan Kiem">Quận Hoàn Kiếm</option>
-                                                        <option value="Quan Ba Dinh">Quận Ba Đình</option>
-                                                        <option value="Quan Cau Giay">Quận Cầu Giấy</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <select class="form-select" id="wardSelected"
-                                                        aria-label="Default select example">
-                                                        <option value="" selected>Choose your ward</option>
-                                                        <option value="Doi Can">Phường Đội Cấn</option>
-                                                        <option value="Minh Khai">Phường Minh Khai</option>
-                                                        <option value="Trung Hoa">Phường Trung Hoà</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="address-form3">
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="firstName"
-                                                        placeholder="First name*">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="lastName" placeholder="Last name*">
-                                                </div>
-                                            </div>
-                                            <div class="address-form4">
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="phoneNumber" placeholder="Phone*">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="deliveryAddress"
-                                                        placeholder="Delivery address">
-                                                </div>
-                                            </div>
-                                            <div class="form-group1">
-                                                <input placeholder="Personal Address" type="text" class="form-control1"
-                                                    id="personalAddress">
-                                            </div>
-                                            <div class="form-group2">
-                                                <input placeholder="Company Address" type="text" class="form-control2"
-                                                    id="companyAddress">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary save-address-btn"
-                                            data-dismiss="modal">Save address</button>
-                                    </div>
-                                </div>
+
+                    <!-- Address list -->
+                    <h3>Địa chỉ giao hàng</h3>
+                    <p>Vui lòng chọn một địa chỉ giao hàng:</p>
+                    <a href="#showCreatingAddressContent"><button type="button" class="btn btn-primary addressBtn">Thêm địa chỉ mới</button></a>
+                <!-- List address -->
+                    <div class="address-info__list">
+                        <div class="address-info__list-item">
+                            <div class="address-info__list-item--info">
+                                <p class="sub-name">
+                                    Vũ Long
+                                </p>
+                                <p class="sub-address">
+                                    Địa chỉ : Thôn Giáo - tiên du - Bắc Ninh
+                                </p>
+                                <p class="sub-phone">
+                                    Điện thoại : 0389926795
+                                </p>
+                            </div>
+                            <div class="address-info__list-item--action">
+                                <button class="delete-button btn-danger">Xoá</button>
+                                <button class="edit-button btn-primary">Sửa</button>
                             </div>
                         </div>
-                        <!-- modal edit address-->
-                        <div class="modal fade" id="updateUserAddress" tabindex="-1" role="dialog"
-                            aria-labelledby="updateAddress" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="updateAddress1">Thêm địa chỉ mới</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-body-form">
-                                            <div class="address-form1">
-                                                <div class="address-form-input1 col-md-6">
-                                                    <input type="text" placeholder="Home address" name=""
-                                                        id="homeAddressEdited">
-                                                </div>
-                                                <div class="address-form-input2 col-md-6">
-                                                    <select class="form-select" id="provinceSelectedEdited"
-                                                        aria-label="Default select example">
-                                                        <option value="" selected>Choose your province</option>
-                                                        <option value="Ha Noi">Tp. Hà Nội</option>
-                                                        <option value="Ho Chi Minh">Tp. Hồ Chí Minh</option>
-                                                        <option value="Da Nang">Tp. Đà Nẵng</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="address-form2">
-                                                <div class="col-md-6">
-                                                    <select class="form-select" id="districtSelectedEdited"
-                                                        aria-label="Default select example">
-                                                        <option value="" selected>Choose your district</option>
-                                                        <option value="Quan Hoan Kiem">Quận Hoàn Kiếm</option>
-                                                        <option value="Quan Ba Dinh">Quận Ba Đình</option>
-                                                        <option value="Quan Cau Giay">Quận Cầu Giấy</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <select class="form-select" id="wardSelectedEdited"
-                                                        aria-label="Default select example">
-                                                        <option value="" selected>Choose your ward</option>
-                                                        <option value="Doi Can">Phường Đội Cấn</option>
-                                                        <option value="Minh Khai">Phường Minh Khai</option>
-                                                        <option value="Trung Hoa">Phường Trung Hoà</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="address-form3">
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="firstNameEdited"
-                                                        placeholder="First name*">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="lastNameEdited"
-                                                        placeholder="Last name*">
-                                                </div>
-                                            </div>
-                                            <div class="address-form4">
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="phoneNumberEdited"
-                                                        placeholder="Phone*">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" value="" id="deliveryAddressEdited"
-                                                        placeholder="Delivery address">
-                                                </div>
-                                            </div>
-                                            <div class="form-group1">
-                                                <input placeholder="Personal Address" type="text" class="form-control1"
-                                                    id="personalAddressEdited">
-                                            </div>
-                                            <div class="form-group2">
-                                                <input placeholder="Company Address" type="text" class="form-control2"
-                                                    id="companyAddressEdited">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary edit-confirm-btn"
-                                            data-dismiss="modal">Confirm Edit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+
                     </div>
-                    <div class="checkout-notification"></div>
-                    <div class="checkout-left-delivery-option">
-                        <button class="float-right checkout-right-delivery-button">Chọn hình thức giao hàng</button>
-                    </div>
+                
+
                 </div>
                 <!-- \ end check out left-->
                 <!-- Check out right-->
@@ -265,7 +113,8 @@
                             Tạm tính<span style="font-weight: bold;" class="float-right total-price-calc"></span>
                         </div>
                         <div class="shipping-cash">
-                            Phí vận chuyển <span style="font-weight: bold;" class="float-right shipping-cash-calc"></span>
+                            Phí vận chuyển <span style="font-weight: bold;"
+                                class="float-right shipping-cash-calc"></span>
                         </div>
                         <div class="total-all-prices">
                             Tổng cộng <span style="font-weight: bold;" class="float-right all-price-calc"></span>
@@ -295,20 +144,15 @@
                     <!-- \End Cart promise-->
                 </div> <!-- \ end check out right-->
             </div> <!-- \ end checkout content-->
+        <!-- Show and edit address -->
+            <div id="showCreatingAddressContent" class="address-info-details">
+               
+            </div>
         </div>
     </section>
     <!-- \ End Content -->
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
 <script src="/public/assets/js/jquery-3.6.0.min.js"></script>
 <script src="/public/assets/js/order.js"></script>
-<script src="/public/assets/js/product_details.js"></script>
+<script src="/public/assets/js/formAddress.js"></script>
 </html>
