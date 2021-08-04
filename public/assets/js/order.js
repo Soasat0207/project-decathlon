@@ -5,6 +5,7 @@ updateAddress();
 async function updateAddress() {
   try {
     $(".address-info__list").html("");
+    $('.address-info-details').html('');
     let data = await $.ajax({
       url: "/api/user/findUserAddress",
       type: "POST",
@@ -432,11 +433,12 @@ async function renderOrderPage() {
     `;
     $(".checkout-left").prepend(content);
     for await (item of data) {
-      // console.log(item);
+      // console.log(436, item);
       let addressContent = `
+      <h3>Vui lòng chọn địa chỉ giao hàng</h3>
       <div class="deliveried-address-content">
         <input type="checkbox" class="ratio" name="" id="input${item._id}">
-        <div class="deliveried-address-district"> Giao hàng đến ${item.district} ${item.province}</div>
+        <div class="deliveried-address-district"> Giao hàng đến ${item.ward} - ${item.district} - ${item.province}</div>
         <div class="deliveried-address-btn address-btn-${item._id}">
           <button onclick="reloadOderPage()" class ="deliveried-address-change-btn">Thay đổi</button>
         </div>
@@ -452,8 +454,11 @@ async function renderOrderPage() {
 
     // Add event when user click div
     $(".deliveried-options-item").on("click", async () => {
-      // get id address from checked checkbox
-      let checkedIdValue = $('.ratio:checked').attr('id').slice(5, 100);
+      let checkedCheckbox = $('.ratio:checked').attr('id');
+      if ( checkedCheckbox ){
+        // get id address from checked checkbox
+      let checkedIdValue = checkedCheckbox.slice(5, 100);
+ 
       // ajax to get address from db
       try {
         let data = await $.ajax({
@@ -479,7 +484,7 @@ async function renderOrderPage() {
               </h5>
               <div class="location-card-infomation">
                   <h3>TỪ <span style="color:#00B3B4">${daysOfWeek[day]}, ${date}/${month}/${year} </span></h3>
-                  <p>Giao hàng đến ${data.district} ${data.province} </p>
+                  <p>Giao hàng đến ${data.ward} - ${data.district} - ${data.province} </p>
               </div>
           </div>
           <div class="card-button">
@@ -491,6 +496,14 @@ async function renderOrderPage() {
         $(".card-container").append(content);
       } catch (error) {
         console.log(error);
+      }
+      }else{
+        let emptycheckbox = `
+        <div style="color: red">Bạn chưa chọn địa chỉ giao hàng</div>
+        `
+        // add content to html 
+        $(".card-container").html("");
+        $(".card-container").append(emptycheckbox);
       }
     });
     // end of event for div click

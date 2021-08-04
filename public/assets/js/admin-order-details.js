@@ -27,13 +27,14 @@ $(document).ready(function() {
   // render order details function
   let link = window.location.href;
   let orderId = link.slice(link.lastIndexOf('/') + 1, link.length)
-  console.log(29, orderId);
+
   async function renderOrderDetails(){
   try {
     let data = await $.ajax({
       url: '/api/user/findOrderDetails/'+orderId,
       type: 'POST'
     })
+    console.log(37, data);
     if(data){
       //  user infomation
       let userInfo = `
@@ -72,14 +73,6 @@ $(document).ready(function() {
                 <div class="col-md-12">
                   <label class="labels">Gender</label>
                   <input type="text" class="form-control" placeholder="gender" value="${data.userId.gender}" disabled>
-                </div>
-                <div class="col-md-12">
-                  <label class="labels">Main address</label>
-                  <input type="text" class="form-control" placeholder="address" value="${data.userId.mainAddress}" disabled>
-                </div>
-                <div class="col-md-12">
-                  <label class="labels">Sub address</label>
-                  <input type="text" class="form-control" placeholder="address" value="${data.userId.subAddress}" disabled>
                 </div>
                 <div class="col-md-12">
                   <label class="labels">Status</label>
