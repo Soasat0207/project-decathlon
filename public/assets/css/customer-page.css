@@ -328,7 +328,16 @@ ul{
     padding: 0 10px;
 }
 
+.cityRow p{
+    margin: 10px 0;
+}
+
 .notecity{
+    padding: 20px;
+    border: 1px solid rgb(118, 118, 118);
+}
+
+.deliveryAddress{
     padding: 20px;
 }
 

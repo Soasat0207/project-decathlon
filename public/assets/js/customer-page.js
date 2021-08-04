@@ -106,7 +106,7 @@ function infoButton() {
     <div class="rowC5">
         <div>
             <input type="checkbox" name="" id="">
-            <p>I have read and agree to <a href="">Terms and Condition</a></p>
+            <p>I have read and agree to <a href="/terms-of-purchase">Terms and Condition</a></p>
         </div>
         <button onclick="infoSaveButton5()">Save</button>
     </div>

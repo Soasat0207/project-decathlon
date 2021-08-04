@@ -20,9 +20,9 @@ $.ajax({
 })
 .then((data) => {
     if(data){
-        console.log(23, data);
-        $('.myAccount').html("")
-        $('.myAccount').append(data.firstname)
+        $('.myAccount').attr('data-i18n','')
+        $('.myAccount').html(data.firstname)
+
         $('.avatarNav').attr('src', data.avatar)
     }
 
@@ -30,3 +30,5 @@ $.ajax({
 .catch((err) => {
     console.log(err);
 })
+
+
