@@ -106,7 +106,7 @@ function infoButton() {
     <div class="rowC5">
         <div>
             <input type="checkbox" name="" id="">
-            <p>I have read and agree to <a href="">Terms and Condition</a></p>
+            <p>I have read and agree to <a href="/terms-of-purchase">Terms and Condition</a></p>
         </div>
         <button onclick="infoSaveButton5()">Save</button>
     </div>
@@ -280,7 +280,7 @@ $.ajax({
 async function infoSaveButton5(){
     try{
      let data = await $.ajax({
-                    url: "/api/cus/capnhap",
+                    url: "/api/cus/update",
                     type: 'put',
                     data: {
                             firstname: $('.name3').val(),
@@ -393,5 +393,4 @@ function signout(){
 function delete_cookie(name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
-
 

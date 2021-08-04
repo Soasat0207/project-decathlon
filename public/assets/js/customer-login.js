@@ -80,3 +80,16 @@ function goback(){
 $('.logo').on('click', () => {
     window.location.href ='/'
 })
+
+$.ajax({
+    url: '/api/cus/checkcookies',
+    type: 'post'
+})
+.then(data => {
+    if( data === 'Login successful'){
+        window.location.href = "/"
+    }
+})
+.catch(err => {
+    console.log(err);
+})

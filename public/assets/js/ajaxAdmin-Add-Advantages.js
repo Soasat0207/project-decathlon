@@ -28,11 +28,16 @@ try{
     $('.upload4').attr('src', photoAll02[0]);
     $('.upload5').attr('src', photoAll02[1]);
     $('.upload6').attr('src', photoAll02[2]);
+    alert('Successful operation!')
+    location.reload()
 }
 catch(error){
     console.log(error);
 }
 }
+
+
+
 
 // Add Advantages
 // let i  = 0

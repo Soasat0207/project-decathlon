@@ -364,6 +364,8 @@ async function renderSize(codeProduct,colorId) {
         console.log(error);
     }
 }
+
+console.log(12312313);
 async function renderReview() {
     try{
         let data = await $.ajax({
@@ -371,6 +373,7 @@ async function renderReview() {
           type: "GET",
           
         });
+        console.log(392,data);
         data.map((data, index) => {
             let div = `
                 <div class="review-list-items">
@@ -511,7 +514,7 @@ function test(){
     })
 }
 
-// Hiển thị thông tin Advantages
+// Showing information Advantages
 
 $.ajax({
     url: "/api/product/details"+linkId,
@@ -520,7 +523,7 @@ $.ajax({
 .then((data) =>{
     let idAdvan = data[0].codeProduct;
     $.ajax({
-        url: '/api/user/viewadvantages/sp116517' + idAdvan,
+        url: '/api/user/viewadvantages/' + idAdvan,
         type: 'get',
     })
     .then((data) => {

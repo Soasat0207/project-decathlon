@@ -110,13 +110,15 @@
     background-position: center;
     transform: translatey(0px);
     animation-name: leaves1;
-    animation-duration: 6s;
+    animation-duration: 3s;
     animation-timing-function: ease-in-out;
     animation-delay: 0s;
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-fill-mode: none;
     animation-play-state: running;
+    transition-timing-function: ease-in-out;
+    transition-duration:3s
 }
 
 .tree{
@@ -130,8 +132,11 @@
 }
 
 @keyframes leaves1{
-    from {top: -120px;}
-    to {top: -140px;}
+    0% {top: -130px;}
+    25%{top:-135}
+    50% {top: -140px;}
+    75%{top:-135}
+    100% {top: -130px;}
 }
 
 

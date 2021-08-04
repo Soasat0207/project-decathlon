@@ -22,7 +22,7 @@ var storage = multer.diskStorage({
   })
 var upload = multer({ storage: storage })
 
-// Đăng ký
+// Register
 userRouter.post('/registeredcus', async (req, res) =>{
     try{
         let pass =  await bcrypt.hash(req.body.password,saltRounds)
@@ -49,7 +49,7 @@ userRouter.post('/registeredcus', async (req, res) =>{
     }
 })
 
-// Đăng nhập
+// Login
 userRouter.post('/login-cus', async (req, res) => {
     try {
         let password= req.body.password;
@@ -86,7 +86,7 @@ userRouter.post('/login-cus', async (req, res) => {
 })
 
 // Update information
-userRouter.put('/capnhap', checkCookies1.checkCookies, async (req, res) => {
+userRouter.put('/update', checkCookies1.checkCookies, async (req, res) => {
     let id = req.id;
     try{
         let data =  await AccountModel.updateOne({_id: id}, {
@@ -106,7 +106,7 @@ userRouter.put('/capnhap', checkCookies1.checkCookies, async (req, res) => {
     }
 })
 
-// Cập nhập địa chỉ
+// Update Address
 userRouter.put('/address', checkCookies1.checkCookies, async (req, res) => {
     let id = req.id;
     try{
@@ -130,7 +130,7 @@ userRouter.post('/checkcookies', checkCookies1.checkToken ,checkCookies1.checkCo
     res.json('Login successful')
 })
 
-// Hiển thị các ô thông tin
+// Show info boxes
 userRouter.get('/information', checkCookies1.checkCookies, async(req, res) => {
     let id = req.id;
     try{
