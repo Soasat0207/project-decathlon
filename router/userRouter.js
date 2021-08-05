@@ -88,6 +88,7 @@ userRouter.post('/login-cus', async (req, res) => {
 // Update information
 userRouter.put('/update', checkCookies1.checkCookies, async (req, res) => {
     let id = req.id;
+    // console.log(91, req.body.gender);
     try{
         let data =  await AccountModel.updateOne({_id: id}, {
             firstname: req.body.firstname,
