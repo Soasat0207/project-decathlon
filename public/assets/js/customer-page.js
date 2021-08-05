@@ -235,6 +235,10 @@ $.ajax({
 // Update information
 async function infoSaveButton5(){
     try{
+        let genderS;
+        if($('.male3').prop('checked')){
+            genderS = "male"
+        }else{genderS = "female"}
      let data = await $.ajax({
                     url: "/api/cus/update",
                     type: 'put',
@@ -244,6 +248,7 @@ async function infoSaveButton5(){
                             phone: $('.phone3').val(),
                             email: $('.email3').val(),
                             birthday: $('.birthday3').val(),
+                            gender: genderS
                     }
                     })
                     
@@ -251,7 +256,7 @@ async function infoSaveButton5(){
                     
 
         let data12 = $('form')[0];
-        console.log(16, data12);
+        // console.log(16, data12);
         let form1 = new FormData(data12);
         let ava = await $.ajax({
                         url: "/api/cus/avataruser",
@@ -260,7 +265,7 @@ async function infoSaveButton5(){
                         processData: false,
                         contentType: false,
                     })
-                    console.log(15, ava.avatar);
+                    // console.log(15, ava.avatar);
                     $('.avacus').attr("src", ava.avatar)
 
         infoButton()              
