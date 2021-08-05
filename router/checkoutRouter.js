@@ -35,6 +35,27 @@ checkoutRouter.post('/findOrder',check.checkCookies, (req,res,next)=>{
         res.json(err)
     })
 })
+
+// find order by userId with populate productid
+checkoutRouter.post('/findUserOrder', check.checkCookies , (req,res,next)=>{
+    model.OrderModel.find({
+        userId : req.id,
+    })
+    .populate("address , product")
+    .populate( {
+        path: 'product',
+        populate: {
+          path: 'productId',
+          model: 'product' }
+    })
+    .then(data => {
+        res.json(data)
+    }).catch(err =>{
+        res.json(err)
+    })
+})
+
+
 // find order by order Id   
 checkoutRouter.post('/findOrderById', (req,res,next)=>{
     model.OrderModel.find({
@@ -105,10 +126,15 @@ checkoutRouter.post('/findAllOrders',check.checkCookies, (req, res, next)=>{
 })
 
 // checkout update method of payment
-checkoutRouter.put('/updatePaymentMethod',check.checkCookies, (req, res, next)=>{
+checkoutRouter.put('/updatePaymentMethod', check.checkCookies , (req, res, next)=>{
     model.OrderModel.updateOne(
-        { userId : req.id },
-        { methodPayment: req.body.methodPayment}
+        { 
+            userId : req.id,
+            methodPayment : ''
+        },
+        { 
+         methodPayment: req.body.methodPayment
+        }
     )
     .then(data =>{
         res.json(data)

@@ -10,54 +10,10 @@ function resize (){
         $(".tabL").css("display", "block");
         $(".exitButton").css("display", "none")
         $('.exit123').css("display", "none")
-        console.log($('.exit123'));
     }
 
 }
 
-$(".tabR").html("");
-let variable = `
-    <div class="ordersRank">
-        <h3 class="ordersRank1">Product Orders</h3>
-        <div class="ordersRank2">
-            <i class="fas fa-cart-plus"></i>
-            <span>No orders yet!</span>
-        </div>
-    </div>
-  
-`
-$(".tabR").append(variable);
-
-
-function returnsP() {
-    $(".tabR").html("");
-    let variable = `
-    <div class="ordersRank">
-        <button class="exit123" onclick="exit4()" ><i class="fas fa-undo"></i></button>
-        <h3 class="ordersRank1">Product Orders</h3>
-        <div class="ordersRank2">
-            <i class="fas fa-cart-plus"></i>
-            <span>No orders yet!</span>
-        </div>
-    </div>
-    </div>
-        </div>
-    `
-   $(".tabR").append(variable);
-
-   if($('body').width() < 768){
-       $(".tabR").css("display", "block");
-       $(".tabL").css("display", "none")
-
-   }    if($('body').width() >= 768){
-    $(".tabR").css("display", "block");
-    $(".tabL").css("display", "block");
-    $(".exitButton").css("display", "none")
-    $('.exit123').css("display", "none")
-}
-
-
-}
 
 function exit4(){
     $(".tabR").css("display", "none")

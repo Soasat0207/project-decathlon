@@ -53,27 +53,13 @@ $( document ).ready(function() {
             console.log(error);
         }
     }
-}
-// button show detail
-async function showDetail(item){
-   try {
-       console.log(16, item);
-    let orderId = $(item).attr('id').slice(6, 100);
-    let data = await $.ajax({
-        url: '/api/user/findOrderById',
-        type: 'POST',
-        data:{ orderId : orderId}
-    })
-    console.log(data);
-   } catch (error) {
-       console.log(error);
-   }
-}
-// function convert number to VND format
-function numberToCurrency(number){
-    let formatedNumber = (number).toLocaleString('en-US', {
-       style: 'currency',
-       currency: 'VND',
-     });
-     return formatedNumber
-   }
+   
+    // function convert number to VND format
+    function numberToCurrency(number){
+        let formatedNumber = (number).toLocaleString('en-US', {
+           style: 'currency',
+           currency: 'VND',
+         });
+         return formatedNumber
+    }
+});

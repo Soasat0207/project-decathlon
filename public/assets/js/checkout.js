@@ -111,25 +111,36 @@ renderCheckoutLeft();
 
 // Add event for Confirm button
 $(".payment-options-button-confirm").on("click", async () => {
-  try {
   let idChecked = $(".payment-options-checkbox:checked").attr("id");
-  let data = await $.ajax({
-    url: "/api/user/updatePaymentMethod",
-    type: "PUT",
-    data: {methodPayment: idChecked}
-  })
-  if(data){
-    // ajax to delete shopping cart after order has created
-   let data2 = await $.ajax({
-    url: '/api/user/deleteShoppingCart',
-    type: 'DELETE'
+  
+  if ( idChecked ){
+
+    try {
+    let data = await $.ajax({
+      url: "/api/user/updatePaymentMethod",
+      type: "PUT",
+      data: { methodPayment: idChecked }
     })
-  if(data2.deletedCount !== 0){
-    renderOrderConfirm();
-  }
-  }
-  } catch (error) {
-    console.log(error);
+    if(data){
+     // ajax to delete shopping cart after order has created
+     let data2 = await $.ajax({
+      url: '/api/user/deleteShoppingCart',
+      type: 'DELETE'
+      })
+    if(data2.deletedCount !== 0){
+      renderOrderConfirm();
+    }
+    }
+    } catch (error) {
+      console.log(error);
+    }
+
+  }else{
+    let nochecked = `
+    <div style="color : red">Vui lòng chọn 1 hình thức thanh toán</div>
+    `
+    $('.payment-options__notify').html('');
+    $('.payment-options__notify').append(nochecked);
   }
 });
 

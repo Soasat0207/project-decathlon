@@ -351,9 +351,9 @@ input[type=radio] {
 }
 
 .address-info__list{
-    height: 350px;
+    max-height: 350px;
     overflow: auto;
- padding : 1.5rem;
+    padding : 1.5rem;
 }
 .address-info__list-item{
     width: 80%;
@@ -369,7 +369,9 @@ input[type=radio] {
     font-weight: bold;
     font-size: 1.5rem;
 }
-
+.address-info__list-item--action{
+    width: 20%;
+}
 .address-info__list-item--action button{
     padding: 0.5rem 1rem;
     border-radius: 0.2rem;

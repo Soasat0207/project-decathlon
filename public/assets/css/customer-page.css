@@ -22,10 +22,10 @@
 
 }
 
-ul li button{
+.tabL ul li button{
     width: 100%;
-    
 }
+
 ul{    
     list-style: none;
     margin: 0;
@@ -71,10 +71,13 @@ ul{
 }
 
 .ordersRank1{
+    width: 100%;
     border: 1px solid black;
-    padding: 30px 20px;
     background-color: white;
     border-radius: 10px;
+    padding : 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .avacus{
@@ -85,15 +88,43 @@ ul{
 .ordersRank2{
     border: 1px solid black;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 1rem;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px;
-
 }
+.user--orders__list{
+    border: 1px solid black;
+    background-color: white;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-orders__table{
+    width: 100%;
+    /* height: 500px; */
+    padding : 2rem;
+    border-collapse: collapse;
+}
+.user-orders__table td, .user-orders__table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  .user-orders__table tr:nth-child(even){background-color: #f2f2f2;}
+
+  .user-orders__table tr:hover {background-color: #ddd;}
+  
+  .user-orders__table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
 
 .ordersRank2 i{
     font-size: 80px;
@@ -387,72 +418,75 @@ ul{
     justify-content: center;
     padding-bottom: 10px;
 }
+
+
+
 @media only screen and (max-width: 768px){
 /* .tabR{
     /* display: none; */
 /* } */
-.address button{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 50px;
-    border: 1px solid black;
-    margin: 20px 150px;
-    border-radius: 4px;
-    background-color:white;
-    border: dotted;
-}
+    .address button{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 50px;
+        border: 1px solid black;
+        margin: 20px 150px;
+        border-radius: 4px;
+        background-color:white;
+        border: dotted;
+    }
 
-.tabR{
-    display: none;
-}
+    .tabR{
+        display: none;
+    }
 
-.toTalUser {
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9f9;
-    padding: 40px 50px;
-}
+    .toTalUser {
+        display: flex;
+        flex-direction: column;
+        background-color: #f8f9f9;
+        padding: 40px 50px;
+    }
 
-.tabL{
-    display: block;
-    width: 100%;
-}
-.tabL button{
-    width: 100%;
-}
+    .tabL{
+        display: block;
+        width: 100%;
+    }
+    .tabL button{
+        width: 100%;
+    }
 
-.exit123{
-    display: block;
-    border: none;
-    background-color: #f8f9f9;
-    text-align: left;
-    padding: 20px;
-    font-size: larger;
-}
+    .exit123{
+        display: block;
+        border: none;
+        background-color: #f8f9f9;
+        text-align: left;
+        padding: 20px;
+        font-size: larger;
+    }
 
-.information5 .exit123 {
-    border: none;
-    background-color: #ffffff;
-    text-align: left;
-    padding: 20px;
-    font-size: larger;
-}
+    .information5 .exit123 {
+        border: none;
+        background-color: #ffffff;
+        text-align: left;
+        padding: 20px;
+        font-size: larger;
+    }
 
-.address .exit123 {
-    border: none;
-    background-color: #ffffff;
-    text-align: left;
-    padding: 20px;
-    font-size: larger;
-    margin: 0;
-    width: 10%;
-}
+    .address .exit123 {
+        border: none;
+        background-color: #ffffff;
+        text-align: left;
+        padding: 20px;
+        font-size: larger;
+        margin: 0;
+        width: 10%;
+    }
 
-.address button i{
-    font-size: 20px;
-}
+    .address button i{
+        font-size: 20px;
+    }
 }
 
 

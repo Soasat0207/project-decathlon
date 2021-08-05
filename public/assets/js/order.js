@@ -435,7 +435,6 @@ async function renderOrderPage() {
     for await (item of data) {
       // console.log(436, item);
       let addressContent = `
-      <h3>Vui lòng chọn địa chỉ giao hàng</h3>
       <div class="deliveried-address-content">
         <input type="checkbox" class="ratio" name="" id="input${item._id}">
         <div class="deliveried-address-district"> Giao hàng đến ${item.ward} - ${item.district} - ${item.province}</div>
