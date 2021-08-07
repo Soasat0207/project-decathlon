@@ -520,4 +520,33 @@ header:hover{
     font-size:1.6rem;
     margin:0 -2rem;
 }
+.hoverIF{
+    position: relative;
+}
+.hoverIF01{
+    position: absolute;
+    display: none;
+    z-index: 1;
+    background-color: #ffffff;
+    top: 40px;
+    left: 10px;
+    padding: 8px;
+}
+.hoverIF01 a{
+    display: block;
+    padding: 5px;
+}
+.hoverIF01 a:hover{
+    background-color: #ebebeb;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.hoverIF:hover .hoverIF01 {
+    display: none ;
+}
+
+.avatarNav{
+    border-radius: 50%;
+}
 /* end navigation bar */

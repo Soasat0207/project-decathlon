@@ -14,3 +14,32 @@
     height: 50px;
     margin: 15px 0;
 }
+
+#pagi .paginationjs-pages ul{
+    display: flex;
+    flex-direction: row;
+}
+
+#pagi .paginationjs-pages ul li{
+    list-style: none;
+    padding: 10px;
+    /* border: 1px solid black; */
+    /* background-color: aqua; */
+    border-radius: 5px;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 10px 0;
+
+}
+
+#pagi {
+    display: flex;
+    justify-content: center;
+}
+
+#pagi .active{
+    background-color: aqua;
+    padding: 10px !important;
+    border-radius: 50% !important;
+}
+

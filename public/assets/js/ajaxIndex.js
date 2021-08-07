@@ -350,3 +350,4 @@ async function renderLocalBrandBig(){
             console.log(error);
         }
     }
+

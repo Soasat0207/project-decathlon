@@ -31,4 +31,43 @@ $.ajax({
     console.log(err);
 })
 
+let cookieValue =  getCookie('user') 
+if( cookieValue ){
+    $(".hoverIF").mouseenter(function() {
+        $('.hoverIF01').css("display", "block");
+    }).mouseleave(function() {
+        $('.hoverIF01').css("display", "none");
+    });
+}
+ function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
 
+// Sign out
+$(".signoutNAV").on("click", () => {
+    $.ajax({
+        url: "/api/cus/blacklist",
+        type: "post"
+    })
+    .then((data) =>{
+        if(data){
+            delete_cookie('user')
+            window.location.href = '/login-cus'
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+})

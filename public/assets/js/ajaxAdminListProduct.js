@@ -1,12 +1,37 @@
-async function renderTableProduct() {
+function renderFirts(){
+renderTableProduct();
+
+  $('#pagi').pagination({
+    dataSource: '/api/product?page=1',
+    locator: 'data',
+    totalNumberLocator: function(response) {
+        console.log(12, response);
+        return response.total;
+    },
+    pageSize: 6,
+    afterPageOnClick: (event, pageNumber) => {
+      renderTableProduct(pageNumber)
+    },
+    afterPreviousOnClick: (event, pageNumber) => {
+      renderTableProduct(event, pageNumber)
+    },
+    afterNextOnClick: (event, pageNumber) => {
+      renderTableProduct(event, pageNumber)
+    }
+  })
+}
+renderFirts()
+
+
+async function renderTableProduct(page) {
   $('.admin-list-product').html('');
     try {
       let data = await $.ajax({
-        url: "/api/product",
+        url: "/api/product?page=" + page,
         type: "GET",
       });
-      console.log(data);
-      data.map((data) => {
+      console.log(8, data);
+      data.data.map((data) => {
         let div = ``;
         div=`
         <tr>
@@ -33,7 +58,6 @@ async function renderTableProduct() {
       console.log(error);
     }
   }
-renderTableProduct();
   
 async function DeleteProduct(id) {
   if (confirm('Are you sure you want to save this thing into the database?')) {
