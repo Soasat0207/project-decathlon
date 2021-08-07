@@ -25,8 +25,10 @@ async function renderIndex(){
     renderLocalBrandBig();
 }
 renderIndex();
+
 async function renderLastViewProduct(){
     stored_dataIdProducts.map(async(stored_dataIdProducts,index)=>{
+
         try {
             let productId = stored_dataIdProducts;
             let data = await $.ajax({
@@ -65,7 +67,7 @@ async function renderLastViewProduct(){
                                     <div class="topic_sell-addtocart">
                                         <div class="topic_sell-addtocart-size topic_sell-addtocart-size${index}">
                                         </div>
-                                        <button id="idProduct${data._id}" class="btn topic_sell-addtocart-btn product_details-addcart-btn product_details-addcart-btn-yellow">
+                                        <button onclick="viewedAddToCard(this)" class="btn topic_sell-addtocart-btn product_details-addcart-btn product_details-addcart-btn-yellow">
                                             Thêm vào giỏ hàng 
                                         </button>
                                     </div>
@@ -73,25 +75,7 @@ async function renderLastViewProduct(){
                         </div>`;
                     $(`.carousel-activate-lastViewProduct`).append(div);
                     renderSizeLastView(data.codeProduct,data.colorId,index);
-                // add event for button Add To Cart
-                    $(`#idProduct${data._id}`).on( 'click' ,async function(){
-                        try {
-                            let quantity = 1;
-                            let idOfProduct = $(this).attr('id').slice(9, 100);
-                            let arrListProduct = [{productId : idOfProduct, quantity: quantity}];
-                            let data = await $.ajax({
-                                url: '/api/user/findShoppingCart',
-                                type: 'POST',
-                            })
-                            if(data === 'Nothing'){
-                                createShoppingCart(arrListProduct);
-                            }else{
-                                updateShoppingCart(idOfProduct);
-                            }
-                        } catch (error) {
-                            console.log(error);
-                        }
-                    })
+                    
                 })
             }
         }
@@ -110,6 +94,7 @@ async function renderSizeLastView(codeProduct,colorId,indexdiv) {
             colorId:colorId,
           }
         });
+        // console.log(97, data);
         if(data.status == 200) {
             let sizeArr = [];
             data.data.map((data)=>{
@@ -117,24 +102,31 @@ async function renderSizeLastView(codeProduct,colorId,indexdiv) {
                    sizeArr.push(data.sizeId._id);
                 }
             })
+            
             let dataSize = sizeArr.filter((item,index)=>{
                 return sizeArr.indexOf(item) === index 
             })
-            dataSize.map((dataSize)=>{    
+            
+            // render Size
+            dataSize.map((dataSize)=>{  
                 for(let i = 0; i < data.data.length; i++){
                     if(data.data[i].sizeId._id == dataSize){
-                    let div =`<p>${data.data[i].sizeId.size}</p>`
+                    let div =`<p id="sizeId${data.data[i]._id}" onclick ="setIdForAddToCart(this)">${data.data[i].sizeId.size}</p>`
                     $(`.topic_sell-addtocart-size${indexdiv}`).append(div);
                     break;
                     }
                 }
             })
+        
         }
 
     } catch (error) {
         console.log(error);
     }
 }
+
+
+
 async function divTableCategoryProduct(data){
     div=`
     <div class="topic_sell-product">
@@ -314,17 +306,17 @@ async function renderLocalBrandBig(){
     }
 
 // function find and update shopping cart
-    async function updateShoppingCart(idOfProduct){
+    async function updateShoppingCart(productId){
     try {
         let data = await $.ajax({
             url: '/api/user/changeQuantityShoppingCart',
             type : 'PUT',
             data: {
-                idProductCart : idOfProduct
+                idProductCart : productId
             }
         })
         if( data === 'This product doesnt exist' ){
-            let arrayProductId = [ { productId : idOfProduct, quantity : 1}]
+            let arrayProductId = [ { productId : productId, quantity : 1}]
             createProductShoppingCart(arrayProductId);
         }else{
             renderCart();
@@ -350,3 +342,36 @@ async function renderLocalBrandBig(){
             console.log(error);
         }
     }
+
+// function to set product id for add to cart button
+function setIdForAddToCart(input){
+    let button = $(input).closest('.topic_sell-addtocart')
+    let sizeId =  $(input).attr('id').slice(6, 100)
+    $(button)[0].lastElementChild.removeAttribute('id');
+    $(button)[0].lastElementChild.setAttribute('id', `idProduct${sizeId}`);
+}
+// add event for button Add To Cart
+async function viewedAddToCard(button){
+    let productId = $(button).attr('id')
+    if ( productId ){
+        try {
+            let quantity = 1;
+            let idOfProduct = productId.slice(9, 100);
+            console.log(idOfProduct);
+            let arrListProduct = [{productId : idOfProduct, quantity: quantity}];
+            let data = await $.ajax({
+                url: '/api/user/findShoppingCart',
+                type: 'POST',
+            })
+            if(data === 'Nothing'){
+                createShoppingCart(arrListProduct);
+            }else{
+                updateShoppingCart(idOfProduct);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+

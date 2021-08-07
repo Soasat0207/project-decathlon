@@ -128,10 +128,6 @@ const productSchema = new Schema(
       type: String,
       ref: "categoryProduct",
     },
-    categoryProductId: {
-      type: String,
-      ref: "categoryProduct",
-    },
     status: String,
   },
   {
