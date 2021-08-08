@@ -1,5 +1,5 @@
 // function render cart 
-async function renderCart(){
+async function renderNavbarCart(){
     try {
         $('.listSelectedProduct').html('');
         let data = await $.ajax({
@@ -69,7 +69,7 @@ async function renderCart(){
         console.log(error);
     }
 }
-renderCart();
+renderNavbarCart();
 
 // function to delete selected item from Database
     function deleteSelectedProduct(selectedId){
@@ -81,7 +81,7 @@ renderCart();
             }
         }).then(data =>{
            if(data){
-               renderCart();
+               renderNavbarCart();
            }
         }).catch(err =>{
             console.log(err);

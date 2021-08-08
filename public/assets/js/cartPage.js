@@ -12,7 +12,7 @@ $.ajax({
   console.log(err);
 })
 
-CartRender();
+
 //function to Render
 async function CartRender(){
   try {
@@ -21,7 +21,8 @@ async function CartRender(){
     url: "/api/user/findShoppingCart",
     type: "POST",
   });
-  if (data.product.length !== 0) {
+  console.log(24, data);
+  if ( data.product.length ) {
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
@@ -83,26 +84,8 @@ async function CartRender(){
         $('.totalPrices').html('');
         $('.totalPrices').html(totalPricesCurrencyFormated);
 
-    // add event for continue button
-      $('.button-continue').on('click', async ()=>{
-        let data = await $.ajax({
-        url: "/api/user/findShoppingCart",
-        type: "POST"
-        });
-        if(data.product.length === 0){
-          $(".cart").html('');
-          let emptyCartNoti = `
-          <div class = "emptyCartNoti">
-            <div>You cannot continue with an empty cart. Please click the button <b>back</b> to spend your money</div>
-            <div><button class="backToListProduct"><a href ="http://localhost:3000/list-product">BACK</a></button></div>
-          </div>
-          `
-          $(".cart").append(emptyCartNoti);
-        }else{
-          window.location.href = '/order'
-        }
-      })
-    }else{
+    
+    }else if( data === "Nothing" || data.product.length === 0 ){
       $(".cart-list-item").html('');
       let cartItem = `
       <div class = "empty-cart-noti">
@@ -118,7 +101,27 @@ async function CartRender(){
   } catch (error) {
     console.log(error);
   }
-} 
+}
+CartRender();
+// add event for continue button
+$('.button-continue').on('click', async ()=>{
+  let data = await $.ajax({
+  url: "/api/user/findShoppingCart",
+  type: "POST"
+  });
+  if(data.product.length === 0 || data === "Nothing"){
+    $(".cart").html('');
+    let emptyCartNoti = `
+    <div class = "emptyCartNoti">
+      <div>You cannot continue with an empty cart. Please click the button <b>back</b> to spend your money</div>
+      <div><button class="backToListProduct"><a href ="http://localhost:3000/list-product">BACK</a></button></div>
+    </div>
+    `
+    $(".cart").append(emptyCartNoti);
+  }else{
+    window.location.href = '/order'
+  }
+})
 
 // Delete a product from shopping cart
 async function deleteProduct(selectedId){
