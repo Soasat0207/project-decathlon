@@ -85,9 +85,8 @@ label{
 }
 .checkout-left{
     width: 65%;
-    height: 500px;
+    height: auto;
     font-size: 16px;
-
 }
 .checkout-left > div{
     padding: 15px 0px ;
@@ -130,6 +129,8 @@ div.col-md-6 input, div.col-md-6 select{
     background-color: yellow;
     font-weight: normal;
     border-radius: 5px;
+    cursor: pointer;
+    float: right;
 }
 
 
@@ -220,21 +221,32 @@ div.col-md-6 input, div.col-md-6 select{
     border-radius: 10px;
 }
 .deliveried-address-change-btn:hover{
-    background-color: rgb(255, 255, 255, 0.5);
+    background-color: rgba(76, 151, 47, 0.5);
+    cursor: pointer;
 }
 .deliveried-address-content{
-    padding: 15px 0px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
+.deliveried-address-content__input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     width: 5%;
+ }
+ .deliveried-address-district{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 80%;
+ }
 .deliveried-options{
     display: flex;
     flex-direction: column;
-    margin: 16px 0;
+    margin: 1rem 0;
 }
 .deliveried-options-item div{
-    padding: 16px 0;
+    padding: 1rem 0;
 }
 .deliveried-options-item{
     display: flex;
@@ -268,14 +280,14 @@ div.col-md-6 input, div.col-md-6 select{
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 .deliveried-options-list-cash{
     width: 40%;
     display: flex;
     justify-content: center;
     background-color: rgb(190, 222, 239);
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .deliveried-options-terms-checkbox{
@@ -287,12 +299,13 @@ div.col-md-6 input, div.col-md-6 select{
     flex-direction: row;
 }
 .card-button-confirm{
-    padding: 16px 20px;
+    padding: 2rem 4rem;
     background-color: #FEE32D;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
     border: none;
     text-transform: uppercase;
+    cursor: pointer;
 }
 .location-card{
     width: 50%;
@@ -374,10 +387,16 @@ input[type=radio] {
 }
 .address-info__list-item--action button{
     padding: 0.5rem 1rem;
-    border-radius: 0.2rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
 }
+.delete-button{
+    background-color: rgb(245 66 66)
+}
+
 .addressBtn{
     font-size: 1.5rem;
+    border-radius: 0.5rem;
 }
 .address-info-details{
     display: flex;
@@ -405,8 +424,13 @@ input[type=radio] {
     padding: 1rem 2rem;
     margin: 0rem 2rem;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
-
+.total-price-calc,
+.shipping-cash-calc,
+.all-price-calc{
+    float: right;
+}
 /* CSS for input number type */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

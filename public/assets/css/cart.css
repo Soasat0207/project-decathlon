@@ -147,6 +147,8 @@ body{
     text-transform: uppercase;
     color: #43505c;
     width:100%;
+    max-height: 50rem;
+    overflow: auto;
 }
 .cart-items-img{
     max-width:150px

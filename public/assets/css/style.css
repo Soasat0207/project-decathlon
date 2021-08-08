@@ -619,7 +619,7 @@
 }
 #toast{
     position: fixed;
-    top:32px;
+    top:80px;
     right: 32px;
     z-index: 1 ;
 }

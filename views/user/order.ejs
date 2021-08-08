@@ -5,30 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/public/assets/fonts/fontawesome-free-5.15.3-web/css/all.min.css">
-    <link rel="stylesheet" href="/public/assets/css/rest.css">
-    <link rel="stylesheet" href="/public/assets/css/grid.css">
-    <link rel="stylesheet" href="/public/assets/css/base.css">
-    <link rel="stylesheet" href="/public/assets/css/nav.css">
-    <link rel="stylesheet" href="/public/assets/css/carousel-banner.css">
-    <link rel="stylesheet" href="/public/assets/css/deal.css">
-    <link rel="stylesheet" href="/public/assets/css/range.css">
-    <link rel="stylesheet" href="/public/assets/css/style.css">
-    <link rel="stylesheet" href="/public/assets/css/list-product.css">
-    <link rel="stylesheet" href="/public/assets/css/tab_ui.css">
-    <link rel="stylesheet" href="/public/assets/css/product_details.css">
-    <link rel="stylesheet" href="/public/assets/css/responsive.css">
+    <%- include('../partials/head-user'); -%>
+    <!-- <link rel="stylesheet" href="/public/assets/css/bootstrap.css"> -->
     <link rel="stylesheet" href="/public/assets/css/order.css">
 </head>
 
 <body>
     <!-- Header -->
-
+    <%- include('../partials/user-navbar'); %>
     <!-- \ End of header -->
 
     <!-- Content -->
@@ -63,7 +47,9 @@
                     <!-- Address list -->
                     <h3>Địa chỉ giao hàng</h3>
                     <p>Vui lòng chọn một địa chỉ giao hàng:</p>
-                    <a href="#showCreatingAddressContent"><button type="button" class="btn btn-primary addressBtn">Thêm địa chỉ mới</button></a>
+                    <a style="text-decoration: none;" href="#showCreatingAddressContent">
+                        <button type="button" class="btn btn-primary addressBtn">Thêm địa chỉ mới</button>
+                    </a>
                     <!-- List address -->
                     <div class="address-info__list">
                         <div class="address-info__list-item">
@@ -155,7 +141,10 @@
     </section>
     <!-- \ End Content -->
 </body>
-<script src="/public/assets/js/jquery-3.6.0.min.js"></script>
+<footer>
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/user-script'); -%>
+</footer>
 <script src="/public/assets/js/order.js"></script>
 <script src="/public/assets/js/formAddress.js"></script>
 </html>
