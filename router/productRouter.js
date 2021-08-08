@@ -18,7 +18,50 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 // hiển thị ra tất cả dữ liệu
 router.get('/',(req,res) =>{
-    ModelMongo.ProductModel.find({})
+    let page = req.query.page;
+    if(page){
+        page = parseInt(page)
+        if(page < 1){
+            page = 1
+        }
+        ModelMongo.ProductModel.find({})
+        .populate({
+            path:'sizeId'
+        })
+        .populate({
+            path:'colorId'
+        })
+        .populate({
+            path:'levelId'
+        })
+        .populate({
+            path:'trademarkId'
+        })
+        .populate({
+            path:'supplierId'
+        })
+        .populate({
+            path:'categoryProductId'
+        })
+        .skip((page-1)*6)
+        .limit(6)
+        .then((data) => {
+            ModelMongo.ProductModel.countDocuments({})
+            .then((total) =>{
+                let tongsoPage = total/6;
+                res.json({
+                    total: total,
+                    tongsoPage: tongsoPage,
+                    data: data
+                })
+            })
+            
+        })
+        .catch((err) =>{
+            res.json(err)
+        })
+    }else{
+        ModelMongo.ProductModel.find({})
     .populate({
         path:'sizeId'
     })
@@ -44,7 +87,9 @@ router.get('/',(req,res) =>{
         console.log(error)
         res.status(500).json('loi sever')
     })
+    }
 })
+
 // tạo database mới 
 router.post('/',upload.fields([{ name: 'imgColor', maxCount: 12 },{ name: 'imgProduct', maxCount: 12 }]),(req,res,next) =>{
     let imgColorArray = [];

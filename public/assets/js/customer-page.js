@@ -1,5 +1,4 @@
-
-
+infoButton();
 function resize (){
     if($('body').width() < 768){
         $(".tabR").css("display", "none");
@@ -288,8 +287,8 @@ $.ajax({
         insertEmail = data.email;
         avatar = data.avatar;
     }
-$('.avacus').attr('src', avatar)    
-$('.showEmail').append(insertEmail)
+$('.avacus').attr('src', avatar);    
+$('.showEmail').append(insertEmail);
 })
 .catch((err) => {
     console.log(err);

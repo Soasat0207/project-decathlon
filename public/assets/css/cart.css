@@ -319,9 +319,13 @@ body{
     color: red;
 }
 .backToListProduct {
-    padding: 2% 10%;
-    background-color: yellow;
-    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.backToListProduct:hover {
+    background-color: rgb(71, 127, 231);
+    color: white;
 }
 .backToListProduct a{
    text-decoration: none

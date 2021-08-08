@@ -110,7 +110,8 @@ async function renderProductDetails() {
           type: "POST",
         });
         data.map((data) => {
-          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}" alt="">`);
+            console.log(data.img[0]);
+          $('.product-main-image').append(`<img class="product-main-image-img" src="${data.img[0]}">`);
           $('.product_details-heading').append(`
             <h2 class="product_details-heading-name">${data.trademarkId.name}</h2>
             <h1 class="product_details-heading-desc">${data.title} - ${data.colorId.name}</h1>
@@ -228,6 +229,47 @@ async function renderRecommendProduct(categoryProductId) {
         console.log(error);
       }
 }
+// function find User in shopping cart
+function findAndCreateShoppingCart(){
+        // get selected id in collection
+            $.ajax({
+                url: '/api/user/findSelectedProduct',
+                type: 'POST',
+                data: {
+                    sold : false
+                }
+            }).then(data =>{
+               if(data){
+                   let arrSelectedId = [];
+                   for (const iterator of data) {
+                    arrSelectedId.push(iterator._id)
+                   }
+                //    console.log(arrSelectedId);
+                   createOrUpdateShoppingCart(arrSelectedId);
+               }
+            }).catch(err =>{
+                console.log(err);
+            })
+}
+// function to find order in shopping cart and create shopping cart
+       function createOrUpdateShoppingCart(arrSelectedId){
+           $.ajax({
+               url: '/api/user/findShoppingCart',
+               type: 'POST',
+               data : {
+                   sold : false
+               }
+           }).then(data => {
+               if(data.length === 0){
+                   createShoppingCart(arrSelectedId);
+               }else{
+                   updateShoppingCart(arrSelectedId);
+               }
+           }).catch(err =>{
+               console.log(err);
+           })
+       }
+
 
 // function create shopping cart
 async function createShoppingCart(arrListProduct){

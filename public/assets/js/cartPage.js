@@ -22,7 +22,19 @@ async function CartRender(){
     type: "POST",
   });
   console.log(24, data);
-  if ( data.product.length ) {
+  if( data === "Nothing" || data.product.length === 0 ){
+    $(".cart-list-item").html('');
+    let cartItem = `
+    <div class = "empty-cart-noti">
+      <img src="http://localhost:3000/public/uploads/cart-empty-1.jpg" alt="">
+      <h2>Không có sản phẩm trong giỏ hàng</h2>
+      <a href="http://localhost:3000/list-product" class="product-review-overview-counts-btn cart-empty-btn">
+          <span>Thêm vào giỏ hàng</span>
+      </a>
+    </div>
+    `
+    $(".cart-list-item").append(cartItem);
+  }else{
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
@@ -85,36 +97,26 @@ async function CartRender(){
         $('.totalPrices').html(totalPricesCurrencyFormated);
 
     
-    }else if( data === "Nothing" || data.product.length === 0 ){
-      $(".cart-list-item").html('');
-      let cartItem = `
-      <div class = "empty-cart-noti">
-        <img src="http://localhost:3000/public/uploads/cart-empty-1.jpg" alt="">
-        <h2>Không có sản phẩm trong giỏ hàng</h2>
-        <a href="http://localhost:3000/list-product" class="product-review-overview-counts-btn cart-empty-btn">
-            <span>Thêm vào giỏ hàng</span>
-        </a>
-      </div>
-      `
-      $(".cart-list-item").append(cartItem);
     }
   } catch (error) {
     console.log(error);
   }
 }
 CartRender();
+
 // add event for continue button
 $('.button-continue').on('click', async ()=>{
   let data = await $.ajax({
   url: "/api/user/findShoppingCart",
   type: "POST"
   });
-  if(data.product.length === 0 || data === "Nothing"){
+  console.log(112 , data);
+  if(  data == "Nothing" || data.product.length == 0  ){
     $(".cart").html('');
     let emptyCartNoti = `
     <div class = "emptyCartNoti">
       <div>You cannot continue with an empty cart. Please click the button <b>back</b> to spend your money</div>
-      <div><button class="backToListProduct"><a href ="http://localhost:3000/list-product">BACK</a></button></div>
+      <div><a href ="http://localhost:3000/list-product"><button class="backToListProduct">Back</button></a></div>
     </div>
     `
     $(".cart").append(emptyCartNoti);
@@ -209,6 +211,7 @@ async function renderNavbarCart(){
           url: '/api/user/findShoppingCart',
           type : 'POST'
       })
+      console.log(213, data);
       if(data === "Nothing" || data.product.length === 0){
           $('.navbar-list_cart').html('');
           let listCart = `
