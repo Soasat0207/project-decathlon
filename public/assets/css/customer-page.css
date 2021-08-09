@@ -1,0 +1,492 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.toTalUser{
+    display: flex;
+    flex-direction: row;
+    background-color: #f8f9f9;
+    padding: 40px 190px;
+    font-size: initial;
+
+}
+.exit123{
+    display: none;
+}
+.tabL{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+
+}
+
+.tabL ul li button{
+    width: 100%;
+}
+
+ul{    
+    list-style: none;
+    margin: 0;
+}
+.tabL button{
+    margin-bottom: 10px;
+    padding: 20px 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.tabL button i{
+    margin-right: 20px;
+    font-size: 20px;
+
+}
+
+.tabL button:hover{
+    cursor: pointer;
+    background-color: #dadada;
+}
+
+.tabR{
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+
+}
+
+.logOut{
+    margin-bottom: none;
+}
+
+.ordersRank{
+    display: flex;
+    flex-direction: column;
+}
+
+.ordersRank1{
+    width: 100%;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    padding : 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.avacus{
+    width: 150px;
+    height: 150px;
+}
+
+.ordersRank2{
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 1rem;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user--orders__list{
+    border: 1px solid black;
+    background-color: white;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-orders__table{
+    width: 100%;
+    /* height: 500px; */
+    padding : 2rem;
+    border-collapse: collapse;
+}
+.user-orders__table td, .user-orders__table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  .user-orders__table tr:nth-child(even){background-color: #f2f2f2;}
+
+  .user-orders__table tr:hover {background-color: #ddd;}
+  
+  .user-orders__table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+.ordersRank2 i{
+    font-size: 80px;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 30px;
+    background: #dadada;
+    color: white;
+    border: dotted;
+}
+
+.ordersRank2 span{
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.information5{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.information5 div{
+    padding: 10px 10px;
+}
+
+.rowC1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sex3{
+    margin-bottom: 0 !important;
+}
+.rowC1 div input{
+    padding: 15px;
+    border-radius: 4px;
+    border: none;
+    background-color: #f4f4f4;
+    width: 100%;
+    /* font-style: italic; */
+    margin-top: 10px;
+}
+
+/* .rowC1 div{
+    width: 45%;
+} */
+
+.rowC2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rowC2 div input{
+    padding: 15px;
+    border-radius: 4px;
+    border: none;
+    background-color: #f4f4f4;
+    width: 100%;
+    /* font-style: italic; */
+    margin-top: 10px;
+}
+
+/* .rowC2 div{
+    width: 45%;
+} */
+
+.sex1{
+    display: flex;
+    flex-direction: row;
+}
+
+.sex1 div{
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.sex1 div p{
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+
+.rowC5 div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.rowC5 div p{
+    padding-left: 5px;
+
+}
+
+.rowC5 div{
+    width: 60%;
+}
+
+.rowC5{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.rowC5 button{
+    padding: 10px 30px;
+    cursor: pointer;
+    /* width: 20px;
+    height: 45px; */
+    border-radius: 4px;
+}
+
+.address{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+
+.address button i{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.address button p{
+    font-weight: bold;
+}
+
+.address button:hover{
+    background-color: #f8f9f9;
+    cursor: pointer;
+}
+
+.anNen{
+    /* display: none; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(141, 141, 141, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.addaddress{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.addressRow1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.addressRow1 button{
+    background-color: none;
+    border:none;
+    cursor: pointer;
+}
+
+.addressRow1 button i{
+    font-size: 30px;
+}
+
+.addressnhanhang{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    height: 150px;
+}
+
+.adjust{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: flex-end;
+}
+
+.a{
+    margin-bottom: 20px;
+    padding: 15px;
+    height: 80px;
+}
+
+.b{
+    margin-bottom: 20px;
+    padding: 15px;
+    height: 150px;
+}
+
+.c{
+    padding: 5px 15px;
+    margin-bottom: 20px;
+}
+
+.addressnhanhang button{
+    padding: 15px;
+    width: 35%;
+    background-color: lightslategray;
+    color: white;
+    border: none;
+}
+
+.addressnhanhang button:hover{
+    cursor: pointer;
+    background-color: mediumslateblue;
+}
+
+.birthday3{
+    padding: 0 10px;
+}
+
+.cityRow p{
+    margin: 10px 0;
+}
+
+.notecity{
+    padding: 20px;
+    border: 1px solid rgb(118, 118, 118);
+}
+
+.deliveryAddress{
+    padding: 20px;
+}
+
+.address div{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addressRow p {
+    margin: 10px 0;
+}
+
+.noteRow p{
+    margin: 10px 0;
+}
+ 
+.noteRow textarea {
+    padding: 20px;
+}
+
+
+.note{
+    height: 150px;
+}
+
+.addressButton4{
+    border: none !important;
+    background-color: silver !important;
+    padding: 10px 30px !important;
+    border-radius: 4px;
+
+}
+
+.birthday{
+    padding: 0 !important;
+    padding-bottom: 30px !important;
+}
+
+.showEmail{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lim{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+
+
+@media only screen and (max-width: 768px){
+/* .tabR{
+    /* display: none; */
+/* } */
+    .address button{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 50px;
+        border: 1px solid black;
+        margin: 20px 150px;
+        border-radius: 4px;
+        background-color:white;
+        border: dotted;
+    }
+
+    .tabR{
+        display: none;
+    }
+
+    .toTalUser {
+        display: flex;
+        flex-direction: column;
+        background-color: #f8f9f9;
+        padding: 40px 50px;
+    }
+
+    .tabL{
+        display: block;
+        width: 100%;
+    }
+    .tabL button{
+        width: 100%;
+    }
+
+    .exit123{
+        display: block;
+        border: none;
+        background-color: #f8f9f9;
+        text-align: left;
+        padding: 20px;
+        font-size: larger;
+    }
+
+    .information5 .exit123 {
+        border: none;
+        background-color: #ffffff;
+        text-align: left;
+        padding: 20px;
+        font-size: larger;
+    }
+
+    .address .exit123 {
+        border: none;
+        background-color: #ffffff;
+        text-align: left;
+        padding: 20px;
+        font-size: larger;
+        margin: 0;
+        width: 10%;
+    }
+
+    .address button i{
+        font-size: 20px;
+    }
+}
+
+

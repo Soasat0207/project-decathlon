@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>List product</title>
+        <%- include('../partials/head-user'); -%>
+        <%- include('../partials/user-navbar'); -%>
+        <link rel="stylesheet" href="/public/assets/css/payment-methods.css">
+    </head>
+<body>
+<div class="footersubAll">
+    <div class="deliAll">
+        <div class="payment">
+           <h2>1. Payment methods</h2>
+           <div class="a1">
+               <img src="/public/assets/img/pictos 1 (cash).png" alt="">
+               <div>
+                   <h3>PAYMENT ON DELIVERY (COD/ CASH ON DELIVERY)</h3>
+                   <p>COD - Cash On Delivery, which means Payment on Delivery. When choosing this payment method, customers will pay cash to the delivery staff as soon as they receive their order. Decathlon accepts payment on delivery (COD) for all orders nationwide.
+                    In the event of a refund request, the customer will be refunded by Decathlon via the bank account provided by the customer.</p>
+               </div>
+            </div>
+            <div class="a1">
+                <img src="/public/assets/img/pictos 2 (credit).png" alt="">
+                <div>
+                    <h3>ONLINE PAYMENT</h3>
+                    <p>Currently, Decathlon supports payment by domestic ATM cards of 23 banks. To choose this method, please select ZaloPay payment gateway in the Payment method section phần
+                        The condition to choose ATM payment method is that your card has been registered to use online banking. Immediately after receiving the order, Decathlon will check the payment transaction. If the transaction is successful, Decathlon will verify the information and execute the order.
+                        The payment is made on the payment gateway of ZalaPay, Decathlon does not keep any of your payment information.</p>
+                </div>
+           </div>
+        </div>
+        <div>
+            <h2>2. Service fee, bill</h2>
+            <p class="bill">
+                Currently, payment transactions at Decathlon are fully supported Transaction Free.
+                However, in case of using a card that is not issued in Vietnam, you may have to pay an additional foreign currency conversion fee to the card issuer.
+                For transactions with a value greater than 200,000 VND, if you want to issue a VAT invoice, please fill in the information below in the "NOTE" section when making payment.
+                - Company name:
+                - Company address:
+                - Tax code:
+                VAT invoice will be sent as an electronic invoice after 3-5 working days (excluding Saturday & Sunday) from the date of receipt. </p>
+        </div>
+ 
+    
+    </div>
+    
+</div>
+</body>
+<footer>
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/user-script.ejs'); -%>
+</footer>
+</html>

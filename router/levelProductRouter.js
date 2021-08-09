@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 router.get('/',(req,res) =>{
-    ModelMongo.levelProductModel.find({
+    ModelMongo.LevelProductModel.find({
 
     })
     .then((data)=>{
@@ -15,7 +15,7 @@ router.get('/',(req,res) =>{
 router.post('/',(req,res) =>{
     let description = req.body.description;
     let level = req.body.level;
-    ModelMongo.levelProductModel.create({
+    ModelMongo.LevelProductModel.create({
         description:description,
         level:level
     })
@@ -32,7 +32,7 @@ router.post('/',(req,res) =>{
 });
 router.post('/find',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.levelProductModel.findOne({
+    ModelMongo.LevelProductModel.findOne({
         _id:id,
     })
     .then((data)=>{
@@ -50,7 +50,7 @@ router.put('/',(req,res) =>{
     let id = req.body.id;
     let description = req.body.description;
     let level = req.body.level;
-    ModelMongo.levelProductModel.findOneAndUpdate({
+    ModelMongo.LevelProductModel.findOneAndUpdate({
         _id:id,
     },{
         description:description,
@@ -69,7 +69,7 @@ router.put('/',(req,res) =>{
 });
 router.delete('/',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.levelProductModel.findOneAndDelete({
+    ModelMongo.LevelProductModel.findOneAndDelete({
         _id:id,
     })
     .then((data)=>{

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 router.get('/',(req,res) =>{
-    ModelMongo.sizeProductModel.find({
+    ModelMongo.SizeProductModel.find({
 
     })
     .then((data)=>{
@@ -15,7 +15,7 @@ router.get('/',(req,res) =>{
 router.post('/',(req,res) =>{
     let description = req.body.description;
     let size = req.body.size;
-    ModelMongo.sizeProductModel.create({
+    ModelMongo.SizeProductModel.create({
         description:description,
         size:size
     })
@@ -32,7 +32,7 @@ router.post('/',(req,res) =>{
 });
 router.post('/find',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.sizeProductModel.findOne({
+    ModelMongo.SizeProductModel.findOne({
         _id:id,
     })
     .then((data)=>{
@@ -50,7 +50,7 @@ router.put('/',(req,res) =>{
     let id = req.body.id;
     let description = req.body.description;
     let size = req.body.size;
-    ModelMongo.sizeProductModel.findOneAndUpdate({
+    ModelMongo.SizeProductModel.findOneAndUpdate({
         _id:id,
     },{
         description:description,
@@ -69,7 +69,7 @@ router.put('/',(req,res) =>{
 });
 router.delete('/',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.sizeProductModel.findOneAndDelete({
+    ModelMongo.SizeProductModel.findOneAndDelete({
         _id:id,
     })
     .then((data)=>{

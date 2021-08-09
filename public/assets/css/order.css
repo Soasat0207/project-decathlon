@@ -2,10 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 16px;
 }
 body{
     background-color: #F8F9F9 !important;
     height: 1000px !important;
+}
+label{
+    margin-bottom: 0rem !important;
 }
 
 .checkout-header{
@@ -49,8 +53,8 @@ body{
 
 /* Checkbox rounded */
 .checkbox-round{
-    width: 1.3em;
-    height: 1.3em;
+    width: 1em;
+    height: 1em;
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
@@ -101,7 +105,6 @@ body{
 .modal-content{
     width: 100% !important; 
     height: 300px !important;
-
 }
 .modal-body-form~div{
     display: flex ;
@@ -109,10 +112,6 @@ body{
     padding: 5px 0px !important;
 }
 
-/* .address-form1, .address-form2, .address-form3, .address-form4 div{
-    padding: 0 5px;
-    width: 100%;
-} */
 
 .form-group1 input,.form-group2 input{
     width: 100%;
@@ -176,6 +175,7 @@ div.col-md-6 input, div.col-md-6 select{
 .cart-item-list-infomation{
     display: flex;
     flex-direction: column;
+    padding : 0rem 1rem;
     width: 100%;
 }
 .cart-item-list-image img{
@@ -310,4 +310,120 @@ div.col-md-6 input, div.col-md-6 select{
 
 .card-container{
     margin: 20px 0;
+}
+
+.location-card-infomation span{
+    text-transform: uppercase;
+}
+/*  CSS for checkout left */
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+.address-info{
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem 0;
+}
+.address-info_label{
+    font-weight: bold;
+}
+.address-info_input--home{
+    padding-right: 2rem;
+}
+.address-info_input--home,
+.address-info_input--company{
+   cursor: pointer;
+}
+input[type=radio] {
+   height: 16px;
+   width: 16px;
+}
+.address-info_input{
+    display: flex;
+    width: 50%;
+}
+.address-info_input input,
+.address-info_input select,
+.address-info_input textarea
+{
+    padding : 0.5rem 0.5rem;
+    flex: 1 0 auto;
+}
+
+.address-info__list{
+    max-height: 350px;
+    overflow: auto;
+    padding : 1.5rem;
+}
+.address-info__list-item{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px dashed black;
+    padding : 1rem;
+    margin-top: 1rem;
+    background-color: white;
+}
+.address-info__list-item--info .sub-name{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.address-info__list-item--action{
+    width: 20%;
+}
+.address-info__list-item--action button{
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
+}
+.addressBtn{
+    font-size: 1.5rem;
+}
+.address-info-details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    background-color: white;
+}
+.address-info_input--default{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer !important;
+}
+.address-info_input--default input{
+    margin-right: 1rem;
+}
+.address-info_input--button{
+    display: flex;
+    justify-content: flex-end;
+    /* flex: 1 0 auto; */
+}
+.address-info_input--button button{
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    margin: 0rem 2rem;
+    border-radius: 0.5rem;
+}
+
+/* CSS for input number type */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.phone-number__auth,
+.checkProvinceAddress,
+.checkDistrictAddress,
+.checkWardAddress
+{
+    display: flex;
+    flex-direction: column;
 }

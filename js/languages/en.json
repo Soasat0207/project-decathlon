@@ -1,0 +1,15 @@
+{
+    "header": {
+        "home"      : "Home",
+        "introduce" : "Introduce",
+        "product"   : "Products",
+        "service"   : "Services",
+        "contact"   : "Contact",
+        "MyAccount" : "My Account",
+        "MyStore"   : "My Store",
+        "MyBasket"  : "My Basket"
+    },
+    "showcase":{
+        "search-placeholder":"Search Here"
+    }
+}

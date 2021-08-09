@@ -18,6 +18,16 @@
         modal.style.display = "none";
       }
     }
+function disableModal() {
+  modal.style.display = "none";
+    $('.page-content-form_code').val('');
+    $('.page-content-form_name').val('');
+}
+function enableModal() {
+  modal.style.display = "block";
+  $('.page-content-form_code').val('');
+  $('.page-content-form_name').val('');
+}    
 async function renderTrademark() {
     $('.admin-list-color').html('')
       try {
@@ -29,6 +39,7 @@ async function renderTrademark() {
           let div = ``;
           div=`
           <tr class="${index}">
+              <td><img src="${data.img}" class="bannerSaleImg"></img></td>
               <td><p>${data.name}</p></td>
               <td>${data.description}</td>
               <td>
@@ -62,6 +73,8 @@ async function AddTrademark() {
         }
       });
       if(data.status == 200){
+        alert(data.message);
+        disableModal();
         renderTrademark();
       }
       
@@ -70,7 +83,7 @@ async function AddTrademark() {
     }
 }
 async function UpdateModalTradeMark(id) {
-  modal.style.display = "block";
+  enableModal();
   try {
     let data = await $.ajax({
       url: "/api/trademark/find",
@@ -83,9 +96,15 @@ async function UpdateModalTradeMark(id) {
       $('.page-content-form_description').val(data.data.description);
       $('.page-content-form_name').val(data.data.name);
       let div=`
-      <button onclick="UpdateTradeMark('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+      <button type="button" onclick="UpdateTradeMark('${data.data._id}')"  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
       `;
-      $('.btn-form-add-color').append(div);
+      if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 2){
+        $('.btn-form-add-color').children(`.page-content-card-form-btn`).eq(1).remove();
+        $('.btn-form-add-color').append(div);
+      }
+      if($('.btn-form-add-color').children(`.page-content-card-form-btn`).length == 1){
+        $('.btn-form-add-color').append(div);
+      }
     }
   } catch (error) {
     console.log(error);
@@ -106,6 +125,7 @@ async function UpdateTradeMark(id) {
     });
     if(data.status == 200){
       alert(data.message);
+      disableModal();
       renderTrademark();
     }
   } catch (error) {

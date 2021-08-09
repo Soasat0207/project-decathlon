@@ -6,3 +6,5 @@ mongoose.connect('mongodb+srv://vulong:123@cluster0.utibo.mongodb.net/decathlon?
   useCreateIndex: true
 });
 module.exports = mongoose;
+
+

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 router.get('/',(req,res) =>{
-    ModelMongo.colorProductModel.find({
+    ModelMongo.ColorProductModel.find({
 
     })
     .then((data)=>{
@@ -15,7 +15,7 @@ router.get('/',(req,res) =>{
 router.post('/',(req,res) =>{
     let colorCode = req.body.colorCode;
     let name = req.body.name;
-    ModelMongo.colorProductModel.create({
+    ModelMongo.ColorProductModel.create({
         colorCode:colorCode,
         name:name
     })
@@ -32,7 +32,7 @@ router.post('/',(req,res) =>{
 });
 router.post('/find',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.colorProductModel.findOne({
+    ModelMongo.ColorProductModel.findOne({
         _id:id,
     })
     .then((data)=>{
@@ -50,7 +50,7 @@ router.put('/',(req,res) =>{
     let id = req.body.id;
     let colorCode = req.body.colorCode;
     let name = req.body.name;
-    ModelMongo.colorProductModel.findOneAndUpdate({
+    ModelMongo.ColorProductModel.findOneAndUpdate({
         _id:id,
     },{
         colorCode:colorCode,
@@ -70,7 +70,7 @@ router.put('/',(req,res) =>{
 });
 router.delete('/',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.colorProductModel.findOneAndDelete({
+    ModelMongo.ColorProductModel.findOneAndDelete({
         _id:id,
     })
     .then((data)=>{

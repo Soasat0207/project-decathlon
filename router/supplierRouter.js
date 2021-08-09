@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ModelMongo = require("../models/mongodb");
 router.get('/',(req,res) =>{
-    ModelMongo.supplierModel.find({
+    ModelMongo.SupplierModel.find({
 
     })
     .then((data)=>{
@@ -18,7 +18,7 @@ router.post('/',(req,res) =>{
     let phone = req.body.phone;description;
     let status = req.body.status;description;
     let name = req.body.name;
-    ModelMongo.supplierModel.create({
+    ModelMongo.SupplierModel.create({
         description:description,
         email:email,
         phone:phone,
@@ -38,7 +38,7 @@ router.post('/',(req,res) =>{
 });
 router.post('/find',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.supplierModel.findOne({
+    ModelMongo.SupplierModel.findOne({
         _id:id,
     })
     .then((data)=>{
@@ -59,7 +59,7 @@ router.put('/',(req,res) =>{
     let phone = req.body.phone;
     let status = req.body.status;
     let name = req.body.name;
-    ModelMongo.supplierModel.findOneAndUpdate({
+    ModelMongo.SupplierModel.findOneAndUpdate({
         _id:id,
     },{
         description:description,
@@ -81,7 +81,7 @@ router.put('/',(req,res) =>{
 });
 router.delete('/',(req,res) =>{
     let id = req.body.id;
-    ModelMongo.supplierModel.findOneAndDelete({
+    ModelMongo.SupplierModel.findOneAndDelete({
         _id:id,
     })
     .then((data)=>{

@@ -1,21 +1,16 @@
 let slideIndex = 1;
 let delay = 10000;
-let slides = document.querySelectorAll('.box');
-let box = document.querySelectorAll('.trail div');
-// nút tăng lên 
-function plusSlides(n){
-    showSlides(slideIndex += n);
-    restart();
-    animate();
-};
+let slides;
+let box;
+
+// hiển thị ra slider
+
 function currentSlide(n) {
     showSlides(slideIndex = n);
     restart();
     animate();
 }
-// hiển thị ra slider
 function showSlides(n){
-    
     if(slideIndex > slides.length){
         slideIndex = 1 ;
     }
@@ -34,7 +29,11 @@ function showSlides(n){
     box[slideIndex-1].classList.add('active');
     slides[slideIndex-1].style.display = "grid";
 }
-// random ra silder
+function plusSlidesBanner(n){
+    showSlides(slideIndex += n);
+    restart();
+    animate();
+};
 function randomSlides(){
     if(slideIndex > slides.length){
         slideIndex = 1 ;
@@ -43,7 +42,6 @@ function randomSlides(){
         box[i].classList.remove('active');
         slides[i].style.display = 'none';
     }
-    
     if(slideIndex === slides.length + 1 ){
         slideIndex=1;
     }
@@ -55,11 +53,13 @@ function randomSlides(){
     box[randomNumber].classList.add('active');
     slides[randomNumber].style.display = "grid";
 }
-// let autoChange = setInterval(randomSlides,delay);
-const restart = function(){
+let autoChange = setInterval(randomSlides,delay);
+restart = function(){
     clearInterval(autoChange);
     autoChange = setInterval(randomSlides,delay)
 }
+// random ra silder
+
 //cái này dùng thư viện để viết phải có file nhúng thư viện thì mới chạy nhé
 const tl = gsap.timeline({ defaults: { duration: 0.6, ease: "power2.inOut" } });
 tl.from(".bg", { x: "-100%", opacity: 0 })
@@ -96,4 +96,3 @@ function touchSlider(){
 }
 animate();
 touchSlider();
-showSlides(slideIndex)

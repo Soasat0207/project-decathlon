@@ -1,0 +1,436 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box ;
+}
+
+.toTal{
+    display: flex;
+    flex-direction: column;
+}
+
+.part1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+
+}
+
+.comeBack{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comeBack1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+    color: #00689d;
+    width: 30%;
+}
+
+.comeBack1:hover{
+    cursor: pointer;
+}
+
+.comeBack1  i {
+    font-size: 10px;
+    font-weight:bold;
+}
+
+.backWord{
+    margin: 8px;
+    text-decoration: underline;
+    font-weight:bold;
+    font-size: 17px;
+    background-color: white;
+    border: none;
+    color: #00689d;
+}
+
+.backWord:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.hollow{
+    width: 30%;
+}
+
+.logo{
+    padding: 16px;
+}
+
+.logo img{
+    height: 40px;
+    width: 160px;
+
+}
+
+.part2{
+    background-color: #e8ebef4f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.or{
+    /* position: relative; */
+    width: 100%;
+}
+.test{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 87);
+}
+.test::after{
+    content: '';
+    width: 41%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: rgb(85, 85, 87);
+}
+
+.test::before{
+    content: '';
+    width: 41%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    background-color: rgb(85, 85, 87);
+}
+
+.part2main1{
+    width: 500px;
+    background-color: white;
+    padding: 48px;
+}
+
+.fontSize1{
+    font-size: 19px;
+    margin: 16px 0;
+}
+
+.input1{
+    width: 100%;
+    /* margin: 10px; */
+    border-radius: 4px;
+    height: 48px;
+    border: 1px solid #8996a2;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.nextButton{
+    height: 48px;
+    width: 100%;
+    background-color: #007dbc;
+    border-radius: 4px;
+    border: none;
+    /* margin: 0 10px; */
+    color: #fff;
+}
+
+.nextButton:hover {
+    cursor: pointer;
+    background-color: #00689d;
+}
+
+.content1{
+    margin-bottom: 37px;
+}
+
+.icon1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconApple{
+    margin: 0 10px;
+    background-color: black;
+}
+
+.icon1 button{
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+}
+
+.createAcc{
+    width: 180px;
+    height: 50px;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid black;
+
+}
+
+.createAcc:hover{
+    background-color: hsla(199,8%,49%,.05);
+    cursor: pointer;
+} 
+
+.createAcctoTal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.font2{
+    text-align: center;
+    color: #344450;
+    margin: 30px 0 5px 0;
+}
+
+.part3{
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tiengviet{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.threeFunctions a{
+    text-decoration: none;
+}
+
+.tiengviet1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tiengviet1:hover{
+    cursor: pointer;
+}
+
+.tiengviet1 span{
+    margin: 0 4px;
+}
+
+.ngonngu{
+    font-size: 30px;
+}
+
+.provision{
+    font-size: 14px;
+    color: rgb(99, 99, 99);
+}
+
+.fb{
+    color: white;
+    font-size: 30px;
+    background-color: blue;
+}
+.buttonfb{
+    background-color: blue;
+}
+
+.icon1 button{
+    border: none;
+}
+
+.apple{
+    color: white;
+    font-size: 30px;
+}
+
+.gg i{
+    color: red;
+    font-size: 30px;
+}
+
+.icon1 button:hover{
+    cursor: pointer;
+}
+
+.annen{
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(49, 49, 49, 0.5);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.bangngonngu{
+    display: none;
+    width: 400px;
+    height: 250px;
+    background-color: white;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 30px 0;
+}
+
+.tiengviet{
+    padding: 16px 24px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.tiengviet:hover{
+    cursor: pointer;
+    background-color: #e4f9f3;
+}
+
+.english{
+    padding: 16px 24px;
+    font-weight: bold;
+    font-size: large;
+    display: flex;
+    justify-content: space-between
+}
+
+.english:hover{
+    cursor: pointer;
+    background-color: #e4f9f3;
+}
+
+.x{
+    width: 10%;
+    cursor: pointer;
+}
+
+.lang .fas{
+    display: none;
+}
+
+#active{
+    display: block;
+}
+
+.loginLetter{
+    color:#007dbc;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sex{
+    display: flex;
+    flex-direction: row;
+}
+
+.sex div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.sex div p{
+    margin-left: 8px !important;
+    margin-bottom: 0;
+}
+
+.fullName{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 16px 0;
+}
+
+.fullName div {
+    margin: 0 !important;
+    /* padding: 0 !important; */
+}
+
+.contact div {
+    margin: 0 !important;
+}
+
+
+.contact{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.same-sex{
+    padding: 0 12px;
+}
+.tai12{
+    margin: 0;
+}
+
+.ndtk2{
+    color: red;
+    font-style: italic;
+    margin: 0 0 16px 0 !important;
+    text-align: center;
+}
+
+.ndtk3{
+    color: red;
+    font-style: italic;
+    margin: 0 0 16px 0 !important;
+    display: none;
+    text-align: center;
+}
+
+.logo{
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+.backWord{
+    display: none;
+}
+
+.tiengviet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 24px 16px;
+}
+
+.tiengviet div{
+    margin: 8px 0;
+}
+
+.bangngonngu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bangngonngu div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+    
+}

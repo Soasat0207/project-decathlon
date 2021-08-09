@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 function checkcookie (req,res,next){
     let token = req.cookies.token;
     token = jwt.verify(token,"mk");
-    ModelMongo.accountModel.findOne({
+    ModelMongo.AccountModel.findOne({
         $and: [
              { _id:token._id },
          ]

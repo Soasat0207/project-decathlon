@@ -3,16 +3,14 @@ const Schema = mongoose.Schema;
 
 let UserAddressSchema = new Schema({
     userId: String,
-    homeAddress: String,
+    fullname: String,
+    companyAddress: String,
+    phone: String,
     province: String,
     district: String,
     ward: String,
-    firstName: String,
-    lastName: String,
-    phone: Number,
-    deliveryAddress: String,
-    personalAddress: String,
-    companyAddress: String
+    detailAddress: String,
+    typeOfAddress: String,
 }, {
     collection: 'useraddress'
 })
