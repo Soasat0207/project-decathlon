@@ -12,8 +12,8 @@ const accountSchema = new Schema(
     gender: String,
     email: String,
     birthday: Date,
-    mainAddress: String,
-    subAddress: String,
+    // mainAddress: String,
+    // subAddress: String,
     noteAddress: String,
     city: String,
     avatar: {
@@ -123,10 +123,6 @@ const productSchema = new Schema(
     supplierId: {
       type: String,
       ref: "supplier",
-    },
-    categoryProductId: {
-      type: String,
-      ref: "categoryProduct",
     },
     categoryProductId: {
       type: String,

@@ -63,11 +63,15 @@ $(".signoutNAV").on("click", () => {
     })
     .then((data) =>{
         if(data){
-            delete_cookie('user')
-            window.location.href = '/login-cus'
+            delete_cookie01('user')
+            window.location.href = '/'
         }
     })
     .catch((err) => {
         console.log(err);
     })
 })
+
+function delete_cookie01(name) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}

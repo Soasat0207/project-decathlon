@@ -610,4 +610,50 @@ router.put('/findProductByIdAndUpdateQuantity', (req, res, next)=>{
     })
 })
 
+router.get('/pagination', async(req,res)=>{
+    try {
+        console.log(req.query);
+        if(req.query.skip|| req.query.view){
+            req.query.skip = parseInt(req.query.skip) 
+            req.query.view = parseInt(req.query.view) 
+            let find={}
+            for (const key in req.query) {
+                if (key!== 'skip' && key!== 'view') {
+                    find[key] = req.query[key];  
+                }
+            }
+            let data = await ModelMongo.ProductModel.find(find).skip(req.query.skip).limit(req.query.view)
+            res.json({status:200, data, mess:'ok'})
+        }else{
+            let data = await ModelMongo.ProductModel.find(req.query)
+            res.json({status:200, data, mess:'ok'})
+        }
+    } catch (error) {
+        console.log(error)
+        res.json({status:500,error,mess:'loi server'})
+    }
+        
+})
+
+
+    
+ 
+    
+    // async function renderPagenationCategoryProductChangePage(id,page,view){
+    //   let skip = (page-1)*view
+    //   let luaChon = {categoryProductId:'',size:''}
+    
+    //   let link = '/api/product/pagination?'
+    //   for (const key in luaChon) {
+    //     link += `${key}=${luaChon[key]}&`
+    //   }
+    //   console.log(link);
+    //   let data = await $.ajax({
+    //     url:`/api/product/pagination?categoryProductId=${id}&skip=${skip}&view=${view}`,
+    //     type:'GET'
+    //   })
+    //   console.log(data)
+    // }
+    
+
 module.exports = router

@@ -41,7 +41,7 @@ $( document ).ready( function(){
                     let totalPrice = numberToCurrency(item.totalPrice);
                     let allProductName = [];
                     item.product.forEach( subItem =>{
-                        allProductName.push( subItem.productId.name )
+                        allProductName.push( `<strong>${subItem.productId.name}</strong>` )
                     })
                     allProductName = allProductName.join(' và ')
                     let status = '';
