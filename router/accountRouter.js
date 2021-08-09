@@ -32,7 +32,26 @@ router.get('/',(req,res) =>{
         res.status(500).json('loi sever')
     })
 });
-router.post('/',upload.fields([{ name: 'imgAvatar', maxCount: 12 }]),(req,res) =>{
+router.post('/',upload.fields([{ name: 'imgAvatar', maxCount: 12 }]),(req,res,next)=>{
+    let username = req.body.userName;
+    ModelMongo.accountModel.find({
+        username:username
+    })
+    .then((data)=>{
+        console.log(data)
+        if(data.length == 0 ){
+            next();               
+        }
+        else{
+            res.json({
+                message:'tài khoản đã tồn tại',
+            }) 
+        }
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+},(req,res) =>{
     let username = req.body.userName;
     let password = req.body.password;
     let firstname = req.body.firstname;

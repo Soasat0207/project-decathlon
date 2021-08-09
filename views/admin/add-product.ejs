@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add-Product</title>
+    <%- include('../partials/admin-head'); -%>
+</head>
+<body class='theme-dank'>
+    <div class="body-warpper">
+        <div class="row no-gutters">
+            <%- include('../partials/body-admin-left'); -%>
+            <div class="col col-lg-10">
+                <div class="body_admin-right">
+                    <%- include('../partials/admin-navbar'); -%>
+                    <div class="body_admin-right-body">
+                        <div class="body_admin-right_page-content">
+                            <div class="body_admin-right_page-content-card">
+                                <div class="page-content-card-warpper">
+                                    <h5 class="page-content-card-warpper-title">Add New Product</h5>
+                                    <form action="" method="POST" class="form" id="formAddProduct" enctype="multipart/form-data">
+                                        <div class="page-content-card-form">
+                                            <div class="row ">
+                                                <div class="col col-lg-8">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Code Product</label>
+                                                                        <input name="CodeProduct" type="text" class="form-control page-content-form_code" placeholder="Enter code product">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Name</label>
+                                                                        <input name="ProductName" type="text" class="form-control page-content-form_name" placeholder="Enter product Name">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Title</label>
+                                                                        <input name="productTitle" type="text" class="form-control page-content-form_title" placeholder="Enter product title">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Description Short</label>
+                                                                        <textarea name="descriptionShort" class="form-control page-content-form_description-short" rows="3" placeholder="Enter Description Short"></textarea>
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Description Details</label>
+                                                                        <textarea name="descriptionDetails" class="form-control page-content-form_description-details" rows="6" placeholder="Enter Description Details"></textarea>
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image color</label>
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgColor" multiple>   
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-lg-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Image product</label>
+                                                                            <!-- file input -->
+                                                                            <input type="file" name="imgProduct" multiple>   
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-lg-4">
+                                                    <div class="border">
+                                                        <div class="page-content-card-warpper">
+                                                            <div class="row no-gutters">
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Price</label>
+                                                                        <input name="productPrice" type="text" class="form-control page-content-form_price" placeholder="Enter Product Price">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Price Import</label>
+                                                                        <input name="priceImport" type="text" class="form-control page-content-form_price-import" placeholder="Enter product Price Import">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label " for="">Unit</label>
+                                                                        <select name="productUnit" class="form-select page-content-form_unit">
+                                                                            <option value=""></option>
+                                                                            <option value="cái">Cái</option>
+                                                                            <option value="đôi">Đôi</option>
+                                                                            <option value="chiếc">Chiếc</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Quantity</label>
+                                                                        <input name="productQuantity" type="text" class="form-control page-content-form_quantity" placeholder="Enter Quantity">
+                                                                        <span class="form-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Rate</label>
+                                                                        <select name="productRate" class="form-select page-content-form_rate">
+                                                                            <option value=""></option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="1">1</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">Gender</label>
+                                                                        <select name="productGender" class="form-select page-content-form_gender">
+                                                                            <option value=""></option>
+                                                                            <option value="male">male</option>
+                                                                            <option value="female">female</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 margin-right-1">
+                                                                        <label class="page-content-card-form-input-label" for="">Size</label>
+                                                                        <select name="productSize" class="form-select page-content-form_size">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-6">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2 ">
+                                                                        <label class="page-content-card-form-input-label" for="">color</label>
+                                                                        <select name="productColor" class="form-select page-content-form_color">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">level</label>
+                                                                        <select name="productLevel" class="form-select page-content-form_level">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Trade Mark</label>
+                                                                        <select name="productTradeMark" class="form-select page-content-form_trade-mark">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Supplier</label>
+                                                                        <select name="productSupplier" class="form-select page-content-form_supplier">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <div class="page-content-card-form-input  margin-bottom-2">
+                                                                        <label class="page-content-card-form-input-label" for="">Product Category</label>
+                                                                        <select name="productCategory" class="form-select page-content-form_category">
+                                                                            <option value=""></option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-md-12">
+                                                                    <button  class="form-submit page-content-card-form-btn">SAVE PRODUCT</button>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/admin-script'); -%>
+<script src="public/assets/js/ajaxAddProduct.js"></script>
+</html>
