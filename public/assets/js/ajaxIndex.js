@@ -41,7 +41,7 @@ async function renderLastViewProduct(){
             if(data.status == 200){
                 data.data.map((data)=>{
                     let div=`
-                    <div class="col col-lg-3 col-md-2 col-sm-3">
+                    <div class="col col-lg-3 col-md-2 col-sm-6">
                                 <div class="topic_sell-product">
                                     <div class="topic_sell-product-list">
                                             <a href="/product-details/${data._id}"><img src="${data.img[0]}" alt="" class="topic_sell-product-img"></a>
@@ -272,7 +272,7 @@ async function renderLocalBrandBig(){
         data = data.limit(5);
         data.map((data)=>{
             let div=`
-            <div class="col col-lg-2-4 col-md-2 col-sm-3">
+            <div class="col col-lg-2-4 col-md-2 col-sm-4">
                 <div class="local_brand-items">
                     <a href="" class="local_brand-items-link local_big-brand-items-link">
                         <img src="${data.img}" alt="" class="local_brand-img">    
