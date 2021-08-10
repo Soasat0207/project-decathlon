@@ -436,7 +436,7 @@ async function renderOrderPage() {
       // console.log(436, item);
       let addressContent = `
       <div class="deliveried-address-content">
-        <input type="checkbox" class="ratio" name="" id="input${item._id}">
+        <div class="deliveried-address-content__input"><input type="checkbox" class="ratio" name="" id="input${item._id}"></div>
         <div class="deliveried-address-district"> Giao hàng đến ${item.ward} - ${item.district} - ${item.province}</div>
         <div class="deliveried-address-btn address-btn-${item._id}">
           <button onclick="reloadOderPage()" class ="deliveried-address-change-btn">Thay đổi</button>

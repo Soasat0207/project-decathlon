@@ -1,5 +1,4 @@
 $( document ).ready( function(){
-    renderUserOrder();
     // function render orders for user 
     $('.tabL ul li:nth-child(3)').on('click' , function(){
         renderUserOrder();

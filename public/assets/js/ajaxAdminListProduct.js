@@ -5,7 +5,6 @@ renderTableProduct();
     dataSource: '/api/product?page=1',
     locator: 'data',
     totalNumberLocator: function(response) {
-        console.log(12, response);
         return response.total;
     },
     pageSize: 6,
@@ -30,7 +29,6 @@ async function renderTableProduct(page) {
         url: "/api/product?page=" + page,
         type: "GET",
       });
-      console.log(8, data);
       data.data.map((data) => {
         let div = ``;
         div=`

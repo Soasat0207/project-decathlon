@@ -298,7 +298,8 @@ async function renderLocalBrandBig(){
             }
         })
         if(data){
-            renderCart();
+            showSuccessToast();
+            renderNavbarCart();
         }
        } catch (error) {
            console.log(error);
@@ -319,7 +320,8 @@ async function renderLocalBrandBig(){
             let arrayProductId = [ { productId : productId, quantity : 1}]
             createProductShoppingCart(arrayProductId);
         }else{
-            renderCart();
+            showSuccessToast();
+            renderNavbarCart();
         }
     } catch (error) {
         console.log(error);
@@ -336,7 +338,8 @@ async function renderLocalBrandBig(){
                 }
             })
             if(data){
-                renderCart();
+                showSuccessToast();
+                renderNavbarCart();
             }
         } catch (error) {
             console.log(error);
@@ -371,7 +374,75 @@ async function viewedAddToCard(button){
         } catch (error) {
             console.error(error);
         }
+    }else{
+        showErrorToast();
     }
 }
 
+// Khởi tạo 1 hàm toast 
+function toast({ title = "", message = "", type = "", duration =3000 }) {
+    const main = document.getElementById("toast");
+    
+    if(main){    
+        const toast = document.createElement("div");
+        // Tự Động Xoá
+        const autoRemoveId =setTimeout(function () {
+            main.removeChild(toast)
+        },duration +1000)
+        // click  xoá
+        toast.onclick = function (e) {
+            console.log(e.target);
+            if(e.target.closest('.toast__close')){
+                main.removeChild(toast);
+                clearTimeout(autoRemoveId);
+            }
+        }
+
+        const icons = {
+            success:'fa fa-check-circle',
+            info:'fa fa-exclamation ',
+            warning:'fa fa-exclamation-triangle',
+            error:'fa fa-exclamation-triangle',
+        }
+        const icon = icons[type]; 
+        const delay = (duration/1000).toFixed(2);
+        toast.classList.add("toast",`toast--${type}`);
+        toast.style.animation=`slideInLeft ease 1s ,fadeOut linear 1s ${delay}s forwards`;
+        toast.innerHTML = `
+                    <div class="toast__icon">
+                    <i class="${icon}" aria-hidden="true"></i>
+                
+                    </div>
+                <div class="toast__body">
+                    <h3 class="toast__body_title">${title}</h3>
+                    <p class="toast__body_text">${message} </p>
+                </div>
+                <div class="toast__close">
+                    <i class="fa fa-times" aria-hidden="true"></i>  
+                </div>
+                `;
+            main.appendChild(toast);
+
+    }
+}
+
+function showSuccessToast(){
+        toast({
+            title : 'Success',
+            message :'Bạn đã thêm vào giỏ hàng thành công',
+            type : 'success',
+            duration : 3000 
+        });
+
+}
+
+function showErrorToast(){
+        toast({
+            title : 'Oh No',
+            message :'Vui lòng chọn size trước khi thêm vào giỏ hàng',
+            type : 'error',
+            duration : 3000 
+        });
+
+}
 

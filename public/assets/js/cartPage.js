@@ -1,3 +1,4 @@
+// Check user cookie when show shopping cart
 $.ajax({
   url: '/api/cus/checkcookies',
   type: 'post',
@@ -12,7 +13,6 @@ $.ajax({
   console.log(err);
 })
 
-CartRender();
 //function to Render
 async function CartRender(){
   try {
@@ -21,7 +21,19 @@ async function CartRender(){
     url: "/api/user/findShoppingCart",
     type: "POST",
   });
-  if (data.product.length !== 0) {
+  if( data === "Nothing" || data.product.length === 0 ){
+    $(".cart-list-item").html('');
+    let cartItem = `
+    <div class = "empty-cart-noti">
+      <img src="http://localhost:3000/public/uploads/cart-empty-1.jpg" alt="">
+      <h2>Không có sản phẩm trong giỏ hàng</h2>
+      <a href="http://localhost:3000/list-product" class="product-review-overview-counts-btn cart-empty-btn">
+          <span>Thêm vào giỏ hàng</span>
+      </a>
+    </div>
+    `
+    $(".cart-list-item").append(cartItem);
+  }else{
         var totalPrices = 0;
         for (const obj of data.product) {
           let item = obj.productId;
@@ -36,7 +48,7 @@ async function CartRender(){
                     <div>KÍCH THƯỚC : <strong>${item.sizeId.size}</strong></div>
                     <div>GIAO HÀNG TRONG VÒNG CHƯA ĐẦY 72 GIỜ</div>
                 </div>
-                  <div id="pricePerOneProduct${obj._id}" class="cart-items-unit-price">${item.price}</div>
+                  <div id="pricePerOneProduct${obj._id}" class="cart-items-unit-price cart-items__priceOneProduct">${item.price}</div>
                   <div class="cart-items-quantity cart-items-unit-price">
                       <button id="decre${obj._id}" class="cart-items-quantity-btn cart-items-quantity-btn-decrease">-</button>
                       <input id = "input${obj._id}" class="cart-items-quantity-input" type="number" value ="${obj.quantity}" min='1' max='5'>
@@ -44,7 +56,7 @@ async function CartRender(){
                   </div>
                   <div id="price${obj._id}" class="cart-items-total-price cart-items-unit-price"></div>
                 </div>
-                <div class="cart-items-delete cart-items-unit-price"><button onclick="deleteProduct('${obj._id}')">X</button>
+                <div class="cart-items-delete cart-items-unit-price"><button onclick="deleteProduct('${obj._id}')">Xoá</button>
                 </div>
             </div>
               `;
@@ -83,61 +95,53 @@ async function CartRender(){
         $('.totalPrices').html('');
         $('.totalPrices').html(totalPricesCurrencyFormated);
 
-    // add event for continue button
-      $('.button-continue').on('click', async ()=>{
-        let data = await $.ajax({
-        url: "/api/user/findShoppingCart",
-        type: "POST"
-        });
-        if(data.product.length === 0){
-          $(".cart").html('');
-          let emptyCartNoti = `
-          <div class = "emptyCartNoti">
-            <div>You cannot continue with an empty cart. Please click the button <b>back</b> to spend your money</div>
-            <div><button class="backToListProduct"><a href ="http://localhost:3000/list-product">BACK</a></button></div>
-          </div>
-          `
-          $(".cart").append(emptyCartNoti);
-        }else{
-          window.location.href = '/order'
-        }
-      })
-    }else{
-      $(".cart-list-item").html('');
-      let cartItem = `
-      <div class = "empty-cart-noti">
-        <img src="http://localhost:3000/public/uploads/cart-empty-1.jpg" alt="">
-        <h2>Không có sản phẩm trong giỏ hàng</h2>
-        <a href="http://localhost:3000/list-product" class="product-review-overview-counts-btn cart-empty-btn">
-            <span>Thêm vào giỏ hàng</span>
-        </a>
-      </div>
-      `
-      $(".cart-list-item").append(cartItem);
+    
     }
   } catch (error) {
     console.log(error);
   }
-} 
-// \end function CartRender
+}
+CartRender();
 
-// delete a product 
+// add event for continue button
+$('.button-continue').on('click', async ()=>{
+  let data = await $.ajax({
+  url: "/api/user/findShoppingCart",
+  type: "POST"
+  });
+  console.log(112 , data);
+  if(  data == "Nothing" || data.product.length == 0  ){
+    $(".cart").html('');
+    let emptyCartNoti = `
+    <div class = "emptyCartNoti">
+      <div>You cannot continue with an empty cart. Please click the button <b>back</b> to spend your money</div>
+      <div><a href ="http://localhost:3000/list-product"><button class="backToListProduct">Back</button></a></div>
+    </div>
+    `
+    $(".cart").append(emptyCartNoti);
+  }else{
+    window.location.href = '/order'
+  }
+})
+
+// Delete a product from shopping cart
 async function deleteProduct(selectedId){
-  try {
-    let data = await $.ajax({
-      url: '/api/user/findAndDeleteOneProduct',
-      type: 'PUT',
-      data: { selectedId : selectedId}
-    }).then(data => {
-      console.log(data);
-      if(data){
-        alert('Xoa san pham thanh cong');
-        CartRender();
-      }
-    })
-    console.log(data);
-  } catch (error) {
-    console.log(error);
+  let answer = confirm('Bạn muốn xoá sản phẩm không?');
+  if( answer){
+    try {
+      let data = await $.ajax({
+        url: '/api/user/findAndDeleteOneProduct',
+        type: 'PUT',
+        data: { selectedId : selectedId}
+      }).then(data => {
+        if(data){
+          CartRender();
+          renderNavbarCart();
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
@@ -198,19 +202,42 @@ function priceOfOneProduct(selectedId) {
   $(`#price${selectedId}`).append(totalUnitPrice);
 }
 
-
-
-// function render cart in navbar
+// function to render cart in navbar
 async function renderNavbarCart(){
-  $('.listSelectedProduct').html('');
   try {
-    let data = await $.ajax({
-      url: '/api/user/findShoppingCart',
-      type : 'POST',
-  });
-  if(data){
-    let arrProduct = data.product
+      $('.listSelectedProduct').html('');
+      let data = await $.ajax({
+          url: '/api/user/findShoppingCart',
+          type : 'POST'
+      })
+      if(data === "Nothing" || data.product.length === 0){
+          $('.navbar-list_cart').html('');
+          let listCart = `
+          <div class="navbar-list_cart-nocart">
+              <img class="navbar-list-nocart-img" src="http://learnmongodbthehardway.com/images/originals/shopping_cart_racing.png" alt="">
+              <p class="navbar-list-nocart-text">Chưa có sản phẩm </p>
+          </div>
+          `
+          $('.navbar-list_cart').append(listCart);
+      }else{
+          $('.navbar-list_cart').html('');
+          let listCart = `
+          <h4 class="list_cart-heading">Sản phẩm đã thêm </h4>
+          <ul class="list_cart listSelectedProduct">
+          </ul>
+          <button class="btn btn-primary list-view-cart">Show Cart</button>
+          `;
+          $('.navbar-list_cart').append(listCart);
+          $('.cartContainer').append(`<p class ="numberProductInCart">${data.product.length}</p>`);
+      }
+      // add event for Show Cart button
+          $('.list-view-cart').on('click', ()=>{
+              window.location.href = 'http://localhost:3000/cart'
+          });
+      let arrProduct = data.product
+      let qtyTotalProduct = 0;
       arrProduct.forEach(element => {
+      qtyTotalProduct += parseInt(element.quantity)
       let liItem = `
       <li class="list-cart-items">
           <img class="list-cart-items-img" src="${element.productId.img[0]}" alt="">
@@ -229,19 +256,46 @@ async function renderNavbarCart(){
       </li>
       `
       $('.listSelectedProduct').append(liItem);
-  // add event for Delete button 
-      $(`#item${element._id}`).on('click', ()=>{
-        let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
-        deleteSelectedProduct(selectedId)
-      })
-
+      // add event for Delete button 
+          $(`#item${element._id}`).on('click', ()=>{
+          let selectedId = $(`#item${element._id}`).attr('id').slice(4,100);
+          deleteSelectedProduct(selectedId)
+          })
       });
-      // end loop
-  }
+    // end loop
+      // render Number in shopping cart
+          $('.nav-cart_showNumber').html('');
+          $('.nav-cart_showNumber').append(qtyTotalProduct)
+          $('.nav-cart_showNumber').attr('style', 'background-color : yellow')
+      
   } catch (error) {
-    console.log(error);
+      console.log(error);
   }
 }
+renderNavbarCart();
+
+// function to delete selected item from Database
+  function deleteSelectedProduct(selectedId){
+    let delConfirm = confirm('Bạn có chắc chắn muốn xoá sản phẩm đã thêm không');
+    if( delConfirm ){
+      $.ajax({
+          url: '/api/user/findAndDeleteOneProduct',
+          type: 'PUT',
+          data: {
+              selectedId : selectedId
+          }
+      }).then(data =>{
+         if(data){
+           CartRender();
+           renderNavbarCart();
+         }
+      }).catch(err =>{
+          console.log(err);
+      })
+    }
+  }
+
+
 
 // function convert number to VND format
 function numberToCurrency(number){

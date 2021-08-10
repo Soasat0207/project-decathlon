@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Page</title>
+    <title>Check out page</title>
     <%- include('../partials/head-user'); -%>
-    <!-- <link rel="stylesheet" href="/public/assets/css/bootstrap.css"> -->
-    <link rel="stylesheet" href="/public/assets/css/order.css">
+    <link rel="stylesheet" href="/public/assets/css/checkout.css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                     </li>
                     <li class="checkout-header-item">
                         <span>Thanh Toán</span>
-                        <input type="checkbox" class="checkbox-round" />
+                        <input type="checkbox"  class="checkbox-round" />
                     </li>
                 </ul>
             </div> <!-- \ end checkout header-->
@@ -39,43 +39,55 @@
             <!-- Check out content-->
             <div class="checkout">
                 <!-- Check out left -->
-                <div class="checkout-left">
-                    
-                    <!-- Address list -->
-                    <h3>Địa chỉ giao hàng</h3>
-                    <p>Vui lòng chọn một địa chỉ giao hàng:</p>
-                    <a style="text-decoration: none;" href="#showCreatingAddressContent">
-                        <button type="button" class="btn btn-primary addressBtn">Thêm địa chỉ mới</button>
-                    </a>
-                    <!-- List address -->
-                    <div class="address-info__list">
-                        <div class="address-info__list-item">
-                            <div class="address-info__list-item--info">
-                                <p class="sub-name">
-                                    Vũ Long
-                                </p>
-                                <p class="sub-address">
-                                    Địa chỉ : Thôn Giáo - tiên du - Bắc Ninh
-                                </p>
-                                <p class="sub-phone">
-                                    Điện thoại : 0389926795
-                                </p>
+                    <div class="checkout-left bg-border">
+                        <div class="deliveried-address perfect-center-row">
+                            <!-- <div class="text-deliveried-address ">
+                                Giao hàng đến <span style="font-weight: 700;" class="end-address"> Đăk lằk</span>
                             </div>
-                            <div class="address-info__list-item--action">
-                                <button class="delete-button btn-danger">Xoá</button>
-                                <button class="edit-button btn-primary">Sửa</button>
+                            <button class="change-deliveried-address">Thay đổi</button> -->
+                        </div>
+                        <div class="deliveried-date">
+                            <!-- <div class="text-deliveried-date">
+                                Giao hàng tiêu chuẩn<strong class="end-date"> từ thứ Năm, 15/07/2021</strong>
+                            </div>
+                            <button class="change-deliveried-date">Thay đổi</button> -->
+                        </div>
+                        <div class="checkout-infomation">
+                            <h3>Các tùy chọn thanh toán có sẵn</h3>
+                            <p>Vui lòng chọn tùy chọn Thanh toán của bạn</p>
+                            <div class="payment-options">
+                                <div class="payment-options-select">
+                                    <div class="payment-options-input-check">
+                                        <input type="checkbox" class="payment-options-checkbox" name="" id="CashByCod">
+                                        <label for="CashByCod"><h3>Thanh toán khi nhận hàng</h3></label>
+                                    </div>
+                                </div>
+                                <div class="payment-options-select">
+                                    <div class="payment-options-input-check">
+                                        <input type="checkbox" class="payment-options-checkbox" name="" id="CashByZalopay">
+                                        <label for="CashByZalopay"><h3>Thanh toán online với thẻ ATM nội địa hoặc ví điện tử Zalopay</h3></label>
+                                    </div>
+                                    
+                                </div>
+                                <div class="payment-options-select">
+                                    <div class="payment-options-input-check">
+                                        <input type="checkbox" class="payment-options-checkbox" name="" id="CashByVisa">
+                                        <label for="CashByVisa"><h3>Thanh toán online với thẻ credit/debit (VISA/ Master)</h3></label>
+                                    </div>
+                                    
+                                </div>
+                                <div class="payment-options__notify">
+                                    
+                                </div>
+                                <div class="payment-options-button">
+                                    <button class="payment-options-button-confirm">CONFIRM</button>
+                                </div>
+                                
                             </div>
                         </div>
-                        
-
                     </div>
-                    <div class="checkout-notification"></div>
-                    <div class="checkout-left-delivery-option">
-                        <button class="float-right checkout-right-delivery-button">Chọn hình thức giao hàng</button>
-                    </div>
-
-                </div>
                 <!-- \ end check out left-->
+
                 <!-- Check out right-->
                 <div class="checkout-right">
                     <!-- Cart item list-->
@@ -96,14 +108,13 @@
                     </div>
                     <div class="cart-details">
                         <div class="total-price">
-                            Tạm tính<span style="font-weight: bold;" class="float-right total-price-calc"></span>
+                            Tạm tính<span class="float-right total-price-calc"></span>
                         </div>
                         <div class="shipping-cash">
-                            Phí vận chuyển <span style="font-weight: bold;"
-                                class="float-right shipping-cash-calc"></span>
+                            Phí vận chuyển <span class="float-right shipping-cash-calc"></span>
                         </div>
                         <div class="total-all-prices">
-                            Tổng cộng <span style="font-weight: bold;" class="float-right all-price-calc"></span>
+                            Tổng cộng <span class="float-right all-price-calc"></span>
                         </div>
                     </div>
 
@@ -130,18 +141,15 @@
                     <!-- \End Cart promise-->
                 </div> <!-- \ end check out right-->
             </div> <!-- \ end checkout content-->
-        <!-- Show and edit address -->
-            <div id="showCreatingAddressContent" class="address-info-details">
-               
-            </div>
         </div>
     </section>
+
+
     <!-- \ End Content -->
 </body>
 <footer>
     <%- include('../partials/footer'); %>
     <%- include('../partials/user-script'); -%>
 </footer>
-<script src="/public/assets/js/order.js"></script>
-<script src="/public/assets/js/formAddress.js"></script>
+<script src="/public/assets/js/checkout.js"></script>
 </html>

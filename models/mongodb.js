@@ -21,10 +21,10 @@ const accountSchema = new Schema(
       default:
         "https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
     },
-    createdAt: { type: Date, default: new Date()},
+    createdAt: { type: Date, default: new Date() },
     role: { type: String, default: "user" },
-    status: { type: Boolean, default: true},
-    description: { type: String, default: "123"},
+    status: { type: Boolean, default: true },
+    description: { type: String, default: "123" },
   },
   {
     collection: "account",
@@ -79,7 +79,7 @@ const accountBListSchema = new Schema(
   {
     token: String,
   },
-  {collection: "blacklist"}
+  { collection: "blacklist" }
 );
 const productSchema = new Schema(
   {
@@ -134,12 +134,11 @@ const productSchema = new Schema(
     collection: "product",
   }
 );
-
 const tradeMarkSchema = new Schema(
   {
     name: String,
     description: String,
-    img: String
+    img: String,
   },
   {
     collection: "trademark",
@@ -168,7 +167,6 @@ const categoryProductSchema = new Schema(
   }
 );
 // end schema product
-
 // review and comment  schema
 const reviewSchema = new Schema(
   {
@@ -227,14 +225,14 @@ const commentSchema = new Schema(
 
 // Shopping cart schema
 const shoppingCartSchema = new Schema(
-  { 
+  {
     product: [
       {
-      productId : {
+        productId: {
           type: String,
-          ref: 'product'
-      },
-      quantity: String,
+          ref: "product",
+        },
+        quantity: String,
       },
     ],
     userId: {
@@ -250,12 +248,12 @@ const ordersSchema = new Schema(
   {
     product: [
       {
-        productId:{ 
-          type: String, 
-          ref: "selectedProduct"
+        productId: {
+          type: String,
+          ref: "selectedProduct",
         },
-        quantity: String
-      }
+        quantity: String,
+      },
     ],
     address: {
       type: String,
@@ -279,34 +277,40 @@ const ordersSchema = new Schema(
 const BannerSaleSchema = new Schema(
   {
     description: String,
-    createDate:Date,
+    createDate: Date,
     img: [
       {
         type: String,
       },
     ],
-    status:Boolean,
+    status: Boolean,
   },
   {
     collection: "bannerSale",
   }
 );
 // Create Model
-  const AccountModel = mongoose.model("account", accountSchema);
-  const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
-  const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
-  const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
-  const LevelProductModel = mongoose.model("levelProduct", levelProductSchema);
-  const ProductModel = mongoose.model("product", productSchema);
-  const TrademarkModel = mongoose.model("trademark", tradeMarkSchema);
-  const SupplierModel = mongoose.model("supplier", supplierSchema);
-  const CategoryProductModel = mongoose.model("categoryProduct",categoryProductSchema);
-  const ShoppingCartModel = mongoose.model( "shoppingCartModel",shoppingCartSchema );
-  const OrderModel = mongoose.model("orderModel", ordersSchema);
-  const ReviewModel = mongoose.model("review", reviewSchema);
-  const CommentModel = mongoose.model("comment", commentSchema);
-  const AcountBListModel = mongoose.model("blacklist" ,accountBListSchema);
-  const BannerSaleModel = mongoose.model("bannerSale", BannerSaleSchema);
+const AccountModel = mongoose.model("account", accountSchema);
+const LastInfoLoginModel = mongoose.model("lastInfoLogin", lastInfoLoginSchema);
+const ColorProductModel = mongoose.model("colorProduct", colorProductSchema);
+const SizeProductModel = mongoose.model("sizeProduct", sizeProductSchema);
+const LevelProductModel = mongoose.model("levelProduct", levelProductSchema);
+const ProductModel = mongoose.model("product", productSchema);
+const TrademarkModel = mongoose.model("trademark", tradeMarkSchema);
+const SupplierModel = mongoose.model("supplier", supplierSchema);
+const CategoryProductModel = mongoose.model(
+  "categoryProduct",
+  categoryProductSchema
+);
+const ShoppingCartModel = mongoose.model(
+  "shoppingCartModel",
+  shoppingCartSchema
+);
+const OrderModel = mongoose.model("orderModel", ordersSchema);
+const ReviewModel = mongoose.model("review", reviewSchema);
+const CommentModel = mongoose.model("comment", commentSchema);
+const AcountBListModel = mongoose.model("blacklist", accountBListSchema);
+const BannerSaleModel = mongoose.model("bannerSale", BannerSaleSchema);
 
 // end of Create Model
 
@@ -324,8 +328,8 @@ module.exports = {
   SupplierModel,
   CategoryProductModel,
   ReviewModel,
-  CommentModel,AcountBListModel,
+  CommentModel,
+  AcountBListModel,
   BannerSaleModel,
 };
 // end of exports model
-

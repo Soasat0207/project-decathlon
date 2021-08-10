@@ -1,4 +1,4 @@
-
+infoButton();
 function resize (){
     if($('body').width() < 768){
         $(".tabR").css("display", "none");
