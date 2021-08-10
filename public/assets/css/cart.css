@@ -388,9 +388,9 @@ body {
 
 /*  CSS for mobile  */
 @media only screen and ( max-width: 739px){
-    section{
-        margin-left: 2rem;
-    }
+  .col-lg-8{
+    width: 100%;
+  }
     .cart-header-text{
         display: none !important;
     }
@@ -411,6 +411,7 @@ body {
     .cart-items-info{
         display: flex;
         flex-direction: column;
+        padding: 0 1rem;
     }
     .cart-items-img{
         margin: 0 auto;
@@ -438,16 +439,11 @@ body {
     .cart-items-delete{
         margin-bottom: 1rem;
     }
-    .orderInfomation{
-        padding: 1.5rem;
+    .cart{
+      padding : 1rem;
     }
-    .cart-right{
-        margin-left: 1.5rem;
-    }
-    .button-continue,
-    .cart-promise{
-        margin-left: 2rem;
-
+    .button-continue{
+      margin: 0 1rem;
     }
 
 }

@@ -333,7 +333,7 @@ header .vertical_nav .vertical_nav-category{
   }
   
   p {
-    font-size: 0.8rem;
+    font-size: 1.6rem;
   }
   .vertical_nav-category{
     display: none;
@@ -414,7 +414,7 @@ header .vertical_nav .vertical_nav-category{
 
   .navmobileR a{
     font-size: xx-large;
-    color: blueviolet;
+    color: #0079BA;
     padding: 0 0.7rem;
   }
 }

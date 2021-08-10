@@ -237,6 +237,9 @@ div.col-md-6 input, div.col-md-6 select{
         display: flex;
         flex-direction: column;
     }
+    .checkout-header{
+        padding: 0em;
+    }
     .checkout-header-item span{
         padding : 0rem 0.5rem;
         margin : 0rem 0.5rem;
@@ -260,17 +263,27 @@ div.col-md-6 input, div.col-md-6 select{
     }
     .checkout-left{
         width: 100%;
+        padding: 0em;
     }
     .change-deliveried-address{
-        padding: 1rem 1rem;
-        border-radius: 1rem;
+        padding: 0em 1em;
+        border-radius: 1em;
+        background-color: #0079ba;
+        color: white;
     }
     .payment-options > div{
         padding: 0.5rem 0rem;
     }
     .checkout-right{
      width: 100%;
-     margin-left: 2rem;
-
+    margin-top: 1em;
+    }
+    .payment-options-select{
+        border: 1px dashed black;
+        margin-top: -1px;
+    }
+    .deliveried-date{
+        padding-bottom: 1em;
+        border-bottom: 1px solid black;
     }
 }
