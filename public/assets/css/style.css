@@ -698,3 +698,9 @@
 .toast--error .toast__icon{
     color:rgb(221, 47, 47);
 }
+
+@media only screen and (max-width: 600px) {
+   .leaves{
+    display: none;
+   }
+  }
