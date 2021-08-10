@@ -13,6 +13,9 @@
     display: flex;
     justify-content: center;
 }
+.storeadd img{
+    width: 100%;
+}
 
 .deliAll div h2{
     text-transform: uppercase;

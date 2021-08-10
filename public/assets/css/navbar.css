@@ -38,21 +38,21 @@
 
 .navbar {
   display: grid;
-  grid-template-columns:7% 12% auto 25%;
+  /* grid-template-columns:7% 12% auto 25%; */
   align-items: center;
   height: 6.6rem;
   /* overflow: hidden; */
   padding:0 5rem
 }
 
-.navbar img {
+.navbar01 img {
   height: 40px;
   width: auto;
   justify-self: start;
-  margin-left: 20px;
+  margin: 0 30px;
 }
 
-.navbar-items{
+.navbar01-items{
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4,1fr);
@@ -127,6 +127,7 @@
   align-items: center;
   flex-grow: 1;
   position: relative;
+  padding: 0 15px;
 }
 .search-bar-icon{
     position: absolute;
@@ -176,7 +177,7 @@ input {
 }
 
 /* MOBILE MENU & ANIMATION */
-.nav-item:hover .navbar-list_cart{
+.nav-item:hover .navbar01-list_cart{
   display:block
 }
 .list-cart-items{
@@ -259,6 +260,26 @@ header .vertical_nav .vertical_nav-category{
   margin-top: 2rem;
 }
 
+
+.navmobileR{
+  display: none;
+}
+
+.navbar01{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.aa{
+  display: flex;
+  flex-direction: row;
+}
+
+.aa li{
+  padding: 0 10px;
+}
+
 /* KEYFRAME ANIMATIONS */
 
 @-webkit-keyframes gradbar {
@@ -301,7 +322,7 @@ header .vertical_nav .vertical_nav-category{
 
   /* Mobile Devices - Phones/Tablets */
 
-@media only screen and (max-width: 720px) { 
+@media only screen and (max-width: 739px) { 
   /* MOBILE HEADINGS */
   h1 {
     font-size: 1.9rem;
@@ -314,10 +335,13 @@ header .vertical_nav .vertical_nav-category{
   p {
     font-size: 0.8rem;
   }
+  .vertical_nav-category{
+    display: none;
+  }
   
   /* MOBILE NAVIGATION */
      
-  .navbar-items{
+  .navbar01-items{
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -331,21 +355,23 @@ header .vertical_nav .vertical_nav-category{
     overflow: hidden;
   }
   
-  .navbar li {
+  .navbar01 li {
     padding: 15px;
   }
   
-  .navbar li:first-child {
+  .navbar01 li:first-child {
     margin-top: 50px;
   }
   
-  .navbar li a {
+  .navbar01 li a {
     font-size: 1rem;
   }
    
-  .menu-toggle, .bar {
-    display: block;
-    cursor: pointer;
+  .aa{
+    display: none;
+  }
+  .search-bar{
+    padding: 0rem;
   }
   
   .mobile-nav {
@@ -360,6 +386,36 @@ header .vertical_nav .vertical_nav-category{
   .search-input {
   display: none;
  }
-  
+  .navmobileR{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    transform: scale(0.75);
+    float: right;
+  }
+  .navbar01 {
+    display: flex;
+    flex-direction: row;
+    height: auto !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 5px 5px;
+  }
+
+  .logoNav{
+    display: none;
+  }
+
+  .navmobileR a{
+    font-size: xx-large;
+    color: blueviolet;
+    padding: 0 0.7rem;
+  }
 }
 

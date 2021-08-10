@@ -77,6 +77,10 @@ function goback(){
     window.location.href ='/'
 }
 
+$('.comeBack1').on("click", () => {
+    window.location.href ='/'
+})
+
 $('.logo').on('click', () => {
     window.location.href ='/'
 })
