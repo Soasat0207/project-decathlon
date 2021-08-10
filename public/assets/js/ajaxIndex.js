@@ -299,7 +299,7 @@ async function renderLocalBrandBig(){
         })
         if(data){
             showSuccessToast();
-            renderCart();
+            renderNavbarCart();
         }
        } catch (error) {
            console.log(error);
@@ -321,7 +321,7 @@ async function renderLocalBrandBig(){
             createProductShoppingCart(arrayProductId);
         }else{
             showSuccessToast();
-            renderCart();
+            renderNavbarCart();
         }
     } catch (error) {
         console.log(error);
@@ -339,7 +339,7 @@ async function renderLocalBrandBig(){
             })
             if(data){
                 showSuccessToast();
-                renderCart();
+                renderNavbarCart();
             }
         } catch (error) {
             console.log(error);

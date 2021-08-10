@@ -1,3 +1,4 @@
+// Check user cookie when show shopping cart
 $.ajax({
   url: '/api/cus/checkcookies',
   type: 'post',
@@ -12,7 +13,6 @@ $.ajax({
   console.log(err);
 })
 
-
 //function to Render
 async function CartRender(){
   try {
@@ -21,7 +21,6 @@ async function CartRender(){
     url: "/api/user/findShoppingCart",
     type: "POST",
   });
-  console.log(24, data);
   if( data === "Nothing" || data.product.length === 0 ){
     $(".cart-list-item").html('');
     let cartItem = `
@@ -49,7 +48,7 @@ async function CartRender(){
                     <div>KÍCH THƯỚC : <strong>${item.sizeId.size}</strong></div>
                     <div>GIAO HÀNG TRONG VÒNG CHƯA ĐẦY 72 GIỜ</div>
                 </div>
-                  <div id="pricePerOneProduct${obj._id}" class="cart-items-unit-price">${item.price}</div>
+                  <div id="pricePerOneProduct${obj._id}" class="cart-items-unit-price cart-items__priceOneProduct">${item.price}</div>
                   <div class="cart-items-quantity cart-items-unit-price">
                       <button id="decre${obj._id}" class="cart-items-quantity-btn cart-items-quantity-btn-decrease">-</button>
                       <input id = "input${obj._id}" class="cart-items-quantity-input" type="number" value ="${obj.quantity}" min='1' max='5'>
@@ -57,7 +56,7 @@ async function CartRender(){
                   </div>
                   <div id="price${obj._id}" class="cart-items-total-price cart-items-unit-price"></div>
                 </div>
-                <div class="cart-items-delete cart-items-unit-price"><button onclick="deleteProduct('${obj._id}')">X</button>
+                <div class="cart-items-delete cart-items-unit-price"><button onclick="deleteProduct('${obj._id}')">Xoá</button>
                 </div>
             </div>
               `;
@@ -211,7 +210,6 @@ async function renderNavbarCart(){
           url: '/api/user/findShoppingCart',
           type : 'POST'
       })
-      console.log(213, data);
       if(data === "Nothing" || data.product.length === 0){
           $('.navbar-list_cart').html('');
           let listCart = `

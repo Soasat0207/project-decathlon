@@ -42,7 +42,7 @@ body{
 .checkout-header-item span:hover::before{
     border-color: var(--green);
 }
-.checkout-header-item span::before{
+/* .checkout-header-item span::before{
     content: '';
     position: absolute;
     top: 0;
@@ -54,6 +54,22 @@ body{
     border: 1px solid #9a9e9f;
     border-radius: 10px;
     transition: border 0.3s ease;
+} */
+/* Checkbox rounded */
+.checkbox-round{
+    width: 1em;
+    height: 1em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-round:checked{
+    background-color: rgb(79, 209, 79,0.8);
 }
 .cart-header-text{
     display: grid;
@@ -160,7 +176,8 @@ body{
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgb(0, 0, 0, 0.3) !important;
-    margin: 10px 0px;
+    margin: 1rem 0rem;
+    padding: 0rem 2rem;
 }
 .cart-items-info-product{
     display: grid;
@@ -356,4 +373,78 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+/* CSS for tablet */
+@media only screen and ( min-width: 740px ) and ( max-width: 1023px ){
+    
+
+
+
+
+}
+
+/*  CSS for mobile  */
+@media only screen and ( max-width: 739px){
+    section{
+        margin-left: 2rem;
+    }
+    .cart-header-text{
+        display: none !important;
+    }
+    .checkout-header{
+        padding: 0.5rem;
+    }
+    .checkout-header-item span{
+        padding : 0rem 0.5rem;
+        margin : 0rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2rem;
+    }
+    .checkout-header-item span::before{
+        display: block;
+        position: unset;
+    }
+    .cart-items-info{
+        display: flex;
+        flex-direction: column;
+    }
+    .cart-items-img{
+        margin: 0 auto;
+        max-width: 100px;
+    }
+    .cart-items-info-product{
+        display: block;
+
+    }
+    .cart-items-unit-price{
+        margin-top:1rem;
+    }
+    .cart-items__priceOneProduct::before{
+        content: "Đơn giá: \00a0";
+        text-transform: capitalize;
+    }
+    .cart-items-quantity::before{
+        content: "Số lượng \00a0";
+        text-transform: capitalize;
+    }
+    .cart-items-total-price::before{
+        content: "Giá thành: \00a0";
+        text-transform: capitalize;
+    }
+    .cart-items-delete{
+        margin-bottom: 1rem;
+    }
+    .orderInfomation{
+        padding: 1.5rem;
+    }
+    .cart-right{
+        margin-left: 1.5rem;
+    }
+    .button-continue,
+    .cart-promise{
+        margin-left: 2rem;
+
+    }
+
 }

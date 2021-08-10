@@ -59,12 +59,11 @@ async function renderNavbarCart(){
             })
             });
             // end loop
-        if(qtyTotalProduct != 0){
+        // render number in shopping cart
             $('.nav-cart_showNumber').html('');
             $('.nav-cart_showNumber').append(qtyTotalProduct)
             $('.nav-cart_showNumber').attr('style', 'background-color : yellow')
-        }else{
-        }
+        
     } catch (error) {
         console.log(error);
     }

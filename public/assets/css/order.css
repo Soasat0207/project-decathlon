@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 16px;
 }
 body{
     background-color: #F8F9F9 !important;
@@ -33,9 +32,12 @@ label{
 }
 .checkout-header-item{
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 .checkout-header-item span{
+    position: relative;
     padding: 10px 35px 10px 10px;
     display: block;
     color: #9a9e9f;
@@ -93,7 +95,7 @@ label{
 }
 .checkout-right{
     width: 35%;
-    height: 500px;
+    height: auto;
     padding: 0px 10px;
 }
 
@@ -450,4 +452,94 @@ input[type=number] {
 {
     display: flex;
     flex-direction: column;
+}
+
+/* ================================================ CSS for tablet ================================================*/
+@media only screen and ( min-width: 740px) and ( max-width: 1023px){
+
+
+
+
+}
+
+/* ================================================ CSS for mobile ================================================*/
+@media only screen and ( max-width: 739px){
+    section{
+        margin-left: 5rem;
+    }
+    .checkout-header{
+        padding: 0.5rem;
+    }
+    .checkout-header-item span{
+        padding : 0rem 0.5rem;
+        margin : 0rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2rem;
+    }
+    .checkout-header-nav{
+        width: 100%;
+        justify-content: center;
+    }
+    .checkout-header-item span::before{
+        display: block;
+        position: unset;
+    }
+    .checkout-header-item input{
+        transform: scale(1);
+    }
+    .checkout{
+        display: flex;
+        flex-direction: column;
+    }
+    p{
+        font-size: 1.6rem;
+    }
+    .checkout-left,
+    .checkout-right{
+        width: 100%;
+        font-size: 1.6rem !important;
+    }
+    .checkout-left-delivery-option{
+        margin: 0 2rem;
+    }
+    .checkout-right-delivery-button{
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+    }
+    .address-info__list-item{
+        width: 100%;
+    }
+    .cart-item-list-product{
+        margin-top: 1rem;
+    }
+    .deliveried-address-content__input{
+        width: 10%;
+        padding: 0.5rem
+    }
+    .deliveried-address-district{
+        padding: 0 0.5rem;
+    }
+    .deliveried-address > div{
+        padding: 1rem 0rem;
+    }
+    .deliveried-address-change-btn{
+        border-radius: 0.5rem;
+        background-color: #008CBA;
+        color: white;
+    }
+    .deliveried-options-item div{
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .deliveried-options-list-cash{
+        width: 30%;
+    }
+    .deliveried-options-list-date{
+        width: 70%;
+        flex-direction: column;
+    }
+    
+
 }

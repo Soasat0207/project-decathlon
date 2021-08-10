@@ -165,11 +165,11 @@ app.get('/cart', (req, res) => {
 app.get('/order', (req, res) => {
   res.render('user/order')
 })
-
-
 app.get('/checkout', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/admin/checkout.html'))
+  res.render('user/checkout')
 })
+
+
 app.get('/admin-order-details/:id', (req, res) =>{
   res.sendFile(path.join(__dirname, './views/admin/order-details.html'))
 }) 

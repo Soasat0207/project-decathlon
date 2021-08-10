@@ -352,7 +352,7 @@ header:hover{
 .navbar-list_cart{
     display:none;
     position:absolute;
-    top:100%;
+    top:135%;
     right:2%;
     z-index: 1;
     background:var(--white-color);
@@ -367,8 +367,8 @@ header:hover{
     border-width: 20px;
     border-style: solid;
     border-color: transparent transparent var(--white-color) transparent;
-    top: -18%;
-    right: 7%;
+    top: -12.5%;
+    right: 6%;
 }
 .navbar-list-items-cart::after{
     content: "";

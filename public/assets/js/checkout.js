@@ -11,6 +11,23 @@ $.ajax({
 .catch((err) => {
   console.log(err);
 })
+// check shopping cart when user enter page
+// checkShoppingCart();
+async function checkShoppingCart(){
+  try {
+    let data = await $.ajax({
+      url: "/api/user/findShoppingCart",
+      type: "POST",
+    });
+    if( data === "Nothing" || data.product.length === 0){
+      alert(' Giỏ hàng của bạn rỗng. Vui lòng mua sắm trước khi thanh toán');
+      window.location.href = "http://localhost:3000/list-product"
+    }
+  } catch (error) {
+    console.error( error );
+  }
+}
+
 
 // allow only one payment option was checked
 $(".payment-options-checkbox").on("change", function () {
@@ -112,9 +129,7 @@ renderCheckoutLeft();
 // Add event for Confirm button
 $(".payment-options-button-confirm").on("click", async () => {
   let idChecked = $(".payment-options-checkbox:checked").attr("id");
-  
   if ( idChecked ){
-
     try {
     let data = await $.ajax({
       url: "/api/user/updatePaymentMethod",
@@ -128,6 +143,7 @@ $(".payment-options-button-confirm").on("click", async () => {
       type: 'DELETE'
       })
     if(data2.deletedCount !== 0){
+      renderNavbarCart();
       renderOrderConfirm();
     }
     }
