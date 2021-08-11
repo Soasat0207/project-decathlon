@@ -882,6 +882,7 @@
     }
     .tabs{
         justify-content: space-between;
+        margin: 0 2em;
     }
     .tabs .line{
         height:2px
@@ -891,6 +892,23 @@
     }
     .review-list{
         margin-left: 0;
+    }
+    .protect-details-logo{
+        display: flex;
+        justify-content: center;
+    }
+    .product_details-addcart{
+        margin: 1.5em 0em;
+    }
+    .recommended-Products-list{
+        display: flex;
+        flex-direction: column;
+    }
+    .recommended-Products-list-items{
+        flex-wrap: wrap;
+    }
+    .recommended-Products-btn{
+        left: 1em;
     }
 }
 

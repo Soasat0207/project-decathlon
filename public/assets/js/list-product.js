@@ -76,7 +76,7 @@ let productFilter = `
         <ul class="menu-search-filter-list menu-search-filter-list-Trademark">
             <h4 class='menu-search-filter-item-title'>Lọc theo Thương Hiệu</h4>
         </ul>
-        <ul class="menu-search-filter-list">
+        <ul class="menu-search-filter-list hide-on-mobile-tablet">
             <h4 class='menu-search-filter-item-title'>Lọc theo phạm vi gia</h4>
             <li class="menu-search-filter-items menu-search-filter-items-range">
                 <div class="menu-search-filter-range">
@@ -88,12 +88,10 @@ let productFilter = `
                         <div class='range-slider__progress'></div>
                     </div>
                 </div>
-                
             </li>
-            
         </ul>
     </div>
-
+    
 </div>
 `
 

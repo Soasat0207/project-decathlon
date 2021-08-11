@@ -34,10 +34,25 @@
 }
 /*========================================= tablet================================ */
 @media (min-width :740px) and (max-width :1023px)  {
-
-
-
-
+    .information-product-mobile-fillter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5em;
+    }
+    .store-fillters{
+        background-color: #008CBA;
+        color: white;
+    }
+    .filters-faceting{
+        width: 50%;
+        height: 100vh;
+        max-height: 100vh;
+        overflow-y: scroll;
+    }
+    .product-info-price{
+        font-size: 1.5em;
+    }
 
 }
 /*========================================= Mobile================================= */
@@ -69,6 +84,9 @@
         grid-row-end: none; 
         padding-left: none;
         padding-right: 0rem;
+    }
+    .topic_sell-left{
+        margin-top: 1.5em;
     }
     .topic_sell-product-list{
         padding:0;
@@ -170,6 +188,9 @@
     }
     .local_brand-img{
         width: 10.4rem;
+    }
+    .activate-decs{
+        font-size: 2rem;
     }
 }
 
