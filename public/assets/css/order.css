@@ -405,6 +405,7 @@ input[type=radio] {
     flex-direction: column;
     margin-top: 4rem;
     background-color: white;
+    font-size: 1.5rem;
 }
 .address-info_input--default{
     display: flex;
@@ -456,19 +457,56 @@ input[type=number] {
 
 /* ================================================ CSS for tablet ================================================*/
 @media only screen and ( min-width: 740px) and ( max-width: 1023px){
-
-
-
-
+    .checkout-right,
+    .checkout-left{
+        width: 50%;
+    }
+    .address-info__list-item{
+        width: 100%;
+    }
+    .address-info-details{
+        margin-top: 1rem;
+    }
+    .deliveried-address-content__input{
+        padding: 0 1em;
+    }
+    .deliveried-address-change-btn{
+        padding: 0 1em;
+        border-radius: 0.5em;
+    }
+    .deliveried-options-left-content{
+        width: 45%;
+    }
+    .deliveried-options-checkbox-input{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1em;
+    }
+    .deliveried-options-item{
+        height: 8em;
+    }
+    .deliveried-options-list-date,
+    .deliveried-options-list-cash{
+        display: flex;
+        flex-direction: column;
+    }
+    .deliveried-options-list-text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.5em !important;
+    }
 }
 
 /* ================================================ CSS for mobile ================================================*/
 @media only screen and ( max-width: 739px){
-    section{
-        margin-left: 5rem;
-    }
     .checkout-header{
-        padding: 0.5rem;
+        padding: 1em 0.5em;
+    }
+    section{
+        padding: 0 1em;
     }
     .checkout-header-item span{
         padding : 0rem 0.5rem;
@@ -500,12 +538,16 @@ input[type=number] {
         width: 100%;
         font-size: 1.6rem !important;
     }
-    .checkout-left-delivery-option{
-        margin: 0 2rem;
-    }
     .checkout-right-delivery-button{
         padding: 1.5rem;
         border-radius: 0.5rem;
+    }
+    .checkout-left > div{
+        padding: 0.5em 0em;
+    }
+    .checkout-right{
+        margin: 2em 0em;
+        padding: 0em;
     }
     .address-info__list-item{
         width: 100%;
@@ -524,22 +566,68 @@ input[type=number] {
         padding: 1rem 0rem;
     }
     .deliveried-address-change-btn{
-        border-radius: 0.5rem;
+        border-radius: 1rem;
         background-color: #008CBA;
         color: white;
+        padding: 0em 1em;
     }
     .deliveried-options-item div{
-        padding: 1rem;
+        padding: 0.5em;
         justify-content: center;
         align-items: center;
     }
     .deliveried-options-list-cash{
-        width: 30%;
+        width: 55%;
     }
     .deliveried-options-list-date{
-        width: 70%;
+        width: 45%;
         flex-direction: column;
     }
-    
+    .deliveried-options-left-content{
+        width: 30%;
+    }
+    .deliveried-options-right-content{
+        width: 70%;
+    }
+    /* Css for form address */
+    .address-info-details{
+        margin: 0em;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+    }
+    .address-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5em 0em;
+    }
+    .address-info_input{
+        width: 70%;
+    }
+    .address-info_input--button button{
+        padding: 1rem 2rem;
+        margin: 0rem 1rem;
+        font-size: 1em;
+    }
+    .address-info_input--home,
+    .address-info_input--company{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .card-button{
+        width: 40%;
+    }
+    .location-card{
+        width: 60%;
+
+    }
+    .card-button-confirm{
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+    }
 
 }

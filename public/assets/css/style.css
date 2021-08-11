@@ -699,8 +699,8 @@
     color:rgb(221, 47, 47);
 }
 
-@media only screen and (max-width: 600px) {
-   .leaves{
-    display: none;
-   }
-  }
+@media only screen and ( max-width: 739px){
+    .local_big-brand-items-link .local_brand-img{
+        width: 10.4rem;
+    }
+}

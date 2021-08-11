@@ -109,7 +109,6 @@ $('.button-continue').on('click', async ()=>{
   url: "/api/user/findShoppingCart",
   type: "POST"
   });
-  console.log(112 , data);
   if(  data == "Nothing" || data.product.length == 0  ){
     $(".cart").html('');
     let emptyCartNoti = `

@@ -32,20 +32,27 @@
         width:22rem
     }
 }
-/* tablet */
+/*========================================= tablet================================ */
 @media (min-width :740px) and (max-width :1023px)  {
-   
+
+
+
+
+
 }
-/* Mobile */
-@media (max-width :739px){
+/*========================================= Mobile================================= */
+@media only screen and (max-width :739px){
+    body{
+        margin: 0 1em;
+    }
+    .carousel-activate{
+        margin-left: 0em;
+    }
     .hide-on-mobile{
         display: none !important;
     }
     .topic_sell-warp{
-        grid-template-columns: repeat(1,1fr);
-    }
-    .topic_sell-right{
-        grid-template-columns: repeat(2,1fr);
+        display: block;
     }
     .topic_sell-right-beach, .topic_sell-right-sport{
         grid-column-start: none; 
@@ -54,20 +61,18 @@
         grid-row-end: none; 
         padding-left: none;
         padding-right: 0rem;
+        grid-gap: 0;
     }
     .topic_sell-left-beach, .topic_sell-left-sport{
         grid-column-start: none; 
         grid-column-end: none;
-        
         grid-row-end: none; 
         padding-left: none;
         padding-right: 0rem;
     }
     .topic_sell-product-list{
         padding:0;
-    }
-    .topic_sell-right{
-        padding:0
+        max-height: 250px;
     }
     .deal-header-title-img{
         width:100%
@@ -98,10 +103,11 @@
         justify-content:center;
     }
     .deal-body{
-        width:100%
+        width:85%;
+        min-height: 400px;
     }
     .topic_sell-banner{
-        padding: 3rem 0;
+        padding: 1rem 0;
         display:flex;
         flex-direction: column;
         justify-content: center;
@@ -110,9 +116,60 @@
     .topic_sell-banner-detail{
         margin-top:1rem
     }
-    .topic_sell-right{
+    .local_brand,
+    .activate,
+    .deal,
+    .topic_sell {
+        padding: 0em;
+        padding-bottom: 1.5em;
+    }
+    .deal-header-title-text{
+        font-size: 3.4rem;
+    }
+    .price-btn{
+        padding: 0rem 1rem;
+    }
+    .topic_sell-left{
+        max-height: 400px;
+        min-height: 300px;
+    }
+    .topic_sell-right-sea{
+        left: 0%;
+        top: 70%;
+        padding: 0 1em;
         grid-gap: 0;
     }
-
+    .topic_sell--warp-mobile{
+        min-height: 400px;
+    }
+    .topic_sell-banner-detail{
+        font-size: 3rem;
+        margin-bottom: 5rem;
+    }
+    .topic_sell-right-indoor{
+        grid-gap: 0;
+        position: absolute;
+        top: 32%;
+        left: -6%;
+        transform: scale(0.9);
+    }
+    .topic_sell-right-sport{
+        transform: scale(0.9);
+        position: relative;
+        top: 0%;
+        left: 0%;
+    }
+    .topic_sell-left-sport{
+        position: absolute;
+    }
+    /* .topic_sell-warp{
+        min-height: 600px;
+    } */
+    .topic_sell--warp-mobile{
+        min-height: 400px;
+    }
+    .local_brand-img{
+        width: 10.4rem;
+    }
 }
 

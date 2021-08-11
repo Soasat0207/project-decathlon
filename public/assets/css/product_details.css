@@ -766,6 +766,9 @@
     margin: 1rem 0 3rem 3rem;
     width:calc(100% - 3rem);
 }
+.product-info-price{
+    background-color: yellow;
+}
 
                                                 /* CSS for toast board */
 .toast{
@@ -864,7 +867,8 @@
 }
 
 
-@media (max-width :1023px){
+/* ====================================== Show on Tablet ======================================  */
+@media only screen and ( min-width : 740px ) and ( max-width : 1023px ){
     .product-price-ratting{
         margin: 0;
     }
@@ -889,6 +893,50 @@
         margin-left: 0;
     }
 }
-@media (max-width :739px){
-    
+
+/* ====================================== Show on Mobile ======================================  */
+@media only screen and (max-width :739px){
+    .product_details-price{
+        width: 19em;
+    }
+    .protect-detail-logo-link{
+        justify-content: center;
+    }
+    .product_details-color{
+        flex-direction: column;
+    }
+    .product-details-color-title{
+        margin-right: 0.5em;
+    }
+    .product_details-size-list-option{
+        padding: 0.5em 1em;
+    }
+    .tutorial-size-link{
+        margin-left: 1em;
+    }
+    .product_details-addcart{
+        margin-top: 1em;
+    }
+    .product_details-addcart-btn{
+
+        padding: 1em 0em;
+    }
+    .product_details-delivery{
+        margin-top: 2em;
+    }
+    .delivery-pincode-title{
+        border-top: 1px solid black;
+        margin-bottom: 0.5em;
+    }
+    .recommended-Products-title{
+        font-size: 1.5em;
+    }
+    .recommended-Products-list-items{
+        display: block;
+    }
+    .recommended-Products-list{
+        padding-bottom: 2em;
+    }
+
+
 }

@@ -333,7 +333,7 @@ header .vertical_nav .vertical_nav-category{
   }
   
   p {
-    font-size: 0.8rem;
+    font-size: 1.6rem;
   }
   .vertical_nav-category{
     display: none;
@@ -419,3 +419,77 @@ header .vertical_nav .vertical_nav-category{
   }
 }
 
+/*==================================== Responsive for tablet ====================================== */
+@media only screen and ( min-width: 740px) and ( max-width: 1023px){
+  html{
+    width: 100%;
+  }
+  .container{
+    width: 100%;
+    margin: 0 0.5em;
+  }
+  .carousel-activate{
+    margin: 0.5em 0em;
+  }
+  .page-wrapper{
+    position: sticky;
+  }
+  .vertical_nav-category,
+  .nav-item .nav-item-text{
+    display: none;
+  }
+  .nav-cart_showNumber{
+    font-size: 0.6em;
+  }
+  .navbar01 img{
+    margin: 0em;
+    
+  }
+  .nav-item a{
+    transform: scale(1.5);
+    padding: 0 0.5em;
+  }
+  .padding-section{
+    padding: 0.5em;
+  }
+  .local_brand,
+  .activate,
+  .deal {
+    padding: 1em;
+  }
+  .topic_sell-right-sea{
+    left: 25%;
+  }
+  .topic_sell-banner-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 205px;
+    width: 100px;
+  }
+  .topic_sell-right-sport{
+    right: -44%;
+  }
+  .topic_sell-left-beach p{
+    float: right;
+  }
+  .topic_sell-left-beach button,
+  .topic_sell-left-sport p,
+  .topic_sell-left-sport button{
+    display: none;
+  }
+  .description-text,
+  .product-color{
+    margin: 0em;
+  }
+  .deal-body{
+    width: 75%;
+  }
+  .topic_sell-right-beach{
+    right: -42%;
+  }
+  .product_recalls-btn{
+    margin-top: 1em;
+  }
+}
