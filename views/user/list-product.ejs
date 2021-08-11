@@ -56,6 +56,18 @@
   color: #fff;
   background: #20B2AA;
 }
+.pagination-items{
+    margin-top: 0;
+}
+.pagination ul.pagination-items{
+    width: fit-content;
+}
+.pagination{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
     </style>
 </head>
 <body style="position: relative;">
@@ -167,11 +179,9 @@
                             
                         </ul> -->
                         <div class="pagination">
+                            <div class="page-item previousPageListProduct"> <= </div>
                             <ul class="pagination-items"> <!--pages or li are comes from javascript --> </ul>
-                        </div>
-                        <div>
-                            <li class="page-item"><a class="page-link" onclick=paginationPrevPage()>Previous</a></li>
-                            <li class="page-item"><a class="page-link" onclick=paginationNextPage()>Next</a></li>
+                            <div class="page-item nextPageListProduct"> => </div>
                         </div>
                     </div>
                 </div>
