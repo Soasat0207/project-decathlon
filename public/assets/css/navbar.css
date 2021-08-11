@@ -280,6 +280,13 @@ header .vertical_nav .vertical_nav-category{
   padding: 0 10px;
 }
 
+.navmobileL{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
 /* KEYFRAME ANIMATIONS */
 
 @-webkit-keyframes gradbar {
@@ -393,13 +400,14 @@ header .vertical_nav .vertical_nav-category{
     justify-content: flex-end;
     transform: scale(0.75);
     float: right;
+    width: 100%;
   }
   .navbar01 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: auto !important;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: center;
   }
   .navbar{
     display: flex;
@@ -416,6 +424,28 @@ header .vertical_nav .vertical_nav-category{
     font-size: xx-large;
     color: #0079BA;
     padding: 0 0.7rem;
+  }
+  
+  .navmobileL{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .cc{
+    margin-right: 30px !important;
+  }
+  .undoNav{
+    text-decoration: none;
+    font-size: large !important;
+    margin-right: 30%;
+    background-color: cyan;
+    border-radius: 20px;
+  }
+  .undoNav i{
+    margin-right: 5px;
   }
 }
 
