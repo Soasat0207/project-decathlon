@@ -552,11 +552,13 @@
     margin-right: 0;
     padding:0
 }
+/*==================================== CSS for tablet ==================================== */
 @media only screen and (min-width : 740px) and ( max-width :1023px ){
     .information-product-mobile-fillter{
         display:flex;
     }
 }
+/*==================================== CSS for mobile ==================================== */
 @media only screen and (max-width :739px){
     .body-header{
         padding:0;
@@ -589,6 +591,18 @@
         padding:0.5rem 0.7rem;
     }
     .product-info-price{
-        left:75%
+        left:60%
+    }
+    .menu-search{
+        border-bottom: 1.6em solid black;
+    }
+    .menu-search-filter-list{
+        margin: 0%;
+    }
+    .information-product-mobile-fillter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
 }

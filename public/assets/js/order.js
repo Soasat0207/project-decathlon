@@ -43,7 +43,10 @@ async function updateAddress() {
     // add event for delete button
       $('.delete-button').on('click', async function(){
         let idOfAddress =  $(this).parents('.address-info__list-item').attr('id') ;
-        deleteAddress(idOfAddress);
+        let answer = confirm('Bạn chắc chắn muốn xoá địa chỉ này?');
+        if ( answer ){
+          deleteAddress(idOfAddress);
+        }
       })
 
   } catch (error) {
