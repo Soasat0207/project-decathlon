@@ -552,12 +552,12 @@
     margin-right: 0;
     padding:0
 }
-@media (max-width :1023px){
+@media only screen and (min-width : 740px) and ( max-width :1023px ){
     .information-product-mobile-fillter{
         display:flex;
     }
 }
-@media (max-width :739px){
+@media only screen and (max-width :739px){
     .body-header{
         padding:0;
         padding-left: 4rem;
