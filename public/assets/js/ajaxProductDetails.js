@@ -196,7 +196,7 @@ async function renderRecommendProduct(categoryProductId) {
                 for(let i = 0; i <data.data.length; i++){
                     if(data.data[i].codeProduct == dataCodeProduct){
                     let div =`
-                    <div class="col col-lg-3">
+                    <div class="col col-lg-3 col-sm-12">
                         <div class="product-items">
                             <div class="product_gallert">
                                 <div class="product_gallert-slider">

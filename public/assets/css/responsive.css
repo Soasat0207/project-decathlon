@@ -34,7 +34,7 @@
 }
 /*========================================= tablet================================ */
 @media (min-width :740px) and (max-width :1023px)  {
-    
+
 
 
 
@@ -66,7 +66,6 @@
     .topic_sell-left-beach, .topic_sell-left-sport{
         grid-column-start: none; 
         grid-column-end: none;
-        position: ;
         grid-row-end: none; 
         padding-left: none;
         padding-right: 0rem;
@@ -163,9 +162,9 @@
     .topic_sell-left-sport{
         position: absolute;
     }
-    .topic_sell-warp{
-        /* min-height: 600px; */
-    }
+    /* .topic_sell-warp{
+        min-height: 600px;
+    } */
     .topic_sell--warp-mobile{
         min-height: 400px;
     }

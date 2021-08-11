@@ -457,10 +457,47 @@ input[type=number] {
 
 /* ================================================ CSS for tablet ================================================*/
 @media only screen and ( min-width: 740px) and ( max-width: 1023px){
-
-
-
-
+    .checkout-right,
+    .checkout-left{
+        width: 50%;
+    }
+    .address-info__list-item{
+        width: 100%;
+    }
+    .address-info-details{
+        margin-top: 1rem;
+    }
+    .deliveried-address-content__input{
+        padding: 0 1em;
+    }
+    .deliveried-address-change-btn{
+        padding: 0 1em;
+        border-radius: 0.5em;
+    }
+    .deliveried-options-left-content{
+        width: 45%;
+    }
+    .deliveried-options-checkbox-input{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1em;
+    }
+    .deliveried-options-item{
+        height: 8em;
+    }
+    .deliveried-options-list-date,
+    .deliveried-options-list-cash{
+        display: flex;
+        flex-direction: column;
+    }
+    .deliveried-options-list-text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.5em !important;
+    }
 }
 
 /* ================================================ CSS for mobile ================================================*/

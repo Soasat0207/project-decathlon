@@ -11,7 +11,7 @@
     <%- include('../partials/user-navbar'); -%>
   <section class="body">
     <div class="body-warp">
-      <div class="path_bar">
+      <div class="path_bar hide-on-mobile-tablet">
         <ul class="path_bar-list">
           <li class="path_bar-items">
             <a href="" class="path_bar-link"><span>Tất Cả Môn Thể Thao</span></a>
@@ -61,12 +61,12 @@
                   </div>
                   <div class="product_details-color">
                     <h5 class="product-details-color-title">Nhiều màu có sẵn</h5>
-                    <span onclick=" prevSlides_detailsColor()" class="swiper-slide-icon"><i class="fal fa-chevron-left"></i></span>
+                    <span onclick=" prevSlides_detailsColor()" class="swiper-slide-icon hide-on-mobile-tablet"><i class="fal fa-chevron-left"></i></span>
                     <div class="product_details-swiper">
                       <div class="product_details-swiper-list">
                       </div>
                       </div>
-                    <span class="swiper-slide-icon" onclick="plusSlides_detailsColor()"><i class="fal fa-chevron-right"></i></span>
+                    <span class="swiper-slide-icon" onclick="plusSlides_detailsColor()"><i class="fal fa-chevron-right hide-on-mobile-tablet"></i></span>
                   </div>
 
                   <div class="product_details-size">
@@ -106,7 +106,7 @@
               <div class="col col-lg-12 col-md-12">
                 <div class="product_details-delivery">
                   <div class="row">
-                    <div class="col col-lg-7 col-md-7">
+                    <div class="col col-lg-7 col-md-7 col-sm-12">
                       <div class="delivery-pincode">
                         <h5 class="delivery-pincode-title">Giao hàng</h5>
                         <p class="delivery-pincode-description">HÌnh thức giao hàng có sẵn tỉnh và quận </p>
@@ -119,7 +119,7 @@
                         <a class="btn pincode-link" href=""> Thay Đổi </a>
                       </div>
                     </div>
-                    <div class="col col-lg-5 col-md-5">
+                    <div class="col col-lg-5 col-md-5 col-sm-12">
                       <div class="delivery-returns">
                         <div class="col col-lg-6">
                           <div class=" delivery-policy-returns">
@@ -165,7 +165,7 @@
               <div class="col col-lg-12">
                 <div class="product_details-tab">
                   <!-- Tab items -->
-                  <div class="tabs">
+                  <div class="tabs hide-on-mobile">
                     <div class="tab-item active">
                         <i class="tab-icon fas fa-code"></i>
                         Lợi ích của sản phẩm

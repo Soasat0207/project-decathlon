@@ -52,3 +52,49 @@ document.querySelector('.information-product-mobile-fillter').addEventListener('
 document.querySelector('.filters-faceting-top-close').addEventListener('click',()=>{
     document.querySelector('.filters-faceting').style.display = 'none';
 })
+
+let productFilter = `
+<div class="menu-search">
+    <div class="menu-search-category">
+        <h2 class="menu-search-category-title">Category <span><i class="far fa-plus"></i></span></h2>
+        <ul class="menu-search-category-list">
+            
+        </ul>
+    </div>
+    <div class="menu-search-filter">
+        <h2 class="menu-search-filter-title">Bộ lọc <span><i class="far fa-plus"></i></span></h2>
+        <ul class="menu-search-filter-list menu-search-filter-list-level">
+            <h4 class='menu-search-filter-item-title'>Lọc theo Trình Độ</h4>
+        </ul>
+        <ul class="menu-search-filter-list menu-search-filter-list-size">
+            <h4 class='menu-search-filter-item-title'>Lọc theo Size</h4>
+        </ul>
+        <ul class="menu-search-filter-list">
+            <h4 class='menu-search-filter-item-title'>Lọc theo màu sắc</h4>
+            <li class="menu-search-filter-items menu-search-filter-items-color"></li>
+        </ul>
+        <ul class="menu-search-filter-list menu-search-filter-list-Trademark">
+            <h4 class='menu-search-filter-item-title'>Lọc theo Thương Hiệu</h4>
+        </ul>
+        <ul class="menu-search-filter-list">
+            <h4 class='menu-search-filter-item-title'>Lọc theo phạm vi gia</h4>
+            <li class="menu-search-filter-items menu-search-filter-items-range">
+                <div class="menu-search-filter-range">
+                    <div class="range-slider flat" data-ticks-position='top' style='--min:-500; --max:500; --value-a:-220; --value-b:400; --suffix:"$"; --text-value-a:"-220"; --text-value-b:"400";'>
+                        <input type="range" min="-500" max="500" value="-220" oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value));">
+                        <output></output>
+                        <input type="range" min="-500" max="500" value="400" oninput="this.parentNode.style.setProperty('--value-b',this.value); this.parentNode.style.setProperty('--text-value-b', JSON.stringify(this.value))">
+                        <output></output>
+                        <div class='range-slider__progress'></div>
+                    </div>
+                </div>
+                
+            </li>
+            
+        </ul>
+    </div>
+
+</div>
+`
+
+$('.filters-faceting').append(productFilter);

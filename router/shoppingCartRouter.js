@@ -113,7 +113,6 @@ shoppingCartRouter.put('/changeQuantityShoppingCart',cookies.checkCookies ,(req,
 },(req, res, next) =>{
     let qtyNumber = parseInt(req.obj.quantity) + 1  ;
 
-    console.log(116, req.id);
     model.ShoppingCartModel.updateOne({
         userId : req.id,
         "product.productId" : req.body.idProductCart

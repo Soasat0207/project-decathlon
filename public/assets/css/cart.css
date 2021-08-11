@@ -379,10 +379,24 @@ body {
 }
 /* CSS for tablet */
 @media only screen and ( min-width: 740px ) and ( max-width: 1023px ){
-    
-
-
-
+    .checkout-header{
+      font-size: 2rem;
+    }
+    .cart-list-item{
+      font-size: 1.2rem;
+    }
+    .cart-items-info-product{
+      display: flex;
+    }
+    .cart-items-info-product div{
+      padding: 0 1em;
+    }
+    .cart-right{
+      width: 100%;
+    }
+    .cart-promise{
+      font-size: 1.6rem;
+    }
 
 }
 
