@@ -2,7 +2,7 @@
 .carousel-banner_slider{
     display: block;
     width:100vw;
-    height: 56rem;
+    height: 40rem;
     transition: all 0.2s ease-in;
     transform: translateX(0);
 }
@@ -201,7 +201,8 @@
     background-image: url(https://contents.mediadecathlon.com/s864415/k$98e770752f6ee5bf13c096e6c840c861/slider%20desktop%20background%20image.jpg?format=auto);
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; 
+    background-size: 100% 100%;
+
 }
 .carousel-banner_slider .box1 .illustration .inner{
     background-image: url(https://contents.mediadecathlon.com/s864416/k$eb1ddd543790c25ca57ad925adcee294/slider%20desktop%20content%20image.jpg?format=auto);
@@ -218,7 +219,7 @@
     background-image: url(../image/slider2.webp);
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; 
+    background-size: 100% 100%; 
 }
 .carousel-banner_slider .box2 .illustration .inner{
     background-image: url(../image/slider2_2.webp);
@@ -235,7 +236,7 @@
     background-image: url(../image/slider3.webp);
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; 
+    background-size: 100% 100%; 
 }
 .carousel-banner_slider .box3 .illustration .inner{
     background-image: url(../image/slider3_3.webp);
@@ -252,7 +253,7 @@
     background-image: url(../image/slider4.webp);
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; 
+    background-size: 100% 100%; 
 }
 .carousel-banner_slider .box4 .illustration .inner{
     background-image: url(../image/slider4_4.webp);
@@ -269,7 +270,7 @@
     background-image: url(../image/slider5.webp);
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; 
+    background-size: 100% 100%; 
 }
 .carousel-banner_slider .box5 .illustration .inner{
     background-image: url(../image/slider5_5.webp);
