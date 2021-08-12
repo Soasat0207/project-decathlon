@@ -299,6 +299,7 @@ async function renderLocalBrandBig(){
         })
         if(data){
             showSuccessToast();
+            $('.topic_sell-addtocart-size p').removeClass('selectedSize');
             renderNavbarCart();
         }
        } catch (error) {
@@ -319,8 +320,10 @@ async function renderLocalBrandBig(){
         if( data === 'This product doesnt exist' ){
             let arrayProductId = [ { productId : productId, quantity : 1}]
             createProductShoppingCart(arrayProductId);
+            $('.topic_sell-addtocart-size p').removeClass('selectedSize');
         }else{
             showSuccessToast();
+            $('.topic_sell-addtocart-size p').removeClass('selectedSize');
             renderNavbarCart();
         }
     } catch (error) {
@@ -348,11 +351,16 @@ async function renderLocalBrandBig(){
 
 // function to set product id for add to cart button
 function setIdForAddToCart(input){
+    // add class for selected size
+    $('.topic_sell-addtocart-size p').removeClass('selectedSize');
+    $(input).attr('class' , 'selectedSize');
+    
     let button = $(input).closest('.topic_sell-addtocart')
     let sizeId =  $(input).attr('id').slice(6, 100)
     $(button)[0].lastElementChild.removeAttribute('id');
     $(button)[0].lastElementChild.setAttribute('id', `idProduct${sizeId}`);
 }
+
 // add event for button Add To Cart
 async function viewedAddToCard(button){
     let productId = $(button).attr('id')

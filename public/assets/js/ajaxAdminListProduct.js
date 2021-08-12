@@ -79,7 +79,7 @@ async function DeleteProduct(id) {
   }
 }
 
-// listening Search bar
+// add event for Search bar
 $('.body_admin-right-header-navbar-search-input').on('keydown', (e)=>{
  if(e.keyCode === 13){
   renderSearchBar();
@@ -126,14 +126,28 @@ async function renderSearchBar(){
            </td>
       </tr>
       `
+      
+      $('#pagi').html('');
       $('.admin-list-product').append(div);
     });
-    
+    let buttonBack = `
+    <button class="backToProductDetail">Back</button>
+    `
+    $('.page-content-card-warpper-title').html('');
+    $('.page-content-card-warpper-title').append(buttonBack);
+
+  // add event for back button when user search
+      $('.backToProductDetail').on('click', function(){
+        console.log(123);
+        location.reload();
+      })
+
   } catch (error) {
     console.error(error);
   }
 
 };
+
 
 // function to filter array include product names
 
