@@ -5,7 +5,7 @@ $.ajax({
 })
 .then((data) => {
   if(data !== 'Login successful'){
-    alert('You need login first to show this page')
+    alert('Bạn cần đăng nhập trước khi xem giỏ hàng')
       window.location.href = '/login-cus'
   }
 })

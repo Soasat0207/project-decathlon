@@ -178,12 +178,12 @@ function CheckCodeProduct(data, skip) {
   let dataCodeProduct = CodeProductArr.filter((item, index) => {
     return CodeProductArr.indexOf(item) === index;
   });
-  console.log(178,dataCodeProduct)
+  // console.log(178,dataCodeProduct)
   if (!skip) {
     listCodeProduct = dataCodeProduct;
   }
   totalPage = Math.ceil(dataCodeProduct.length / view);
-  console.log(183,totalPage)
+  // console.log(183,totalPage)
   dataCodeProduct = dataCodeProduct.skip((currentPage - 1) * view);
   dataCodeProduct = dataCodeProduct.limit(view);
   dataCodeProduct.map(async (dataCodeProduct) => {
@@ -261,7 +261,7 @@ function CheckCodeProduct(data, skip) {
 // }
 
 function createPagination(totalPages, page) {
-  console.log(256, page);
+  // console.log(256, page);
   let pageArr = [];
   for (let i = 1; i <= totalPages; i++) {
     pageArr.push(i);
@@ -665,7 +665,7 @@ async function findByDemand() {
 
 async function changePage(skip, view) {
   try {
-    console.log(skip,view)
+    // console.log(skip,view)
     let next = skip <= (totalPages-1) ? skip + 1 : totalPages
     $('.nextPageListProduct').attr('onclick',`changePageActive(${next})`)
     let prev = skip >= 2 ? skip - 1 : 1
@@ -697,7 +697,7 @@ async function changePage(skip, view) {
       data: { codes: codes },
     });
     if (findAllDemand.status == 200) {
-      console.log(685,findAllDemand.data)
+      // console.log(685,findAllDemand.data)
       CheckCodeProduct(findAllDemand.data, skip);
       // renderPaginatorChild(findAllDemand.data);
       // product_thumbnail_img = document.querySelectorAll(
@@ -711,75 +711,8 @@ async function changePage(skip, view) {
 }
 
 function changePageActive(skip){
-  console.log(skip)
-  console.log($(".numb")[skip-1]);
+  // console.log(skip)
+  // console.log($(".numb")[skip-1]);
   $($(".numb")[skip-1]).trigger( "click" )
 }
 
-// async function paginationNextPage(skip, view) {
-//   try {
-//     let url = `/api/product/pagination?`;
-//     for (const key in demand) {
-//       url += `${key}=${demand[key]}&`;
-//     }
-//     let codes;
-//     if(skip <= (totalPage-1)){
-//       let next = listCodeProduct.slice(skip*view, (skip*view)+view);
-//       codes = next
-//     }else{
-//       let next1 = listCodeProduct.slice((totalPage-1)*view, listCodeProduct.length);
-//       codes = next1
-//     }
-  
-//     let findAllDemand = await $.ajax({
-//       url: url,
-//       type: "post",
-//       data: { codes: codes },
-//     });
-//     if (findAllDemand.status == 200) {
-//       CheckCodeProduct(findAllDemand.data, skip);
-//       // renderPaginatorChild(findAllDemand.data);
-//       // product_thumbnail_img = document.querySelectorAll(
-//       //   ".product_gallert-thumbnails-img"
-//       // );
-//     }
-//   }catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// async function paginationPrevPage(skip, view) {
-//   try {
-//     let url = `/api/product/pagination?`;
-//     for (const key in demand) {
-//       url += `${key}=${demand[key]}&`;
-//     }
-//     let codes;
-//     if(skip >= (totalPage-2)){
-//       let pre = listCodeProduct.slice((skip-2)*view, (skip-2)*view + view);
-//       codes = pre
-//     }else{
-//       let pre1 = listCodeProduct.slice(0, view);
-//       codes = pre1
-//     }
-  
-//     let findAllDemand = await $.ajax({
-//       url: url,
-//       type: "post",
-//       data: { codes: codes },
-//     });
-//     if (findAllDemand.status == 200) {
-//       CheckCodeProduct(findAllDemand.data, skip);
-//       // renderPaginatorChild(findAllDemand.data);
-//       // product_thumbnail_img = document.querySelectorAll(
-//       //   ".product_gallert-thumbnails-img"
-//       // );
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }  
-// }
-
-// $('ul.pagination-items').on('click', function(){
-//   console.log(717,  $('li.active').attr('onclick').slice(11,12) );
-// })

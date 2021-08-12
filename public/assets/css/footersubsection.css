@@ -28,3 +28,9 @@
 .deliAll div p{
     padding: 5px 30px;
 }
+
+@media only screen and (max-width: 739px) {
+    .deliAll div h2{
+        font-size: initial;
+    }
+}

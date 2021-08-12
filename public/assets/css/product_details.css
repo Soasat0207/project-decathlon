@@ -446,7 +446,7 @@
     padding: 30px;
     align-items: center;
     color: #424453;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     display:flex
 }
 .media-left-img{
