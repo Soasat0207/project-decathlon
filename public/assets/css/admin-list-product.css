@@ -3,6 +3,13 @@
     color: #4f546c;
     font-size: 1.4rem;
     background-color: #f9fbff;
+    max-height: 580px;
+    overflow: auto;
+}
+
+.backToProductDetail{
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
 }
 table {
     border-collapse: collapse;
