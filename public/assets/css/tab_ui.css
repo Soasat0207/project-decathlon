@@ -50,15 +50,22 @@
     /* padding: 28px 0; */
 }
 .tab-pane {
-    margin-top:3rem;
+    margin:3rem 0;
     color: #333;
     display: none;
 }
 .tab-pane.active {
     display: block;
+    background-color: #f4f4f4;
+    padding: 19px;
 }
 .tab-pane h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
-  
+
+.tab-pane p {
+    font-size: initial;
+    padding: 0 10px;
+    margin-bottom: 25px;
+}

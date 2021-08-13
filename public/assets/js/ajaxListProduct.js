@@ -127,6 +127,9 @@ async function render() {
     product_thumbnail_img = document.querySelectorAll(
       ".product_gallert-thumbnails-img"
     );
+
+    $('.nextPageListProduct').on('click',changePageActive(2))
+    $('.previousPageListProduct').on('click',changePageActive(1))
   } catch (error) {
     console.log(error);
   }
@@ -175,10 +178,12 @@ function CheckCodeProduct(data, skip) {
   let dataCodeProduct = CodeProductArr.filter((item, index) => {
     return CodeProductArr.indexOf(item) === index;
   });
+  // console.log(178,dataCodeProduct)
   if (!skip) {
     listCodeProduct = dataCodeProduct;
   }
   totalPage = Math.ceil(dataCodeProduct.length / view);
+  // console.log(183,totalPage)
   dataCodeProduct = dataCodeProduct.skip((currentPage - 1) * view);
   dataCodeProduct = dataCodeProduct.limit(view);
   dataCodeProduct.map(async (dataCodeProduct) => {
@@ -190,7 +195,9 @@ function CheckCodeProduct(data, skip) {
     }
   });
   element = document.querySelector(".pagination-items");
-  totalPages = totalPage;
+  if (!skip) {
+    totalPages = totalPage;
+  }
   //calling function with passing parameters and adding inside element which is ul tag
 }
 
@@ -254,8 +261,9 @@ function CheckCodeProduct(data, skip) {
 // }
 
 function createPagination(totalPages, page) {
+  // console.log(256, page);
   let pageArr = [];
-  for (let i = 1; i <= totalPage; i++) {
+  for (let i = 1; i <= totalPages; i++) {
     pageArr.push(i);
   }
   let button = "";
@@ -272,24 +280,24 @@ async function loadPage(page) {
   render();
 }
 
-function paginationNextPage() {
-  currentPage += 1;
-  if (currentPage < 1) {
-    currentPage = 1;
-  }
-  if (currentPage > totalPage) {
-    currentPage = 1;
-  }
-  render();
-}
+// function paginationNextPage() {
+//   currentPage += 1;
+//   if (currentPage < 1) {
+//     currentPage = 1;
+//   }
+//   if (currentPage > totalPage) {
+//     currentPage = 1;
+//   }
+//   render();
+// }
 
-function paginationPrevPage() {
-  currentPage -= 1;
-  if (currentPage < 1) {
-    currentPage = totalPage;
-  }
-  render();
-}
+// function paginationPrevPage() {
+//   currentPage -= 1;
+//   if (currentPage < 1) {
+//     currentPage = totalPage;
+//   }
+//   render();
+// }
 async function renderCategory() {
   try {
     let data = await $.ajax({
@@ -306,7 +314,7 @@ async function renderCategory() {
                     <p class="menu-search-category-description">${data.name}<span class="menu-search-quantity-product${index}"></span></p>
                     <span class="menu-search-category-icon"><i class="fal fa-chevron-right"></i></span>
                 </a>
-            </li>
+            </li>    
             `;
       $(".menu-search-category-list").append(div);
     });
@@ -319,19 +327,11 @@ async function renderCategory() {
             categoryProductId: item._id,
           },
         });
-      // get array include code Product
-        let arrCodeProduct = [];
-        data.data.forEach(item =>{
-          arrCodeProduct.push(item.codeProduct)
-        })
-        let codeProductNoDup = arrCodeProduct.filter( (item , index) =>{
-          return arrCodeProduct.indexOf(item) === index
-        })
         let div = ``;
-        div = `(${codeProductNoDup.length})`;
+        div = `(${data.data.length})`;
         $(`.menu-search-quantity-product${index}`).append(div);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     });
   } catch (error) {
@@ -665,6 +665,27 @@ async function findByDemand() {
 
 async function changePage(skip, view) {
   try {
+    // console.log(skip,view)
+    let next = skip <= (totalPages-1) ? skip + 1 : totalPages
+    $('.nextPageListProduct').attr('onclick',`changePageActive(${next})`)
+    let prev = skip >= 2 ? skip - 1 : 1
+    $('.previousPageListProduct').attr('onclick',`changePageActive(${prev})`)
+
+    // $('.nextPageListProduct').off('click')
+    // $('.previousPageListProduct').off('click')
+    // $('.nextPageListProduct').on('click',()=>{
+    //   console.log(123)
+    //   console.log(673,$($(".numb")[next]));
+    //   $($(".numb")[next]).trigger( "click" )})
+    // $('.previousPageListProduct').on('click',()=>{$($(".numb")[prev]).trigger( "click" )})
+
+    
+    // $('.nextPageListProduct').on( 'click', function (){
+    //   paginationNextPage(skip, view);
+    // })
+    // $('.previousPageListProduct').on('click', function (){
+    //   paginationPrevPage(skip, view)
+    // })
     let url = `/api/product/pagination?`;
     for (const key in demand) {
       url += `${key}=${demand[key]}&`;
@@ -676,13 +697,22 @@ async function changePage(skip, view) {
       data: { codes: codes },
     });
     if (findAllDemand.status == 200) {
+      // console.log(685,findAllDemand.data)
       CheckCodeProduct(findAllDemand.data, skip);
       // renderPaginatorChild(findAllDemand.data);
       // product_thumbnail_img = document.querySelectorAll(
       //   ".product_gallert-thumbnails-img"
       // );
     }
+    
   } catch (error) {
     console.log(error);
   }
 }
+
+function changePageActive(skip){
+  // console.log(skip)
+  // console.log($(".numb")[skip-1]);
+  $($(".numb")[skip-1]).trigger( "click" )
+}
+

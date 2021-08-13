@@ -56,6 +56,24 @@
   color: #fff;
   background: #20B2AA;
 }
+.pagination-items{
+    margin-top: 0;
+}
+.pagination ul.pagination-items{
+    width: fit-content;
+}
+.pagination{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.xx i{
+    color: lightseagreen;
+    padding: 0 20px;
+    font-size: initial;
+    cursor: pointer;
+}
     </style>
 </head>
 <body style="position: relative;">
@@ -71,12 +89,7 @@
                         <div class="menu-search-category">
                             <h2 class="menu-search-category-title">Category <span><i class="far fa-plus"></i></span></h2>
                             <ul class="menu-search-category-list">
-                                <li class="menu-search-category-items">
-                                    <a class="menu-search-category-link" href="http://localhost:3000/list-product">
-                                        <img src="https://contents.mediadecathlon.com/p1581230/k$bd3f8d54a01b2985d5d02d99bf337f13/sq/DEBARDEUR+YOGA+DYNAMIQUE+FEMME+SANS+COUTURES+NOIR.jpg?f=100x100" class="menu-search-category-img"></img>
-                                        <p class="menu-search-category-description">Tất cả sản phẩm<span class="menu-search-quantity-product${index}"></span></p>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </div>
                         <div class="menu-search-filter">
@@ -129,7 +142,7 @@
                                             <div class="information-product">
                                                 <span class="hide-on-mobile-tablet information-product-number">1.398</span>
                                                 <span class="hide-on-mobile-tablet information-product-description">sản phẩm </span>
-                                                <span class='information-product-mobile-fillter hide-on-pc'><strong><i class="fal fa-sliders-v"></i>Lọc sản phẩm </strong></span>
+                                                <span class='information-product-mobile-fillter hide-on-mobile-pc'><strong><i class="fal fa-sliders-v"></i>Lọc sản phẩm </strong></span>
                                             </div>
                                         </div>
                                         <div class="col col-lg-8">
@@ -172,11 +185,9 @@
                             
                         </ul> -->
                         <div class="pagination">
+                            <div class="page-item previousPageListProduct xx"><i class="fas fa-backward"></i></div>
                             <ul class="pagination-items"> <!--pages or li are comes from javascript --> </ul>
-                        </div>
-                        <div>
-                            <li class="page-item"><a class="page-link" onclick=paginationPrevPage()>Previous</a></li>
-                            <li class="page-item"><a class="page-link" onclick=paginationNextPage()>Next</a></li>
+                            <div class="page-item nextPageListProduct xx"><i class="fas fa-forward"></i></div>
                         </div>
                     </div>
                 </div>
