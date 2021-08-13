@@ -166,23 +166,31 @@ body {
     max-height: 50rem;
     overflow: auto;
 }
-.cart-items-img{
-    max-width:150px
+.cart-items-info{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.3) !important;
+  margin: 1rem 0rem;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 .cart-items-img img{
-    width:100%;
+  width: 100%;
 }
-.cart-items-info{
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.3) !important;
-    margin: 1rem 0rem;
-    padding: 0rem 2rem;
+.cart-items-img{
+    width: 30%;
+    max-width:150px
 }
 .cart-items-info-product{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.cart-items-delete{
+  width: 10%;
 }
 .cart-items-unit-price{
     display: flex;
@@ -190,6 +198,16 @@ body {
     align-items: center;
     font-size: 1.3rem;
     font-weight: 600;
+}
+.cart-items-info-product-description{
+  width: 50%;
+}
+.cart-items__priceOneProduct,
+.cart-items-total-price{
+  width: 10%;
+}
+.cart-items-quantity{
+  width: 30%;
 }
 .cart-items-quantity-btn{
     display: -webkit-box;
@@ -435,21 +453,30 @@ input[type=number] {
         display: block;
         position: unset;
     }
+    .cart-items{
+      padding-top: 0%;
+    }
     .cart-items-info{
         display: flex;
         flex-direction: column;
         padding: 0 1rem;
+        font-size: 1.2rem;
     }
     .cart-items-img{
         margin: 0 auto;
         max-width: 100px;
+        width: 100%;
     }
     .cart-items-info-product{
-        display: block;
-
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
     .cart-items-unit-price{
         margin-top:1rem;
+    }
+    .cart-items-info-product div{
+      width: 100%;
     }
     .cart-items__priceOneProduct::before{
         content: "Đơn giá: \00a0";
@@ -465,6 +492,14 @@ input[type=number] {
     }
     .cart-items-delete{
         margin-bottom: 1rem;
+        width: 100%;
+
+    }
+    .cart-items-delete button{
+      padding: 0 4rem;
+      border-radius: 0.5rem;
+      color: white;
+      background-color: rgb(71, 127, 231);
     }
     .cart{
       padding : 1rem;
@@ -472,5 +507,7 @@ input[type=number] {
     .button-continue{
       margin: 0 1rem;
     }
-
+    .cart-items-info-product-description{
+      text-align: center;
+    }
 }
