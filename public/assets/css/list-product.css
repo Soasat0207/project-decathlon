@@ -591,7 +591,7 @@
         padding:0.5rem 0.7rem;
     }
     .product-info-price{
-        left:60%
+        left: 55%
     }
     .menu-search{
         border-bottom: 1.6em solid black;
@@ -604,5 +604,16 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+    }
+    .information-product-mobile-fillter{
+        text-align: center;
+    }
+    .menu-search-filter{
+        overflow-y: scroll;
+        z-index: 2;
+        -webkit-appearance: none;
+    }
+    .menu-search-filter-list-Trademark{
+        display: none;
     }
 }

@@ -70,14 +70,10 @@ ul {
 
 .ordersRank1 {
     width: 100%;
-    border: 1px solid black;
-    background-color: white;
-    border-radius: 10px;
     padding: 1rem;
     display: flex;
     justify-content: center;
 }
-
 .avacus {
     width: 150px;
     height: 150px;
@@ -128,7 +124,7 @@ ul {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #0079BA;
     color: white;
 }
 

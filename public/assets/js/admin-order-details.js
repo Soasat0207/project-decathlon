@@ -123,11 +123,8 @@ $(document).ready(function() {
                   <p><i class="fas fa-arrow-square-right"></i> Category : ${productInfo.categoryProductId.name}</p>
                   <p><i class="fas fa-arrow-square-right"></i> Color : ${productInfo.colorId.name}</p>
                   <p><i class="fas fa-arrow-square-right"></i> Size : ${productInfo.sizeId.size}</p>
-                  <p><i class="fas fa-arrow-square-right"></i> Level : ${productInfo.levelId.level}</p>
                   <p><i class="fas fa-arrow-square-right"></i> Inventory : ${productInfo.quantity} ${productInfo.unit}<br></p>
-                  <p><i class="fas fa-arrow-square-right"></i> Supplier : ${productInfo.supplierId.name}<br></p>
                 </div>
-                <p class="text-justify text-truncate para mb-0"><i class="fas fa-arrow-square-right"></i> ${productInfo.descriptionShort}<br><br></p>
               </div>
               <div class="d-flex flex-column justify-content-center align-items-center col-md-3 border-left mt-1">
                   <span>Price: <strong>${pricePerOneUnit}</strong></span>
