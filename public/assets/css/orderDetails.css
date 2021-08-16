@@ -76,4 +76,12 @@ h5 {
 }
 th, td {
     padding: 5px;
-  }
+}
+.tab-pane p{
+    margin-bottom: 0;
+}
+.list-product{
+    padding: 0rem;
+    max-height: 70vh;
+    overflow-y: scroll;
+}

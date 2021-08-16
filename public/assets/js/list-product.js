@@ -58,7 +58,12 @@ let productFilter = `
     <div class="menu-search-category">
         <h2 class="menu-search-category-title">Category <span><i class="far fa-plus"></i></span></h2>
         <ul class="menu-search-category-list">
-            
+            <li class="menu-search-category-items">
+                <a class="menu-search-category-link" href="http://localhost:3000/list-product">
+                    <img src="https://contents.mediadecathlon.com/p1581230/k$bd3f8d54a01b2985d5d02d99bf337f13/sq/DEBARDEUR+YOGA+DYNAMIQUE+FEMME+SANS+COUTURES+NOIR.jpg?f=100x100" class="menu-search-category-img"></img>
+                    <p class="menu-search-category-description">Tất cả sản phẩm</p>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="menu-search-filter">
@@ -91,7 +96,6 @@ let productFilter = `
             </li>
         </ul>
     </div>
-    
 </div>
 `
 

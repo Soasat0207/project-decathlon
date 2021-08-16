@@ -453,8 +453,16 @@ async function renderLevel() {
             levelId: item._id,
           },
         });
+        // get array include code Product
+        let arrCodeProduct = [];
+        data.data.forEach(item =>{
+          arrCodeProduct.push(item.codeProduct)
+        })
+        let codeProductNoDup = arrCodeProduct.filter( (item , index) =>{
+          return arrCodeProduct.indexOf(item) === index
+        })
         let div = ``;
-        div = `(${data.data.length})`;
+        div = `(${codeProductNoDup.length})`;
         $(`.menu-search-filter-level-quantity${index}`).append(div);
       } catch (error) {
         console.log(error);
