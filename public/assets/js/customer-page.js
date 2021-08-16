@@ -39,10 +39,6 @@ function infoButton() {
     </div>
 
     <div class="rowC3">
-        <div class="birthday">
-        <p>Ngày sinh</p>
-        <input class="birthday3" type="date">
-        </div>
         <p class="sex3">Giới tính</p>
         <div class="sex1">
             <div><input type="radio" name="sex" id="" class='male3'></input><p>Nam</p></div>
@@ -74,7 +70,7 @@ function infoButton() {
         type: 'get',
     })
     .then((data) => {
-        console.log(data);
+        console.log(77,data);
         let ten;
         let ho;
         let email;
@@ -88,21 +84,24 @@ function infoButton() {
             email = data.email;
             phone = data.phone;
             gender = data.gender;
-            birthday = data.birthday.slice('0', '10');
+            // birthday = data.birthday.slice('0', '10');
             avatar = data.avatar;
-        }
-        console.log(94, gender);
-        $('.avacus').attr('src', avatar) 
-        $(".name3").val(ten);
-        $(".surname3").val(ho);
-        $(".email3").val(email);
-        $(".phone3").val(phone);
-        $(".birthday3").val(birthday);
-        if(gender == 'female'){
-            $('.female3').prop("checked", true)
+            console.log(93, ho);
+            $('.avacus').attr('src', avatar) 
+            $(".name3").val(ten);
+            $(".surname3").val(ho);
+            $(".email3").val(email);
+            $(".phone3").val(phone);
+            $(".birthday3").val(birthday);
+            if(gender == 'female'){
+                $('.female3').prop("checked", true)
+            }else{
+                $('.male3').prop("checked", true)
+            }
         }else{
-            $('.male3').prop("checked", true)
+            console.log(106);
         }
+
     })
     .catch((err) => {
         console.log(err);

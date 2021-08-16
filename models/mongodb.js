@@ -11,7 +11,7 @@ const accountSchema = new Schema(
     phone: String,
     gender: String,
     email: String,
-    birthday: Date,
+    // birthday: Date,
     // mainAddress: String,
     // subAddress: String,
     noteAddress: String,
