@@ -60,10 +60,10 @@ async function subscribeButton(){
                 })
                 //---------------------------------------
                 if(data){
-                    console.log(43, data);
-                    if(data == 'Account already exists'){
-                        $('.ndtk2').html('Account already exists')
-                    }
+                    // console.log(43, data);
+                    
+                        $('.ndtk2').html(data)
+                   
                 }
             }
         }

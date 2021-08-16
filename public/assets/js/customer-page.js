@@ -27,31 +27,31 @@ function infoButton() {
     let variable = `
     <div class="information5">
     <button class="exit123" onclick="exit4()" ><i class="fas fa-undo"></i></button>
-    <h3>Personal information</h3>
+    <h3>THÔNG TIN CÁ NHÂN</h3>
     <div class="rowC1 row">
-        <div class="col-xs-12 col-md-6">Name <input type="text" placeholder="Name" class="name3"></div>
-        <div class="col-xs-12 col-md-6">Last name<input type="text" placeholder="Surname" class="surname3"></div>
+        <div class="col-xs-12 col-md-6">Tên<input type="text" placeholder="Name" class="name3"></div>
+        <div class="col-xs-12 col-md-6">Họ<input type="text" placeholder="Surname" class="surname3"></div>
     </div>
 
     <div class="rowC2 row">
-        <div class="col-xs-12 col-md-6">Phone number <input type="number" placeholder="Phone number" class="phone3"></div>
-        <div class="col-xs-12 col-md-6">Email <input type="text" placeholder="Email" class="email3"></div>
+        <div class="col-xs-12 col-md-6">Số điện thoại<input type="number" placeholder="Phone number" class="phone3"></div>
+        <div class="col-xs-12 col-md-6">Email<input type="text" placeholder="Email" class="email3"></div>
     </div>
 
     <div class="rowC3">
         <div class="birthday">
-        <p>Date of birth</p>
+        <p>Ngày sinh</p>
         <input class="birthday3" type="date">
         </div>
-        <p class="sex3">Sex</p>
+        <p class="sex3">Giới tính</p>
         <div class="sex1">
-            <div><input type="radio" name="sex" id="" class='male3'></input><p>Male</p></div>
-            <div><input type="radio" name="sex" id="" class = 'female3'></input><p>Female</p></div>
+            <div><input type="radio" name="sex" id="" class='male3'></input><p>Nam</p></div>
+            <div><input type="radio" name="sex" id="" class = 'female3'></input><p>Nữ</p></div>
         </div>
     </div>
 
     <div>
-    <p>Avatar</p>
+    <p>Ảnh đại diện</p>
     <form>
         <img class="avacus" src="" alt="">
         <input type="file" name="avatarUser" multiple>
@@ -61,9 +61,9 @@ function infoButton() {
     <div class="rowC5">
         <div>
             <input type="checkbox" name="" id="">
-            <p>I have read and agree to <a href="/terms-of-purchase">Terms and Condition</a></p>
+            <p>Tôi đã đọc và đồng ý với<a href="/terms-of-purchase">Điều khoản và điều kiện</a></p>
         </div>
-        <button onclick="infoSaveButton5()">Save</button>
+        <button onclick="infoSaveButton5()">Lưu</button>
     </div>
     </div>
     `
@@ -91,13 +91,14 @@ function infoButton() {
             birthday = data.birthday.slice('0', '10');
             avatar = data.avatar;
         }
+        console.log(94, gender);
         $('.avacus').attr('src', avatar) 
         $(".name3").val(ten);
         $(".surname3").val(ho);
         $(".email3").val(email);
         $(".phone3").val(phone);
         $(".birthday3").val(birthday);
-        if(gender == 'nu'){
+        if(gender == 'female'){
             $('.female3').prop("checked", true)
         }else{
             $('.male3').prop("checked", true)
@@ -286,9 +287,16 @@ $.ajax({
     if(data){
         insertEmail = data.email;
         avatar = data.avatar;
+
+        $('.avacus').attr('src', avatar);    
+        $('.showEmail').append(insertEmail);
+    }else{
+        console.log(293, $('.avacus'))
+        $('.avacus').attr('src', '/public/assets/img/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg');    
+
+
     }
-$('.avacus').attr('src', avatar);    
-$('.showEmail').append(insertEmail);
+
 })
 .catch((err) => {
     console.log(err);

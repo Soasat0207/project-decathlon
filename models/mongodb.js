@@ -19,7 +19,7 @@ const accountSchema = new Schema(
     avatar: {
       type: String,
       default:
-        "https://cdn1.vectorstock.com/i/1000x1000/11/10/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
+        "/public/assets/img/admin-icon-male-person-profile-avatar-with-gear-vector-25811110.jpg",
     },
     createdAt: { type: Date, default: new Date() },
     role: { type: String, default: "user" },

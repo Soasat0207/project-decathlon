@@ -955,6 +955,10 @@
     .recommended-Products-list{
         padding-bottom: 2em;
     }
-
-
+    .delivery-services-info-btn{
+        display: none;
+    }
+    .pp{
+        width: 100%;
+    }
 }
