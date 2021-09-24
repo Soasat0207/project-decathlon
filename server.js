@@ -51,9 +51,10 @@ app.use(
     extended: false,
   })
 );
-
+// Template engine
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
+
 //user
 app.get("/", (req, res) => {
   res.render("user/index");
